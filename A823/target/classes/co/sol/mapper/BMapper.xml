@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="co.sol.mapper.BMapper">
+
+
+	<sql id="basic">
+
+
+		<trim prefixOverrides="OR" suffix=") AND " prefix="(">
+
+
+			<foreach collection="typeArr" item="type">
+
+
+				<trim prefix="OR">
+
+
+					<choose>
+
+						<when test="type == 'T'.toString()"> title like '%'||#{keyword}||'%' </when>
+
+						<when test="type == 'C'.toString()"> content like '%'||#{keyword}||'%' </when>
+
+						<when test="type == 'W'.toString()"> writer like '%'||#{keyword}||'%' </when>
+
+					</choose>
+
+				</trim>
+
+			</foreach>
+
+		</trim>
+
+	</sql>
+	<select resultType="co.sol.main.BVO" id="getList">
+		-<![CDATA[
+		select * from t_board where bnum > 0 
+		]]>
+	</select>
+
+	<insert id="insert">
+		insert into t_board(bnum, title, content, writer)
+		values (seq_bo.nextval, #{title}, #{content}, #{writer})
+	</insert>
+
+	<insert id="inkey">
+		<selectKey keyProperty="bnum" order="BEFORE"
+			resultType="long">
+			select seq_bo.nextval from dual
+		</selectKey>
+		insert into t_board(bnum, title, content, writer) values (#{bnum},
+		#{title}, #{content}, #{writer})
+	</insert>
+
+
+	<select id="sel" resultType="co.sol.main.BVO">
+		select * from t_board where
+		bnum=#{bnum}
+	</select>
+
+	<delete id="del">
+		delete from t_board where bnum=#{bnum}
+	</delete>
+
+	<update id="up">
+		update t_board
+		set title=#{title}, content=#{content},
+		writer=#{writer},
+		updateDate=sysdate
+		where bnum=#{bnum}
+	</update>
+
+	<select resultType="co.sol.main.BVO" id="getPage">
+
+<![CDATA[
+   select 
+     *
+   from 
+       (
+       select /*+INDEX_DESC(t_board pk_board) */
+         rownum rn, bnum, title, writer, redate, updatedate
+       from 
+         t_board
+      where 
+      ]]>
+
+
+		<trim prefixOverrides="OR" suffix=") AND " prefix="(">
+
+
+			<foreach collection="typeArr" item="type">
+
+
+				<trim prefix="OR">
+
+
+					<choose>
+
+						<when test="type == 'T'.toString()"> title like '%'||#{keyword}||'%' </when>
+
+						<when test="type == 'C'.toString()"> content like '%'||#{keyword}||'%' </when>
+
+						<when test="type == 'W'.toString()"> writer like '%'||#{keyword}||'%' </when>
+
+					</choose>
+
+				</trim>
+
+			</foreach>
+
+		</trim>
+<![CDATA[
+      rownum<=(#{pageNum} * #{amount})
+      )
+  where rn > (#{pageNum} -1)* #{amount}
+ 
+  ]]>
+	</select>
+
+	<select id="getCount" resultType="int">
+		select count(*) from t_board where
+		<include refid="basic" />
+		bnum>0
+
+	</select>
+
+</mapper>
