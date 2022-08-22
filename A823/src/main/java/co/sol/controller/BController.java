@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequiredArgsConstructor
 @Log4j
-@RequestMapping("/board/*")
+@RequestMapping({"/board/*","/user/*"})
 public class BController {
 	
 	private final BService service;
@@ -79,6 +79,11 @@ public class BController {
 		rt.addAttribute("type", ba.getType());
 		 rt.addAttribute("keyword", ba.getKeyword());
 		return "redirect:/board/list";
+		
+	}
+	
+	@GetMapping("/myPage")
+	public void myPage() {
 		
 	}
 	
