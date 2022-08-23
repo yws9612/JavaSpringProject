@@ -3,5 +3,18 @@
 
 <mapper namespace="co.sol.mapper.GymMapper">
 
-
+	<select id="getList" resultType="co.sol.main.GymVO">
+		select * from gym
+	</select>
+	
+	
+	<select id="getlocallist" resultType="co.sol.main.GymVO">
+	
+	</select>
+	
+	
+	<select id="getReview" resultType="co.so.main.RVO">
+		
+	</select>
+	
 </mapper>

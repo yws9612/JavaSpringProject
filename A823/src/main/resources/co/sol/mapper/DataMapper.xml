@@ -3,5 +3,21 @@
 
 <mapper namespace="co.sol.mapper.DataMapper">
 
+	<select id="getEList" resultType="co.sol.main.DataEVO">
+		select * from exercise where
+		<trim>
+			<if test="">
+			</if>
+		</trim>
+	</select>
+
+
+	<select id="getMList" resultType="co.sol.main.DataMVO">
+		select * from machine where
+		<trim>
+			<if test="">
+			</if>
+		</trim>
+	</select>
 
 </mapper>
