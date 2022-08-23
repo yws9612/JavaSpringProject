@@ -17,10 +17,10 @@ public class BServiceImpl implements BService{
 	private final BMapper mapper;
 
 	@Override
-	public Long submit(BVO bo) {
+	public int submit(BVO bo) {
 		
 		mapper.inkey(bo);
-		return bo.getBnum();
+		return bo.getB_no();
 	}
 
 	@Override

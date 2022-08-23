@@ -6,7 +6,7 @@ import co.sol.main.Basic;
 
 public interface BService {
 	
-	Long submit(BVO bo);
+	int submit(BVO bo);
 	
 	BVO get(int bnum);
 	
