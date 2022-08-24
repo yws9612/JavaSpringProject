@@ -6,6 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>Login</title>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -28,14 +29,17 @@
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
+				
 					<div class="form-group">
 						<label for="lg_username" class="sr-only">ID</label>
 						<input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
 					</div>
+					
 					<div class="form-group">
 						<label for="lg_password" class="sr-only">PW</label>
 						<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
 					</div>
+					
 					<div class="form-group login-group-checkbox">
 						<input type="checkbox" id="lg_remember" name="lg_remember">
 						<label for="lg_remember">저장하기</label>
@@ -44,7 +48,7 @@
 				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 			</div>
 			<div class="etc-login-form">
-				<p>비밀번호 분실? <a href="#">비밀번호 찾기</a></p>
+				<p>ID/PW 분실? <a href="#">ID/PW 찾기</a></p>
 				<p>새로운 사용자? <a href="#">회원가입 하기</a></p>
 			</div>
 		</form>
