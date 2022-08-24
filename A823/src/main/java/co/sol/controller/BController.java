@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequiredArgsConstructor
 @Log4j
-@RequestMapping({"/board/*","/user/*"})
+@RequestMapping({"/board/*","/user/*","/main/*"})
 public class BController {
 	
 	private final BService service;
@@ -87,6 +87,10 @@ public class BController {
 		
 	}
 	
+	@GetMapping("/main")
+	public void main() {
+		
+	}
 	
 }
 
