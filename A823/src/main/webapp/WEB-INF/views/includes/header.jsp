@@ -23,7 +23,8 @@
 				<a href="main"
 					class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
 					<!-- 로고 이미지 삽입 -->
-					<h2>부들부들 </h2>
+					<img src="/resources/img/logo/logo3.png" class="d-block" alt="부들부들로고" width="60">
+					<img src="/resources/img/logo/logo.png" class="d-block" alt="부들부들로고" width="80">
 				</a>
 				<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="list" class="nav-link px-2 link-dark">운동방법</a></li>
