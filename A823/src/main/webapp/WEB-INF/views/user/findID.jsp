@@ -21,7 +21,7 @@
 
 <!-- FORGOT ID FORM -->
 <div class="text-center" style="padding:50px 0">
-	<div class="logo"><h3>ID 찾기</h3></div>
+	<div class="logo"><h3>ID 찾기</h3></div><br>
 
 	<!-- Main Form -->
 	<div class="login-form-1">
@@ -30,6 +30,8 @@
 			<div class="main-login-form">
 				<div class="login-group">
 					<div class="form-group">
+						<input type="text" class="form-control" placeholder="이름을 입력하세요">
+						<br>
 						<input type="text" class="form-control" placeholder="email을 입력하세요">
 					</div>
 				</div>
@@ -38,7 +40,6 @@
 			</div>
 			
 			<div class="etc-login-form">
-				<p>기존 회원이라면? <a href="#">여기서 로그인</a></p>
 				<p>가입이 필요하면? <a href="#">여기서 회원가입</a></p>
 			</div>
 		</form>

@@ -37,7 +37,6 @@
 			</div>
 			
 			<div class="etc-login-form">
-				<p>기존 회원이라면? <a href="#">여기서 로그인</a></p>
 				<p>가입이 필요하면? <a href="#">여기서 회원가입</a></p>
 			</div>
 		</form>
