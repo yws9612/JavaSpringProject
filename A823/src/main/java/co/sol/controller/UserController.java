@@ -1,5 +1,7 @@
 package co.sol.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequiredArgsConstructor
 @Log4j
-@RequestMapping({"/user/*"})
+@RequestMapping({"/user/*","/main/*"})
 public class UserController {
 	
 	
@@ -51,14 +53,18 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String postLogin(@ModelAttribute("session") UVO vo) {
+	public String postLogin(UVO uvo, HttpSession session) {
 		
-		vo.setU_addr("서울시");
-		vo.setU_name("아무나");
 		
 		return "/main/main";
 	}
 	
-	
+	@GetMapping("/main")
+	public String main() {
+		
+		
+		
+		return "/main/main";
+	}
 
 }
