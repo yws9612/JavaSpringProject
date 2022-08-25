@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.annotation.SessionScope;
 
+import co.sol.main.UVO;
 import co.sol.service.BService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -20,7 +21,6 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor
 @Log4j
 @RequestMapping({"/user/*"})
-@SessionAttributes("session")
 public class UserController {
 	
 	
@@ -51,9 +51,10 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String postLogin(@ModelAttribute("session") UVO vo, SessionStatus sess) {
+	public String postLogin(@ModelAttribute("session") UVO vo) {
 		
-		
+		vo.setU_addr("서울시");
+		vo.setU_name("아무나");
 		
 		return "/main/main";
 	}
