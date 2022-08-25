@@ -41,7 +41,7 @@ public class BController {
 	@PostMapping("/submit")
 	public String submit(BVO bv, RedirectAttributes rt) {
 		
-		Long bnum=service.submit(bv);
+		int bnum=service.submit(bv);
 		
 		rt.addFlashAttribute("result", bnum);
 		
