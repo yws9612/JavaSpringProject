@@ -80,9 +80,7 @@ public class BController {
 		 rt.addAttribute("keyword", ba.getKeyword());
 		return "redirect:/board/list";
 		
-	}
-	
-	
+	}	
 }
 
 
