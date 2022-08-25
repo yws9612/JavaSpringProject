@@ -19,7 +19,7 @@
 <div class="row">
 <div class="col-md-5">
 		
-		<form action="#중복확인" method="post" id="frm">
+		<form action="join" method="post" id="frm">
 		<br/><br/>
 			<div class="input-group mb-3">
 			    <div class="input-group-prepend">
