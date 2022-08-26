@@ -3,5 +3,66 @@
 
 <mapper namespace="co.sol.mapper.UMapper">
 
+	<insert id="join">
+		<selectKey keyProperty="u_no" order="BEFORE" resultType="int">
+			select max(u_no)+1 from u_table
+		</selectKey>
+		insert into u_table values(u_no,)
+		call pro_d_table(u_no,)
+	</insert>
+	
+	
+	<update id="Modify">
+		update u_table set  where u_no=#{u_no}
+	</update>
+	
+	
+	<delete id="Leave">
+		delete from u_table where
+	</delete>
+	
+	
+	<select id="getId" resultType="String">
+		
+	</select>
+	
+	
+	<select id="getPw" resultType="String">
+	
+	</select>
+	
+	
+	<select id="getUser" resultType="co.sol.main.UVO">
+	
+	</select>
+	
+	
+	<select id="Myboard" resultType="co.sol.main.BVO">
+	
+	</select>
+	
+	
+	<select id="getScrap" resultType="co.sol.main.BVO">
+	
+	</select>
+	
+	
+	<insert id="addDiscord">
+		call pro_d_table(#{u_no}, #{d_weight}, #{d_height})
+	</insert>
+	
+	
 
 </mapper>
+
+<!--
+//	public void join(UVO user);
+//	public void Modify(UVO user);
+//	public void Leave(UVO user);
+//	public String getId(UVO user);
+//	public String getPw(UVO user);
+//	public UVO getUser();
+//	public List<BVO> Myboard(UVO user);
+//	public List<BVO> getScrap(UVO user);
+//	public void addDiscord(DVO discord);
+-->
