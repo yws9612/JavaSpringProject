@@ -83,6 +83,42 @@ public class BController {
 		
 	}
 	
+	
+	@GetMapping("/exercise_diary")
+	public void e_diary() {
+		
+	}
+	
+	@GetMapping("/exercise_info")
+	public void e_info() {
+		
+	}
+	
+	@GetMapping("/exercise_list")
+	public void e_list() {
+		
+	}
+	
+	@GetMapping("/exercise_way")
+	public void e_way() {
+		
+	}
+	
+	@GetMapping("/health_location")
+	public void h_location() {
+		
+	}
+	
+	@GetMapping("/health_review")
+	public void h_review() {
+		
+	}
+	
+	@GetMapping("/list_writer")
+	public void l_writer() {
+		
+	}
+	
 }
 
 
