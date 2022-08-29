@@ -79,8 +79,8 @@ public class BController {
 		rt.addAttribute("type", ba.getType());
 		 rt.addAttribute("keyword", ba.getKeyword());
 		return "redirect:/board/list";
-		
 	}	
+
 }
 
 
