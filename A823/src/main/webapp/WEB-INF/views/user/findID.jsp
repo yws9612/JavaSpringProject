@@ -16,7 +16,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
 
-
 <body>
 
 <!-- FORGOT ID FORM -->
@@ -25,7 +24,7 @@
 
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="forgot-id-form" class="text-left" method = "post" action = "/user/findID">
+		<form id="forgot-id-form" class="text-left" method = "post" action = "/user/login">
 
 			<div class="main-login-form">
 				<div class="login-group">
@@ -38,7 +37,7 @@
 			</div>
 			
 			<div class="etc-login-form">
-				<p>가입이 필요하면? <a href="#">여기서 회원가입</a></p>
+				<p>가입이 필요하면? <a href="join">여기서 회원가입</a></p>
 			</div>
 		</form>
 	</div>

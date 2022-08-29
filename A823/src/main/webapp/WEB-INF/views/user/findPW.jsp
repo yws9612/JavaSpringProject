@@ -24,7 +24,7 @@
 	
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="forgot-password-form" class="text-left" method = "post" action = "user/findPW">
+		<form id="forgot-password-form" class="text-left" method = "post" action = "/user/login">
 
 			<div class="main-login-form">
 					<div class="form-group">
@@ -37,8 +37,8 @@
 			</div>
 			
 			<div class="etc-login-form">
-				<p>아이디가 기억나지 않는다면? <a href="#">여기서 아이디 찾기</a></p>
-				<p>가입이 필요하면? <a href="#">여기서 회원가입</a></p>
+				<p>아이디가 기억나지 않는다면? <a href="findID">여기서 아이디 찾기</a></p>
+				<p>가입이 필요하면? <a href="join">여기서 회원가입</a></p>
 			</div>
 		</form>
 	</div>

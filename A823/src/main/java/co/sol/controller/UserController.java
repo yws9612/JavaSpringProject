@@ -27,13 +27,13 @@ public class UserController {
 	
 	
 	
-	@PostMapping("/findID")
-	public void findID(@RequestParam("email") String email, Model m) {
+	@GetMapping("/findID")
+	public void findID() {
 		
 	}
 	
-	@PostMapping("/findPW")
-	public void findPW(@RequestParam("id") String id, Model m) {
+	@GetMapping("/findPW")
+	public void findPW() {
 		
 	}
 	
@@ -53,18 +53,20 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String postLogin(UVO uvo, HttpSession session) {
+	public void postLogin() {
+				
+	}
+	
+	@PostMapping("/loginProc")
+	public String loginProc(UVO uvo, HttpSession session) {
 		
 		
 		return "/main/main";
 	}
 	
 	@GetMapping("/main")
-	public String main() {
+	public void main() {
 		
-		
-		
-		return "/main/main";
 	}
 
 }

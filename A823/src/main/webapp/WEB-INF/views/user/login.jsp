@@ -25,7 +25,7 @@
 	<div class="logo">login</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="login-form" class="text-left" method = "post" action = "login">
+		<form id="login-form" class="text-left" method = "post" action = "loginProc">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
@@ -48,8 +48,9 @@
 				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 			</div>
 			<div class="etc-login-form">
-				<p>ID/PW 분실? <a href="#">ID/PW 찾기</a></p>
-				<p>새로운 사용자? <a href="#">회원가입 하기</a></p>
+				<p>ID를 잊어버리셨나요?<a href="findID">ID 찾기</a></p>
+				<p>비밀번호를 잊어버리셨나요?<a href="findPW">비밀번호 찾기</a></p>
+				<p>새로운 사용자? <a href="join">회원가입 하기</a></p>
 			</div>
 		</form>
 	</div>
