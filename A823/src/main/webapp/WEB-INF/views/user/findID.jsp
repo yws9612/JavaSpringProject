@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +16,21 @@
 <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<%
+	String id = (String)request.getAttribute("id");
+	System.out.println(id);
+	if(id != null){
+%>
+		<script>
+			alert(id);
+		</script>
+<%		
+	}
+%>
+
 </head>
+
 
 <body>
 
@@ -24,16 +40,16 @@
 
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form id="forgot-id-form" class="text-left" method = "post" action = "/user/login">
+		<form id="forgot-id-form" class="text-left" method = "post" action = "/user/findIdProc">
 
 			<div class="main-login-form">
 				<div class="login-group">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="email을 입력하세요">
+						<input type="text" class="form-control" name = "u_email" placeholder="email을 입력하세요">
 					</div>
 				</div>
 				
-				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+				<button type="submit" class="login-button" onclick = "on()"><i class="fa fa-chevron-right"></i></button>
 			</div>
 			
 			<div class="etc-login-form">
@@ -43,6 +59,8 @@
 	</div>
 	<!-- end:Main Form -->
 </div>
+
+
 
 </body>
 </html>

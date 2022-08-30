@@ -13,7 +13,7 @@
 	</select>
 	
 	
-	<select id="getReview" resultType="co.so.main.RVO">
+	<select id="getReview" resultType="co.sol.main.RVO">
 		
 	</select>
 	

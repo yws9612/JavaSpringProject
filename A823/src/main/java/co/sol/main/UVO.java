@@ -11,8 +11,6 @@ public class UVO {
 	private String u_pw;
 	private String u_addr;
 	private String u_email;
-	private int u_weight;
-	private int u_height;
 	private String u_admin;
 	
 }
