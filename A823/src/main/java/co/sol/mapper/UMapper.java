@@ -9,5 +9,6 @@ public interface UMapper {
 //	public String getPw(UVO user);
 //	public UVO getUser();
 //	public void addDiscord(UVO user, DVO discord);
+//	public void getDiscord(UVO user);
 	
 }
