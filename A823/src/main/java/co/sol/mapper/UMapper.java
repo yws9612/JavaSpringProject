@@ -8,8 +8,6 @@ public interface UMapper {
 //	public String getId(UVO user);
 //	public String getPw(UVO user);
 //	public UVO getUser();
-//	public List<BVO> Myboard(UVO user);
-//	public List<BVO> getScrap(UVO user);
 //	public void addDiscord(UVO user, DVO discord);
 	
 }
