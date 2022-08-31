@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script><!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ìš´ë™ ê²Œì‹œíŒ</title>
+<meta charset="EUC-KR">
+<title>¿îµ¿ °Ô½ÃÆÇ</title>
 </head>
 <body>
 	<div class="container">
@@ -12,36 +13,36 @@
 	 
 	 <form>
       <select Upper body>
-        <option>ìƒì²´</option>
-        <option>ì–´ê¹¨</option>
-        <option>íŒ”</option>
-        <option>ë³µê·¼</option>
-        <option>ë“±</option> 
+        <option>»óÃ¼</option>
+        <option>¾î±ú</option>
+        <option>ÆÈ</option>
+        <option>º¹±Ù</option>
+        <option>µî</option> 
       </select>
 
       <select lower body>
-        <option>í•˜ì²´</option>
-        <option>ì—‰ë©ì´</option>
-        <option>í—ˆë²…ì§€</option>
-   	    <option>ì¢…ì•„ë¦¬</option>    
+        <option>ÇÏÃ¼</option>
+        <option>¾ûµ¢ÀÌ</option>
+        <option>Çã¹÷Áö</option>
+   	    <option>Á¾¾Æ¸®</option>    
       </select>
      </form>
 	
 		<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
-					<th style="background-color: #eeeeee; text-align: center;">ë²ˆí˜¸</th>
-					<th style="background-color: #eeeeee; text-align: center;">ì œëª©</th>
-					<th style="background-color: #eeeeee; text-align: center;">ìž‘ì„±ìž</th>
-					<th style="background-color: #eeeeee; text-align: center;">ìž‘ì„±ì¼</th>
-					<th style="background-color: #eeeeee; text-align: center;">ì¡°íšŒìˆ˜</th>
+					<th style="background-color: #eeeeee; text-align: center;">¹øÈ£</th>
+					<th style="background-color: #eeeeee; text-align: center;">Á¦¸ñ</th>
+					<th style="background-color: #eeeeee; text-align: center;">ÀÛ¼ºÀÚ</th>
+					<th style="background-color: #eeeeee; text-align: center;">ÀÛ¼ºÀÏ</th>
+					<th style="background-color: #eeeeee; text-align: center;">Á¶È¸¼ö</th>
 				</tr>
 			</thead>
 			<tbody>								
 				<tr>
 					<td>1</td>
 					<td>test</td>
-					<td>í™©ìš©í•™ í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.</td>
+					<td>È²¿ëÇÐ Å×½ºÆ®ÀÔ´Ï´Ù.</td>
 					<td>2022-08-25</td>
 					<td>10000000</td>
 				</tr>
@@ -61,14 +62,14 @@
 		<div class="form-group row justify-content-center">
 		<div class="w100" style="padding-right:10px">			
 		<select class="form-control form-control-sm" name="searchType" id="searchType">
-		<option value="title">ì œëª©</option>					
-		<option value="Content">ë³¸ë¬¸</option>					
-		<option value="reg_id">ìž‘ì„±ìž</option>				
+		<option value="title">Á¦¸ñ</option>					
+		<option value="Content">º»¹®</option>					
+		<option value="reg_id">ÀÛ¼ºÀÚ</option>				
 				
 		<div class="w300" style="padding-right:10px">
 		<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">	
-		<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">ê²€ìƒ‰</button></select></div>	
-		<button class="float-right">ê¸€ì“°ê¸°</button>
+		<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">°Ë»ö</button></select></div>	
+		<button class="float-right">±Û¾²±â</button>
 	</div>
 </div>
 

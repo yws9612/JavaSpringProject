@@ -67,7 +67,12 @@
    		  	 <input type="text" class="form-control" id="writer"
    		  	  placeholder="작성자" name="writer">
   		 </div></p>
- 	   
+ 	   		
+ 	   		<div class="form-group">
+    		 <label for="exampleInputPassword1">암호</label>
+    		  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="암호  4자리 입력해주세요"  maxlength="4">	
+  			</div>
+  				 	   
  		   <button type="submit" class="btn btn-default">등록</button>
    			<button type="submit" class="btn btn-default">저장</button>
  		 </form>
