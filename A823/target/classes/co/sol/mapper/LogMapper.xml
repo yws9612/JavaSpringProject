@@ -4,7 +4,7 @@
 <mapper namespace="co.sol.mapper.LogMapper">
 	
 	<select id="getList" resultType="co.sol.main.LVO">
-		select * from L_TABLE where U_NO = #{U_NO}
+		select * from l_table where u_no = #{u_no}
 	</select>
 	
 </mapper>

@@ -8,8 +8,9 @@
 			select max(u_no)+1 from u_table
 		</selectKey>
 		insert into u_table values(u_no,)
-		call pro_d_table(u_no,)
+		call pro_d_table(#{u_no}, #{d_weight}, #{d_height})
 	</insert>
+	
 	
 	
 	<update id="Modify">
@@ -17,9 +18,11 @@
 	</update>
 	
 	
+	
 	<delete id="Leave">
 		delete from u_table where
 	</delete>
+	
 	
 	
 	<select id="getId" resultType="String">
@@ -27,9 +30,11 @@
 	</select>
 	
 	
+	
 	<select id="getPw" resultType="String">
 	
 	</select>
+	
 	
 	
 	<select id="getUser" resultType="co.sol.main.UVO">
@@ -37,9 +42,11 @@
 	</select>
 	
 	
+	
 	<insert id="addDiscord">
 		call pro_d_table(#{u_no}, #{d_weight}, #{d_height})
 	</insert>
+	
 	
 	
 	<select id="getDiscord" resultType="co.sol.main.RVO">
