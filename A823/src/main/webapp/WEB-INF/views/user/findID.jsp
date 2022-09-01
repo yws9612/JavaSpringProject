@@ -6,61 +6,37 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<title>Login</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID 찾기</title>
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-<%
-	String id = (String)request.getAttribute("id");
-	System.out.println(id);
-	if(id != null){
-%>
-		<script>
-			alert(id);
-		</script>
-<%		
-	}
-%>
-
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
 </head>
 
 
 <body>
 
-<!-- FORGOT ID FORM -->
-<div class="text-center" style="padding:50px 0">
-	<div class="logo"><h3>ID 찾기</h3></div>
+<!-- FORGOT ID FORM  -->
+<div class="text-center" style="padding:50px 50px 50px 50px">
 
-	<!-- Main Form -->
-	<div class="login-form-1">
-		<form id="forgot-id-form" class="text-left" method = "post" action = "/user/findIdProc">
+	<div class="logo"><h3>ID 찾기</h3></div><br>
 
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-						<input type="text" class="form-control" name = "u_email" placeholder="email을 입력하세요">
-					</div>
-				</div>
-				
-				<button type="submit" class="login-button" onclick = "on()"><i class="fa fa-chevron-right"></i></button>
-			</div>
-			
-			<div class="etc-login-form">
+	<div class="form-floating mb-3">
+	<input type="text" class="form-control" placeholder="이름">
+	<label for="floatingInput" style="text-align:left">이름</label>
 				<p>가입이 필요하면? <a href="join">여기서 회원가입</a></p>
-			</div>
-		</form>
 	</div>
-	<!-- end:Main Form -->
+
+	<div class="form-floating mb-3">
+	<input type="email" class="form-control" placeholder="Email">
+	<label for="floatingInput" style="text-align:left">Email</label>
+	</div>
+
+						
+
+			
+
 </div>
-
-
-
 </body>
 </html>

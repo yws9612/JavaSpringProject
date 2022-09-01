@@ -10,10 +10,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
-
-  <!-- 부트스트랩 js 추가 for 아코디언  -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  
   
   <!-- kko zipcode -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -27,27 +24,8 @@
     }).open();
 	}
 	</script>
-	
-	<!-- 약관 전체선택/해제 jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
- 
-	<script>
-	$(document).ready(function() { // 전체 선택 클릭시 전부 선택 / 해제
-	$(":checkbox").eq(0).change(function(event) {
-	$(":checkbox:gt(0)").prop("checked", $(this).prop("checked"));
-	});
-
-	// 2개 전부 체크시 전체 선택 체크 / 하나라도 체크 해제시 전체 선택 해제
-	$(":checkbox:gt(0)").click(function(event) {
-	if ($(":checkbox:gt(0):checked").length == 2) {
-	$(":checkbox:eq(0)").prop("checked", true);
-	} else {
-	$(":checkbox:eq(0)").prop("checked", false);	}
-	});
-	});
-</script>
-
-
+  
+  
 </head>
 
 <body>
@@ -112,54 +90,72 @@
 			
 		<div class="input-group mb-3">
 		<span class="input-group-text">키</span>
-		<input type="text" class="form-control" placeholder="ex)199.9">
+		<input type="text" class="form-control" placeholder="ex)174.2">
 
 		<span class="input-group-text">몸무게</span>
-		<input type="text" class="form-control" placeholder="ex)99.9">			    
+		<input type="text" class="form-control" placeholder="ex)68.5">			    
 		</div><br/>
 			    
 			  			    
 		<!-- 약관  -->	  			    
 		<div class="accordion" id="accordionExample">
-  		<div class="accordion-item" >
+ 
+  		<div class="accordion-item">
     	<h2 class="accordion-header" id="headingOne">
       	<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-		<div class="form-check form-switch">
-        
-        <input class="form-check-input" type="checkbox" id="checkAll">
-        
-        <strong>모든 약관 사항에 전체 동의합니다.</strong>
-   	   	</div><br/></button></h2>
-       	
+         	약관이름 1</button></h2>
 	    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
-      	<div class="accordion-body">	
-		
-		<div class="form-check">
-        <input class="form-check-input" type="checkbox" value="terms1">
-		<small>서비스 이용약관 동의 (필수)</small>
-		<a href=”#서비스이용약관”><span class="badge bg-light" style="float:right;" >자세히</span></a>
-		</div>
-		
-		<div class="form-check">		
-        <input class="form-check-input" type="checkbox" value="terms2">
-		<small>개인정보 수집 및 이용 동의 (필수)</small>
-		<a href="#개인정보약관"><span class="badge bg-light" style="float:right;" >자세히</span></a>
-		</div>
-		
-
-      	</div></div></div><br/>
+      	<div class="accordion-body">
       	
+      	
+      	<fieldset class="form-group">
+		<div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
+        <label class="form-check-label" for="flexSwitchCheckChecked"><strong>회원가입을 위한 약관에 동의합니다</strong></label>
+   	   	</div></fieldset>
+     	 
+     	 어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용어쩌고저쩌고블라블라이러쿵저러쿵내용내용
+      	</div></div></div>
+      	
+ 		<div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+      <div class="accordion-body">
+        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample" style="">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+</div>
+<br/><br/>
 
-		<div class="button" style="float:right;" >
+		
+		<div class="button">
 		<input type="reset" class="btn btn-dark" value="취소">
 		<button id="send"  class="btn btn-primary">회원가입</button>
 		</div>		
-			
-</div>	
+		
+		
+	
 </div>
 </div>
 </div>
-
 
 </body>
+
 </html>
