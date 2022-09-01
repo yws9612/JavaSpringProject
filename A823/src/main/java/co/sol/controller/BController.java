@@ -81,24 +81,34 @@ public class BController {
 		 rt.addAttribute("keyword", ba.getKeyword());
 		return "redirect:/board/list";
 	}	
-	@GetMapping("/list_writer")
-	public void list_writer() {}
-	
-	@GetMapping("/list_writer2")
-	public void list_writer2() {}
 	
 	@GetMapping("/exercise_diary")
 	public void e_diary() {
 		
 	}
 	
-	@GetMapping("/exercise_info")
-	public void e_info() {
+	@GetMapping("/exercise_free")
+	public void e_free() {
 		
 	}
 	
-	@GetMapping("/exercise_list")
-	public void e_list() {
+	@GetMapping("/exercise_gym_way")
+	public void e_gymWay() {
+		
+	}
+	
+	@GetMapping("/exercise_home_way")
+	public void e_homeWay() {
+		
+	}
+	
+	@GetMapping("/exercise_honey_tip")
+	public void e_honeyTip() {
+		
+	}
+	
+	@GetMapping("/exercise_routine")
+	public void e_routine() {
 		
 	}
 	
@@ -107,20 +117,31 @@ public class BController {
 		
 	}
 	
-	@GetMapping("/health_location")
-	public void h_location() {
+	@GetMapping("/writer_diary")
+	public void w_diary() {
 		
 	}
 	
-	@GetMapping("/health_review")
-	public void h_review() {
+	@GetMapping("/writer_free")
+	public void w_free() {
 		
 	}
 	
-	@GetMapping("/list_writer")
-	public void l_writer() {
+	@GetMapping("/writer_gym")
+	public void w_gym() {
 		
 	}
+	
+	@GetMapping("/writer_home")
+	public void w_home() {
+		
+	}
+	
+	@GetMapping("/writer_routine")
+	public void w_routine() {
+		
+	}
+	
 	
 }
 
