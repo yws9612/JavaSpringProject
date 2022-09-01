@@ -25,13 +25,13 @@
 	<div class="logo"><h3>ID 찾기</h3></div><br>
 
 	<div class="form-floating mb-3">
-	<input type="text" class="form-control" placeholder="이름">
+	<input type="text" class="form-control" placeholder="이름" name = "u_name">
 	<label for="floatingInput" style="text-align:left">이름</label>
 				
 	</div>
 
 	<div class="form-floating mb-3">
-	<input type="email" class="form-control" placeholder="Email">
+	<input type="email" class="form-control" placeholder="Email" name = "u_email">
 	<label for="floatingInput" style="text-align:left">Email</label>
 	</div>		
 	

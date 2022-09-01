@@ -23,13 +23,23 @@
 	
 	
 	<select id="getId" resultType="String">
-		select u_id from u_table where u_email = #{u_email}
+		select u_id 
+		from u_table 
+		where u_email = #{u_email} and u_name = #{u_name}
+	</select>
+	
+	<select id="getEmail" resultType="String">
+		select u_email 
+		from u_table
+		where u_no in (select u_no from u_table where u_name = #{u_name});
 	</select>
 	
 	
-	<select id="getPw" resultType="String">
-		select u_id from u_table where u_email = #{u_email} and u_id = #{u_id}
-	</select>
+	<update id="getPw">
+		update u_table 
+		set u_pw = #{u_pw}
+		where u_id = #{u_id} and u_email = #{u_email}	
+	</update>
 	
 	
 	<select id="getUser" resultType="co.sol.main.UVO">

@@ -52,6 +52,24 @@ public class UserController {
 		
 	}
 	
+	@PostMapping("/findPwProc")
+	public String findPwProc(UVO uvo, Model m) {
+		
+		String id = uservice.getId(uvo);
+		String email = uservice.getEmail(uvo);
+		
+		m.addAttribute("id", id);
+		m.addAttribute("email", email);
+		
+		return "/user/findPwProc";
+	}
+	
+	@GetMapping("/findPwProc")
+	public void findPwProcg() {
+		
+	}
+	
+	
 	@GetMapping("/join")
 	public void getJoin() {
 		

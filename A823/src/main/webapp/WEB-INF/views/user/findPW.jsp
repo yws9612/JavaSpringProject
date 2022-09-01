@@ -22,13 +22,13 @@
 	<div class="logo"><h3>PW 찾기</h3></div><br>
 
 	<div class="form-floating mb-3">
-	<input type="text" class="form-control" placeholder="ID">
+	<input type="text" class="form-control" placeholder="ID" name = "u_id">
 	<label for="floatingInput" style="text-align:left">ID</label>
 	
 	</div>
 
 	<div class="form-floating mb-3">
-	<input type="email" class="form-control" placeholder="Email">
+	<input type="email" class="form-control" placeholder="Email" name = "u_email">
 	<label for="floatingInput" style="text-align:left">Email</label>
 	</div>
 

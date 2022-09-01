@@ -15,12 +15,13 @@
 <body>
 <div class="text-center" style="padding:50px 50px 50px 50px">
 
+
 	<p>입력하신 정보로 아래의 아이디를 찾았습니다.</p>     
-	<c:if test="${getId != null && getId !='' }">
-	${getID}      
- 	</c:if>  
+	${id}
 
  
+ 	<p>비밀번호가 기억나지 않는다면? <a href="findPW">여기서 비밀번호 찾기/변경</a></p>
+	<p>로그인하러 가고싶다면? <a href="login">여기서 로그인</a></p>
  
 
 </div>
