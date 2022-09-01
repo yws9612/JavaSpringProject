@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
-<div style="background: #00ffff">
+<div style="background: white">
 	<div class="container border-top">
-  <footer class="row row-cols-1 row-cols-sm-1 row-cols-md-5 py-5 my-5 justify-content-between">
+  <footer class="row row-cols-1 row-cols-sm-1 row-cols-md-5 py-5 my-5 justify-content-between navbar-fixed-bottom">
 
     <div class="col-md-auto">
-      <a href="main" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+      <a href="${root }main/main" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
         <!-- 로고 이미지 삽입 -->
-					부들부들 로고자리
+		<img src="/resources/img/logo/logo_long.png" class="d-block" alt="부들부들로고" width="150">
       </a>
       <a class="text-muted text-decoration-none">© 2022 Copyright 5dle5dle</a><br>
-	  <a href="list" class="text-muted text-decoration-none">개인정보처리방침</a><a class="text-muted text-decoration-none"> | </a>
-	  <a href="list" class="text-muted text-decoration-none">서비스 이용약관</a>
+	  <a href="${root }user/privacy" class="text-muted text-decoration-none">개인정보처리방침</a><a class="text-muted text-decoration-none"> | </a>
+	  <a href="${root }user/termsofservice" class="text-muted text-decoration-none">서비스 이용약관</a>
 	  <br><br>
       <table>
       	<tr><td>팀장 서연운 | 3yws@naver.com</td></tr>
@@ -35,8 +37,8 @@
     <div class="col-md-auto text-end">
       <h5>운동방법</h5>
       <ul class="nav flex-column justify-content-end">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">맨몸운동방법</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">기구운동방법</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">홈트레이닝</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">짐트레이닝</a></li>
       </ul>
     </div>
 
