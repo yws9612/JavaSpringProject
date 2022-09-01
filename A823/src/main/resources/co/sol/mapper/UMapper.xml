@@ -14,31 +14,27 @@
 	
 	
 	<update id="Modify">
-		update u_table set  where u_no=#{u_no}
+		update u_table set 정하고 적자  where u_no=#{u_no}
 	</update>
 	
 	
 	
 	<delete id="Leave">
-		delete from u_table where
+		delete from u_table where u_no = #{u_no} and u_pw = #{u_pw}
 	</delete>
-	
-	
-	
-	<select id="getId" resultType="String">
 		
+	<select id="getId" resultType="String">
+		select u_id from u_table where u_name = #{u_name} and u_email = #{u_email} 	
 	</select>
 	
 	
 	
 	<select id="getPw" resultType="String">
-	
+		select u_pw form u_table where u_id = #{u_id} and u_email = #{u_email}
 	</select>
 	
-	
-	
 	<select id="getUser" resultType="co.sol.main.UVO">
-	
+		select * from u_table where u_id=#{u_id} and u_pw = #{u_ps}
 	</select>
 	
 	

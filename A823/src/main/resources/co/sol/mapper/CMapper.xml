@@ -4,22 +4,28 @@
 <mapper namespace="co.sol.mapper.CMapper">
 
 	<select id="getList" resultType="co.sol.main.CVO">
-		
+		select * from c_table where b_no = #{b_no}
 	</select>
 
 
 	<insert id="insert">
-		
-	</insert>
+		<selectKey keyProperty="number" order="BEFORE" resultType="int">
+			select max(c_no)+1 from c_table
+		</selectKey>
+		insert into c_table values 
+			(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}, 
+			#{c_step}, sysdate, sysdate)
+		</insert>
 	
 	
 	<update id="modify">
-	
+		update c_table set c_con = #{c_con}, c_udate=sysdate where c_no = #{c_no}
 	</update>
 	
 	
 	<update id="delete">
-	
+		update c_table set c_con = '삭제된 댓글입니다.', c_writer = 'unknown' c_udate= sysdate
+		where c_no = #{c_no} 
 	</update>
 
 
