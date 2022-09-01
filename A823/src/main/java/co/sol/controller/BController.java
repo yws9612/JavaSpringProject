@@ -58,7 +58,7 @@ public class BController {
 	public String modify(BVO bo, Basic ba, RedirectAttributes rt) {
 
 		if(service.modify(bo)==1) {
-			rt.addFlashAttribute("result", "¼º°ø");
+			rt.addFlashAttribute("result", "ï¿½ï¿½ï¿½ï¿½");
 			
 		}
 		 rt.addAttribute("pageNum", ba.getPageNum());
@@ -72,7 +72,7 @@ public class BController {
 	public String del(@RequestParam("bnum")int bnum, Basic ba, RedirectAttributes rt) {
 		
 		if(service.del(bnum)==1) {
-			rt.addFlashAttribute("result","¼º°ø");
+			rt.addFlashAttribute("result","ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		rt.addAttribute("pageNum", ba.getPageNum());
@@ -80,9 +80,12 @@ public class BController {
 		rt.addAttribute("type", ba.getType());
 		 rt.addAttribute("keyword", ba.getKeyword());
 		return "redirect:/board/list";
-		
-	}
+	}	
+	@GetMapping("/list_writer")
+	public void list_writer() {}
 	
+	@GetMapping("/list_writer2")
+	public void list_writer2() {}
 	
 	@GetMapping("/exercise_diary")
 	public void e_diary() {
