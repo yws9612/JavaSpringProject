@@ -22,9 +22,9 @@ public class UServiceImpl implements UService {
 	}
 
 	@Override
-	public void getPw(UVO user) {
+	public void updatePw(UVO user) {
 		// TODO Auto-generated method stub
-		mapper.getPw(user);
+		mapper.updatePw(user);
 	}
 
 	@Override

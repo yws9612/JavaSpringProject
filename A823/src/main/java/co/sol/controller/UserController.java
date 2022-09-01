@@ -52,9 +52,8 @@ public class UserController {
 		
 	}
 	
-	@PostMapping("/findPwProc")
-	public String findPwProc(UVO uvo, Model m) {
-		
+	@PostMapping("/findPW")
+	public String findPWp(UVO uvo, Model m) {
 		String id = uservice.getId(uvo);
 		String email = uservice.getEmail(uvo);
 		
@@ -67,6 +66,14 @@ public class UserController {
 	@GetMapping("/findPwProc")
 	public void findPwProcg() {
 		
+	}
+	
+	@PostMapping("/findPwProc")
+	public String findPwProc(UVO uvo, Model m) {
+	
+		uservice.updatePw(uvo);
+		
+		return "/user/login";
 	}
 	
 	

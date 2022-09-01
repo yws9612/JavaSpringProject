@@ -14,7 +14,7 @@ public interface UMapper {
 //	public void Leave(UVO user);
 	
 	public String getId(UVO user);
-	public void getPw(UVO user);
+	public void updatePw(UVO user);
 	public String getEmail(UVO user);
 	public UVO getUser();
 //	public List<BVO> Myboard(UVO user);
