@@ -80,17 +80,11 @@ public class BController {
 		 rt.addAttribute("keyword", ba.getKeyword());
 		return "redirect:/board/list";
 	}	
-	@GetMapping("/list_writer")
-	public void list_writer() {}
 	
-	@GetMapping("/list_writer2")
-	public void list_writer2() {}
+	@GetMapping("/test")
+	public void test() {}
 	
-	@GetMapping("/list3")
-	public void list3() {}
 	
-	@GetMapping("/list4")
-	public void list4() {}
 }
 
 
