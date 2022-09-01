@@ -16,6 +16,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import co.sol.main.UVO;
 import co.sol.service.BService;
+import co.sol.service.UService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -25,10 +26,24 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping({"/user/*","/main/*"})
 public class UserController {
 	
-	
+	private final UService uservice;
 	
 	@GetMapping("/findID")
 	public void findID() {
+		
+	}
+	
+	@PostMapping("/findIdProc")
+	public String findIdProc(UVO uvo, Model m) {
+		
+		String id = uservice.getId(uvo);
+		m.addAttribute("id", id);
+		
+		return "/user/findIdProc";
+	}
+	
+	@GetMapping("/findIdProc")
+	public void findIdProcg() {
 		
 	}
 	
