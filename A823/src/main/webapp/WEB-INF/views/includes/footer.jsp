@@ -37,24 +37,24 @@
     <div class="col-md-auto text-end">
       <h5>운동방법</h5>
       <ul class="nav flex-column justify-content-end">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">홈트레이닝</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">짐트레이닝</a></li>
+        <li class="nav-item mb-2"><a href="${root}board/exercise_home_way" class="nav-link p-0 text-muted">홈트레이닝</a></li>
+        <li class="nav-item mb-2"><a href="${root}board/exercise_gym_way" class="nav-link p-0 text-muted">짐트레이닝</a></li>
       </ul>
     </div>
 
     <div class="col-md-auto text-end">
       <h5>운동게시판</h5>
       <ul class="nav flex-column justify-content-end">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">운동루틴공유</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">운동방법공유</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">운동꿀팁공유</a></li>
+        <li class="nav-item mb-2"><a href="${root}board/exercise_routine" class="nav-link p-0 text-muted">운동루틴공유</a></li>
+        <li class="nav-item mb-2"><a href="${root}board/exercise_way" class="nav-link p-0 text-muted">운동방법공유</a></li>
+        <li class="nav-item mb-2"><a href="${root}board/exercise_honey_tip" class="nav-link p-0 text-muted">운동꿀팁공유</a></li>
       </ul>
     </div>
 
     <div class="col-md-auto text-end">
       <h5>운동일지</h5>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">운동일지공유</a></li>
+        <li class="nav-item mb-2"><a href="${root}board/exercise_diary" class="nav-link p-0 text-muted">운동일지공유</a></li>
       </ul>
     </div>
     
