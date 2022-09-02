@@ -24,7 +24,7 @@
 	
 	
 	<update id="delete">
-		update c_table set c_con = '삭제된 댓글입니다.', c_writer = 'unknown' c_udate= sysdate
+		update c_table set c_con = '삭제된 댓글입니다.', c_writer = 'unknown', c_udate= sysdate
 		where c_no = #{c_no} 
 	</update>
 

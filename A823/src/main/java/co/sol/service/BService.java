@@ -6,13 +6,13 @@ import co.sol.main.Basic;
 
 public interface BService {
 	
-	Long submit(BVO bo);
+	int submit(BVO bo);
 	
-	BVO get(int bnum);
+	BVO get(int b_no);
 	
 	int modify(BVO bo);
 	
-	int del(int bnum);
+	int del(int b_no);
 	
 	List<BVO> getList();
 	

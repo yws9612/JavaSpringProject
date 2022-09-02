@@ -5,7 +5,11 @@
 
 	<select id="getList" resultType="co.sol.main.GVO">
 		select * from g_table
+		<if test="keyword!=null">
+			where g_addr like '%'||#{keyword}||'%'
+		</if>
 	</select>
+	
 	
 	
 	<select id="getlocallist" resultType="co.sol.main.GVO">
@@ -13,17 +17,15 @@
 	</select>
 	
 	
+	
 	<select id="getReview" resultType="co.so.main.RVO">
-
-		select * from r_table where g_no = #{g_no};
-		
+		select * from r_table where g_no = #{g_no};		
 	</select>
 	
 	
-	<select id="getOneGym" resultType="co.sol.main.GVO">
-		
-		select * from g_table where g_no = #{g_no}
 	
+	<select id="getOneGym" resultType="co.sol.main.GVO">		
+		select * from g_table where g_no = #{g_no}	
 	</select>
 	
 </mapper>
