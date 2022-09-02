@@ -2,9 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.sol.mapper.LogMapper">
+
+	<resultMap type="BVO" id="joinboard">
+		<result column="b_title" property="b_title"/>
+		<result column="b_writer" property="b_writer"/>
+	</resultMap>
+
+	<resultMap type="LVO" id="log">
+		<result column="u_no" property="u_no"/>
+		<result column="b_no" property="b_no"/>
+		<result column="l_reno" property="l_reno"/>
+		<result column="l_div" property="l_div"/>
+		<result column="l_date" property="l_date"/>
+		<collection property="joinboard"/>
+	</resultMap>
 	
-	<select id="getList" resultType="co.sol.main.LVO">
-		select * from l_table where u_no = #{u_no}
+	<select id="getList" resultMap="log">
+		-<![CDATA[
+		select /*+INDEX_DESC(l_table 인덱스명) */ 
+		u_no, b_no, l_reno, l_div, l_date, b_title, b_writer 
+		from l_table natural join b_table 
+		where u_no = #{u_no}
+		]]> <!-- l_no 인덱스명 넣기 -->
+		<trim prefix="and">
+			<choose>
+				<when test="select=='scrap'.toString()">
+					l_div=1
+				</when>
+				<when test="select=='write'.toString()">
+					l_div=2
+				</when>
+				<when test="select=='comment'.toString()">
+					l_div=3
+				</when>
+			</choose>
+		</trim>
 	</select>
+	
+	
+	
+	<insert id="scrap">
+		<selectKey keyProperty="l_no" order="BEFORE" resultType="int">
+			select max(l_no)+1 from l_table
+		</selectKey>
+		insert into l_table (l_no, u_no, b_no, l_div)
+			values(l_no, #{u_no}, #{b_no}, 1)
+	</insert>
+	
 	
 </mapper>
