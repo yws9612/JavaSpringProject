@@ -1,7 +1,6 @@
 package co.sol.controller;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,7 +85,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/join")
-	public String postJoin(@ModelAttribute("user")@Valid UVO uvo, @ModelAttribute("data")@Valid DVO dvo, BindingResult result) {
+	public String postJoin(@ModelAttribute("user")UVO uvo, @ModelAttribute("data")DVO dvo, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			
