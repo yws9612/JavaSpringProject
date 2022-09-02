@@ -2,6 +2,7 @@ package co.sol.service;
 
 import org.springframework.stereotype.Service;
 
+import co.sol.main.DVO;
 import co.sol.main.UVO;
 import co.sol.mapper.UMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,12 @@ public class UServiceImpl implements UService {
 	public String getEmail(UVO user) {
 		// TODO Auto-generated method stub
 		return mapper.getEmail(user);
+	}
+
+	@Override
+	public void join(UVO user, DVO data) {
+		// TODO Auto-generated method stub
+		mapper.join(user, data);
 	}
 
 }

@@ -1,9 +1,11 @@
 package co.sol.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.annotation.SessionScope;
 
+import co.sol.main.DVO;
 import co.sol.main.UVO;
 import co.sol.service.BService;
 import co.sol.service.UService;
@@ -83,7 +86,15 @@ public class UserController {
 	}
 	
 	@PostMapping("/join")
-	public void postJoin() {
+	public String postJoin(@ModelAttribute("user")@Valid UVO uvo, @ModelAttribute("data")@Valid DVO dvo, BindingResult result) {
+		
+		if(result.hasErrors()) {
+			
+			return "/user/join";
+		}
+		
+		uservice.join(uvo, dvo);
+		return "redirect:/user/login";
 		
 	}
 	

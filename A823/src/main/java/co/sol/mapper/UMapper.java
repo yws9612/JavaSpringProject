@@ -1,11 +1,12 @@
 package co.sol.mapper;
 
+import co.sol.main.DVO;
 import co.sol.main.UVO;
 
 public interface UMapper {
 
 	//insert
-//	public void join(UVO user, DVO discord);
+	public void join(UVO user, DVO data);
 	
 	//update
 //	public void Modify(UVO user);
