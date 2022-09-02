@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="witdth=divice-width, initial-scale=1.0">
-<title></title>
+<meta charset="UTF-8" name="viewport" content="witdth=divice-width, initial-scale=1.0">
 <title>게시판 글쓰기</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script></head>
-
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
-
-<div class="container">
+<c:import url="/WEB-INF/views/includes/header.jsp"/>		
+    
+<div class="container" style="margin-top:120px">
 
   <p><h2>게시판 글쓰기</h2>
   <form action="write.jsp" method="post">
@@ -27,28 +25,40 @@
        maxlength="100" required="required"
        pattern=".{4,100}">
     </div>
-  			
+                        		
 	    <div class="form-group">
    			<label for="content">내용</label>
-                      		
-		<textarea class="form-control" rows="5" id="content"
-  		  name="content" placeholder="내용 작성"></textarea>
-		 </div>
+        
+		 <div id="summernote"></div>
  		
    		 <p><div class="form-group">
   		    <label for="writer">작성자</label>
-   		  	 <input type="text" class="form-control" id="writer"
+   		  	 <input type="hidden" value="${sessionScope.u_id}" class="form-control" id="writer"
    		  	  placeholder="작성자" name="writer">
   		 </div></p>
-  		 
- 	   		<div class="form-group">
-    		 <label for="exampleInputPassword1">암호</label>
-    		  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="암호  4자리 입력해주세요"  maxlength="4">	
-  			</div>	
- 		 
- 		   <button type="submit" class="btn btn-default">등록</button>
-   			<button type="submit" class="btn btn-default">저장</button>
+		
+		<div class="form-check form-switch">
+ 		<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+		<label class="form-check-label" for="flexSwitchCheckDefault">비공개</label>
+		</div>
+	
+		<div>
+ 		   
+ 		   <button class="btn btn-default" type="submit">등록</button>
+   		   <button class="btn btn-default" type="submit">목록</button>
+   			
+ 		</div>
+ 		
  		 </form>
 		</div>
+
+   		<script>
+    		$('#summernote').summernote({
+   		    placeholder: 'Hello Bootstrap 5',
+        	tabsize: 2,
+        	height: 100
+      		});  
+    	</script>	
+    <c:import url="/WEB-INF/views/includes/footer.jsp"/>	
 		</body>
 		</html>

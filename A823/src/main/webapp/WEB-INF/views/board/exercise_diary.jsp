@@ -1,19 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
-<html>
-
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <title>게시판</title>
+<meta charset="UTF-8" name="viewport" content="witdth=divice-width, initial-scale=1.0">
+<title>게시판 글쓰기</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
-
+<body>
+<c:import url="/WEB-INF/views/includes/header.jsp"/>		
+ 
 <body>
   <div class="container">
+  
+  <div class="container" style="margin-top:120px">
+  
     <header>
       <h1> 게시판</h1>
     </header>
@@ -41,7 +46,7 @@
           <thead>
             <tr>
               <th>번호</th>
-              <th>운동부위(세트)</th>
+              <th>제목</th>
               <th>작성자</th>
               <th>작성일</th>
               <th>조회수</th> 	
@@ -207,6 +212,6 @@
     </section>
   </div>
 
-</body>
-
-</html>
+    <c:import url="/WEB-INF/views/includes/footer.jsp"/>	
+		</body>
+		</html>
