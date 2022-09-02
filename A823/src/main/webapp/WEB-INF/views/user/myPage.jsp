@@ -22,7 +22,7 @@
 <div class="container mt-7"><!-- 가운데정렬+네모안에 들어가지는 컨테이너 원치않음빼세여 -->
 		
 <!-- Table -->
-<h2 class="mb-5">My Page</h2>
+<h2 class="mb-5">유저이름넣어야함</h2>
 
 <div class="card card-profile shadow"><!-- gray배경 -->
 
@@ -41,7 +41,7 @@ class="rounded-circle"></a>
 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"><!-- 텍스트정렬 -->
 <div class="d-flex justify-content-between">
 
-<h4>유저이름</h4>
+<a href="#" class="btn btn-primary mr-4">정보 수정</a> 
 <a href="#" class="btn btn-primary float-right">팔로우</a>
 </div>
 </div>
