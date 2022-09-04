@@ -38,8 +38,8 @@
 			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 				<!-- 텍스트정렬 -->
 				<div class="d-flex justify-content-between">
-					<a href="#" class="btn btn-primary mr-4">정보 수정</a> <a href="#"
-						class="btn btn-primary float-right">팔로우</a>
+					<a href="#" class="btn btn-primary mr-4">정보 수정</a> 
+					<a href="#" class="btn btn-primary float-right">팔로우</a>
 				</div>
 			</div>
 

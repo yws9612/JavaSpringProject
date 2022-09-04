@@ -137,13 +137,13 @@
 		<div class="form-check">
         <input class="form-check-input" type="checkbox" value="terms1">
 		<small>서비스 이용약관 동의 (필수)</small>
-		<a href=”#서비스이용약관”><span class="badge bg-light" style="float:right;" >자세히</span></a>
+		<a href="/user/service"><span class="badge bg-light" style="float:right;" >자세히</span></a>
 		</div>
 		
 		<div class="form-check">		
         <input class="form-check-input" type="checkbox" value="terms2">
 		<small>개인정보 수집 및 이용 동의 (필수)</small>
-		<a href="#개인정보약관"><span class="badge bg-light" style="float:right;" >자세히</span></a>
+		<a href="/user/privacy"><span class="badge bg-light" style="float:right;" >자세히</span></a>
 		</div>
 		
 

@@ -114,6 +114,23 @@ public class UserController {
 		return "/main/main";
 	}
 	
+	@GetMapping("/myPage")
+	public void myPage() {
+		
+	}
+	
+	@GetMapping("/privacy")
+	public String privacy() {
+		
+		return "/user/privacy";
+	}
+	
+	@GetMapping("/service")
+	public String termsOfService() {
+		
+		return "/user/service";
+	}
+	
 	@GetMapping("/main")
 	public void main() {
 		
