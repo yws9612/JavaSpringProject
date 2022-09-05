@@ -1,8 +1,12 @@
 package co.sol.service;
 
+import java.util.List;
+
+import co.sol.main.EVO;
+
 public interface DataService {
 	
-//	public List<DataEVO> getEList(DataEVO dt);
-//	public List<DataMVO> getMList(DataMVO dt);
+	public List<EVO> getEList(EVO exercise);
+	public void addExercise(EVO exercise);
 
 }

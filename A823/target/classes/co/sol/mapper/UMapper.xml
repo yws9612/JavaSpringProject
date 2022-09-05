@@ -7,8 +7,8 @@
 		<selectKey keyProperty="u_no" order="BEFORE" resultType="int">
 			select max(u_no)+1 from u_table
 		</selectKey>
-		insert into u_table values(u_no,)
-		call pro_d_table(#{u_no}, #{d_weight}, #{d_height})
+		insert into u_table values(u_no, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N')
+		call pro_d_table(u_no, #{d_weight}, #{d_height})
 	</insert>
 	
 	
@@ -42,7 +42,7 @@
 	
 	
 	<select id="getUser" resultType="co.sol.main.UVO">
-		select * from u_table where u_id=#{u_id} and u_pw = #{u_ps}
+		select * from u_table where u_id=#{u_id} and u_pw = #{u_pw}
 	</select>
 	
 	
