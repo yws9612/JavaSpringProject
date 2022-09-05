@@ -17,37 +17,41 @@ public class BServiceImpl implements BService{
 	private final BMapper mapper;
 
 	@Override
-	public int submit(BVO bo) {
-		
-		mapper.inkey(bo);
+	public int submit(BVO bo) {		
+		mapper.insert(bo);
 		return bo.getB_no();
 	}
 
+	
 	@Override
-	public BVO get(int bnum) {
-		return mapper.sel(bnum);
-		
+	public BVO get(int b_no) {
+		return mapper.sel(b_no);		
 	}
 
+	
 	@Override
 	public int modify(BVO bo) {
 		return mapper.up(bo);
 	}
 
+	
 	@Override
-	public int del(int bnum) {
-		return mapper.del(bnum);
+	public int del(int b_no) {
+		return mapper.del(b_no);
 	}
 
+	
 	@Override
 	public List<BVO> getList() {
 		return mapper.getList();
 	}
 
+	
 	@Override
 	public List<BVO> getPage(Basic ba) {
 		return mapper.getPage(ba);
 	}
+
 	
 	@Override
 	public int getTotal(Basic ba) {

@@ -14,11 +14,11 @@ public interface BMapper {
 	
 	public void insert(BVO bo);
 	
-	public void inkey(BVO bo);
+//	public void inkey(BVO bo);
 	
-	public BVO sel(int bnum);
+	public BVO sel(int b_no);
 	
-	public int del(int bnum);
+	public int del(int b_no);
 	
 	public int up(BVO bo);
 	

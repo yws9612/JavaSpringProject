@@ -12,20 +12,21 @@
 	</insert>
 	
 	
+	
 	<update id="Modify">
-		update u_table set where u_no=#{u_no}
+		update u_table set 정하고 적자  where u_no=#{u_no}
 	</update>
 	
-	<!--  
+	
+	
 	<delete id="Leave">
-		delete from u_table where
-	</delete>-->
-	
-	
+		delete from u_table where u_no = #{u_no} and u_pw = #{u_pw}
+	</delete>
+		
+		
+		
 	<select id="getId" resultType="String">
-		select u_id 
-		from u_table 
-		where u_email = #{u_email} and u_name = #{u_name}
+		select u_id from u_table where u_name = #{u_name} and u_email = #{u_email} 	
 	</select>
 	
 	<select id="getEmail" resultType="String">
@@ -35,26 +36,20 @@
 	</select>
 	
 	
-	<update id="updatePw">
-		update u_table 
-		set u_pw = #{u_pw}
-		where u_id = #{u_id} and u_email = #{u_email}	
+	<select id="getPw" resultType="String">
+		select u_pw form u_table where u_id = #{u_id} and u_email = #{u_email}
+	</select>
+		
+	<update id="newPw">
+		update u_table set u_pw=#{u_pw} where u_id = #{u_id} and u_email = #{u_email}
 	</update>
 	
 	
+	
 	<select id="getUser" resultType="co.sol.main.UVO">
-		select * from u_table where u_no = #{u_no}
+		select * from u_table where u_id=#{u_id} and u_pw = #{u_ps}
 	</select>
 	
-	
-	<select id="Myboard" resultType="co.sol.main.BVO">
-	
-	</select>
-	
-	
-	<select id="getScrap" resultType="co.sol.main.BVO">
-	
-	</select>
 	
 	
 	<insert id="addDiscord">
@@ -62,17 +57,22 @@
 	</insert>
 	
 	
+	
+	<select id="getDiscord" resultType="co.sol.main.RVO">
+		select * from r_table where u_no=#{u_no}
+	</select>
+	
+	
 
 </mapper>
 
 <!--
-//	public void join(UVO user);
+//	public void join(UVO user, DVO discord);
 //	public void Modify(UVO user);
 //	public void Leave(UVO user);
 //	public String getId(UVO user);
 //	public String getPw(UVO user);
 //	public UVO getUser();
-//	public List<BVO> Myboard(UVO user);
-//	public List<BVO> getScrap(UVO user);
-//	public void addDiscord(DVO discord);
+//	public void addDiscord(UVO user, DVO discord);
+//	public void getDiscord(UVO user);
 -->

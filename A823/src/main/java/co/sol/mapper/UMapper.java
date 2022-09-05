@@ -21,5 +21,6 @@ public interface UMapper {
 //	public List<BVO> Myboard(UVO user);
 //	public List<BVO> getScrap(UVO user);
 //	public void addDiscord(UVO user, DVO discord);
+//	public void getDiscord(UVO user);
 	
 }
