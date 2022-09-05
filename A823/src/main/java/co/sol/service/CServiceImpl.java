@@ -27,6 +27,11 @@ public class CServiceImpl implements CService {
 	}
 
 	@Override
+	public void recomment(CVO comment) {
+		mpr.insert(comment);
+	}
+
+	@Override
 	public void modify(CVO comment) {
 		mpr.modify(comment);
 	}

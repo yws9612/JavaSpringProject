@@ -11,6 +11,9 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class LogMapperTests {
+	
+//	public List<LVO> getList(UVO user);
+//	public void scrap(LVO log);
 
 	@Autowired
 	private LogMapper mpr;

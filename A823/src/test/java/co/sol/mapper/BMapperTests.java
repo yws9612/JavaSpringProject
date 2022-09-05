@@ -47,9 +47,9 @@ public class BMapperTests {
 	@Test
 	public void aa() {
 		BVO bb=new BVO();
-		bb.setTitle("�ȳ�");
-		bb.setContent("����");
-		bb.setWriter("�浿");
+		bb.setB_title("�ȳ�");
+		bb.setB_con("����");
+		bb.setB_writer("�浿");
 		
 		bm.insert(bb);
 	}
@@ -58,12 +58,12 @@ public class BMapperTests {
 	public void ee() {
 		BVO bb=new BVO();
 		
-		bb.setTitle("inkey");
-		bb.setContent("in");
-		bb.setWriter("insung");
+		bb.setB_title("inkey");
+		bb.setB_con("in");
+		bb.setB_writer("insung");
 		
-		bm.inkey(bb);
-		System.out.println(bb.getBnum());
+		bm.insert(bb);
+		System.out.println(bb.getB_no());
 	}
 
 	@Test
@@ -80,10 +80,10 @@ public class BMapperTests {
 	@Test
 	public void dd() {
 		BVO bb=new BVO();
-		bb.setBnum(1L);
-		bb.setTitle("up");
-		bb.setContent("up");
-		bb.setWriter("jj");
+		bb.setB_no(1);
+		bb.setB_title("up");
+		bb.setB_con("up");
+		bb.setB_writer("jj");
 		
 		bm.up(bb);		
 		
