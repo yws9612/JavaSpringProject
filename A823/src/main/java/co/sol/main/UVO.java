@@ -26,4 +26,6 @@ public class UVO {
 	
 	private String u_admin;
 	
+	private boolean userLogin;
+	
 }

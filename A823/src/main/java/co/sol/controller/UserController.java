@@ -1,6 +1,7 @@
 package co.sol.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -98,17 +99,16 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public void getLogin() {
+	public String getLogin(@ModelAttribute("user")UVO userVo,
+						 @RequestParam(value = "fail", defaultValue = "false")boolean fail,
+						 Model m) {
 		
+		m.addAttribute("fail", fail);
+		return "/user/login";
 	}
-	
-	@PostMapping("/login")
-	public void postLogin() {
-				
-	}
-	
+		
 	@PostMapping("/loginProc")
-	public String loginProc(UVO uvo, HttpSession session) {
+	public String loginProc(@Valid @ModelAttribute("user")UVO userVo, BindingResult result) {
 		
 		
 		return "/main/main";
