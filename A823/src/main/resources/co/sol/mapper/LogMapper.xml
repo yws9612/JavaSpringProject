@@ -3,12 +3,12 @@
 
 <mapper namespace="co.sol.mapper.LogMapper">
 
-	<resultMap type="BVO" id="joinboard">
+	<resultMap type="co.sol.main.BVO" id="joinboard">
 		<result column="b_title" property="b_title"/>
 		<result column="b_writer" property="b_writer"/>
 	</resultMap>
 
-	<resultMap type="LVO" id="log">
+	<resultMap type="co.sol.main.LVO" id="log">
 		<result column="u_no" property="u_no"/>
 		<result column="b_no" property="b_no"/>
 		<result column="l_reno" property="l_reno"/>

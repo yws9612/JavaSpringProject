@@ -18,6 +18,7 @@ public interface UMapper {
 	public void updatePw(UVO user);
 	public String getEmail(UVO user);
 	public UVO getUser();
+	public UVO getLoginUserInfo(UVO user);
 //	public List<BVO> Myboard(UVO user);
 //	public List<BVO> getScrap(UVO user);
 //	public void addDiscord(UVO user, DVO discord);

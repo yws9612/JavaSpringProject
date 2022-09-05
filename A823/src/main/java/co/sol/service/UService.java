@@ -9,4 +9,5 @@ public interface UService {
 	public void updatePw(UVO user);
 	public String getEmail(UVO user);
 	public void join(UVO user, DVO data);
+	public void getLoginUserInfo(UVO user);
 }

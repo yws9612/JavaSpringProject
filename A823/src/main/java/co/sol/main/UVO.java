@@ -3,6 +3,7 @@ package co.sol.main;
 
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 public class UVO {
@@ -26,6 +27,12 @@ public class UVO {
 	
 	private String u_admin;
 	
+	private boolean idExist;
 	private boolean userLogin;
+	
+	public UVO() {
+		this.idExist = false;
+		this.userLogin = false;
+	}
 	
 }

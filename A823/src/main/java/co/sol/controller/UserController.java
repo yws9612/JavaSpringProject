@@ -1,8 +1,10 @@
 package co.sol.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +32,9 @@ import lombok.extern.log4j.Log4j;
 public class UserController {
 	
 	private final UService uservice;
+	
+	@Resource(name = "loginBean")
+	private UVO loginBean;
 	
 	@GetMapping("/findID")
 	public void findID() {
@@ -86,20 +91,20 @@ public class UserController {
 	}
 	
 	@PostMapping("/join")
-	public String postJoin(@ModelAttribute("user")UVO uvo, @ModelAttribute("data")DVO dvo, BindingResult result) {
+	public String postJoin(@ModelAttribute("user")UVO user, @ModelAttribute("data")DVO data, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			
 			return "/user/join";
 		}
 		
-		uservice.join(uvo, dvo);
+		uservice.join(user, data);
 		return "redirect:/user/login";
 		
 	}
 	
 	@GetMapping("/login")
-	public String getLogin(@ModelAttribute("user")UVO userVo,
+	public String getLogin(@ModelAttribute("user")UVO user,
 						 @RequestParam(value = "fail", defaultValue = "false")boolean fail,
 						 Model m) {
 		
@@ -108,10 +113,18 @@ public class UserController {
 	}
 		
 	@PostMapping("/loginProc")
-	public String loginProc(@Valid @ModelAttribute("user")UVO userVo, BindingResult result) {
+	public String loginProc(@Valid @ModelAttribute("user")UVO user, BindingResult result) {
 		
+		if(result.hasErrors()) {
+			return "/user/login";
+		}
 		
-		return "/main/main";
+		uservice.getLoginUserInfo(user);
+		if(loginBean.isUserLogin()==true) {
+			return "/user/loginSuccess";
+		}else {
+			return "/user/loginFail";
+		}
 	}
 	
 	@GetMapping("/myPage")
