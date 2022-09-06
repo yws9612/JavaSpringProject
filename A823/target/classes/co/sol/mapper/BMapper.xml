@@ -101,5 +101,9 @@
 		<include refid="basic" />
 		b_no>0
 	</select>
+	
+	<select id="topList" resultType="co.sol.main.BVO">
+		select * from b_table order by b_vc desc fetch first 5 rows only
+	</select>
 
 </mapper>

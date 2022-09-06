@@ -28,6 +28,8 @@ public interface BMapper {
 	public int getCount(Basic ba);
 	
 	public List<BVO> search(Map<String, Map<String, String>> map);
+	
+	public List<BVO> topList();
 
 	
 }

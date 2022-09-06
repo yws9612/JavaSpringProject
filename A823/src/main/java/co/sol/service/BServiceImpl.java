@@ -58,6 +58,12 @@ public class BServiceImpl implements BService{
 	public int getTotal(Basic ba) {
 		return mapper.getCount(ba);
 	}
+
+
+	@Override
+	public List<BVO> topList() {
+		return mapper.topList();
+	}
 }
 
 

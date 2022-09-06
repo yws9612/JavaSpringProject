@@ -19,4 +19,6 @@ public interface BService {
 	List<BVO> getPage(Basic ba);
 	
 	int getTotal(Basic cri);
+	
+	List<BVO> topList();
 }

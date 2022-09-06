@@ -1,3 +1,4 @@
+<%@page import="co.sol.main.BVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -17,7 +18,7 @@
 
 <c:import url="/WEB-INF/views/includes/header.jsp"/>
 
-  <div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel" style="margin-top:80px">
+  <div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel" style="margin-top:80px;">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class=""></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active"></button>
@@ -32,7 +33,7 @@
       </div>
       
       <div class="carousel-item active">
-        <img src="/resources/img/ad/ad02.png" class="d-md-block w-100" alt="광고사진">
+        <img src="/resources/img/ad/ad02.png" class="d-md-block w-100 active" alt="광고사진">
         <div class="container">
           <div class="carousel-caption" style="color: black">
             <h1>두번째 광고 헤드라인</h1>
@@ -51,11 +52,11 @@
       </div>
       
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev" style="height: 450px;">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next" style="height: 450px;">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -135,62 +136,35 @@
 
 <!-- 인기 게시글 Top5 -->
 	<div class="container pt-5 pb-5">
-	<h1>인기 게시글 Top5&nbsp;<a class="btn btn-primary" href="#">더보기 »</a></h1>
+	<h1>인기 게시글 Top5</h1>
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+		<c:forEach var="BVO" items="${toplist}">
 		<div class="col p-3">
 			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
+				<c:if test="${BVO.b_div eq '꿀팁' }">
+	  			<img src="/resources/img/category/honey_tip.png" class="card-img-top" alt="사진오류">
+	  			</c:if>
+	  			<c:if test="${BVO.b_div eq '루틴' }">
+	  			<img src="/resources/img/category/routine.png" class="card-img-top" alt="사진오류">
+	  			</c:if>
+	  			<c:if test="${BVO.b_div eq '방법' }">
+	  			<img src="/resources/img/category/way.png" class="card-img-top" alt="사진오류">
+	  			</c:if>
+	  			<c:if test="${BVO.b_div eq '일지' }">
+	  			<img src="/resources/img/category/diary.png" class="card-img-top" alt="사진오류">
+	  			</c:if>
 	  			<div class="card-body">
-	    			<h5 class="card-title">게시글 1</h5>
-	    			<p class="card-text">게시글 내용</p>
+	    			<h5 class="card-title"><c:out value="${BVO.b_title}"/></h5>
+	    			<p class="card-text">카테고리 : <c:out value="${BVO.b_div}"/><br>
+	    			<c:out value="${BVO.b_con}"/></p>
+	    			<p class="card-text">조회수 <c:out value="${BVO.b_vc}"/></p>
 	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
+		</c:forEach>
 		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">게시글 2</h5>
-	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
-	  			</div>
-			</div>
-		</div>
 		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">게시글 3</h5>
-	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
-	  			</div>
-			</div>
-		</div>
-		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">게시글 4</h5>
-	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
-	  			</div>
-			</div>
-		</div>
-		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">게시글 5</h5>
-	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
-	  			</div>
-			</div>
-		</div>
 	</div>
 	</div>
 
@@ -207,9 +181,9 @@
         <p class="lead">이름 : ${sessionScope.uvo.u_name }</p>
         <p class="lead"> 주소 : ${sessionScope.uvo.u_addr } </p>  
       </div>
-      <!-- <div class="col-md-7">
-        <jsp:include page="/WEB-INF/views/user/myPage.jsp" flush="false"/>
-      </div> -->
+	  <div class="col-md-7">
+        <jsp:include page="/WEB-INF/views/includes/mypage_include.jsp" flush="false"/>
+      </div>
     </div>
 	</c:when>
 	<c:otherwise>
