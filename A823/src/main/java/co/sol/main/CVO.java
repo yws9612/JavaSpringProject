@@ -15,4 +15,5 @@ public class CVO {
 	private int c_step;
 	private Date c_wdate;
 	private Date c_udate;
+
 }

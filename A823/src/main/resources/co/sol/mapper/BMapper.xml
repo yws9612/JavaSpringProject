@@ -44,6 +44,10 @@
 	<select id="sel" resultType="co.sol.main.BVO">
 		select * from b_table where	b_no=#{b_no}
 	</select>
+	
+	<update id="upViewcount">		
+		update b_table set b_vc=b_vc+1 where b_no=#{b_no} 
+	</update>
 
 
 

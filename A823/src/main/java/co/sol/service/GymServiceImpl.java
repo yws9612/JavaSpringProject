@@ -1,7 +1,12 @@
 package co.sol.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import co.sol.main.GVO;
+import co.sol.main.RVO;
+import co.sol.mapper.GymMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -9,5 +14,22 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequiredArgsConstructor
 public class GymServiceImpl implements GymService {
+	
+	private final GymMapper mpr;
+
+	@Override
+	public List<GVO> getList(String search) {
+		return mpr.getList(search);
+	}
+
+	@Override
+	public List<RVO> getReview(GVO gym) {
+		return mpr.getReview(gym);
+	}
+
+	@Override
+	public GVO getOneGym(GVO gym) {
+		return mpr.getOneGym(gym);
+	}
 
 }

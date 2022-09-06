@@ -25,6 +25,7 @@ public class BServiceImpl implements BService{
 	
 	@Override
 	public BVO get(int b_no) {
+		mapper.upViewcount(b_no);
 		return mapper.sel(b_no);		
 	}
 

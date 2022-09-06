@@ -44,50 +44,45 @@ public class BMapperTests {
 		log.info(bm.getList());
 	}
 	
-//	@Test
-//	public void aa() {
-//		BVO bb=new BVO();
-//		bb.setTitle("�ȳ�");
-//		bb.setContent("����");
-//		bb.setWriter("�浿");
-//		
-//		bm.insert(bb);
-//	}
-//	
-//	@Test
-//	public void ee() {
-//		BVO bb=new BVO();
-//		
-//		bb.setTitle("inkey");
-//		bb.setContent("in");
-//		bb.setWriter("insung");
-//		
-//		bm.inkey(bb);
-//		System.out.println(bb.getBnum());
-//	}
-//
-//	@Test
-//	public void bb() {
-//		BVO bb=bm.sel(2);
-//		log.info(bb);
-//	}
-//	
-//	@Test
-//	public void cc() {
-//		log.info(bm.del(102));
-//	}
-//	
-//	@Test
-//	public void dd() {
-//		BVO bb=new BVO();
-//		bb.setBnum(1L);
-//		bb.setTitle("up");
-//		bb.setContent("up");
-//		bb.setWriter("jj");
-//		
-//		bm.up(bb);		
-//		
-//	}
+	@Test
+	public void aa() {
+		BVO bb=new BVO();
+		bb.setB_title("�ȳ�");
+		bb.setB_con("����");
+		bb.setB_writer("�浿");
+		
+		bm.insert(bb);
+	}
+	
+	@Test
+	public void ee() {
+		BVO bb=new BVO();
+		
+		bb.setB_title("inkey");
+		bb.setB_con("in");
+		bb.setB_writer("insung");
+		
+		bm.insert(bb);
+		System.out.println(bb.getB_no());
+	}
+
+	
+	@Test
+	public void cc() {
+		log.info(bm.del(102));
+	}
+	
+	@Test
+	public void dd() {
+		BVO bb=new BVO();
+		bb.setB_no(1);
+		bb.setB_title("up");
+		bb.setB_con("up");
+		bb.setB_writer("jj");
+		
+		bm.up(bb);		
+		
+	}
 
 	
 }

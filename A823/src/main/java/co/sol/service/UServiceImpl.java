@@ -16,35 +16,56 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor
 public class UServiceImpl implements UService {
 	
-	private final UMapper mapper;
-	
-	
-	@Resource(name = "loginBean")
-	private UVO loginBean;
-	
-	
+	private final UMapper mpr;
+
 	@Override
-	public String getId(UVO user) {
-		
-		return  mapper.getId(user);
+	public void join(UVO user, DVO discord) {
+		mpr.join(user, discord);
 	}
 
 	@Override
-	public void updatePw(UVO user) {
-		// TODO Auto-generated method stub
-		mapper.updatePw(user);
+	public void modify(UVO user) {
+		mpr.modify(user);
+	}
+
+	@Override
+	public void leave(UVO user) {
+		mpr.leave(user);
+	}
+
+	@Override
+	public String getId(UVO user) {
+		return mpr.getId(user);
+	}
+
+	@Override
+	public String getPw(UVO user) {
+		return mpr.getPw(user);
 	}
 
 	@Override
 	public String getEmail(UVO user) {
-		// TODO Auto-generated method stub
-		return mapper.getEmail(user);
+		return mpr.getEmail(user);
 	}
 
 	@Override
-	public void join(UVO user, DVO data) {
-		// TODO Auto-generated method stub
-		mapper.join(user, data);
+	public void newPw(UVO user) {
+		mpr.newPw(user);
+	}
+
+	@Override
+	public UVO getUser(UVO user) {
+		return mpr.getUser(user);
+	}
+
+	@Override
+	public void addDiscord(UVO user, DVO discord) {
+		mpr.addDiscord(user, discord);
+	}
+
+	@Override
+	public void getDiscord(UVO user) {
+		mpr.getDiscord(user);
 	}
 
 	@Override
@@ -58,5 +79,4 @@ public class UServiceImpl implements UService {
 			loginBean.setUserLogin(true);
 		}
 	}
-
 }

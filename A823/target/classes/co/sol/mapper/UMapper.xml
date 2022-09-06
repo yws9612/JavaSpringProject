@@ -14,7 +14,7 @@
 	
 	
 	<update id="Modify">
-		update u_table set 정하고 적자  where u_no=#{u_no}
+		update u_table set u_pw=#{u_pw}, u_addr=#{u_addr} where u_no=#{u_no}
 	</update>
 	
 	
@@ -47,7 +47,7 @@
 	
 	
 	<select id="getUser" resultType="co.sol.main.UVO">
-		select * from u_table where u_id=#{u_id} and u_pw = #{u_ps}
+		select * from u_table where u_id=#{u_id} and u_pw = #{u_pw}
 	</select>
 	
 	<select id="getLoginUserInfo" resultType="co.sol.main.UVO">

@@ -11,6 +11,11 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class GymMapperTests {
+	
+//	public List<GVO> getList();
+//	public List<GVO> getLocalList(String addr);
+//	public List<RVO> getReview(GVO gym);
+//	public GVO getOneGym(GVO gym);
 
 	@Autowired
 	private GymMapper mpr;

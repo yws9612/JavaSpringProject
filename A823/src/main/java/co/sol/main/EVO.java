@@ -9,7 +9,7 @@ public class EVO {
 	private String e_div;
 	private String e_name;
 	private String e_guide;
-	private String e_link;
-	private String e_partno;
-	private String e_cauno;
+	private String e_thum;
+	private String e_part;
+	private String e_cau;
 }
