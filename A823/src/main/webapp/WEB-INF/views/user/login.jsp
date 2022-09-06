@@ -10,29 +10,36 @@
 <meta charset="utf-8">
 <title>Login</title>
 
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Varela+Round'
 	rel='stylesheet' type='text/css'>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<style>
+	@import url("/resources/css/bootstrap.min.css");
+      *{
+		font-family: "Pretendard JP", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Hiragino Sans", "Apple SD Gothic Neo", Meiryo, "Noto Sans JP", "Noto Sans KR", "Malgun Gothic", Osaka, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      }
+</style>
 </head>
 
 
 
 <body>
+<!-- header -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+
+<div class="container" style="margin-top:100px">
+<div class="row justify-content-md-center">
+<div class="col col-md-5 shadow p-3 mb-5 bg-body rounded">
 	<!-- LOGIN FORM -->
-	<div class="text-center" style="padding: 50px 0">
-		<div class="logo">login</div>
+		<div class="text-center logo pt-5"><h2>login</h2></div>
 		<!-- Main Form -->
 		<div class="login-form-1">
 			<c:if test="${fail == true }">
@@ -42,46 +49,43 @@
 				</div>
 			</c:if>
 			<form:form class="text-left" method="post" action="${root}user/loginProc" modelAttribute="user">
-				<div class="login-form-main-message"></div>
 				<div class="main-login-form">
 					<div class="login-group">
-						<div class="form-group">
+						<div class="form-group pt-3">
 							<form:label for="u_id" class="sr-only" path="u_id">ID</form:label> 
 							<form:input class="form-control" path="u_id" placeholder="ID"/>
 							<form:errors path="u_id" style="color:red"></form:errors>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group pt-3">
 							<form:label for="u_pw" class="sr-only" path="u_pw">PW</form:label> 
 							<form:password class="form-control" path="u_pw" placeholder="password"/>
 							<form:errors path="u_pw" style="color:red"></form:errors>
 						</div>
 
-						<div class="form-group login-group-checkbox">
-							<input type="checkbox" id="lg_remember" name="lg_remember">
+						<div class="form-group login-group-checkbox pt-3">
+							<input class="form-check-input" type="checkbox" id="lg_remember" name="lg_remember">
 							<label for="lg_remember">저장하기</label>
 						</div>
 					</div>
-					<form:button class="login-button">
-						<i class="fa fa-chevron-right"></i>
+					<div class="d-grid gap-2 pt-3">
+					<form:button class="btn btn-primary">
+						로그인
 					</form:button>
+					</div>
 				</div>
-				<div class="etc-login-form">
-					<p>
-						ID를 잊어버리셨나요?<a href="findID">ID 찾기</a>
-					</p>
-					<p>
-						비밀번호를 잊어버리셨나요?<a href="findPW">비밀번호 찾기</a>
-					</p>
-					<p>
-						새로운 사용자? <a href="join">회원가입 하기</a>
-					</p>
+				
+				<div class="btn-group input-group mb-3 pt-3 pb-5" role="group">
+				<a class="btn btn-outline-primary" href="findID">ID 찾기</a><br>
+				<a class="btn btn-outline-primary" href="findPW">비밀번호 찾기</a><br>
+				<a class="btn btn-outline-primary" href="join">회원가입 하기</a>
 				</div>
 			</form:form>
 		</div>
 		<!-- end:Main Form -->
-	</div>
-
+</div></div></div>
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
 
 
 </body>

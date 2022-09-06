@@ -1,24 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
-
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 <body>
+
+<!-- header -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+
+
+<div class="container" style="margin-top:100px">
+<div class="row justify-content-md-center">
+<div class="col col-md-5 shadow p-3 mb-5 bg-body rounded">
+
+<!-- 비밀번호 변경 폼 -->
+<div class="text-center" style="padding:50px 50px 50px 50px">
 <form action = "/user/findPwProc" method = "post">
-<div class="container-fluid">
-<div class="row">
-<div class="col-md-5">
-<br/><br/>
 
 <legend>변경할 비밀번호를 입력하세요</legend>
 
@@ -34,17 +39,17 @@
 	<button class="btn btn-primary" type = "submit" onclick = "on()" >비밀번호 변경</button>
 	</div>		
 	
-	
-			
-</div>	
-</div>
-</div>
 
 </form>
+</div>
+</div></div></div>
 <script type="text/javascript">
 	function on(){
 		alert("비밀번호 변경이 완료되었습니다!");
 	}
 </script>
+
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
 </body>
 </html>

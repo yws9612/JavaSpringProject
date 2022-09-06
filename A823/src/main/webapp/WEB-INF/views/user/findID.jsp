@@ -6,18 +6,20 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ID 찾기</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
 </head>
 
 
 <body>
 
+<!-- header -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
 
+<div class="container" style="margin-top:100px">
+<div class="row justify-content-md-center">
+<div class="col col-md-5 shadow p-3 mb-5 bg-body rounded">
 <!-- FORGOT ID FORM  -->
 <form action = "/user/findIdProc" method = "post">
 <div class="text-center" style="padding:50px 50px 50px 50px">
@@ -39,5 +41,8 @@
 	
 </div>
 </form>
+</div></div></div>
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
 </body>
 </html>

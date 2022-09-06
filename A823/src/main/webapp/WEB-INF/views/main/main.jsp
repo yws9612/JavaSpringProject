@@ -8,6 +8,10 @@
 <title>부들부들 | 운동 초보자들의 커뮤니티</title>
 <link rel="icon" type="image/x-icon" href="resources/img/logo/favicon.ico">
 <link rel="shortcut icon" type="image/x-icon" href="resources/img/logo/favicon.ico">
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
 </head>
 <body>
 
@@ -33,18 +37,19 @@
         </div>
       </div>
       <div class="carousel-item active">
-        <img src="/resources/img/ad/ad01.jpg" class="d-block w-100" alt="광고사진">
+        <img src="/resources/img/ad/ad02.jpg" class="d-block w-100" alt="광고사진">
 
         <div class="container">
-          <div class="carousel-caption" style="color: black">
+          <div class="carousel-caption text-start" style="color: black">
             <h1>두번째 광고 헤드라인</h1>
             <p>광고 내용 적기</p>
             <p><a class="btn btn-lg btn-primary" href="#">바로가기</a></p>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/resources/img/ad/ad01.jpg" class="d-block w-100" alt="광고사진">
+        <img src="/resources/img/ad/ad03.png" class="d-block w-100" alt="광고사진">
 
         <div class="container">
           <div class="carousel-caption" style="color: black">
@@ -71,16 +76,16 @@
 <!-- 오늘의 추천운동(카드모양) -->
 	<div class="container">
 	<h1>오늘의 추천운동&nbsp;<a class="btn btn-primary" href="#">더보기 »</a></h1>
-	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 	
+	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 		<div class="col p-3">
 			<div class="card p-3">
 	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title">운동이름</h5>
 	    			<p class="card-text">운동방법 설명<br>
-	    			<span class="badge rounded-pill text-bg-secondary">#운동부위</span> <br>
-	    			<span>#주의부위</span> </p>
+	    			<span class="badge text-bg-info">#운동부위</span><br>
+	    			<span class="badge text-bg-warning">#주의부위</span></p>
 	  			</div>
 			</div>
 		</div>
@@ -90,8 +95,9 @@
 	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<p class="card-text">운동방법 설명<br>
+	    			<span class="badge text-bg-info">#운동부위</span><br>
+	    			<span class="badge text-bg-warning">#주의부위</span></p>
 	  			</div>
 			</div>
 		</div>
@@ -101,8 +107,9 @@
 	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<p class="card-text">운동방법 설명<br>
+	    			<span class="badge text-bg-info">#운동부위</span><br>
+	    			<span class="badge text-bg-warning">#주의부위</span></p>
 	  			</div>
 			</div>
 		</div>
@@ -112,8 +119,9 @@
 	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<p class="card-text">운동방법 설명<br>
+	    			<span class="badge text-bg-info">#운동부위</span><br>
+	    			<span class="badge text-bg-warning">#주의부위</span></p>
 	  			</div>
 			</div>
 		</div>
@@ -123,8 +131,9 @@
 	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<p class="card-text">운동방법 설명<br>
+	    			<span class="badge text-bg-info">#운동부위</span><br>
+	    			<span class="badge text-bg-warning">#주의부위</span></p>
 	  			</div>
 			</div>
 		</div>
@@ -143,7 +152,7 @@
 	  			<div class="card-body">
 	    			<h5 class="card-title">게시글 1</h5>
 	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
@@ -154,7 +163,7 @@
 	  			<div class="card-body">
 	    			<h5 class="card-title">게시글 2</h5>
 	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
@@ -165,7 +174,7 @@
 	  			<div class="card-body">
 	    			<h5 class="card-title">게시글 3</h5>
 	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
@@ -176,7 +185,7 @@
 	  			<div class="card-body">
 	    			<h5 class="card-title">게시글 4</h5>
 	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
@@ -187,73 +196,12 @@
 	  			<div class="card-body">
 	    			<h5 class="card-title">게시글 5</h5>
 	    			<p class="card-text">게시글 내용</p>
-	    			<a href="#" class="btn btn-primary">더보기 >></a>
+	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
 	</div>
 	</div>
-
-    <hr class="featurette-divider">
-
-<!-- 본문 오늘의 추천운동 리스트 -->
-
-    <h1>오늘의 추천운동&nbsp;<a class="btn btn-secondary" href="#">더보기 »</a></h1>
-    <br><br>
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-		
-        <h2 class="fw-normal">게시글1</h2>
-        <p>운동방법 설명 내용 띄우기</p>
-        <p><a class="btn btn-secondary" href="#">자세히보기 »</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2 class="fw-normal">게시글2</h2>
-        <p>운동방법 내용</p>
-        <p><a class="btn btn-secondary" href="#">자세히보기 »</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2 class="fw-normal">게시글3</h2>
-		<p>운동방법 내용</p>
-        <p><a class="btn btn-secondary" href="#">자세히보기 »</a></p>
-      </div><!-- /.col-lg-4 -->
-      
-    </div><!-- /.row -->
-
-   <hr class="featurette-divider">
-	
-    <!-- Three columns of text below the carousel -->
-    <h1>게시글 Top 5&nbsp;<a class="btn btn-secondary" href="#">더보기 »</a></h1>
-    <br><br>
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-		
-        <h2 class="fw-normal">게시글1</h2>
-        <p>운동방법 설명 내용 띄우기</p>
-        <p><a class="btn btn-secondary" href="#">자세히보기 »</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2 class="fw-normal">게시글2</h2>
-        <p>운동방법 내용</p>
-        <p><a class="btn btn-secondary" href="#">자세히보기 »</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-        <h2 class="fw-normal">게시글3</h2>
-		<p>운동방법 내용</p>
-        <p><a class="btn btn-secondary" href="#">자세히보기 »</a></p>
-      </div><!-- /.col-lg-4 -->
-
-    </div><!-- /.row -->
 
    <hr class="featurette-divider">
    
@@ -262,26 +210,28 @@
     <c:choose>
 	<c:when test="${loginBean.userLogin == true }">
     <div class="row featurette">
-      <div class="col-md-7">
+      <div class="col-md-5">
         <h2 class="featurette-heading fw-normal lh-1">${sessionScope.u_id}님의 프로필</h2>
         <p class="lead">키 : ${sessionScope.u_height }</p>
         <p class="lead">몸무게 : ${sessionScope.u_height }</p>    
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+      <div class="col-md-7">
+        <jsp:include page="${root }/user/mypage"></jsp:include>
       </div>
     </div>
 	</c:when>
 	<c:otherwise>
-	<div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1 text-sm-center">로그인 후 이용 가능합니다.</h2>
+	<div class="row text-center">
+      <div class="col">
+      	<br><br><br>
+        <h2>로그인 후 이용 가능합니다.</h2>
+        <br><br>
         <p><a class="btn btn-secondary" href="/user/login">로그인하기 »</a></p>
+        <br><br><br>
         </div>
-        </div>
+      </div>
 	</c:otherwise>
 	</c:choose>
-    
 
   </div><!-- /.container -->
   

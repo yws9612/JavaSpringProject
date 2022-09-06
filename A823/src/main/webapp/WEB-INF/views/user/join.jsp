@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
-
-  <!-- 부트스트랩 js 추가 for 아코디언  -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
   
   <!-- kko zipcode -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -51,16 +48,20 @@
 </head>
 
 <body>
-<div class="container-fluid">
-<div class="row">
-<div class="col-md-5">
+
+<!-- header -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+
+<div class="container-fluid" style="margin-top:100px">
+<div class="row justify-content-md-center">
+<div class="col-md-5 col-md-5 shadow p-3 mb-5 bg-body rounded">
 <br/><br/>
 		
 		<form action="#중복확인" method="post" id="frm">
 		<div class="input-group mb-3">
 
 		<span class="input-group-text">아이디</span>
-		<input type="text" class="form-control" readonly="readonly" placeholder="중복확인해주세요">
+		<input type="text" class="form-control" placeholder="중복확인해주세요">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		
 		<div class="col align-self-end" >
@@ -83,7 +84,7 @@
 		<form action="#중복확인" method="post" id="frm">
 		<div class="input-group mb-3">
 		<span class="input-group-text">E-MAIL</span>
-		<input type="email" class="form-control" readonly="readonly" placeholder="중복확인해주세요">
+		<input type="email" class="form-control" placeholder="중복확인해주세요">
 
 		&nbsp;&nbsp;&nbsp;&nbsp;		
 		<div class="col align-self-end" >
@@ -160,6 +161,9 @@
 </div>
 </div>
 
+
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
 
 </body>
 </html>

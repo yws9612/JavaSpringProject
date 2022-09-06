@@ -9,15 +9,13 @@
 <meta charset="UTF-8">
 <title>MyPage</title>
 
-<!-- Bootstrap CSS -->
-<link href="/../resources/dist/css/myPage.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
-
 </head>
 
-
 <body>
-	<div class="container mt-7">
+<!-- header -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+
+	<div class="container" style="margin-top:100px">
 		<!-- 가운데정렬+네모안에 들어가지는 컨테이너 원치않음빼세여 -->
 		<!-- Table -->
 		<h2 class="mb-5">유저이름넣어야함</h2>
@@ -30,7 +28,7 @@
 					<div class="card-profile-image">
 						<a href="#플필사진 클릭하면 이동할거면 넣기"> <img
 							src="https://image.msscdn.net/images/goods_img/20210517/1954888/1954888_1_500.jpg?t=20210517173507"
-							class="rounded-circle"></a>
+							class="rounded-circle shadow"></a>
 					</div>
 				</div>
 			</div>
@@ -97,6 +95,9 @@
 			</div>
 		</div>
 	</div>
+	
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
 </body>
 </html>
 

@@ -1,19 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PW 찾기</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
 </head>
 
 
 <body>
+
+<!-- header -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+
+
+<div class="container" style="margin-top:100px">
+<div class="row justify-content-md-center">
+<div class="col col-md-5 shadow p-3 mb-5 bg-body rounded">
 
 <form action = "/user/findPW" method = "post">
 <!-- FORGOT ID FORM  -->
@@ -46,5 +53,11 @@
 
 </div>
 </form>
+
+</div></div></div>
+
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
+
 </body>
 </html>
