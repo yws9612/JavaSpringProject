@@ -2,6 +2,8 @@ package co.sol.main;
 
 
 
+import javax.validation.constraints.NotEmpty;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -13,7 +15,7 @@ public class UVO {
 //	@NotEmpty(message = "값이 비어있습니다.")
 	private String u_name;
 	
-//	@NotEmpty(message = "값이 비어있습니다.")
+	@NotEmpty(message = "값이 비어있습니다.")
 	private String u_id;
 	
 //	@NotEmpty(message = "값이 비어있습니다.")

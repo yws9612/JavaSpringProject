@@ -46,13 +46,13 @@
 				<div class="main-login-form">
 					<div class="login-group">
 						<div class="form-group">
-							<form:label for="lg_username" class="sr-only" path="u_id">ID</form:label> 
-							<form:input class="form-control" path="u_id" placeholder="username"/>
+							<form:label for="u_id" class="sr-only" path="u_id">ID</form:label> 
+							<form:input class="form-control" path="u_id" placeholder="ID"/>
 							<form:errors path="u_id" style="color:red"></form:errors>
 						</div>
 
 						<div class="form-group">
-							<form:label for="lg_password" class="sr-only" path="u_pw">PW</form:label> 
+							<form:label for="u_pw" class="sr-only" path="u_pw">PW</form:label> 
 							<form:password class="form-control" path="u_pw" placeholder="password"/>
 							<form:errors path="u_pw" style="color:red"></form:errors>
 						</div>
