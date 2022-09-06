@@ -17,6 +17,7 @@ public interface BMapper {
 //	public void inkey(BVO bo);
 	
 	public BVO sel(int b_no);
+	public void upViewcount(int b_no);
 	
 	public int del(int b_no);
 	

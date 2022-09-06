@@ -13,30 +13,13 @@
 			select max(c_no)+1 from c_table
 		</selectKey>
 		
-		<choose>
 		
-			<when test="c_level==1">
-				<selectKey keyProperty="c_step" order="BEFORE" resultType="int">
-					select max(c_step)+1 from c_table where b_no = #{b_no}
-				</selectKey>
-				insert into c_table values 
-				(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}, 
-				c_step, sysdate, sysdate)			
-			</when>
-			
-			<when test="c_level==2">
-			
-			</when>
-			
-		</choose>
-		
-		
-		<selectKey keyProperty="c_step" order="BEFORE" resultType="int">
-			select max(c_step)+1 from c_table where b_no = #{b_no}
+		<selectKey keyProperty="c_level" order="BEFORE" resultType="int">
+			select max(c_level)+1 from c_table where b_no = #{b_no}
 		</selectKey>
 		insert into c_table values 
-			(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}, 
-			c_step, sysdate, sysdate)
+			(number, #{c_writer}, #{c_con}, #{b_no}, c_level, 
+			#{c_step}, sysdate, sysdate)
 	</insert>
 	
 	
