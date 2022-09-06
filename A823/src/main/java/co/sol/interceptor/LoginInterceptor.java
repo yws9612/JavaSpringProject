@@ -3,10 +3,12 @@ package co.sol.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import co.sol.main.UVO;
 
+@Component
 public class LoginInterceptor implements HandlerInterceptor{
 	
 	private UVO loginBean;

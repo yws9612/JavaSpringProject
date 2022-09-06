@@ -56,7 +56,6 @@ public class UServiceImpl implements UService {
 			loginBean.setU_no(user2.getU_no());
 			loginBean.setU_id(user2.getU_id());
 			loginBean.setUserLogin(true);
-		}else {
 		}
 	}
 
