@@ -22,13 +22,14 @@ public class CServiceImpl implements CService {
 	}
 
 	@Override
-	public void insert(CVO comment) {
+	public void comment(CVO comment) {
 		mpr.insert(comment);
 	}
 
 	@Override
 	public void recomment(CVO comment) {
-		mpr.insert(comment);
+		mpr.update_level(comment);
+		mpr.insert_re(comment);
 	}
 
 	@Override

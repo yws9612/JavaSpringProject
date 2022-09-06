@@ -12,14 +12,27 @@
 		<selectKey keyProperty="number" order="BEFORE" resultType="int">
 			select max(c_no)+1 from c_table
 		</selectKey>
-		
-		
 		<selectKey keyProperty="c_level" order="BEFORE" resultType="int">
 			select max(c_level)+1 from c_table where b_no = #{b_no}
 		</selectKey>
+		
 		insert into c_table values 
 			(number, #{c_writer}, #{c_con}, #{b_no}, c_level, 
-			#{c_step}, sysdate, sysdate)
+			1, sysdate, sysdate)
+	</insert>
+
+
+
+	<update id="update_level">
+		update c_table set c_level=c_level+1 where b_no=#{b_no} and c_level>#{c_level}
+	</update>
+	<insert id="insert_re">
+		<selectKey keyProperty="number" order="BEFORE" resultType="int">
+			select max(c_no)+1 from c_table
+		</selectKey>		
+		insert into c_table values 
+			(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}+1, 
+			#{c_step}+1, sysdate, sysdate)
 	</insert>
 	
 	
