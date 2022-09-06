@@ -51,24 +51,25 @@
 			</a> 
 			${u_id}
 	        <ul class="dropdown-menu text-small">
-	       
-				<c:choose>
-					<c:when test="${loginCommand.getId() == true }">
-					<li><a class="dropdown-item fs-1" href="${root }user/my_page">북마크한 게시글</a></li>
-					<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 게시글</a></li>
-					<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 댓글</a></li>
-					<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 리뷰</a></li>
-					<li><a class="dropdown-item" href="${root }user/my_page">내 프로필</a></li>
-					<li><a class="dropdown-item" href="${root }user/my_page">계정 설정</a></li>
-					<li><hr class="dropdown-divider"></li>
-					<li><a class="dropdown-item" href="${root }user/logout">로그아웃</a></li>
-					</c:when>
-					<c:otherwise>
-					<li><a class="dropdown-item" href="${root }user/login">로그인</a></li>
-					<li><hr class="dropdown-divider"></li>
-					<li><a class="dropdown-item" href="${root }user/join">회원가입</a></li>						
-					</c:otherwise>
-				</c:choose>
+		       	<c:catch>
+					<c:choose>
+						<c:when test="${empty user}">
+							<li><a class="dropdown-item" href="${root }user/login">로그인</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="${root }user/join">회원가입</a></li>	
+						</c:when>
+						<c:otherwise>
+							<li><a class="dropdown-item fs-1" href="${root }user/my_page">북마크한 게시글</a></li>
+							<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 게시글</a></li>
+							<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 댓글</a></li>
+							<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 리뷰</a></li>
+							<li><a class="dropdown-item" href="${root }user/my_page">내 프로필</a></li>
+							<li><a class="dropdown-item" href="${root }user/my_page">계정 설정</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="${root }user/logout">로그아웃</a></li>					
+						</c:otherwise>
+					</c:choose>
+				</c:catch>
 			</ul>
       	</div>
       

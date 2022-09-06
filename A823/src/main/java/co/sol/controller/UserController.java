@@ -177,5 +177,13 @@ public class UserController {
 	public void main() {
 		
 	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/main/main");
+		
+		return mv;
+	}
 
 }
