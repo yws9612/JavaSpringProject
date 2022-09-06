@@ -4,7 +4,7 @@
 <mapper namespace="co.sol.mapper.DataMapper">
 
 	<select id="getEList" resultType="co.sol.main.EVO">
-		select * from e_table
+		select /*+INDEX_ASC(e_table SYS_C0031908) */ * from e_table
 		<trim prefix="where" prefixOverrides="and"> <!-- div, partno? and/or  -->
 			<if test="e_div!=null">e_div=#{e_div}</if>
 			<if test="e_part!=null">and e_part like '%'||#{e_part}||'%'</if>

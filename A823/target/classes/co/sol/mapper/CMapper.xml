@@ -5,14 +5,14 @@
 
 	<select id="getList" resultType="co.sol.main.CVO">
 		select * from c_table where b_no = #{b_no}
+		order by l_level
 	</select>
 
 
 	<insert id="insert">
 		<selectKey keyProperty="number" order="BEFORE" resultType="int">
 			select max(c_no)+1 from c_table
-		</selectKey>
-		
+		</selectKey>		
 		insert into c_table values 
 			(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}+1, 
 			1, sysdate, sysdate)

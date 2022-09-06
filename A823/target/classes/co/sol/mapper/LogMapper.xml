@@ -23,7 +23,7 @@
 		u_no, b_no, l_reno, l_div, l_date, b_title, b_writer 
 		from l_table natural join b_table 
 		where u_no = #{u_no}
-		]]> <!-- l_no 인덱스명 넣기 -->
+		]]> 
 		<trim prefix="and">
 			<choose>
 				<when test="select=='scrap'.toString()">

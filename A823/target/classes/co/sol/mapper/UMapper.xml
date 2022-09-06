@@ -13,13 +13,13 @@
 	
 	
 	
-	<update id="Modify">
+	<update id="modify">
 		update u_table set u_pw=#{u_pw}, u_addr=#{u_addr} where u_no=#{u_no}
 	</update>
 	
 	
 	
-	<delete id="Leave">
+	<delete id="leave">
 		delete from u_table where u_no = #{u_no} and u_pw = #{u_pw}
 	</delete>
 		
