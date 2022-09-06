@@ -79,7 +79,7 @@ public class UserController {
 	@PostMapping("/findPwProc")
 	public String findPwProc(UVO uvo, Model m) {
 	
-		uservice.updatePw(uvo);
+		uservice.newPw(uvo);
 		
 		return "/user/login";
 	}

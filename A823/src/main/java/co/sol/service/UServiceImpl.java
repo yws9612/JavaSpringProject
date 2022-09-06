@@ -17,6 +17,9 @@ import lombok.extern.log4j.Log4j;
 public class UServiceImpl implements UService {
 	
 	private final UMapper mpr;
+	
+	@Resource(name = "loginBean")
+	private UVO loginBean;
 
 	@Override
 	public void join(UVO user, DVO discord) {
@@ -71,7 +74,7 @@ public class UServiceImpl implements UService {
 	@Override
 	public void getLoginUserInfo(UVO user) {
 		// TODO Auto-generated method stub
-		UVO user2 = mapper.getLoginUserInfo(user);
+		UVO user2 = mpr.getLoginUserInfo(user);
 	
 		if(user2 != null) {
 			loginBean.setU_no(user2.getU_no());
