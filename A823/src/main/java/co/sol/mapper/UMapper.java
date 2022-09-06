@@ -14,6 +14,7 @@ public interface UMapper {
 	public UVO getUser(UVO user);
 	public void addDiscord(UVO user, DVO discord);
 	public void getDiscord(UVO user);
-	public UVO getLoginUserInfo(UVO user);
+	public UVO selectById(String id);
+	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 	
 }

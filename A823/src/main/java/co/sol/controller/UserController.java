@@ -1,6 +1,9 @@
 package co.sol.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +21,13 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.servlet.ModelAndView;
 
+import co.sol.exception.IdPasswordNotMatchingException;
 import co.sol.main.DVO;
+import co.sol.main.LoginCommand;
 import co.sol.main.UVO;
+import co.sol.main.UserInfo;
 import co.sol.service.BService;
 import co.sol.service.UService;
 import lombok.RequiredArgsConstructor;
@@ -32,9 +40,7 @@ import lombok.extern.log4j.Log4j;
 public class UserController {
 	
 	private final UService uservice;
-	
-	@Resource(name = "loginBean")
-	private UVO loginBean;
+
 	
 	@GetMapping("/findID")
 	public void findID() {
@@ -104,27 +110,50 @@ public class UserController {
 	}
 	
 	@GetMapping("/login")
-	public String getLogin(@ModelAttribute("user")UVO user,
-						 @RequestParam(value = "fail", defaultValue = "false")boolean fail,
-						 Model m) {
+	public ModelAndView getLogin(@ModelAttribute("login")LoginCommand loginCommand,
+						   @CookieValue(value="REMEMBER", required = false)Cookie rememberCookie)throws Exception {
 		
-		m.addAttribute("fail", fail);
-		return "/user/login";
+		if(rememberCookie != null) {
+			loginCommand.setId(rememberCookie.getValue());
+			loginCommand.setRememberId(true);
+		}
+		
+		ModelAndView mv = new ModelAndView("/user/login");
+		return mv;
+		
 	}
 		
 	@PostMapping("/loginProc")
-	public String loginProc(@Valid @ModelAttribute("user")UVO user, BindingResult result) {
+	public ModelAndView loginProc(@Valid @ModelAttribute("login")LoginCommand loginCommand, BindingResult result,
+								  HttpSession session, HttpServletResponse response)throws Exception {
 		
 		if(result.hasErrors()) {
-			return "/user/login";
+			ModelAndView mv = new ModelAndView("/user/login");
+			return mv;
 		}
 		
-		uservice.getLoginUserInfo(user);
-		if(loginBean.isUserLogin()==true) {
-			return "/user/loginSuccess";
-		}else {
-			return "/user/loginFail";
+		try {
+			
+			UserInfo user = uservice.loginAuth(loginCommand);
+			session.setAttribute("user", user);
+			
+			Cookie rememberCookie = new Cookie("Remember", loginCommand.getId());
+			rememberCookie.setPath("/");
+			if(loginCommand.isRememberId()) {
+				rememberCookie.setMaxAge(60*60*24*7);
+			}else {
+				rememberCookie.setMaxAge(0);
+			}
+			response.addCookie(rememberCookie);
+			
+		}catch(IdPasswordNotMatchingException e) {
+			result.rejectValue("pw", "notMatch", "아이디와 비밀번호가 맞지 않습니다.");
+			ModelAndView mv = new ModelAndView("/user/login");
+			return mv;		
 		}
+		ModelAndView mv = new ModelAndView("/user/loginSuccess");
+		return mv;
+		
 	}
 	
 	@GetMapping("/myPage")

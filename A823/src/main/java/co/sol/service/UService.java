@@ -1,7 +1,9 @@
 package co.sol.service;
 
 import co.sol.main.DVO;
+import co.sol.main.LoginCommand;
 import co.sol.main.UVO;
+import co.sol.main.UserInfo;
 
 public interface UService {
 
@@ -16,5 +18,5 @@ public interface UService {
 	public void addDiscord(UVO user, DVO discord);
 	public void getDiscord(UVO user);
 
-	public void getLoginUserInfo(UVO user);
+	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 }

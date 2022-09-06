@@ -5,8 +5,11 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.sol.exception.IdPasswordNotMatchingException;
 import co.sol.main.DVO;
+import co.sol.main.LoginCommand;
 import co.sol.main.UVO;
+import co.sol.main.UserInfo;
 import co.sol.mapper.UMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -18,8 +21,7 @@ public class UServiceImpl implements UService {
 	
 	private final UMapper mpr;
 	
-	@Resource(name = "loginBean")
-	private UVO loginBean;
+	
 
 	@Override
 	public void join(UVO user, DVO discord) {
@@ -71,15 +73,19 @@ public class UServiceImpl implements UService {
 		mpr.getDiscord(user);
 	}
 
-	@Override
-	public void getLoginUserInfo(UVO user) {
-		// TODO Auto-generated method stub
-		UVO user2 = mpr.getLoginUserInfo(user);
 	
-		if(user2 != null) {
-			loginBean.setU_no(user2.getU_no());
-			loginBean.setU_id(user2.getU_id());
-			loginBean.setUserLogin(true);
+
+	@Override
+	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception {
+		// TODO Auto-generated method stub
+		UVO uvo = mpr.selectById(loginCommand.getId());
+		
+		if(uvo == null) {
+			throw new IdPasswordNotMatchingException();
 		}
+		if(!uvo.matchPassword(loginCommand.getPw())) {
+			throw new IdPasswordNotMatchingException();
+		}
+		return new UserInfo(uvo.getU_id(), uvo.getU_addr());
 	}
 }

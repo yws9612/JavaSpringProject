@@ -48,10 +48,12 @@
 	      <div class="dropdown text-end">
 	      	<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"data-bs-toggle="dropdown" aria-expanded="false"> 
 	      		<i class="bi bi-person-fill fs-5"></i>
-			</a>
+			</a> 
+			${u_id}
 	        <ul class="dropdown-menu text-small">
+	       
 				<c:choose>
-					<c:when test="${loginBean.userLogin == true }">
+					<c:when test="${loginCommand.getId() == true }">
 					<li><a class="dropdown-item fs-1" href="${root }user/my_page">북마크한 게시글</a></li>
 					<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 게시글</a></li>
 					<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 댓글</a></li>

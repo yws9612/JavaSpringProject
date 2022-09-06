@@ -42,30 +42,24 @@
 		<div class="text-center logo pt-5"><h2>login</h2></div>
 		<!-- Main Form -->
 		<div class="login-form-1">
-			<c:if test="${fail == true }">
-				<div class="alert alert-danger">
-					<h3>로그인 실패</h3>
-					<p>아이디 비밀번호를 확인해주세요</p>
-				</div>
-			</c:if>
-			<form:form class="text-left" method="post" action="${root}user/loginProc" modelAttribute="user">
+			<form:form class="text-left" method="post" action="${root}user/loginProc" modelAttribute="login">
 				<div class="main-login-form">
 					<div class="login-group">
 						<div class="form-group pt-3">
-							<form:label for="u_id" class="sr-only" path="u_id">ID</form:label> 
-							<form:input class="form-control" path="u_id" placeholder="ID"/>
-							<form:errors path="u_id" style="color:red"></form:errors>
+							<form:label for="id" class="sr-only" path="id">ID</form:label> 
+							<form:input class="form-control" path="id" placeholder="ID"/>
+							<form:errors path="id" style="color:red"></form:errors>
 						</div>
 
 						<div class="form-group pt-3">
-							<form:label for="u_pw" class="sr-only" path="u_pw">PW</form:label> 
-							<form:password class="form-control" path="u_pw" placeholder="password"/>
-							<form:errors path="u_pw" style="color:red"></form:errors>
+							<form:label for="pw" class="sr-only" path="pw">PW</form:label> 
+							<form:password class="form-control" path="pw" placeholder="password"/>
+							<form:errors path="pw" style="color:red"></form:errors>
 						</div>
 
 						<div class="form-group login-group-checkbox pt-3">
-							<input class="form-check-input" type="checkbox" id="lg_remember" name="lg_remember">
-							<label for="lg_remember">저장하기</label>
+							<form:checkbox path = "rememberId"/>
+							<form:label path="rememberId">저장하기</form:label>
 						</div>
 					</div>
 					<div class="d-grid gap-2 pt-3">

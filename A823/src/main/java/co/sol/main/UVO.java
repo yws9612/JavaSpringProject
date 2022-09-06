@@ -2,6 +2,7 @@ package co.sol.main;
 
 
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
@@ -18,8 +19,7 @@ public class UVO {
 	@NotEmpty(message = "값이 비어있습니다.")
 	private String u_id;
 	
-//	@NotEmpty(message = "값이 비어있습니다.")
-//	@Min(message = "비밀번호는 6자 이상이여야합니다.", value = 6)
+	@NotEmpty(message = "값이 비어있습니다.")
 	private String u_pw;
 	
 	private String u_addr;
@@ -29,12 +29,8 @@ public class UVO {
 	
 	private String u_admin;
 	
-	private boolean idExist;
-	private boolean userLogin;
-	
-	public UVO() {
-		this.idExist = false;
-		this.userLogin = false;
+	public boolean matchPassword(String pw) {
+		return this.u_pw.equals(pw);
 	}
 	
 }
