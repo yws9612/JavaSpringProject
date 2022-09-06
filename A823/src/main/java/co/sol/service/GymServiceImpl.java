@@ -18,13 +18,8 @@ public class GymServiceImpl implements GymService {
 	private final GymMapper mpr;
 
 	@Override
-	public List<GVO> getList() {
-		return mpr.getList();
-	}
-
-	@Override
-	public List<GVO> getLocalList(String addr) {
-		return mpr.getLocalList(addr);
+	public List<GVO> getList(String search) {
+		return mpr.getList(search);
 	}
 
 	@Override

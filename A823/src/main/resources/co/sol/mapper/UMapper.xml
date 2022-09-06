@@ -14,7 +14,7 @@
 	
 	
 	<update id="Modify">
-		update u_table set 정하고 적자  where u_no=#{u_no}
+		update u_table set u_pw=#{u_pw}, u_addr=#{u_addr} where u_no=#{u_no}
 	</update>
 	
 	

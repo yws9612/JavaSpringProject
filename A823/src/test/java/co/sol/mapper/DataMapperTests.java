@@ -1,6 +1,7 @@
 package co.sol.mapper;
 
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,4 +20,26 @@ public class DataMapperTests {
 	
 	@Autowired
 	private DataMapper mpr;
+	
+	
+	@Test
+	public void getList_test() {
+		log.info(mpr.getEList(null));
+	}
+	@Test
+	public void getList_test2() {
+		EVO e=new EVO();
+		e.setE_div("짐트");
+		log.info(mpr.getEList(e));
+	}
+	
+	@Test
+	public void add_test() {
+		EVO e=new EVO();
+		e.setE_div("짐트");
+		e.setE_name("teststtest테스트");
+		mpr.addExercise(e);		
+	}
+	
+	
 }

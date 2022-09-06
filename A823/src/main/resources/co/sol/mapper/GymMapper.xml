@@ -5,8 +5,8 @@
 
 	<select id="getList" resultType="co.sol.main.GVO">
 		select * from g_table
-		<if test="keyword!=null">
-			where g_addr like '%'||#{keyword}||'%'
+		<if test="search!=null">
+			where g_addr like '%'||#{search}||'%'
 		</if>
 	</select>
 	

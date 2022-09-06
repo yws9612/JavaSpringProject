@@ -44,4 +44,30 @@ public class CMapperTests {
 		c.setC_con("수수수수수수정정ㅇ정정정abcabcabac213123");
 		mpr.modify(c);
 	}
+	
+	@Test
+	public void delete_test() {
+		CVO c=new CVO();
+		c.setC_no(1);
+		mpr.delete(c);
+	}
+	
+	@Test
+	public void updatelevel_test() {
+		CVO c=new CVO();
+		c.setB_no(2);
+		c.setC_level(1);
+		mpr.update_level(c);
+	}
+	
+	@Test
+	public void insertre_test() {
+		CVO c=new CVO();
+		c.setB_no(2);
+		c.setC_step(1);
+		c.setC_level(1);
+		c.setC_con("addaddadd대댓대댓대댓");
+		c.setC_writer("aaa");
+		mpr.insert_re(c);		
+	}
 }
