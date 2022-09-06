@@ -3,6 +3,19 @@
 
 <mapper namespace="co.sol.mapper.GymMapper">
 
+	
+	<resultMap type="co.sol.main.UVO" id="id">
+		<result column="u_id" property="u_id"/>
+	</resultMap>
+	
+	<resultMap type="co.sol.main.RVO" id="reviews">
+		<result column="r_score" property="r_score"/>
+		<result column="r_rev" property="r_rev"/>
+		<result column="r_date" property="r_date"/>
+		<collection property="id"/>
+	</resultMap>
+	
+
 	<select id="getList" resultType="co.sol.main.GVO">
 		select /*+INDEX_ASC(g_table SYS_C0031863) */ * from g_table
 		<if test="search!=null">
@@ -12,8 +25,11 @@
 	
 	
 	
-	<select id="getReview" resultType="co.sol.main.RVO">
-		select /*+INDEX_DESC(r_table SYS_C0031865) */ * from r_table where g_no = #{g_no};		
+	<select id="getReview" resultType="reviews">
+		select /*+INDEX_DESC(r_table SYS_C0031865) */ 
+		r_score, r_rev, r_date, u_id
+		from r_table natural join u_table
+		where g_no = #{g_no};
 	</select>
 	
 	
