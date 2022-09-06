@@ -59,7 +59,7 @@
 							<li><a class="dropdown-item" href="${root }user/join">회원가입</a></li>	
 						</c:when>
 						<c:otherwise>
-							<li><a class="dropdown-item fs-1" href="${root }user/my_page">북마크한 게시글</a></li>
+							<li><a class="dropdown-item" href="${root }user/my_page">북마크한 게시글</a></li>
 							<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 게시글</a></li>
 							<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 댓글</a></li>
 							<li><a class="dropdown-item" href="${root }user/my_page">내가 쓴 리뷰</a></li>
