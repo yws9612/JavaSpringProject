@@ -40,7 +40,7 @@ public class BController {
 	@PostMapping("/submit")
 	public String submit(BVO bv, RedirectAttributes rt) {
 		
-		Long bnum=service.submit(bv);
+		int bnum=service.submit(bv);
 		
 		rt.addFlashAttribute("result", bnum);
 		
@@ -57,7 +57,7 @@ public class BController {
 	public String modify(BVO bo, Basic ba, RedirectAttributes rt) {
 
 		if(service.modify(bo)==1) {
-			rt.addFlashAttribute("result", "¼º°ø");
+			rt.addFlashAttribute("result", "ï¿½ï¿½ï¿½ï¿½");
 			
 		}
 		 rt.addAttribute("pageNum", ba.getPageNum());
@@ -71,7 +71,7 @@ public class BController {
 	public String del(@RequestParam("bnum")int bnum, Basic ba, RedirectAttributes rt) {
 		
 		if(service.del(bnum)==1) {
-			rt.addFlashAttribute("result","¼º°ø");
+			rt.addFlashAttribute("result","ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		rt.addAttribute("pageNum", ba.getPageNum());

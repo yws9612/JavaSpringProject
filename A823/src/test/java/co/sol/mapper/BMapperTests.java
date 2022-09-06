@@ -45,11 +45,12 @@ public class BMapperTests {
 	}
 	
 	@Test
-	public void aa() {
+	public void insert_test() {
 		BVO bb=new BVO();
-		bb.setB_title("�ȳ�");
-		bb.setB_con("����");
-		bb.setB_writer("�浿");
+		bb.setB_div("루틴");
+		bb.setB_title("aaaaaa타이틀");
+		bb.setB_con("내용");
+		bb.setB_writer("test2");
 		
 		bm.insert(bb);
 	}
