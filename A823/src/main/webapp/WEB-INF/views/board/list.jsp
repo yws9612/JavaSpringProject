@@ -33,15 +33,15 @@
 					<tbody>
 						<c:forEach items="${list }" var="bo">
 							<tr class="odd gradeX">
-								<td><c:out value="${bo.bnum}" /></td>
-								<td><a class="m" href='<c:out value="${bo.bnum}"/>'>
-							<c:out value="${bo.title }"/></a></td>
+								<td><c:out value="${bo.b_no}" /></td>
+								<td><a class="m" href='<c:out value="${bo.b_no}"/>'>
+							<c:out value="${bo.b_title }"/></a></td>
 							
-								<td>${bo.writer}</td>
+								<td>${bo.b_writer}</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
-										value="${bo.redate}" /></td>
+										value="${bo.b_wdate}" /></td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
-										value="${bo.updateDate }" /></td>
+										value="${bo.b_udate }" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>

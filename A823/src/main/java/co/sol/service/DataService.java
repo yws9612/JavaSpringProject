@@ -6,7 +6,8 @@ import co.sol.main.EVO;
 
 public interface DataService {
 	
-	public List<EVO> getEList(EVO exercise);
-	public void addExercise(EVO exercise);
+	List<EVO> getEList(EVO exercise);
+	void addExercise(EVO exercise);
+	List<EVO> randomList();
 
 }

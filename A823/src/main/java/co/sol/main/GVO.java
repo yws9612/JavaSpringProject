@@ -8,6 +8,9 @@ public class GVO {
 	private int g_no;
 	private String g_name;
 	private String g_addr;
-	private String g_time;
+	private String g_call;
+	private String g_post;
+	private int g_x;
+	private int g_y;
 	
 }

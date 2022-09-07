@@ -69,8 +69,8 @@ public class UServiceImpl implements UService {
 	}
 
 	@Override
-	public void getDiscord(UVO user) {
-		mpr.getDiscord(user);
+	public List<DVO> getDiscord(UVO user) {
+		return mpr.getDiscord(user);
 	}
 
 	
