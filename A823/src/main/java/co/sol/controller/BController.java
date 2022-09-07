@@ -87,6 +87,8 @@ public class BController {
 	@GetMapping("/test2")
 	public void test2() {}
 	
+	@GetMapping("/writer_diary")
+	public void writer_diary() {}
 	
 }
 
