@@ -25,7 +25,7 @@
 	
 	
 	
-	<select id="getReview" resultType="reviews">
+	<select id="getReview" resultType="co.sol.main.RVO">
 		select /*+INDEX_DESC(r_table SYS_C0031865) */ 
 		r_score, r_rev, r_date, u_id
 		from r_table natural join u_table
