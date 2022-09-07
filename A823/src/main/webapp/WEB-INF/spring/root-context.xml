@@ -13,10 +13,10 @@
 		<property value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"
 			name="driverClassName" />
 		<property
-			value="jdbc:log4jdbc:oracle:thin:@localhost:1521/xe"
+			value="jdbc:log4jdbc:oracle:thin:@xru4rvyfkcbnulne_high?TNS_ADMIN=C:/Users/Administrator/Desktop/java/Wallet_XRU4RVYFKCBNULNE/"
 			name="jdbcUrl" />
-		<property value="train" name="username" />
-		<property value="12345" name="password" />
+		<property value="admin" name="username" />
+		<property value="5groupDatabase" name="password" />
 	</bean>
 
 	<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource"

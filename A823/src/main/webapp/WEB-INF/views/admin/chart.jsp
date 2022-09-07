@@ -14,7 +14,7 @@
 
 	function drawChart(){
 		var jsonData = $.ajax({
-			url:"/admin/chart1",
+			url:'<c:url value = "/admin/chart1/"/>',
 			dataType:"json",
 			async:false
 		}).responseText;
@@ -67,16 +67,7 @@
 	
 	
 	
-	<script>
-		$(document).ready(function(){
-			$.ajax({
-				url : "/mypageController/${board}",
-				type : "POST",
-				
-			})
-		})
-	
-	</script>
+
 
 </body>
 </html>

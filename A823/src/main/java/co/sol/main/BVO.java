@@ -7,12 +7,15 @@ import lombok.Data;
 @Data
 public class BVO {
 
-	private Long bnum;
-	private String title;
-	private String content;
-	private String writer;
-	private Date redate;
-	private Date updateDate;
+	private int b_no;
+	private String b_div;
+	private String b_title;
+	private String b_con;
+	private String b_writer;
+	private Date b_wdate;
+	private Date b_udate;
+	private boolean bo_open;
+	private int b_vc;
 	
 	
 }
