@@ -70,72 +70,29 @@
 	<h1>오늘의 추천운동&nbsp;<a class="btn btn-primary" href="#">더보기 »</a></h1>
 	
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+	<c:forEach var="EVO" items="${randomlist}">
 		<div class="col p-3">
 			<div class="card p-3">
 	  			<img src="/resources/img/exercise/dumbell_purple.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
-	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명<br>
-	    			<span class="badge text-bg-info">#운동부위</span><br>
-	    			<span class="badge text-bg-warning">#주의부위</span></p>
+	    			<h5 class="card-title"><c:out value="${EVO.e_name}"/></h5>
+	    			<p class="card-text"><c:out value="${EVO.e_guide}"/><br>
+	    			<span class="badge text-bg-info">#<c:out value="${EVO.e_part}"/></span>
+	    			<c:if test="${not empty EVO.e_cau}">
+	    			<br>
+	    			<span class="badge text-bg-warning">#<c:out value="${EVO.e_cau}"/></span></c:if></p>
+	    			
 	  			</div>
 			</div>
 		</div>
-		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명<br>
-	    			<span class="badge text-bg-info">#운동부위</span><br>
-	    			<span class="badge text-bg-warning">#주의부위</span></p>
-	  			</div>
-			</div>
-		</div>
-		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명<br>
-	    			<span class="badge text-bg-info">#운동부위</span><br>
-	    			<span class="badge text-bg-warning">#주의부위</span></p>
-	  			</div>
-			</div>
-		</div>
-		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명<br>
-	    			<span class="badge text-bg-info">#운동부위</span><br>
-	    			<span class="badge text-bg-warning">#주의부위</span></p>
-	  			</div>
-			</div>
-		</div>
-		
-		<div class="col p-3">
-			<div class="card p-3">
-	  			<img src="/resources/img/ad/ad01.jpg" class="card-img-top" alt="사진오류">
-	  			<div class="card-body">
-	    			<h5 class="card-title">운동이름</h5>
-	    			<p class="card-text">운동방법 설명<br>
-	    			<span class="badge text-bg-info">#운동부위</span><br>
-	    			<span class="badge text-bg-warning">#주의부위</span></p>
-	  			</div>
-			</div>
-		</div>
+	</c:forEach>
 	</div>
-	</div>
+</div>
 	
-   <hr class="featurette-divider">
+<hr class="featurette-divider">
 
 <!-- 인기 게시글 Top5 -->
-	<div class="container pt-5 pb-5">
+<div class="container pt-5 pb-5">
 	<h1>인기 게시글 Top5</h1>
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 		<c:forEach var="BVO" items="${toplist}">
@@ -162,13 +119,11 @@
 	  			</div>
 			</div>
 		</div>
-		</c:forEach>
-		
-		
+		</c:forEach>		
 	</div>
-	</div>
+</div>
 
-   <hr class="featurette-divider">
+<hr class="featurette-divider">
    
      <!-- 간단 프로필 및 즐겨찾기 리스트-->
      <!-- login체크해야 함 -->
