@@ -7,7 +7,7 @@ import co.sol.main.UVO;
 
 public interface LogService {
 	
-	public List<LVO> getList(UVO user);
-	public void scrap(LVO log);
+	List<LVO> getList(UVO user);
+	void scrap(LVO log);
 
 }

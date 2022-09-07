@@ -6,10 +6,10 @@ import co.sol.main.CVO;
 
 public interface CService {
 	
-	public List<CVO> getList(int b_no);
-	public void comment(CVO comment);
-	public void recomment(CVO comment);
-	public void modify(CVO comment);
-	public void delete(CVO comment);
+	List<CVO> getList(int b_no);
+	void comment(CVO comment);
+	void recomment(CVO comment);
+	void modify(CVO comment);
+	void delete(CVO comment);
 
 }

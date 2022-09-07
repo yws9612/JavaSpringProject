@@ -13,6 +13,7 @@
 	</select>
 	
 	
+	
 	<insert id="addExercise">
 		<selectKey keyProperty="e_no" order="BEFORE" resultType="int">
 			select max(e_no)+1 from e_table
@@ -21,5 +22,15 @@
 			values (e_no, #{e_div}, #{e_name}, #{e_guide}, #{e_thum}, 
 					#{e_part}, #{e_cau})
 	</insert>
+
+
+
+	<select id="randomList">
+		-<![CDATA[
+			select * 
+			from (select * from e_table order by DBMS_RANDOM.VALUE)
+			where rownum < 5
+		]]>
+	</select>
 
 </mapper>

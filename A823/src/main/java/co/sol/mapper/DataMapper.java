@@ -7,5 +7,6 @@ public interface DataMapper {
 	
 	public List<EVO> getEList(EVO exercise);
 	public void addExercise(EVO exercise);
+	public List<EVO> randomList();
 
 }

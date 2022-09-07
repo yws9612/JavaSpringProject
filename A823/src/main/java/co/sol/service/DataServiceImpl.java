@@ -26,4 +26,9 @@ public class DataServiceImpl implements DataService {
 		mpr.addExercise(exercise);
 	}
 
+	@Override
+	public List<EVO> randomList() {
+		return mpr.randomList();
+	}
+
 }

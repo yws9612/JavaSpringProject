@@ -1,5 +1,7 @@
 package co.sol.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import co.sol.main.DVO;
@@ -61,8 +63,8 @@ public class UServiceImpl implements UService {
 	}
 
 	@Override
-	public void getDiscord(UVO user) {
-		mpr.getDiscord(user);
+	public List<DVO> getDiscord(UVO user) {
+		return mpr.getDiscord(user);
 	}
 
 }

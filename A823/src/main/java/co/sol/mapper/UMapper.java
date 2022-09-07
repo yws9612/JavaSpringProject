@@ -1,5 +1,7 @@
 package co.sol.mapper;
 
+import java.util.List;
+
 import co.sol.main.*;
 
 public interface UMapper {
@@ -13,6 +15,6 @@ public interface UMapper {
 	public void newPw(UVO user);
 	public UVO getUser(UVO user);
 	public void addDiscord(UVO user, DVO discord);
-	public void getDiscord(UVO user);
+	public List<DVO> getDiscord(UVO user);
 	
 }
