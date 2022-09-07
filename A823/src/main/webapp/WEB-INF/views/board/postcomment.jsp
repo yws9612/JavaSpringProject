@@ -66,7 +66,7 @@
 			<c:forEach items="comment" var="cmt">
 				<div>
 					<c:choose>
-						<c:when test="c_step==1">
+						<c:when test="${cmt.c_step}==1">
 							<c:out value="" />
 							<c:out value="" />
 						</c:when>
@@ -79,11 +79,11 @@
 
 
 					<c:choose>
-						<c:when test="cmt.c_writer eq sessionScope.user.u_id">
+						<c:when test="${cmt.c_writer } eq ${sessionScope.user.u_id }">
 							<button onclick="">modify</button>
 							<button onclick="">delete</button>
 						</c:when>
-						<c:when test="sessionScope.user.u_admin eq Y">
+						<c:when test="${sessionScope.user.u_admin } eq Y">
 							<button onclick="">delete</button>
 						</c:when>
 					</c:choose>
