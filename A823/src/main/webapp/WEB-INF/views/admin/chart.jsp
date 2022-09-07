@@ -6,6 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>chart</title>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+	google.charts.load("current", {packages:["corechart"]});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart(){
+		var jsonData = $.ajax({
+			url:"/admin/chart1",
+			dataType:"json",
+			async:false
+		}).responseText;
+	
+	console.log("jsonData : " + jsonData);
+	
+	var data = new google.visualization.DataTable(jsonData);
+	
+	var options = {
+	          title: 'aaaaaaaaaaaaa',
+	          is3D: true,
+	        };
+
+	var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+	chart.draw(data, options);
+	
+	}
+</script>
+
+
 </head>
 <body>
 
@@ -22,6 +51,7 @@
 	<div>
 		그래프1
 	</div>
+	<div id="donutchart" style="width: 900px; height: 500px;"></div>
 	
 	
 	
@@ -34,6 +64,19 @@
 	
 	
 	<c:import url="/WEB-INF/views/includes/footer.jsp" />
+	
+	
+	
+	<script>
+		$(document).ready(function(){
+			$.ajax({
+				url : "/mypageController/${board}",
+				type : "POST",
+				
+			})
+		})
+	
+	</script>
 
 </body>
 </html>
