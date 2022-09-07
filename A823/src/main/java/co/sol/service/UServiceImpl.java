@@ -86,6 +86,6 @@ public class UServiceImpl implements UService {
 		if(!uvo.matchPassword(loginCommand.getPw())) {
 			throw new IdPasswordNotMatchingException();
 		}
-		return new UserInfo(uvo.getU_id(), uvo.getU_addr());
+		return new UserInfo(uvo.getU_id(), uvo.getU_addr(), uvo.getU_name());
 	}
 }

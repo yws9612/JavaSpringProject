@@ -133,8 +133,8 @@
     <div class="row featurette">
       <div class="col-md-5">
         <h2 class="featurette-heading fw-normal lh-1">${sessionScope.user.id}님의 프로필</h2>
-        <p class="lead">이름 : ${sessionScope.uvo.u_name }</p>
-        <p class="lead"> 주소 : ${sessionScope.uvo.u_addr } </p>  
+        <p class="lead">이름 : ${sessionScope.user.name }</p>
+        <p class="lead"> 주소 : ${sessionScope.user.addr } </p>  
       </div>
 	  <div class="col-md-7">
         <jsp:include page="/WEB-INF/views/includes/mypage_include.jsp" flush="false"/>

@@ -18,7 +18,7 @@
 	<div class="container" style="margin-top:100px">
 		<!-- 가운데정렬+네모안에 들어가지는 컨테이너 원치않음빼세여 -->
 		<!-- Table -->
-		<h2 class="mb-5">유저이름넣어야함</h2>
+		<h2 class="mb-5">${user.name}</h2>
 		<div class="card card-profile shadow">
 			<!-- gray배경 -->
 			<div class="row justify-content-center">
