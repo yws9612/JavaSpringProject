@@ -25,11 +25,11 @@
 
 
 
-	<select id="randomList">
-		-<![CDATA[
+	<select id="randomList" resultType="co.sol.main.EVO">
+		<![CDATA[
 			select * 
 			from (select * from e_table order by DBMS_RANDOM.VALUE)
-			where rownum < 5
+			where ROWNUM <= 5
 		]]>
 	</select>
 

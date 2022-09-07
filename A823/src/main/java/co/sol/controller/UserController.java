@@ -28,11 +28,13 @@ import org.springframework.web.servlet.ModelAndView;
 import co.sol.exception.IdPasswordNotMatchingException;
 import co.sol.main.BVO;
 import co.sol.main.DVO;
+import co.sol.main.EVO;
 import co.sol.main.LoginCommand;
 import co.sol.main.UVO;
 import co.sol.main.UserInfo;
 import co.sol.mapper.BMapper;
 import co.sol.service.BService;
+import co.sol.service.DataService;
 import co.sol.service.UService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -45,6 +47,7 @@ public class UserController {
 	
 	private final UService uservice;
 	private final BService bservice;
+	private final DataService dataservice;
 	
 	@GetMapping("/findID")
 	public void findID() {
@@ -180,7 +183,9 @@ public class UserController {
 	@GetMapping("/main")
 	public void main(HttpSession session, Model m) {
 		List<BVO> toplist= bservice.topList();
+		List<EVO> randomlist=dataservice.randomList();
 		m.addAttribute("toplist",toplist);
+		m.addAttribute("randomlist",randomlist);
 	}
 	
 	@GetMapping("/logout")

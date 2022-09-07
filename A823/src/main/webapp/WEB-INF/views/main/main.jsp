@@ -1,4 +1,5 @@
 <%@page import="co.sol.main.BVO"%>
+<%@page import="co.sol.main.EVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -33,15 +34,9 @@
       </div>
       
       <div class="carousel-item active">
+      	<a href="${root }/board/list">
         <img src="/resources/img/ad/ad02.png" class="d-md-block w-100 active" alt="광고사진">
-        <div class="container">
-          <div class="carousel-caption" style="color: black">
-            <h1>두번째 광고 헤드라인</h1>
-            <p>광고 내용 적기</p>
-            <p><a class="btn btn-lg btn-primary" href="#">바로가기</a></p>
-            <br><br><br>
-          </div>
-        </div>
+        </a>
       </div>
       
       <div class="carousel-item">
@@ -60,14 +55,13 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
   
 <br>
 
 <div class="container marketing pt-5">
 <!-- 오늘의 추천운동(카드모양) -->
 	<div class="container pt-5 pb-5">
-	<h1>오늘의 추천운동&nbsp;<a class="btn btn-primary" href="#">더보기 »</a></h1>
+	<h1>랜덤 운동추천&nbsp;<a class="btn btn-primary" href="#">더보기 »</a></h1>
 	
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 	<c:forEach var="EVO" items="${randomlist}">
@@ -76,8 +70,11 @@
 	  			<img src="/resources/img/exercise/dumbell_purple.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title"><c:out value="${EVO.e_name}"/></h5>
-	    			<p class="card-text"><c:out value="${EVO.e_guide}"/><br>
+	    			<p class="card-text"><c:out value="${EVO.e_guide}"/>
+	    			<c:if test="${not empty EVO.e_part}">
+	    			<br>
 	    			<span class="badge text-bg-info">#<c:out value="${EVO.e_part}"/></span>
+	    			</c:if>
 	    			<c:if test="${not empty EVO.e_cau}">
 	    			<br>
 	    			<span class="badge text-bg-warning">#<c:out value="${EVO.e_cau}"/></span></c:if></p>
