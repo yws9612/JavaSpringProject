@@ -13,7 +13,7 @@
 	
 	
 	<select id="getUsercnt" resultType="Map">
-		SELECT TO_CHAR(u_joindate, 'yyyy-mm'), COUNT(*) 
+		SELECT TO_CHAR(u_joindate, 'yyyy-mm') as joinmonth, COUNT(*) 
 		FROM u_table 
 		GROUP BY TO_CHAR(u_joindate, 'yyyy-mm')
 	</select>

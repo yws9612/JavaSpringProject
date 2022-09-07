@@ -18,11 +18,11 @@
 
 	<c:choose>
 
-		<c:when test="cmt.b_writer eq sessionScope.user.u_id">
+		<c:when test="${cmt.b_writer } eq ${sessionScope.user.u_id }">
 			<button onclick="">수정</button>
 			<button onclick="">삭제</button>
 		</c:when>
-		<c:when test="sessionScope.user.u_admin eq Y">
+		<c:when test="${sessionScope.user.u_admin } eq Y">
 			<button onclick="">delete</button>
 		</c:when>
 

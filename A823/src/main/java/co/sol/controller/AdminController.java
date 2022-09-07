@@ -3,6 +3,7 @@ package co.sol.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,14 @@ public class AdminController {
 
 	@ResponseBody
 	@RequestMapping("/chart1")
-	public List<Map<String, Integer>> chart1() {		
+	public JSONObject chart1() {
 		return service.getBoardcnt();
+	}
+
+	@ResponseBody
+	@RequestMapping("/chart2")
+	public JSONObject chart2() {
+		return service.getUsercnt();
 	}
 
 }
