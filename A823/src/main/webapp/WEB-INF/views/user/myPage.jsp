@@ -5,14 +5,35 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<meta charset="UTF-8">
-<title>MyPage</title>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
+ <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-</head>
+      function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['day', '몸무게', '키'],
+            ['1일',  70, 180],
+            ['10일',  80, 180],
+            ['20일',  90, 180],
+            ['30일',  100, 180]
+          ]);
+
+
+        var options = {
+          title: '몸무게',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
 
 <body>
 	<!-- header -->
@@ -45,31 +66,8 @@
 				</div>
 			</div>
 
-			<canvas id="myChart" width="300" height="200"></canvas>
+			<div id="curve_chart" style="width: 1400px; height: 250px"></div>
 
-
-			<div class="card-body pt-0 pt-md-4">
-				<canvas id="myChart" width="300" height="200"></canvas>
-				
-				<script>
-					var data = {
-						labels : [ "1", "2", "3", "4", "5", "6" ],
-						datasets : [ {
-							label : "My First dataset",
-							fillColor : "rgba(150,200,250,0.5)",
-							strokeColor : "rgba(150,200,250,0.8)",
-							highlightFill : "rgba(150,200,250,0.75)",
-							highlightStroke : "rgba(150,200,250,1)",
-							data : [ 65, 59, 80, 81, 56, 55 ]
-						} ]
-					};
-
-					var options = {
-						animation : true
-					};
-					var ctx = $('#myChart').get(0).getContext('2d');
-					var myBarChart = new Chart(ctx).Bar(data, options);
-				</script>
 			</div>
 			<hr class="my-4">
 			<p>최근 게시글 테이블넣어야함다</p>
