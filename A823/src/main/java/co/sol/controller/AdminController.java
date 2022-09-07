@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.sol.service.AdminService;
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/admin/*")
-@RequiredArgsConstructor
 @Controller
+@RequiredArgsConstructor
+@RequestMapping("/admin/*")
 public class AdminController {
 	
 	
