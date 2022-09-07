@@ -39,10 +39,10 @@
       </a>
 	  <div class="col-md-1"></div>
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="${root }exercise/hometraining" class="nav-link px-auto link-dark fs-5 fw-bold">운동방법</a></li>
-		<li><a href="${root }board/write" class="nav-link px-auto link-dark fs-5 fw-bold">운동게시판</a></li>
-		<li><a href="${root }board/write" class="nav-link px-auto link-dark fs-5 fw-bold">운동일지</a></li>
-		<li><a href="${root }board/write" class="nav-link px-auto link-dark fs-5 fw-bold">헬스장정보</a></li>
+        <li><a href="${root }board/exercise_way" class="nav-link px-auto link-dark fs-5 fw-bold">운동방법</a></li>
+		<li><a href="${root }board/exercise_free" class="nav-link px-auto link-dark fs-5 fw-bold">운동게시판</a></li>
+		<li><a href="${root }board/exercies_diary" class="nav-link px-auto link-dark fs-5 fw-bold">운동일지</a></li>
+		<li><a href="${root }board/" class="nav-link px-auto link-dark fs-5 fw-bold">헬스장정보</a></li>
       </ul>
 	  <div class="col-md-1"></div>
 	      <div class="dropdown text-end">
