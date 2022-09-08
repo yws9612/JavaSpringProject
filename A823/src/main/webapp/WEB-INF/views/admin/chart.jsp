@@ -12,59 +12,67 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <script type="text/javascript">
-	google.charts.load("current", {packages:["corechart"]});
-	google.charts.load('current', {packages: ['corechart', 'bar']});
+	google.charts.load('current', {
+		packages : [ 'corechart', 'bar' ]
+	});
 	google.charts.setOnLoadCallback(drawChart1);
 	google.charts.setOnLoadCallback(drawChart2);
 
-	
-	
-	function drawChart1(){
+	function drawChart1() {
 		var jsonData1 = $.ajax({
-			url:"/admin/chart1",
-			dataType:"json",
+			url : "/admin/chart1",
+			dataType : "json",
 			async : false
 		}).responseText;
-		
-	var data1 = new google.visualization.DataTable(jsonData1);	
-	var options1 = {
-	          title: 'aaaaaaaaaaaaa',
-	        };
 
-	var chart1 = new google.visualization.PieChart(document.getElementById('piechart'));
-	chart1.draw(data1, options1);
-	
+		var data1 = new google.visualization.DataTable(jsonData1);
+		var options1 = {
+			title : 'aaaaaaaaaaaaa',
+			colors : [ '#00ff99', '#00ff00', '#fff000', '#000fff' ], <%--각 영역의 색을 바꿉니다. --%>		
+			pieSliceTextStyle :{
+				color: 'red', 
+				<%--fontName: <string>, --%>
+				fontSize: 15			
+			} <%--각 영역의 글자를 조정합니다. 
+			색, 폰트, 크기를 바꿀 수 있습니다. 
+			폰트는 현재 주석처리 되어있습니다. --%>
+		};
+
+		var chart1 = new google.visualization.PieChart(document
+				.getElementById('piechart'));
+		chart1.draw(data1, options1);
+
 	}
 
-
-	
-	function drawChart2(){
-		var jsonData1 = $.ajax({
-			url:"/admin/chart2",
-			dataType:"json",
+	function drawChart2() {
+		var jsonData2 = $.ajax({
+			url : "/admin/chart2",
+			dataType : "json",
 			async : false
 		}).responseText;
-		
-	var data2 = new google.visualization.DataTable(jsonData1);
-	var min=new Date(new Date().setMonth(new Date().getMonth()-5));
-	var max=new Date(new Date().setMonth(new Date().getMonth()+7));
-	console.log(min.getFullYear()+'-'+min.getMonth()+'//'+max.getFullYear()+'-'+max.getMonth());
-	var options2 = {
-	          title: 'bbbbbbbbbbbbb',
-	          colors: ['#00ff99'],
-	          hAxis: {
-	              format: 'yyyy-mm',
-	              viewWindow: {
-	                min: [min.getFullYear(), min.getMonth()],
-	                max: [max.getFullYear(), max.getMonth()]
-	              }
-	          },
-	          legend:'bottom'
-	        };
 
-	var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-	chart2.draw(data2, options2);
-	
+		var data2 = new google.visualization.DataTable(jsonData2);
+		var min = new Date(new Date().setMonth(new Date().getMonth() - 5));
+		console.log(min.getFullYear() + '-' + min.getMonth());
+		var options2 = {
+			colors : [ '#00ff99' ], <%--막대의 색을 바꿉니다. --%>
+			hAxis : {
+				format : 'yyyy-mm',
+				viewWindow : {
+					min : [ min.getFullYear(), min.getMonth() ],
+					max : [ new Date().getFullYear(), new Date().getMonth() ]
+				}
+			},
+			bar : {
+				groupWidth:50 <%--막대의 가로크기를 조절합니다. 단위는 px --%>
+			},
+			legend : 'bottom'
+		};
+
+		var chart2 = new google.visualization.ColumnChart(document
+				.getElementById('chart_div'));
+		chart2.draw(data2, options2);
+
 	}
 </script>
 
