@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.sol.mapper.UMapper">
+
+	<insert id="join">
+		<selectKey keyProperty="u_no" order="BEFORE" resultType="int">
+			select max(u_no)+1 from u_table
+		</selectKey>
+		insert into u_table values(u_no, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N')
+		call pro_d_table(u_no, #{d_weight}, #{d_height})
+	</insert>
+	
+	
+	
+	<update id="modify">
+		update u_table set u_pw=#{u_pw}, u_addr=#{u_addr} where u_no=#{u_no}
+	</update>
+	
+	
+	
+	<delete id="leave">
+		delete from u_table where u_no = #{u_no} and u_pw = #{u_pw}
+	</delete>
+		
+		
+		
+	<select id="getId" resultType="String">
+		select u_id from u_table where u_name = #{u_name} and u_email = #{u_email} 	
+	</select>
+	
+	<select id="getEmail" resultType="String">
+		select u_email 
+		from u_table
+		where u_no in (select u_no from u_table where u_name = #{u_name})
+	</select>
+	
+	
+	<select id="getPw" resultType="String">
+		select u_pw form u_table where u_id = #{u_id} and u_email = #{u_email}
+	</select>
+		
+	<update id="newPw">
+		update u_table set u_pw=#{u_pw} where u_id = #{u_id} and u_email = #{u_email}
+	</update>
+	
+	
+	
+	<select id="getUser" resultType="co.sol.main.UVO">
+		select * from u_table where u_id=#{u_id} and u_pw = #{u_pw}
+	</select>
+	
+	<select id="selectById" resultType="co.sol.main.UVO">
+		select * from u_table where u_id = #{u_id} 
+	</select>
+	
+	
+	
+	<insert id="addDiscord">
+		call pro_d_table(#{u_no}, #{d_weight}, #{d_height})
+	</insert>
+	
+	
+	
+	<select id="getDiscord" resultType="co.sol.main.RVO">
+		select * from r_table where u_no=#{u_no}
+	</select>
+	
+	
+
+</mapper>
+
+<!--
+//	public void join(UVO user, DVO discord);
+//	public void Modify(UVO user);
+//	public void Leave(UVO user);
+//	public String getId(UVO user);
+//	public String getPw(UVO user);
+//	public UVO getUser();
+//	public void addDiscord(UVO user, DVO discord);
+//	public void getDiscord(UVO user);
+-->

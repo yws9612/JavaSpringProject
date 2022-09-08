@@ -7,124 +7,103 @@
 
 
 	<sql id="basic">
-
-
 		<trim prefixOverrides="OR" suffix=") AND " prefix="(">
-
-
 			<foreach collection="typeArr" item="type">
-
-
 				<trim prefix="OR">
-
-
 					<choose>
-
-						<when test="type == 'T'.toString()"> title like '%'||#{keyword}||'%' </when>
-
-						<when test="type == 'C'.toString()"> content like '%'||#{keyword}||'%' </when>
-
-						<when test="type == 'W'.toString()"> writer like '%'||#{keyword}||'%' </when>
-
+						<when test="type == 'T'.toString()"> b_title like '%'||#{keyword}||'%' </when>
+						<when test="type == 'C'.toString()"> b_con like '%'||#{keyword}||'%' </when>
+						<when test="type == 'W'.toString()"> b_writer like '%'||#{keyword}||'%' </when>
 					</choose>
-
 				</trim>
-
 			</foreach>
-
 		</trim>
-
 	</sql>
+
+
+
 	<select resultType="co.sol.main.BVO" id="getList">
 		-<![CDATA[
-		select * from t_board where bnum > 0 
+		select * from b_table where b_no > 0 
 		]]>
 	</select>
 
-	<insert id="insert">
-		insert into t_board(bnum, title, content, writer)
-		values (seq_bo.nextval, #{title}, #{content}, #{writer})
-	</insert>
 
-	<insert id="inkey">
-		<selectKey keyProperty="bnum" order="BEFORE"
-			resultType="long">
-			select seq_bo.nextval from dual
+
+	<insert id="insert">
+		<selectKey keyProperty="number" order="BEFORE" resultType="int">
+			select max(b_no)+1 from b_table
 		</selectKey>
-		insert into t_board(bnum, title, content, writer) values (#{bnum},
-		#{title}, #{content}, #{writer})
+		insert into b_table values 
+			(number, #{b_div}, #{b_title}, #{b_con}, #{b_writer}, 
+			sysdate, sysdate, #{b_eno}, 'Y', 0)
 	</insert>
+	
 
 
 	<select id="sel" resultType="co.sol.main.BVO">
-		select * from t_board where
-		bnum=#{bnum}
+		select * from b_table where	b_no=#{b_no}
 	</select>
-
-	<delete id="del">
-		delete from t_board where bnum=#{bnum}
-	</delete>
-
-	<update id="up">
-		update t_board
-		set title=#{title}, content=#{content},
-		writer=#{writer},
-		updateDate=sysdate
-		where bnum=#{bnum}
+	
+	<update id="upViewcount">		
+		update b_table set b_vc=b_vc+1 where b_no=#{b_no} 
 	</update>
 
+
+
+	<!-- <delete id="del"> delete from b_table where b_no=#{b_no} </delete> -->
+	<update id="del">
+		update b_table
+		set b_title='삭제된 게시글 입니다.', b_con='삭제된 게시글 입니다.',
+		b_writer='unknown', b_udate=sysdate, b_open='N'
+		where b_no=#{b_no}
+	</update>
+
+
+
+	<update id="up">
+		update b_table
+		set b_title=#{b_title}, b_con=#{b_con},
+		b_udate=sysdate, b_eno=#{b_eno}, b_open=#{b_open}
+		where b_no=#{b_no}
+	</update>
+
+
+
 	<select resultType="co.sol.main.BVO" id="getPage">
-
-<![CDATA[
-   select 
-     *
-   from 
-       (
-       select /*+INDEX_DESC(t_board pk_board) */
-         rownum rn, bnum, title, writer, redate, updatedate
-       from 
-         t_board
-      where 
-      ]]>
-
-
+		<![CDATA[
+			select * from (
+				select /*+INDEX_DESC(b_table pk_board) */
+					rownum rn, b_no, b_title, b_writer, b_wdate, b_udate
+					from b_table where 
+		]]>
 		<trim prefixOverrides="OR" suffix=") AND " prefix="(">
-
-
 			<foreach collection="typeArr" item="type">
-
-
 				<trim prefix="OR">
-
-
 					<choose>
-
-						<when test="type == 'T'.toString()"> title like '%'||#{keyword}||'%' </when>
-
-						<when test="type == 'C'.toString()"> content like '%'||#{keyword}||'%' </when>
-
-						<when test="type == 'W'.toString()"> writer like '%'||#{keyword}||'%' </when>
-
+						<when test="type == 'T'.toString()"> b_title like '%'||#{keyword}||'%' </when>
+						<when test="type == 'C'.toString()"> b_con like '%'||#{keyword}||'%' </when>
+						<when test="type == 'W'.toString()"> b_writer like '%'||#{keyword}||'%' </when>
 					</choose>
-
 				</trim>
-
 			</foreach>
-
 		</trim>
-<![CDATA[
-      rownum<=(#{pageNum} * #{amount})
-      )
-  where rn > (#{pageNum} -1)* #{amount}
- 
-  ]]>
+		<![CDATA[
+					rownum<=(#{pageNum} * #{amount})
+      		) where rn > (#{pageNum} -1)* #{amount} 
+		]]>
 	</select>
 
-	<select id="getCount" resultType="int">
-		select count(*) from t_board where
-		<include refid="basic" />
-		bnum>0
 
+
+	<select id="getCount" resultType="int">
+		select count(*) from b_table where
+		<include refid="basic" />
+		b_no>0
+	</select>
+	
+	<select id="topList" resultType="co.sol.main.BVO">
+		select * from b_table order by b_vc desc fetch first 5 rows only
 	</select>
 
 </mapper>

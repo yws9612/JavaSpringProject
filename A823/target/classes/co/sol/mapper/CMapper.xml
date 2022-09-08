@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.sol.mapper.CMapper">
+
+	<select id="getList" resultType="co.sol.main.CVO">
+		select * from c_table where b_no = #{b_no}
+		order by l_level
+	</select>
+
+
+	<insert id="insert">
+		<selectKey keyProperty="number" order="BEFORE" resultType="int">
+			select max(c_no)+1 from c_table
+		</selectKey>		
+		insert into c_table values 
+			(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}+1, 
+			1, sysdate, sysdate)
+	</insert>
+
+
+
+	<update id="update_level">
+		update c_table set c_level=c_level+1 where b_no=#{b_no} and c_level>#{c_level}
+	</update>
+	<insert id="insert_re">
+				
+		insert into c_table values 
+			(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}+1, 
+			2, sysdate, sysdate)
+	</insert>
+	
+	
+	<update id="modify">
+		update c_table set c_con = #{c_con}, c_udate=sysdate where c_no = #{c_no}
+	</update>
+	
+	
+	<update id="delete">
+		update c_table set c_con = '삭제된 댓글입니다.', c_writer = 'unknown', c_udate= sysdate
+		where c_no = #{c_no} 
+	</update>
+
+
+<!-- 
+//	public List<CVO> getList(int b_no);
+//	public void insert(CVO comment);
+//	public void modify(CVO comment);
+//	public void delete(CVO comment);
+ -->
+</mapper>

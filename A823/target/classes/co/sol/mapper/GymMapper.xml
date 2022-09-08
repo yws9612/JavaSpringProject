@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.sol.mapper.GymMapper">
+
+	
+	<resultMap type="co.sol.main.UVO" id="id">
+		<result column="u_id" property="u_id"/>
+	</resultMap>
+	
+	<resultMap type="co.sol.main.RVO" id="reviews">
+		<result column="r_score" property="r_score"/>
+		<result column="r_rev" property="r_rev"/>
+		<result column="r_date" property="r_date"/>
+		<collection property="id"/>
+	</resultMap>
+	
+
+	<select id="getList" resultType="co.sol.main.GVO">
+		select /*+INDEX_ASC(g_table SYS_C0031863) */ * from g_table
+		<if test="search!=null">
+			where g_addr like '%'||#{search}||'%'
+		</if>
+	</select>
+	
+	
+	
+	<select id="getReview" resultType="co.sol.main.RVO">
+		select /*+INDEX_DESC(r_table SYS_C0031865) */ 
+		r_score, r_rev, r_date, u_id
+		from r_table natural join u_table
+		where g_no = #{g_no};
+	</select>
+	
+	
+	
+	<select id="getOneGym" resultType="co.sol.main.GVO">		
+		select * from g_table where g_no = #{g_no}	
+	</select>
+	
+</mapper>

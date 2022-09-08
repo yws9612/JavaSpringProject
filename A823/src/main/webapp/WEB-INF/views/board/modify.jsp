@@ -17,26 +17,26 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<form>
-				<input type="hidden" name="pageNum" value='${ba.pageNum }'>
-				<input type="hidden" name="amount" value='${ba.amount }'>
+				<input type="hidden" name="pageNum" value='${}'>
+				<input type="hidden" name="amount" value='${}'>
 					<div class="form-group">
 						<label>글번호</label> <input class="form-control" name="bnum"
-							readonly="readonly" value='<c:out value="${board.bnum}"/>'>
+							readonly="readonly" value='<c:out value="${}"/>'>
 					</div>
 
 					<div class="form-group">
-						<label>제목</label> <input class="form-control" name="title" value='<c:out value="${board.title}"/>'>
+						<label>제목</label> <input class="form-control" name="title" value='<c:out value="${}"/>'>
 					</div>
 
 					<div class="form-group">
 						<label>내용</label>
 						<textarea class="form-control" rows="5" cols="50" name="content"><c:out
-								value="${board.content}" /></textarea>
+								value="${}" /></textarea>
 					</div>
 
 					<div class="form-group">
 						<label>글쓴이</label> <input class="form-control" name="writer"
-							value='<c:out value="${board.writer}"/>' readonly="readonly">
+							value='<c:out value="${}"/>' readonly="readonly">
 					</div>
 					<button class="btn btn-default" data-oper='modify'>수정</button>
 					<button class="btn btn-danger" data-oper='del'>삭제</button>

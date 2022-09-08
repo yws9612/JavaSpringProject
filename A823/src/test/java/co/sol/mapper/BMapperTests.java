@@ -45,11 +45,12 @@ public class BMapperTests {
 	}
 	
 	@Test
-	public void aa() {
+	public void insert_test() {
 		BVO bb=new BVO();
-		bb.setTitle("�ȳ�");
-		bb.setContent("����");
-		bb.setWriter("�浿");
+		bb.setB_div("루틴");
+		bb.setB_title("aaaaaa타이틀");
+		bb.setB_con("내용");
+		bb.setB_writer("test2");
 		
 		bm.insert(bb);
 	}
@@ -58,19 +59,14 @@ public class BMapperTests {
 	public void ee() {
 		BVO bb=new BVO();
 		
-		bb.setTitle("inkey");
-		bb.setContent("in");
-		bb.setWriter("insung");
+		bb.setB_title("inkey");
+		bb.setB_con("in");
+		bb.setB_writer("insung");
 		
-		bm.inkey(bb);
-		System.out.println(bb.getBnum());
+		bm.insert(bb);
+		System.out.println(bb.getB_no());
 	}
 
-	@Test
-	public void bb() {
-		BVO bb=bm.sel(2);
-		log.info(bb);
-	}
 	
 	@Test
 	public void cc() {
@@ -80,10 +76,10 @@ public class BMapperTests {
 	@Test
 	public void dd() {
 		BVO bb=new BVO();
-		bb.setBnum(1L);
-		bb.setTitle("up");
-		bb.setContent("up");
-		bb.setWriter("jj");
+		bb.setB_no(1);
+		bb.setB_title("up");
+		bb.setB_con("up");
+		bb.setB_writer("jj");
 		
 		bm.up(bb);		
 		

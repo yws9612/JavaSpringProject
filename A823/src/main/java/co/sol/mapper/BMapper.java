@@ -14,11 +14,12 @@ public interface BMapper {
 	
 	public void insert(BVO bo);
 	
-	public void inkey(BVO bo);
+//	public void inkey(BVO bo);
 	
-	public BVO sel(int bnum);
+	public BVO sel(int b_no);
+	public void upViewcount(int b_no);
 	
-	public int del(int bnum);
+	public int del(int b_no);
 	
 	public int up(BVO bo);
 	
@@ -27,6 +28,8 @@ public interface BMapper {
 	public int getCount(Basic ba);
 	
 	public List<BVO> search(Map<String, Map<String, String>> map);
+	
+	public List<BVO> topList();
 
 	
 }

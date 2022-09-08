@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.sol.mapper.DataMapper">
+
+	<select id="getEList" resultType="co.sol.main.EVO">
+		select /*+INDEX_ASC(e_table SYS_C0031908) */ * from e_table
+		<trim prefix="where" prefixOverrides="and"> <!-- div, partno? and/or  -->
+			<if test="e_div!=null">e_div=#{e_div}</if>
+			<if test="e_part!=null">and e_part like '%'||#{e_part}||'%'</if>
+			<if test="e_cau!=null">and e_cau like '%'||#{e_cau}||'%'</if>
+		</trim>
+	</select>
+	
+	
+	
+	<insert id="addExercise">
+		<selectKey keyProperty="e_no" order="BEFORE" resultType="int">
+			select max(e_no)+1 from e_table
+		</selectKey>
+		insert into e_table 
+			values (e_no, #{e_div}, #{e_name}, #{e_guide}, #{e_thum}, 
+					#{e_part}, #{e_cau})
+	</insert>
+
+
+
+	<select id="randomList" resultType="co.sol.main.EVO">
+		<![CDATA[
+			select * 
+			from (select * from e_table order by DBMS_RANDOM.VALUE)
+			where ROWNUM <= 5
+		]]>
+	</select>
+
+</mapper>

@@ -20,11 +20,12 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequiredArgsConstructor
 @Log4j
-@RequestMapping("/board/*")
+@RequestMapping({"/board/*"})
 public class BController {
 	
 	private final BService service;
 	
+	//BoardFolder
 	@GetMapping("/list")
 	public void list(Model m, Basic ba) {
 		
@@ -40,7 +41,7 @@ public class BController {
 	@PostMapping("/submit")
 	public String submit(BVO bv, RedirectAttributes rt) {
 		
-		Long bnum=service.submit(bv);
+		int bnum=service.submit(bv);
 		
 		rt.addFlashAttribute("result", bnum);
 		
@@ -57,7 +58,7 @@ public class BController {
 	public String modify(BVO bo, Basic ba, RedirectAttributes rt) {
 
 		if(service.modify(bo)==1) {
-			rt.addFlashAttribute("result", "¼º°ø");
+			rt.addFlashAttribute("result", "ï¿½ï¿½ï¿½ï¿½");
 			
 		}
 		 rt.addAttribute("pageNum", ba.getPageNum());
@@ -71,7 +72,7 @@ public class BController {
 	public String del(@RequestParam("bnum")int bnum, Basic ba, RedirectAttributes rt) {
 		
 		if(service.del(bnum)==1) {
-			rt.addFlashAttribute("result","¼º°ø");
+			rt.addFlashAttribute("result","ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		rt.addAttribute("pageNum", ba.getPageNum());
@@ -79,6 +80,65 @@ public class BController {
 		rt.addAttribute("type", ba.getType());
 		 rt.addAttribute("keyword", ba.getKeyword());
 		return "redirect:/board/list";
+	}	
+	
+	@GetMapping("/exercise_diary")
+	public void e_diary() {
+		
+	}
+	
+	@GetMapping("/exercise_free")
+	public void e_free() {
+		
+	}
+	
+	@GetMapping("/exercise_gym_way")
+	public void e_gymWay() {
+		
+	}
+	
+	@GetMapping("/exercise_home_way")
+	public void e_homeWay() {
+		
+	}
+	
+	@GetMapping("/exercise_honey_tip")
+	public void e_honeyTip() {
+		
+	}
+	
+	@GetMapping("/exercise_routine")
+	public void e_routine() {
+		
+	}
+	
+	@GetMapping("/exercise_way")
+	public void e_way() {
+		
+	}
+	
+	@GetMapping("/writer_diary")
+	public void w_diary() {
+		
+	}
+	
+	@GetMapping("/writer_free")
+	public void w_free() {
+		
+	}
+	
+	@GetMapping("/writer_gym")
+	public void w_gym() {
+		
+	}
+	
+	@GetMapping("/writer_home")
+	public void w_home() {
+		
+	}
+	
+	@GetMapping("/writer_routine")
+	public void w_routine() {
 		
 	}
 	
