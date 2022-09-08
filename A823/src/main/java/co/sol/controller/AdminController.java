@@ -28,12 +28,14 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping("/chart1")
 	public JSONObject chart1() {
+		System.out.println("chart1c");
 		return service.getBoardcnt();
 	}
 
 	@ResponseBody
 	@RequestMapping("/chart2")
 	public JSONObject chart2() {
+		System.out.println("chart2c");
 		return service.getUsercnt();
 	}
 

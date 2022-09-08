@@ -56,7 +56,8 @@ public class AdminServiceImpl implements AdminService {
 			body.add(cell); //레코드 1행 추가					
 		} //end for
 		
-		data.put("rows", body);		
+		data.put("rows", body);
+		System.out.println("chart1s");
 		
 		return data;
 	}
@@ -70,7 +71,6 @@ public class AdminServiceImpl implements AdminService {
 		//1. cols 배열에 넣기
 		JSONObject col1 = new JSONObject();
 		JSONObject col2 = new JSONObject();	
-		JSONObject col3 = new JSONObject();		
 		JSONArray title = new JSONArray(); 
 		col1.put("label", "가입월");
 		col1.put("type", "string");
@@ -102,6 +102,7 @@ public class AdminServiceImpl implements AdminService {
 		} //end for
 		
 		data.put("rows", body);		
+		System.out.println("chart2s");
 		
 		return data;
 	}

@@ -21,6 +21,7 @@
 	
 	function drawChart1(){
 		var jsonData1 = $.ajax({
+			type:"POST",
 			url:"/admin/chart1",
 			dataType:"json",
 			async : false
@@ -39,13 +40,14 @@
 
 	
 	function drawChart2(){
-		var jsonData1 = $.ajax({
+		var jsonData2 = $.ajax({
+			type:"POST",
 			url:"/admin/chart2",
 			dataType:"json",
 			async : false
 		}).responseText;
 		
-	var data2 = new google.visualization.DataTable(jsonData1);
+	var data2 = new google.visualization.DataTable(jsonData2);
 	var min=new Date(new Date().setMonth(new Date().getMonth()-5));
 	var max=new Date(new Date().setMonth(new Date().getMonth()+7));
 	console.log(min.getFullYear()+'-'+min.getMonth()+'//'+max.getFullYear()+'-'+max.getMonth());
