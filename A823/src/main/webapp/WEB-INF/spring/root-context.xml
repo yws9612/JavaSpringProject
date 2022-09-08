@@ -34,5 +34,4 @@
 
 <mybatis-spring:scan base-package="co.sol.mapper"/>
 <context:component-scan base-package="co.sol.service"/>
-<context:component-scan base-package="co.sol.beans"/>
 </beans>

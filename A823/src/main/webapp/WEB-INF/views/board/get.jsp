@@ -25,8 +25,8 @@
 				<div class="form-group">
 					<label>제목</label> <input class="form-control" name="title"
 						readonly="readonly" value='<c:out value="${}"/>'>
-				</div>
-
+			0
+			
 				<div class="form-group">
 					<label>내용</label>
 					<textarea class="form-control" rows="5" cols="50" name="content"><c:out
