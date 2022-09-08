@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="co.sol.mapper.AdminMapper">
+
+
+
+	<select id="getBoardcnt" resultType="Map">
+		select b_div, count(b_div) from b_table group by b_div
+	</select>
+	
+	
+	<select id="getUsercnt" resultType="Map">
+		SELECT TO_CHAR(u_joindate, 'yyyy-mm') as joinmonth, COUNT(*) 
+		FROM u_table 
+		GROUP BY TO_CHAR(u_joindate, 'yyyy-mm')
+	</select>
+
+
+
+</mapper>

@@ -19,39 +19,39 @@
 
 				<div class="form-group">
 					<label>글번호</label> <input class="form-control" name="bnum"
-						readonly="readonly" value='<c:out value="${board.bnum}"/>'>
+						readonly="readonly" value='<c:out value="${}"/>'>
 				</div>
 
 				<div class="form-group">
 					<label>제목</label> <input class="form-control" name="title"
-						readonly="readonly" value='<c:out value="${board.title}"/>'>
+						readonly="readonly" value='<c:out value="${}"/>'>
 				</div>
 
 				<div class="form-group">
 					<label>내용</label>
 					<textarea class="form-control" rows="5" cols="50" name="content"><c:out
-							value="${board.content}" /></textarea>
+							value="${}" /></textarea>
 				</div>
 
 				<div class="form-group">
 					<label>글쓴이</label> <input class="form-control" name="writer"
-						value='<c:out value="${board.writer}"/>' readonly="readonly">
+						value='<c:out value="${}"/>' readonly="readonly">
 				</div>
 
 
 				<form id='act' action="/board/list" method='get'>
-					<input type='hidden' name='pageNum' value='${ba.pageNum }'>
-					<input type='hidden' name='amount' value='${ba.amount }'>
-					<input type='hidden' name='bnum' value='${board.bnum }'>
-					<input type='hidden' name='type' value='${ba.type }'>
-					<input type='hidden' name='keyword' value='${ba.keyword }'>
+					<input type='hidden' name='pageNum' value='${}'>
+					<input type='hidden' name='amount' value='${}'>
+					<input type='hidden' name='bnum' value='${}'>
+					<input type='hidden' name='type' value='${}'>
+					<input type='hidden' name='keyword' value='${}'>
 				</form>
 
 				<button type="button" class="btn btn-default list">
 					<a href='/board/list'>List</a>
 				</button>
 				<button type="button" class="btn btn-default mod">
-					<a href='/board/modify?bnum=<c:out value="${board.bnum }"/>'>Modify</a>
+					<a href='/board/modify?bnum=<c:out value="${}"/>'></a>
 				</button>
 
 				<script>

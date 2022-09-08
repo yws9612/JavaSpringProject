@@ -31,7 +31,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${list }" var="bo">
+						<c:forEach items="${}" var="bo">
 							<tr class="odd gradeX">
 								<td><c:out value="${bo.b_no}" /></td>
 								<td><a class="m" href='<c:out value="${bo.b_no}"/>'>
@@ -50,16 +50,16 @@
 				
 				<form id="search" action="/board/list" method="get">
 					<select name="type">
-						<option value="" ${pp.ba.type==null?"selected":""}>-----</option>
-						<option value="T" ${pp.ba.type eq 'T'?" selected":""} >제목</option>
-						<option value="C" ${pp.ba.type eq 'C'?" selected":""} >내용</option>
-						<option value="W" ${pp.ba.type eq 'W'?" selected":""} >작성자</option>
-						<option value="TC" ${pp.ba.type eq 'TC'?" selected":""} >제목+내용</option>
-						<option value="TCW" ${pp.ba.type eq 'TCW'?" selected":""} >제목+내용+작성자</option>
+						<option value="" ${}>-----</option>
+						<option value="T" ${} >제목</option>
+						<option value="C" ${} >내용</option>
+						<option value="W" ${} >작성자</option>
+						<option value="TC" ${} >제목+내용</option>
+						<option value="TCW" ${} >제목+내용+작성자</option>
 					</select>
-					<input type="text" name="keyword" value='${pp.ba.keyword }'>
-					<input type="hidden" name="pageNum" value='${pp.ba.pageNum }'>
-					<input type="hidden" name="amount" value='${pp.ba.amount }'>
+					<input type="text" name="keyword" value='${}'>
+					<input type="hidden" name="pageNum" value='${}'>
+					<input type="hidden" name="amount" value='${}'>
 				
 					<button class="btn btn-default">search</button>
 				
@@ -70,17 +70,17 @@
 				<div>
 					<ul class="pagination">
 						<c:if test="${pp.prev}">
-							<li class="paginate_button previous"><a href="${pp.start-1 }">Previous</a>
+							<li class="paginate_button previous"><a href="${}">Previous</a>
 							</li>
 						</c:if>
-						<c:forEach var="num" begin="${pp.start}"
-							end="${pp.end}">
-							<li class="paginate_button ${pp.ba.pageNum == num?"active":""} ">
-								<a href="${num }">${num}</a>
+						<c:forEach var="num" begin="${}"
+							end="${}">
+							<li class="paginate_button ${} ">
+								<a href="${}">${}</a>
 							</li>
 						</c:forEach>
-						<c:if test="${pp.next}">
-							<li class="paginate_button next"><a href="${pp.end+1 }">Next</a></li>
+						<c:if test="${}">
+							<li class="paginate_button next"><a href="${}">Next</a></li>
 						</c:if>
 					</ul>
 				</div>
@@ -88,13 +88,13 @@
 				<!--  end Pagination -->
 				<form id='act' action="/board/list" method='get'>
 					<input type='hidden' name='pageNum'
-						value='${pp.ba.pageNum}'>
+						value='${}'>
 						 <input type='hidden'
-						name='amount' value='${pp.ba.amount}'>
+						name='amount' value='${}'>
 						<input type='hidden'
-						name='type' value='${pp.ba.type}'>
+						name='type' value='${}'>
 						<input type='hidden'
-						name='keyword' value='${pp.ba.keyword}'>
+						name='keyword' value='${}'>
 				</form>
 			</div>
 		</div>
@@ -183,15 +183,3 @@
 
 		});
 	</script>
-
-
-
-
-
-
-
-
-
-
-
-	<%@include file="../includes/footer.jsp"%>
