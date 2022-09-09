@@ -3,6 +3,7 @@
 
 <mapper namespace="co.sol.mapper.LogMapper">
 
+	<!--로그를 가져올 때 결과값을 받기 위한 map입니다. -->
 	<resultMap type="co.sol.main.BVO" id="joinboard">
 		<result column="b_title" property="b_title"/>
 		<result column="b_writer" property="b_writer"/>
@@ -17,6 +18,10 @@
 		<collection property="joinboard"/>
 	</resultMap>
 	
+	
+	
+	<!--특정 u_no의 모든 로그를 최신순으로 가져옵니다. 
+	b_table과 join하여 게시글의 제목과 작성자 id도 함께 가져옵니다.  -->
 	<select id="getList" resultMap="log">
 		-<![CDATA[
 		select /*+INDEX_DESC(l_table SYS_C0031914) */ 
@@ -41,6 +46,7 @@
 	
 	
 	
+	<!--스크랩 로그를 insert합니다. 댓글작성과 게시글작성 로그는 trigger로 자동 입력됩니다.  -->
 	<insert id="scrap">
 		<selectKey keyProperty="l_no" order="BEFORE" resultType="int">
 			select max(l_no)+1 from l_table

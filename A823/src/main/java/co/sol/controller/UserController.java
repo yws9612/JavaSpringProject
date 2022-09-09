@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -163,10 +165,18 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/myPage")
-	public void myPage() {
-		
-	}
+	@GetMapping("/myPage")  
+	public void myPage() {  
+		  
+	} 
+	 
+	 
+	@ResponseBody
+	@RequestMapping("/bmichart") 
+	public JSONObject bmichart() { 
+		UVO tmp=new UVO(); 
+		return uservice.getDiscord(tmp);		 
+	} 
 	
 	@GetMapping("/privacy")
 	public String privacy() {

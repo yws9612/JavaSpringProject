@@ -31,35 +31,30 @@
 				0 : {
 					areaOpacity : 0.4,
 					color : '#9cbbda',
-					visibleInLegend : false
 				},
 
 				// normal
 				1 : {
 					areaOpacity : 0.4,
 					color : '#93cca9',
-					visibleInLegend : false
 				},
 
 				// overweight
 				2 : {
 					areaOpacity : 0.4,
 					color : '#ffe22c',
-					visibleInLegend : false
 				},
 
 				// obese
 				3 : {
 					areaOpacity : 0.4,
 					color : '#eaa353',
-					visibleInLegend : false
 				},
 
 				// extremly obese
 				4 : {
 					areaOpacity : 0.4,
 					color : '#e14351',
-					visibleInLegend : false
 				},
 
 				// line
@@ -69,9 +64,20 @@
 				}
 			},
 			seriesType : 'area',
-			title : 'Example',
+			title : 'Example',			
 			vAxis : {
-				ticks : [ 0, 18.5, 25, 30, 35, 45 ],
+				ticks : [ 10, 18.5, 25, 30, 35, 45 ],
+				viewWindow : {
+					min : 10
+				}
+			},
+			hAxis : {
+				slantedText : true,
+				slantedTextAngle : 45,
+				gridlines : {
+					color : '#333',
+					minSpacing : 1
+				}
 			}
 		};
 

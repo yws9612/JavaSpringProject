@@ -3,12 +3,16 @@
 
 <mapper namespace="co.sol.mapper.CMapper">
 
+
+	<!--특정 게시글의 모든 댓글의 모든 정보를 가져옵니다. -->
 	<select id="getList" resultType="co.sol.main.CVO">
 		select * from c_table where b_no = #{b_no}
 		order by l_level
 	</select>
 
 
+
+	<!--댓글을 insert합니다. -->
 	<insert id="insert">
 		<selectKey keyProperty="number" order="BEFORE" resultType="int">
 			select max(c_no)+1 from c_table
@@ -20,22 +24,27 @@
 
 
 
+	<!--대댓글이 달릴 때 기존 댓글의 l_level을 수정합니다.  -->
 	<update id="update_level">
 		update c_table set c_level=c_level+1 where b_no=#{b_no} and c_level>#{c_level}
 	</update>
-	<insert id="insert_re">
-				
+	<!--대댓글을 insert 합니다.  -->
+	<insert id="insert_re">				
 		insert into c_table values 
 			(number, #{c_writer}, #{c_con}, #{b_no}, #{c_level}+1, 
 			2, sysdate, sysdate)
 	</insert>
 	
 	
+	
+	<!--댓글을 수정합니다.  -->
 	<update id="modify">
 		update c_table set c_con = #{c_con}, c_udate=sysdate where c_no = #{c_no}
 	</update>
 	
 	
+	
+	<!--댓글 삭제를 실행했을 때 실행되는 쿼리문 입니다. 삭제된 댓글로 업데이트 됩니다. -->
 	<update id="delete">
 		update c_table set c_con = '삭제된 댓글입니다.', c_writer = 'unknown', c_udate= sysdate
 		where c_no = #{c_no} 
