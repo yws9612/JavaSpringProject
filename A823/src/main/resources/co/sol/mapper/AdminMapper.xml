@@ -1,4 +1,4 @@
-<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
@@ -7,7 +7,7 @@
 
 
 	
-	<!--그래프 관련 입니다. 게시판 b_div당 게시글의 개수를 가져옵니다. -(전체 주석 지울 때 이 부분도 지워주세요)->
+	<!--  그래프 관련 입니다. 게시판 b_div당 게시글의 개수를 가져옵니다. -(전체 주석 지울 때 이 부분도 지워주세요)-->
 	<select id="getBoardcnt" resultType="Map">
 		select b_div, count(b_div) from b_table group by b_div
 	</select>
@@ -19,8 +19,8 @@
 		SELECT TO_CHAR(u_joindate, 'yyyy-mm') as joinmonth, COUNT(*) 
 		FROM u_table 
 		GROUP BY TO_CHAR(u_joindate, 'yyyy-mm')
-	</select>
+	</select>-->
 
 
 
-</mapper> -->
+</mapper>
