@@ -5,34 +5,83 @@
 <!DOCTYPE html>
 <html>
 
- <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<head>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	google.charts.load('current', {
+		packages : [ 'corechart' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-          var data = google.visualization.arrayToDataTable([
-            ['day', '몸무게', '키'],
-            ['1일',  70, 180],
-            ['10일',  80, 180],
-            ['20일',  90, 180],
-            ['30일',  100, 180]
-          ]);
+	function drawChart() {
+		var jsondata = $.ajax({
+			url : "/user/bmichart",
+			dataType : "json",
+			async : false
+		}).responseText;
 
+		var data = new google.visualization.DataTable(jsondata);
 
-        var options = {
-          title: '몸무게',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+		var options = {
+			isStacked : true,
+			series : {
+				// under
+				0 : {
+					areaOpacity : 0.4,
+					color : '#9cbbda',
+					visibleInLegend : false
+				},
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+				// normal
+				1 : {
+					areaOpacity : 0.4,
+					color : '#93cca9',
+					visibleInLegend : false
+				},
 
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
+				// overweight
+				2 : {
+					areaOpacity : 0.4,
+					color : '#ffe22c',
+					visibleInLegend : false
+				},
+
+				// obese
+				3 : {
+					areaOpacity : 0.4,
+					color : '#eaa353',
+					visibleInLegend : false
+				},
+
+				// extremly obese
+				4 : {
+					areaOpacity : 0.4,
+					color : '#e14351',
+					visibleInLegend : false
+				},
+
+				// line
+				5 : {
+					color : '#000000',
+					type : 'line'
+				}
+			},
+			seriesType : 'area',
+			title : 'Example',
+			vAxis : {
+				ticks : [ 0, 18.5, 25, 30, 35, 45 ],
+			}
+		};
+
+		var chart = new google.visualization.ComboChart(document
+				.getElementById('curve_chart'));
+
+		chart.draw(data, options);
+	}
+</script>
+</head>
 
 
 <body>
@@ -66,7 +115,7 @@
 				</div>
 			</div>
 
-			<div id="curve_chart" style="width: 1400px; height: 250px"></div>
+			<div id="curve_chart" style="width: 800px; height: 600px"></div>
 
 			</div>
 			<hr class="my-4">
