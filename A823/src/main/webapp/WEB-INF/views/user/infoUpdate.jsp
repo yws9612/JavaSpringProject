@@ -1,8 +1,8 @@
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 
@@ -44,7 +44,7 @@
 		<input type="password" class="form-control" placeholder="비밀번호 확인"/>
 		</div><br/>
 			  
-		<form action="#중복확인" method="post" >
+		<form:form action="${root}user/infoUpdate" method="post" >
 		<div class="input-group mb-3">
 		<span class="input-group-text">E-MAIL</span>
 		<input type="email" class="form-control"/>
@@ -53,7 +53,7 @@
 		<div class="col align-self-end" >
 		<button type="button" class="btn btn-primary">중복확인</button></div>
 		</div><br/>
-		</form>
+		</form:form>
 			    
 		<div class="input-group mb-3">
 		<span class="input-group-text">우편번호</span>

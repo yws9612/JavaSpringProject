@@ -51,6 +51,8 @@ public class UserController {
 	private final BService bservice;
 	private final DataService dataservice;
 	
+	
+	//Find Id
 	@GetMapping("/findID")
 	public void findID() {
 		
@@ -70,6 +72,7 @@ public class UserController {
 		
 	}
 	
+	//Find Pw
 	@GetMapping("/findPW")
 	public void findPW() {
 		
@@ -99,7 +102,7 @@ public class UserController {
 		return "/user/login";
 	}
 	
-	
+	//Sign Up
 	@GetMapping("/join")
 	public void getJoin() {
 		
@@ -118,6 +121,19 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/privacy")
+	public String privacy() {
+		
+		return "/user/privacy";
+	}
+	
+	@GetMapping("/service")
+	public String termsOfService() {
+		
+		return "/user/service";
+	}
+	
+	//Login & Logout
 	@GetMapping("/login")
 	public ModelAndView getLogin(@ModelAttribute("login")LoginCommand loginCommand,
 						   @CookieValue(value="REMEMBER", required = false)Cookie rememberCookie)throws Exception {
@@ -165,31 +181,15 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/myPage")  
-	public void myPage() {  
-		  
-	} 
-	 
-	 
-	@ResponseBody
-	@RequestMapping("/bmichart") 
-	public JSONObject bmichart() { 
-		UVO tmp=new UVO(); 
-		return uservice.getDiscord(tmp);		 
-	} 
-	
-	@GetMapping("/privacy")
-	public String privacy() {
+	@GetMapping("/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/main/main");
 		
-		return "/user/privacy";
+		return mv;
 	}
-	
-	@GetMapping("/service")
-	public String termsOfService() {
-		
-		return "/user/service";
-	}
-	
+	 
+	//MainPage
 	@GetMapping("/main")
 	public void main(HttpSession session, Model m) {
 		List<BVO> toplist= bservice.topList();
@@ -198,12 +198,39 @@ public class UserController {
 		m.addAttribute("randomlist",randomlist);
 	}
 	
-	@GetMapping("/logout")
-	public ModelAndView logout(HttpSession session) {
-		session.invalidate();
-		ModelAndView mv = new ModelAndView("redirect:/main/main");
-		
-		return mv;
-	}
+	
+	//MyPage
+	@GetMapping("/myPage")  
+	public void myPage() {  
+		  
+	} 
 
+	@ResponseBody
+	@RequestMapping("/bmichart") 
+	public JSONObject bmichart() { 
+		UVO tmp=new UVO(); 
+		return uservice.getDiscord(tmp);		 
+	}
+	
+	@GetMapping("/infoUpdate")
+	public void infoUpdate() {
+		
+	}
+	
+	@PostMapping("/infoUpdate")
+	public String postInfoUpdate() {
+		
+		return "/user/myPage";
+	}
+	
+	@GetMapping("/whUpdate")
+	public void whUpdate() {
+		
+	}
+	
+	@PostMapping("/whUpdate")
+	public String postwhUpdate() {
+		
+		return "/user/myPage";
+	}
 }

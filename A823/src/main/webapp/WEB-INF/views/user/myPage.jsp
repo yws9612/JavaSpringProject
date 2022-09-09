@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 
@@ -116,8 +117,8 @@
 				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 				<!-- 텍스트정렬 -->
 				<div class="d-flex justify-content-between">
-					<a href="/infoUpdate" class="btn btn-primary mr-4">정보 수정</a> <a
-						href="/whUpdate" class="btn btn-primary float-right">키/몸무게 등록</a>
+					<a href="${root}user/infoUpdate" class="btn btn-primary mr-4">정보 수정</a> <a
+						href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 등록</a>
 				</div>
 			</div>
 
