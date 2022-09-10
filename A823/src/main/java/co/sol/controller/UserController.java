@@ -218,9 +218,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/infoUpdate")
-	public String postInfoUpdate() {
-		
-		return "/user/myPage";
+	public String postInfoUpdate(@ModelAttribute("user") UVO uvo, BindingResult result) {
+		//정보 업데이트
+		if(result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return "/user/infoUpdate";
+		}
+		uservice.modify(uvo);
+		return "/user/infoUpdateSuccess";
 	}
 	
 	@GetMapping("/whUpdate")

@@ -12,7 +12,7 @@ import co.sol.main.UserInfo;
 public interface UService {
 
 	void join(UVO user, DVO discord);
-	void modify(UVO user);
+	public void modify(UVO user);
 	void leave(UVO user);
 	String getId(UVO user);
 	String getPw(UVO user);
