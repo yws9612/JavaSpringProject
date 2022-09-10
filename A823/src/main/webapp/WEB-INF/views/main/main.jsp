@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,14 +71,21 @@
 	  			<img src="/resources/img/exercise/dumbell_purple.jpg" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title"><c:out value="${EVO.e_name}"/></h5>
-	    			<p class="card-text"><c:out value="${EVO.e_guide}"/>
+	    			<p class="card-text" style="display:-webkit-box;
+				    -webkit-line-clamp:3;
+				    -webkit-box-orient:vertical;
+				    width:100%;
+				    height:100%;
+				    line-height:20px;
+				    overflow:hidden;
+				    text-overflow:ellipsis;"><c:out value="${EVO.e_guide}"/></p>
 	    			<c:if test="${not empty EVO.e_part}">
 	    			<br>
 	    			<span class="badge text-bg-info">#<c:out value="${EVO.e_part}"/></span>
 	    			</c:if>
 	    			<c:if test="${not empty EVO.e_cau}">
 	    			<br>
-	    			<span class="badge text-bg-warning">#<c:out value="${EVO.e_cau}"/></span></c:if></p>
+	    			<span class="badge text-bg-warning">#<c:out value="${EVO.e_cau}"/></span></c:if>
 	    			
 	  			</div>
 			</div>
@@ -112,7 +120,7 @@
 	    			<p class="card-text">카테고리 : <c:out value="${BVO.b_div}"/><br>
 	    			<c:out value="${BVO.b_con}"/></p>
 	    			<p class="card-text">조회수 <c:out value="${BVO.b_vc}"/></p>
-	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
+	    			<a href="${root }board/board_detail?bnum=${BVO.b_no }" class="btn btn-secondary btn-sm">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
