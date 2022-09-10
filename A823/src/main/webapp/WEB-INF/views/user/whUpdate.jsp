@@ -22,7 +22,7 @@
 <div class="col-md-5">
 <br/><br/>
 
-	<form:form action="${root}user/whUpdate" method="post">
+	<form action="${root}user/whUpdate" method="post">
 		<div class="input-group mb-3">
 		<span class="input-group-text">키</span>
 		<input type="text" class="form-control" placeholder="ex)199.9">
@@ -32,9 +32,9 @@
 		</div><br/>
 
 		<div class="button" style="float:right;" >
-		<button id="send"  class="btn btn-primary">저장하기</button>
+		<input type = "submit" id="send"  class="btn btn-primary">저장하기</button>
 		</div>		
      	</div></div></div><br/>	
-	</form:form>
+	</form>
 </body>
 </html>
