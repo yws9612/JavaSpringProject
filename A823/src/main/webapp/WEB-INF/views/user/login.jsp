@@ -58,8 +58,9 @@
 						</div>
 
 						<div class="form-group login-group-checkbox pt-3">
-							<form:checkbox path = "rememberId"/>
-							<form:label path="rememberId">저장하기</form:label>
+							<label>
+								<form:checkbox path = "rememberId"/>아이디 저장
+							</label>
 						</div>
 					</div>
 					<div class="d-grid gap-2 pt-3">

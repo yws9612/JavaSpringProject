@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 
@@ -57,40 +58,40 @@
 <div class="col-md-5 col-md-5 shadow p-3 mb-5 bg-body rounded">
 <br/><br/>
 		
-		<form action="#중복확인" method="post" id="frm">
+		<form action="${root}user/join" method="post" id="frm">
 		<div class="input-group mb-3">
 
 		<span class="input-group-text">아이디</span>
-		<input type="text" class="form-control" placeholder="중복확인해주세요">
+		<input type="text" class="form-control" placeholder="중복확인해주세요" name = "u_id">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		
 		<div class="col align-self-end" >
 		<button  type="button" class="btn btn-primary" >중복확인</button></div>
 		</div><br/>
-		</form>
-
+		
+		
 		
 		<div class="input-group mb-3">
 		<span class="input-group-text">이름</span>
-		<input type="text" class="form-control">
+		<input type="text" class="form-control" name="u_name">
 		</div><br/>
 			  
 		<div class="input-group mb-3">
 		<span class="input-group-text">비밀번호</span>
-		<input type="password" class="form-control" placeholder="6자리 이상">
+		<input type="password" class="form-control" placeholder="6자리 이상" name="u_pw">
 		<input type="password" class="form-control" placeholder="비밀번호 확인">
 		</div><br/>
 			  
-		<form action="#중복확인" method="post" id="frm">
+		
 		<div class="input-group mb-3">
 		<span class="input-group-text">E-MAIL</span>
-		<input type="email" class="form-control" placeholder="중복확인해주세요">
+		<input type="email" class="form-control" placeholder="중복확인해주세요" name = "u_email">
 
 		&nbsp;&nbsp;&nbsp;&nbsp;		
 		<div class="col align-self-end" >
 		<button  type="button" class="btn btn-primary">중복확인</button></div>
 		</div><br/>
-		</form>
+		
 			    
 		<div class="input-group mb-3">
 		<span class="input-group-text">우편번호</span>
@@ -104,7 +105,7 @@
 			
 		<div class="input-group mb-3">
 		<span class="input-group-text">주소</span>
-		<input type="text" id="addr1" placeholder="우편번호 검색시 자동으로 입력됩니다" readonly="readonly" class="form-control">
+		<input type="text" id="addr1" placeholder="우편번호 검색시 자동으로 입력됩니다" readonly="readonly" class="form-control" name="u_addr">
 		</div>
 			  
 		<div class="input-group mb-3">
@@ -113,10 +114,10 @@
 			
 		<div class="input-group mb-3">
 		<span class="input-group-text">키</span>
-		<input type="text" class="form-control" placeholder="ex)199.9">
+		<input type="text" class="form-control" placeholder="ex)199.9" name = "d_height">
 
 		<span class="input-group-text">몸무게</span>
-		<input type="text" class="form-control" placeholder="ex)99.9">			    
+		<input type="text" class="form-control" placeholder="ex)99.9" name = "d_weight">			    
 		</div><br/>
 			    
 			  			    
@@ -153,10 +154,13 @@
 
 		<div class="button" style="float:right;" >
 		<input type="reset" class="btn btn-dark" value="취소">
-		<button id="send"  class="btn btn-primary">회원가입</button>
+		<input type = "submit" id="send"  class="btn btn-primary" value = "회원가입">
 		</div>		
+		
+		</form>
 			
 </div>	
+</div>
 </div>
 </div>
 </div>

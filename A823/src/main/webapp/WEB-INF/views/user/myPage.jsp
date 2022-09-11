@@ -118,7 +118,7 @@
 				<!-- 텍스트정렬 -->
 				<div class="d-flex justify-content-between">
 					<a href="${root}user/infoUpdate" class="btn btn-primary mr-4">정보 수정</a> <a
-						href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 등록</a>
+						href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 등록 및 변경</a>
 				</div>
 			</div>
 

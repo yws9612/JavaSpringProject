@@ -7,7 +7,7 @@ import co.sol.main.*;
 
 public interface UMapper {
 
-	public void join(UVO user, DVO discord);
+	public void join(UVO user, DVO discord) throws Exception;
 	public void modify(UVO user);
 	public void leave(UVO user);
 	public String getId(UVO user);

@@ -109,7 +109,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/join")
-	public String postJoin(@ModelAttribute("user")UVO user, @ModelAttribute("data")DVO data, BindingResult result) {
+	public String postJoin(@ModelAttribute("user")UVO user, @ModelAttribute("data")DVO data, BindingResult result) throws Exception {
 		
 		if(result.hasErrors()) {
 			
@@ -117,7 +117,7 @@ public class UserController {
 		}
 		
 		uservice.join(user, data);
-		return "redirect:/user/login";
+		return "/user/login";
 		
 	}
 	

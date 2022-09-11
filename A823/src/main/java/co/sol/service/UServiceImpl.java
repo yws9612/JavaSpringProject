@@ -29,8 +29,10 @@ public class UServiceImpl implements UService {
 	
 
 	@Override
-	public void join(UVO user, DVO discord) {
+	public void join(UVO user, DVO discord) throws Exception {
 		mpr.join(user, discord);
+		
+		
 	}
 
 	@Override

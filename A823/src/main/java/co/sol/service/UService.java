@@ -11,7 +11,7 @@ import co.sol.main.UserInfo;
 
 public interface UService {
 
-	void join(UVO user, DVO discord);
+	void join(UVO user, DVO discord) throws Exception;
 	public void modify(UVO user);
 	void leave(UVO user);
 	String getId(UVO user);
