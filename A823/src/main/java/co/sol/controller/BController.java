@@ -1,5 +1,9 @@
 package co.sol.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.sol.main.BVO;
 import co.sol.main.Basic;
+import co.sol.main.CVO;
 import co.sol.main.PageDTO;
 import co.sol.service.BService;
+import co.sol.service.CService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -24,6 +30,7 @@ import lombok.extern.log4j.Log4j;
 public class BController {
 	
 	private final BService service;
+	private final CService cservice;
 	
 	//BoardFolder
 	@GetMapping("/list")
@@ -142,6 +149,16 @@ public class BController {
 		
 	}
 	
+	@GetMapping("/board_detail")
+	public void detail(@RequestParam("bnum") int b_no, Model m, HttpSession session, CVO c) {
+		BVO bvo = service.get(b_no);
+		List<CVO> getList=cservice.getList(b_no);
+		
+		System.out.println(getList);
+		m.addAttribute("bdetail", bvo);
+		m.addAttribute("getList", getList);
+		
+	}
 	
 }
 

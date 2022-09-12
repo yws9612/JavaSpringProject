@@ -7,7 +7,7 @@
 	<!--특정 게시글의 모든 댓글의 모든 정보를 가져옵니다. -->
 	<select id="getList" resultType="co.sol.main.CVO">
 		select * from c_table where b_no = #{b_no}
-		order by l_level
+		order by c_level
 	</select>
 
 

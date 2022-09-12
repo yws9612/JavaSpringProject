@@ -77,7 +77,7 @@ ul {
 	</table><!-- 게시글 상세보기 테이블 끝 -->
 	
 	
-	<span style="font-size:medium;">댓글수</span>
+	<span style="font-size:medium;"><i class="bi bi-chat-left-dots"></i> <c:out value="${getList.size() }"/></span>
 	<hr class="featurette-divider">
 
 	<!-- 댓글 리스트 불러오기 -->
@@ -126,8 +126,10 @@ ul {
 				</c:if>
 			</div>
 			</li>
-			</c:when>
-			<c:when test="${empty CVO }">
+			</c:when>			
+			</c:choose>
+		</c:forEach>
+		<c:if test="${empty getList }">
 			<li>
 				<div class="row">
 					<div class="col text-start">
@@ -135,10 +137,9 @@ ul {
 					</div>
 				</div>
 			</li> 	
-			</c:when>
-			</c:choose>
-		</c:forEach>
+		</c:if>
 		</ul>
+		
 		
 		
 	<hr class="featurette-divider">

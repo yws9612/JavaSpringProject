@@ -152,7 +152,7 @@
       	<br><br><br>
         <h2>로그인 후 이용 가능합니다.</h2>
         <br><br>
-        <p><a class="btn btn-secondary" href="${root }/user/login">로그인하기 »</a></p>
+        <p><a class="btn btn-secondary" href="/user/login">로그인하기 »</a></p>
         <br><br><br>
         </div>
       </div>
