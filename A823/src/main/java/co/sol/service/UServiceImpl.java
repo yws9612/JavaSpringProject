@@ -1,5 +1,6 @@
 package co.sol.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +31,20 @@ public class UServiceImpl implements UService {
 
 	@Override
 	public void join(UVO user, DVO discord) throws Exception {
-		mpr.join(user, discord);
 		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+
+		map.put("u_no", user.getU_no());
+		map.put("u_name", user.getU_name());
+		map.put("u_id", user.getU_id());
+		map.put("u_pw", user.getU_pw());
+		map.put("u_addr", user.getU_addr());
+		map.put("u_email", user.getU_email());
+		map.put("d_weight", discord.getD_weight());
+		map.put("d_height", discord.getD_height());
+		System.out.println(map);
 		
+		mpr.join(map);		
 	}
 
 	@Override
@@ -72,7 +84,8 @@ public class UServiceImpl implements UService {
 
 	@Override
 	public void addDiscord(UVO user, DVO discord) {
-		mpr.addDiscord(user, discord);
+		discord.setU_no(user.getU_no());
+		mpr.addDiscord(discord);
 	}
 
 	@Override 

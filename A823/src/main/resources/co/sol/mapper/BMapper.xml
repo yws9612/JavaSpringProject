@@ -34,11 +34,11 @@
 
 	<!-- 작성한 게시글을 insert합니다. -->
 	<insert id="insert">
-		<selectKey keyProperty="number" order="BEFORE" resultType="int">
+		<selectKey keyProperty="b_no" order="BEFORE" resultType="int">
 			select max(b_no)+1 from b_table
 		</selectKey>
 		insert into b_table values 
-			(number, #{b_div}, #{b_title}, #{b_con}, #{b_writer}, 
+			(b_no, #{b_div}, #{b_title}, #{b_con}, #{b_writer}, 
 			sysdate, sysdate, #{b_eno}, 'Y', 0)
 	</insert>
 	

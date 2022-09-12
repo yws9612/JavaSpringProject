@@ -3,13 +3,16 @@
 
 <mapper namespace="co.sol.mapper.UMapper">
 
+
 	<!--가입 쿼리문 입니다.  -->
 	<insert id="join">
-		<selectKey keyProperty="u_no" order="BEFORE" resultType="int">
+		<selectKey keyProperty="u_no" order="BEFORE" resultType="integer">
 			select max(u_no)+1 from u_table
 		</selectKey>
-		insert into u_table values(u_no, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N')
-		call pro_d_table(u_no, #{d_weight}, #{d_height})
+		BEGIN
+			insert into u_table values(#{u_no}, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N', sysdate);
+			pro_d_table(#{u_no}, #{d_weight}, #{d_height});
+		END;
 	</insert>
 	
 	
