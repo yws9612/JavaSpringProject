@@ -95,8 +95,10 @@ public class BController {
 	}
 	
 	@GetMapping("/exercise_free")
-	public void e_free() {
+	public void e_free(Model m) {
+		List<BVO> bvo = service.getList();
 		
+		m.addAttribute("boardList", bvo);
 	}
 	
 	@GetMapping("/exercise_gym_way")
