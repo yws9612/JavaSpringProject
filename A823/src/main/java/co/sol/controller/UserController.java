@@ -117,7 +117,7 @@ public class UserController {
 		}
 		
 		uservice.join(user, data);
-		return "/user/login";
+		return "redirect:/user/login";
 		
 	}
 	
