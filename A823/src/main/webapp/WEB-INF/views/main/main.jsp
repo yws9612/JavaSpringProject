@@ -2,6 +2,7 @@
 <%@page import="co.sol.main.EVO"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
@@ -28,13 +29,13 @@
 <!-- 광고 슬라이드 부분 -->    
     <div class="carousel-inner">
       <div class="carousel-item">
-      	<a href="${root }/board/list">
+      	<a href="${root }board/exercise_way">
 		<img src="/resources/img/ad/ad01.png" class="d-md-block w-100" alt="광고사진">
 		</a>
       </div>
       
       <div class="carousel-item active">
-      	<a href="${root }/board/list">
+      	<a href="${root }board/map">
         <img src="/resources/img/ad/ad02.png" class="d-md-block w-100 active" alt="광고사진">
         </a>
       </div>
@@ -61,7 +62,7 @@
 <div class="container marketing pt-5">
 <!-- 오늘의 추천운동(카드모양) -->
 	<div class="container pt-5 pb-5">
-	<h1>랜덤 운동추천&nbsp;<a class="btn btn-primary" href="#">더보기 »</a></h1>
+	<h1>랜덤 운동추천&nbsp;<a class="btn btn-primary" href="${root }board/exercise_way">더보기 »</a></h1>
 	
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 	<c:forEach var="EVO" items="${randomlist}">

@@ -31,5 +31,9 @@ public interface BMapper {
 	
 	public List<BVO> topList();
 
+	public List<BVO> BList();
+
+	public List<BVO> BList_diary();
+
 	
 }

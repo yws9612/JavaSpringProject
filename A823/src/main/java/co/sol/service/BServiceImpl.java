@@ -64,6 +64,20 @@ public class BServiceImpl implements BService{
 	public List<BVO> topList() {
 		return mapper.topList();
 	}
+
+
+	@Override
+	public List<BVO> BList() {
+		// TODO Auto-generated method stub
+		return mapper.BList();
+	}
+
+
+	@Override
+	public List<BVO> BList_diary() {
+		// TODO Auto-generated method stub
+		return mapper.BList_diary();
+	}
 }
 
 

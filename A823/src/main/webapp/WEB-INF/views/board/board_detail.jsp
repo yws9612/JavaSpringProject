@@ -36,7 +36,7 @@ ul {
 		<c:when test="${bdetail.b_writer eq sessionScope.user.u_id }">
 			<div class="row">
 			<div class="col text-start">
-			<a href="board/board_list" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
+			<a href="/board/exercise_free" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
 			</div>
 			<div class="col text-end">
 			<a href="modify" class="btn btn-primary btn-sm text-end">수정</a>
@@ -47,7 +47,7 @@ ul {
 		<c:otherwise>
 			<div class="row">
 			<div class="col text-start">
-			<a href="list" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
+			<a href="/board/exercise_free" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
 			</div>
 			</div>
 		</c:otherwise>

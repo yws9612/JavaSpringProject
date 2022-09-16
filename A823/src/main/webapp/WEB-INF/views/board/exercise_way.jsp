@@ -4,7 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>부들부들 | 운동방법 리스트</title>
+<title>부들부들 | 운동방법</title>
 <link
 	href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"
 	rel="stylesheet" />
@@ -29,9 +29,10 @@
 	crossorigin="anonymous"></script>
 	
 </head>
-<body class="sb-nav-fixed">
 
-	<c:import url="/WEB-INF/views/includes/header.jsp" />
+<body>
+<!-- HEADER -->
+<c:import url="/WEB-INF/views/includes/header.jsp" />
 
 	<div class="container" style="margin-top: 120px;">
 	<!-- 홈트/짐트 라디오 버튼 -->
@@ -107,8 +108,8 @@
 		</table>
 		</div>
 	</div>
-	<!-- FOOTER -->
-	<c:import url="/WEB-INF/views/includes/footer.jsp" />
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp" />
 
 
 <script type="text/javascript">

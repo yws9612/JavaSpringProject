@@ -96,14 +96,7 @@ public class BController {
 	public void e_diary() {
 		
 	}
-	
-	@GetMapping("/exercise_free")
-	public void e_free(Model m) {
-		List<BVO> bvo = service.getList();
 		
-		m.addAttribute("boardList", bvo);
-	}
-	
 	@GetMapping("/exercise_gym_way")
 	public void e_gymWay() {
 		
@@ -165,6 +158,19 @@ public class BController {
 	public void exercise_way(Model m, HttpSession session, EVO e) {
 		List<EVO> getEList = dataService.getEList(e);
 		m.addAttribute("getEList",getEList);
+	}
+	
+	@GetMapping("/exercise_free")
+	public void e_free(Model m, HttpSession session, BVO b) {
+		List<BVO> bvo = service.BList();
+		List<BVO> bvodiary = service.BList_diary();
+		m.addAttribute("BList", bvo);
+		m.addAttribute("BListdiary", bvodiary);
+	}
+	
+	@GetMapping("/map")
+	public void map() {
+		
 	}
 	
 	
