@@ -1,198 +1,171 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8" name="viewport" content="witdth=divice-width, initial-scale=1.0">
-<title>게시판 글쓰기</title>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>부들부들 | 운동방법 리스트</title>
+<link
+	href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"
+	rel="stylesheet" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
+	rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"
+	crossorigin="anonymous"></script>
+	
 </head>
+<body class="sb-nav-fixed">
 
-<body>
 	<c:import url="/WEB-INF/views/includes/header.jsp" />
-<body>
-	<div class="container">
 
-		<div class="container" style="margin-top: 120px">
-
-			<header>
-				<h1>게시판</h1>
-			</header>
-			<hr>
-
-			<div>
-
-				<style type="text/css">
-li {
-	list-style: none;
-	display: inline;
-	padding: 6px;
-}
-</style>
-				<ul>
-
-					</li>
-				</ul>
-			</div>
-
-			<section id="container">
-				<form role="form" method="get">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr>
-								<td>10</td>
-								<td><a href="">테스트</a></td>
-								<td>vkshsk</td>
-								<td>2023-11-22</td>
-								<td>21</td>
-							</tr>
-
-							<tr>
-								<td>9</td>
-								<td><a href="">테스트</a></td>
-								<td>vkshsk</td>
-								<td>2023-11-22</td>
-								<td>121</td>
-							</tr>
-
-							<tr>
-								<td>8</td>
-								<td><a href="">테스트</a></td>
-								<td>vkshsk</td>
-								<td>2023-11-16</td>
-								<td>251</td>
-							</tr>
-
-							<tr>
-								<td>7</td>
-								<td><a href="">테스트</a></td>
-								<td>rangmal</td>
-								<td>2021-11-16</td>
-								<td>251</td>
-							</tr>
-
-							<tr>
-								<td>6</td>
-								<td><a href="">테스트</a></td>
-								<td>rangmal</td>
-								<td>2021-11-16</td>
-								<td>251</td>
-							</tr>
-
-							<tr>
-								<td>5</td>
-								<td><a href="">테스트</a></td>
-								<td>rangmal</td>
-								<td>2021-11-16</td>
-								<td>251</td>
-							</tr>
-
-							<tr>
-								<td>4</td>
-								<td><a href="">테스트</a></td>
-								<td>rangmal</td>
-								<td>2021-11-16</td>
-								<td>251</td>
-							</tr>
-
-							<tr>
-								<td>3</td>
-								<td><a href="">테스트</a></td>
-								<td>2</td>
-								<td>2021-11-16</td>
-								<td>251</td>
-							</tr>
-
-							<tr>
-								<td>1</td>
-								<td><a href="">테스트</a></td>
-								<td>우영</td>
-								<td>2021-11-15</td>
-								<td>251</td>
-							</tr>
-
-							<tr>
-								<td>0</td>
-								<td><a href="">테스트</a></td>
-								<td>우영</td>
-								<td>2021-11-11</td>
-								<td>251</td>
-							</tr>
-
-						</tbody>
-					</table>
-					<div class="search row">
-						<div class="col-xs-2 col-sm-2">
-							<select name="searchType" class="form-control">
-								<option value="t">제목</option>
-								<option value="c">내용</option>
-								<option value="w">작성자</option>
-								<option value="tc">제목+내용</option>
-							</select>
-						</div>
-
-						<div class="col-xs-9 col-sm-9">
-							<div class="input-group">
-								<input type="text" name="keyword" id="keywordInput" value=""
-									class="form-control"> <span class="input-group-btn">
-									<button id="searchBtn" type="button" class="btn btn-default">검색</button>
-
-								</span>
-							</div>
-						</div>
-
-					</div>
-					<div class="container">
-						<ul class="pagination">
-
-							<li class="page-item"><a class="page-link" href="#">이전</a></li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item"><a class="page-link" href="#">4</a></li>
-							<li class="page-item"><a class="page-link" href="#">5</a></li>
-							<li class="page-item"><a class="page-link" href="#">6</a></li>
-							<li class="page-item"><a class="page-link" href="#">7</a></li>
-							<li class="page-item"><a class="page-link" href="#">8</a></li>
-							<li class="page-item"><a class="page-link" href="#">9</a></li>
-							<li class="page-item"><a class="page-link" href="#">10</a></li>
-							<li class="page-item"><a class="page-link" href="#">다음</a></li>
-
-							<button type="button" class="btn btn-default">글쓰기</button>
-					</div>
-				</form>
-			</section>
+	<div class="container" style="margin-top: 120px;">
+	<!-- 홈트/짐트 라디오 버튼 -->
+		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value=1 onclick='test(this.value);' autocomplete="off" checked>
+		  <label class="btn btn-outline-primary" for="btnradio1">홈트</label>
+		
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value=2 onclick='test(this.value);' autocomplete="off">
+		  <label class="btn btn-outline-primary" for="btnradio2">짐트</label>
 		</div>
+		
+		<div id="home" style="margin-top:20px; margin-bottom:40px">
+		<table id="t1" class="table table-bordered"
+			style="width: 100%;">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${getEList}" var="home">
+					<c:if test="${home.e_div eq '홈트'}">
+						<tr>
+							<td><img class="img-list-src" src="${home.e_thum}"
+								width="500" height="190"></td>
+							<td>
+								<h3><c:out value="${home.e_name}" /></h3>
+								<p><c:out value="${home.e_guide}" /></p> 
+								<c:if test="${not empty home.e_part}">
+									<h4><span class="badge text-bg-info">#<c:out value="${home.e_part}" /></span></h4>
+								</c:if> 
+								<c:if test="${not empty home.e_cau}">
+									<h4><span class="badge text-bg-warning">#<c:out value="${home.e_cau}" /></span></h4>
+								</c:if>
+							</td>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div>
+		
+		<div id="gym" style="display: none; margin-top:20px; margin-bottom:40px">
+		<table id="t2" class="table table-bordered"
+			style="width: 100%;">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${getEList}" var="gym">
+					<c:if test="${gym.e_div eq '짐트'}">
+						<tr>
+							<td style="width:30%;"><img class="img-list-src" src="${gym.e_thum}"
+								width="500" height="190"></td>
+							<td>
+								<h3><c:out value="${gym.e_name}" /></h3>
+								<p><c:out value="${gym.e_guide}" /></p> 
+								<c:if test="${not empty gym.e_part}">
+									<h4><span class="badge text-bg-info">#<c:out value="${gym.e_part}" /></span></h4>
+								</c:if> 
+								<c:if test="${not empty gym.e_cau}">
+									<h4><span class="badge text-bg-warning">#<c:out value="${gym.e_cau}" /></span></h4>
+								</c:if>
+							</td>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	<!-- FOOTER -->
+	<c:import url="/WEB-INF/views/includes/footer.jsp" />
 
 
-		<script>
-			$(function() {
-				$('#searchBtn').click(
-						function() {
-							self.location = "list"
-									+ '?page=1&perPageNum=10'
-									+ "&searchType="
-									+ $("select option:selected").val()
-									+ "&keyword="
-									+ encodeURIComponent($('#keywordInput')
-											.val());
-						});
-			});
-		</script>
+<script type="text/javascript">
+	function test(value){
+		if(value=='1') {home.style.display = ''; gym.style.display = 'none';}
+		else {gym.style.display = ''; home.style.display = 'none';}
+	}
+	$(document).ready(function () {
+    $('#t1').DataTable({
+    	// 표시 건수를 5건 단위로 설정
+    	lengthMenu: [ 5, 10, 15, 20, 25 ],
 
+    	// 기본 표시 건수를 5건으로 설정
+    	displayLength: 5,
+    	"language": {
+            "emptyTable": "데이터가 없어요.",
+            "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+            "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+            "infoEmpty": "데이터 없음",
+            "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+            "search": "검색: ",
+            "zeroRecords": "일치하는 데이터가 없어요.",
+            "loadingRecords": "로딩중...",
+            "processing":     "잠시만 기다려 주세요...",
+            "paginate": {
+                "next": "다음",
+                "previous": "이전"
+            }
+        },
 
-		<c:import url="/WEB-INF/views/includes/footer.jsp" />
+    });
+
+    $('#t2').DataTable({
+    	// 표시 건수를 5건 단위로 설정
+    	lengthMenu: [ 5, 10, 15, 20, 25 ],
+
+    	// 기본 표시 건수를 5건으로 설정
+    	displayLength: 5,
+    	"language": {
+            "emptyTable": "데이터가 없어요.",
+            "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+            "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+            "infoEmpty": "데이터 없음",
+            "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+            "search": "검색: ",
+            "zeroRecords": "일치하는 데이터가 없어요.",
+            "loadingRecords": "로딩중...",
+            "processing":     "잠시만 기다려 주세요...",
+            "paginate": {
+                "next": "다음",
+                "previous": "이전"
+            }
+        },
+
+    });
+});
+	
+</script>
 </body>
 </html>

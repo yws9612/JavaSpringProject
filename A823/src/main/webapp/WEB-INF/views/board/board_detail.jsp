@@ -144,7 +144,7 @@ ul {
 	<hr class="featurette-divider">
 		<!-- 댓글 form -->
 		<c:if test="${empty sessionScope.user.u_id }">
-			<div class="input-group">
+			<div class="input-group" id="comments">
 				<textarea readonly="readonly" class="form-control" aria-describedby="button-addon2" placeholder="로그인 후 이용가능합니다."></textarea>
 				<button class="btn btn-primary btn-sm" type="submit" id="button-addon2 recomment" disabled>등록</button>
 			</div>
@@ -152,12 +152,12 @@ ul {
 		<c:if test="${not empty sessionScope.user.u_id }">
 		<form:form action="c_insert" modelAttribute="CVO">
 			<span class="" style="font-size:small;">${sessionScope.user.u_id }</span>
-			<div class="input-group">
+			<div class="input-group" id="commentinsert">
 				<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" placeholder="댓글을 입력해주세요."></form:textarea>
 				<form:hidden path="c_level" value=""/>
 				<form:hidden path="b_no" value="${bdetail.b_no }"/>
 				<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
-				<form:button class="btn btn-primary btn-sm" type="submit" id="button-addon2 recomment">등록</form:button>
+				<form:button class="btn btn-primary btn-sm" type="submit" id="button-addon2 recomment" onclick="">등록</form:button>
 			</div>
 		</form:form>
 		</c:if>
@@ -168,6 +168,21 @@ ul {
 
 <!-- FOOTER -->	
 <c:import url="/WEB-INF/views/includes/footer.jsp" />
-		
+
+<script type="text/javascript">
+$("#comments textarea").on("click", function(){
+	//로그인 여부 체크
+	var isLogin=${not empty sessionScope.user.u_id};
+	if(isLogin==false){
+		var isMove=confirm("로그인 페이지로 이동하시겠습니까?");
+		if(isMove){
+			location.href="${pageContext.request.contextPath }/user/login";
+		}
+	}
+});
+
+
+</script>
+
 </body>
 </html>

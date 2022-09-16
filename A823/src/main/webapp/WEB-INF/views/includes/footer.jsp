@@ -34,7 +34,7 @@
 	<div><!-- 공간띄우기 --></div>
 
     <div class="col-md-auto text-end">
-      <h5><a href="${root}board/exercise_home_way" class="nav-link p-0 text-muted">운동 방법</a></h5>
+      <h5><a href="${root}board/exercise_way" class="nav-link p-0 text-muted">운동방법</a></h5>
     </div>
 
     <div class="col-md-auto text-end">

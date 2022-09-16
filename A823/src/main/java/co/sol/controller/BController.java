@@ -17,9 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import co.sol.main.BVO;
 import co.sol.main.Basic;
 import co.sol.main.CVO;
+import co.sol.main.EVO;
 import co.sol.main.PageDTO;
 import co.sol.service.BService;
 import co.sol.service.CService;
+import co.sol.service.DataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -31,6 +33,7 @@ public class BController {
 	
 	private final BService service;
 	private final CService cservice;
+	private final DataService dataService;
 	
 	//BoardFolder
 	@GetMapping("/list")
@@ -121,10 +124,6 @@ public class BController {
 		
 	}
 	
-	@GetMapping("/exercise_way")
-	public void e_way() {
-		
-	}
 	
 	@GetMapping("/writer_diary")
 	public void w_diary() {
@@ -161,6 +160,13 @@ public class BController {
 		m.addAttribute("getList", getList);
 		
 	}
+	
+	@GetMapping("/exercise_way")
+	public void exercise_way(Model m, HttpSession session, EVO e) {
+		List<EVO> getEList = dataService.getEList(e);
+		m.addAttribute("getEList",getEList);
+	}
+	
 	
 }
 
