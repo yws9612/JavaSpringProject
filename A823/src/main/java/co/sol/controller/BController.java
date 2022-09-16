@@ -123,6 +123,13 @@ public class BController {
 		
 	}
 	
+	@PostMapping("/writer_diary")
+	public String new_diary(@ModelAttribute("board") BVO board) {
+		int bno=service.submit(board);
+		return "redirect:/board/list";
+	}
+	
+	
 	@GetMapping("/writer_free")
 	public void w_free() {
 		

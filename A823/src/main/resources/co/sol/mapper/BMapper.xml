@@ -38,8 +38,8 @@
 			select max(b_no)+1 from b_table
 		</selectKey>
 		insert into b_table values 
-			(b_no, #{b_div}, #{b_title}, #{b_con}, #{b_writer}, 
-			sysdate, sysdate, #{b_eno}, 'Y', 0)
+			(#{b_no}, #{b_div}, #{b_title}, #{b_con}, #{b_writer}, 
+			CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '', 'Y', 0)
 	</insert>
 	
 	

@@ -3,61 +3,129 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" name="viewport" content="witdth=divice-width, initial-scale=1.0">
+<meta charset="UTF-8" name="viewport" content="width=divice-width, initial-scale=1.0">
 <title>게시판 글쓰기</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-</head>
-<body>
-<c:import url="/WEB-INF/views/includes/header.jsp"/>		
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
     
-<div class="container" style="margin-top:120px">
+    <style type="text/css">
+    	.dropdown-toggle:after {
+    		display:none !important;
+    	}
+    </style>
+<body>
 
-  <p><h2>게시판 글쓰기</h2>
-  <form action="write.jsp" method="post">
-    <div class="form-group"></p>
-      <label for="title">제목</label>
 
-      <input type="text" class="form-control" id="title"
-       placeholder="제목 입력" name="title"
-       maxlength="100" required="required"
-       pattern=".{4,100}">
-    </div>
-                        		
-	    <div class="form-group">
-   			<label for="content">내용</label>
-        
-		 <div id="summernote"></div>
- 		
-   		 <p><div class="form-group">
-  		    <label for="writer">작성자</label>
-   		  	 <input type="hidden" value="${sessionScope.u_id}" class="form-control" id="writer"
-   		  	  placeholder="작성자" name="writer">
-  		 </div></p>
+
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+    
+    
+    
+<div class="container" style="margin-top:120px; margin-bottom:120px">
+
+
+  <p><h2>게시판 글쓰기</h2></p>  
+  
+  
+  <br>
+  
+  
+  <form action="${root}writer_diary" method="post">
+  
+    <div class="form-group">
+    
+		<!-- 
+		<select class="" name="b_div">
+			<option value="꿀팁">꿀팁</option>
+			<option value="루틴">루틴</option>
+			<option value="방법">방법</option>
+		</select>
+		 -->
 		
-		<div class="form-check form-switch">
- 		<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-		<label class="form-check-label" for="flexSwitchCheckDefault">비공개</label>
-		</div>
+		<input type="hidden" name="b_div" value="일지">
+		
+		
+		<label for="title">제목</label>
+		<input type="text" class="form-control" id="title"
+			placeholder="제목 입력" name="b_title"
+			maxlength="100" required="required"
+			pattern=".{4,100}">
+
 	
-		<div>
- 		   
- 		   <button class="btn btn-default" type="submit">등록</button>
-   		   <button class="btn btn-default" type="submit">목록</button>
-   			
- 		</div>
+		<br>
+		
+	
+		<label for="content">내용</label>        
+		<textarea id="summernote" name="b_con" required="required"></textarea>
  		
- 		 </form>
-		</div>
+ 		
+		<!-- <label for="writer">작성자</label>-->
+		<input type="hidden" value="${sessionScope.user.u_id}" 
+				id="writer" name="b_writer">
+
+
+		<div class="form-check form-switch">
+			<input class="form-check-input" name="b_open" type="checkbox" id="flexSwitchCheckDefault">
+			<label class="form-check-label" for="flexSwitchCheckDefault">비공개</label>
+		</div>	
+		
+		
+		<div>   
+			<button class="btn btn-primary btn-sm text-end" type="submit">등록</button>
+			<button class="btn btn-primary btn-sm text-end" onclick="location.href='board_list'">목록</button>
+		</div> 		
+		
+				
+
+	</div>
+	
+				
+  </form>
+	
+	
+</div>
 
    		<script>
-    		$('#summernote').summernote({
-   		    placeholder: 'Hello Bootstrap 5',
-        	tabsize: 2,
-        	height: 100
-      		});  
+			$(document).ready(function() {
+   				var fontList = ['맑은 고딕','굴림','돋움','바탕','궁서','Arial','Courier New','Verdana','Tahoma'];
+
+   				$('#summernote').summernote({
+    				lang: 'ko-KR',
+    		        tabsize: 2,
+					height: 300,
+					minHeight: 300,
+					maxHeight: 300, 
+					
+					fontNames: fontList,
+	                addDefaultFonts: false,
+					toolbar: [
+					    ['font', ['fontname','fontsize']],
+					    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+					    ['color', ['color']],
+					    ['height', ['height']],
+					    ['table', ['table']],
+					    ['para', ['ul', 'ol', 'paragraph']],
+					    ['insert',['link']],
+					    ['view', ['fullscreen', 'codeview', 'help']]
+					],
+
+					tabDisable: true
+      			})
+      			
+      			$("#summernote").on("summernote.enter", function(we, e) {
+      			     $(this).summernote("pasteHTML", "<br>&VeryThinSpace;");
+      			     e.preventDefault();
+      			});
+    		});
+    		//$('#summernote').summernote('pasteHTML', data); 수정페이지용
     	</script>	
-    <c:import url="/WEB-INF/views/includes/footer.jsp"/>	
-		</body>
-		</html>
+    	
+    	
+    <c:import url="/WEB-INF/views/includes/footer.jsp"/>
+    
+    	
+</body>
+</html>
