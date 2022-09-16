@@ -150,14 +150,14 @@ ul {
 			</div>
 		</c:if>
 		<c:if test="${not empty sessionScope.user.u_id }">
-		<form:form action="c_insert" modelAttribute="CVO">
+		<form:form action="c_insert" modelAttribute="CVO" method = "post">
 			<span class="" style="font-size:small;">${sessionScope.user.u_id }</span>
 			<div class="input-group" id="commentinsert">
 				<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" placeholder="댓글을 입력해주세요."></form:textarea>
 				<form:hidden path="c_level" value=""/>
 				<form:hidden path="b_no" value="${bdetail.b_no }"/>
 				<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
-				<form:button class="btn btn-primary btn-sm" type="submit" id="button-addon2 recomment" onclick="">등록</form:button>
+				<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>
 			</div>
 		</form:form>
 		</c:if>

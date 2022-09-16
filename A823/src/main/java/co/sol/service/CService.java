@@ -11,5 +11,6 @@ public interface CService {
 	void recomment(CVO comment);
 	void modify(CVO comment);
 	void delete(CVO comment);
+	public void insert_comment(CVO comment);
 
 }

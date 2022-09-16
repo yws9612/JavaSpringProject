@@ -42,4 +42,9 @@ public class CServiceImpl implements CService {
 		mpr.delete(comment);
 	}
 
+	@Override
+	public void insert_comment(CVO comment) {
+		// TODO Auto-generated method stub
+		mpr.insert_comment(comment);
+	}
 }

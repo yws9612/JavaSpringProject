@@ -11,5 +11,5 @@ public interface CMapper {
 	public void update_level(CVO comment);
 	public void modify(CVO comment);
 	public void delete(CVO comment);
-
+	public void insert_comment(CVO comment);
 }

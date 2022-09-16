@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -159,6 +160,22 @@ public class BController {
 		m.addAttribute("bdetail", bvo);
 		m.addAttribute("getList", getList);
 		
+	}
+	
+	@PostMapping("/c_insert")
+	public ModelAndView c_insert(@ModelAttribute("CVO") CVO comment, @RequestParam("b_no") int b_no,
+			HttpSession session) {
+		try {
+			System.out.println(comment.getB_no());
+			System.out.println(comment.getC_no());
+			System.out.println(comment.getC_con());
+			System.out.println(comment.getC_writer());
+			cservice.insert_comment(comment);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ModelAndView mv = new ModelAndView("redirect:/board/board_detail?bnum=" + b_no);
+		return mv;
 	}
 	
 	@GetMapping("/exercise_way")
