@@ -118,22 +118,22 @@ public class BController {
 	}
 	
 	
+	
 	@GetMapping("/writer_diary")
 	public void w_diary() {
 		
-	}
-	
-	@PostMapping("/writer_diary")
+	}	
+	@GetMapping("/writer_free")
+	public void w_free() {
+		
+	}	
+	@PostMapping("/new_board")
 	public String new_diary(@ModelAttribute("board") BVO board) {
 		int bno=service.submit(board);
 		return "redirect:/board/list";
 	}
 	
 	
-	@GetMapping("/writer_free")
-	public void w_free() {
-		
-	}
 	
 	@GetMapping("/writer_gym")
 	public void w_gym() {

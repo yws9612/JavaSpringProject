@@ -33,17 +33,10 @@
   <br>
   
   
-  <form action="${root}writer_diary" method="post">
+  <form action="${root}new_board" method="post">
   
     <div class="form-group">
     
-		<!-- 
-		<select class="" name="b_div">
-			<option value="꿀팁">꿀팁</option>
-			<option value="루틴">루틴</option>
-			<option value="방법">방법</option>
-		</select>
-		 -->
 		
 		<input type="hidden" name="b_div" value="일지">
 		
