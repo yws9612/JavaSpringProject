@@ -77,6 +77,8 @@ public class BController {
 		return "redirect:/board/exercise_free";
 	}
 	
+	
+	
 	@GetMapping("/delete")
 	public String delete(@RequestParam("b_no")int b_no, @RequestParam("b_div")String b_div) {
 		int tmp=service.del(b_no);
@@ -87,11 +89,9 @@ public class BController {
 	}
 	@PostMapping("/del")
 	public String del(@RequestParam("b_no")int b_no, Basic ba, RedirectAttributes rt) {
-		
 		if(service.del(b_no)==1) {
 			rt.addFlashAttribute("result","success");
 		}
-		
 //		rt.addAttribute("pageNum", ba.getPageNum());
 //		rt.addAttribute("amount", ba.getAmount());
 //		rt.addAttribute("type", ba.getType());
@@ -101,6 +101,7 @@ public class BController {
 //		}		
 		return "redirect:/board/exercise_free";
 	}	
+	
 	
 	
 	@GetMapping("/exercise_diary")
@@ -164,6 +165,8 @@ public class BController {
 		
 	}
 	
+	
+	
 	@GetMapping("/board_detail")
 	public void detail(@RequestParam("b_no") int b_no, Model m, HttpSession session, CVO c) {
 		BVO bvo = service.get(b_no);
@@ -174,6 +177,8 @@ public class BController {
 		m.addAttribute("getList", getList);
 		m.addAttribute("b_no", b_no);		
 	}
+	
+	
 	
 	@PostMapping("/c_insert")
 	public ModelAndView c_insert(@ModelAttribute("CVO") CVO comment, @RequestParam("b_no") int b_no,
@@ -191,11 +196,15 @@ public class BController {
 		return mv;
 	}
 	
+	
+	
 	@GetMapping("/exercise_way")
 	public void exercise_way(Model m, HttpSession session, EVO e) {
 		List<EVO> getEList = dataService.getEList(e);
 		m.addAttribute("getEList",getEList);
 	}
+	
+	
 	
 	@GetMapping("/exercise_free")
 	public void e_free(Model m, HttpSession session, BVO b) {

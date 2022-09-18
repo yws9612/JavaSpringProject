@@ -148,7 +148,7 @@
    				
    				
    				//select box 
-   				$("#b_div option[value='${board.b_div}']").prop('selected', true);
+   				$("#b_div").val("${board.b_div}").prop("selected", true);
    				
    				
    				//b_open
