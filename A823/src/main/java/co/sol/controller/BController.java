@@ -45,15 +45,17 @@ public class BController {
 	
 	
 	
-	@GetMapping("/submit")
-	public void sub() {		
-	}
-	@PostMapping("/submit")
-	public String submit(BVO bv, RedirectAttributes rt) {		
-		int b_no=service.submit(bv);		
-		rt.addFlashAttribute("result", b_no);		
-		return "redirect:/board/list";				
-	}
+	
+//	@GetMapping("/submit")
+//	public void sub() {		
+//	}
+//	@PostMapping("/submit")
+//	public String submit(BVO bv, RedirectAttributes rt) {		
+//		int b_no=service.submit(bv);		
+//		rt.addFlashAttribute("result", b_no);
+//		return "redirect:/board/list";		
+//	}
+	
 	
 	
 	
@@ -87,11 +89,11 @@ public class BController {
 		}		
 		return "redirect:/board/exercise_free";
 	}
-	@PostMapping("/del")
-	public String del(@RequestParam("b_no")int b_no, Basic ba, RedirectAttributes rt) {
-		if(service.del(b_no)==1) {
-			rt.addFlashAttribute("result","success");
-		}
+//	@PostMapping("/del")
+//	public String del(@RequestParam("b_no")int b_no, Basic ba, RedirectAttributes rt) {
+//		if(service.del(b_no)==1) {
+//			rt.addFlashAttribute("result","success");
+//		}
 //		rt.addAttribute("pageNum", ba.getPageNum());
 //		rt.addAttribute("amount", ba.getAmount());
 //		rt.addAttribute("type", ba.getType());
@@ -99,35 +101,23 @@ public class BController {
 //		if(bo.getB_div().equals("일지")) {
 //			return "redirect:/board/exercise_diary";
 //		}		
-		return "redirect:/board/exercise_free";
-	}	
+//		return "redirect:/board/exercise_free";
+//	}	
+	
 	
 	
 	
 	@GetMapping("/exercise_diary")
-	public void e_diary() {
-		
-	}
-		
-	@GetMapping("/exercise_gym_way")
-	public void e_gymWay() {
-		
-	}
-	
-	@GetMapping("/exercise_home_way")
-	public void e_homeWay() {
-		
+	public void e_diary(Model m, HttpSession session, BVO b) {
+		List<BVO> bvodiary = service.BList_diary();
+		m.addAttribute("BListdiary", bvodiary);		
+	}	
+	@GetMapping("/exercise_free")
+	public void e_free(Model m, HttpSession session, BVO b) {
+		List<BVO> bvo = service.BList();
+		m.addAttribute("BList", bvo);
 	}
 	
-	@GetMapping("/exercise_honey_tip")
-	public void e_honeyTip() {
-		
-	}
-	
-	@GetMapping("/exercise_routine")
-	public void e_routine() {
-		
-	}
 	
 	
 	
@@ -150,22 +140,6 @@ public class BController {
 	
 	
 	
-	@GetMapping("/writer_gym")
-	public void w_gym() {
-		
-	}
-	
-	@GetMapping("/writer_home")
-	public void w_home() {
-		
-	}
-	
-	@GetMapping("/writer_routine")
-	public void w_routine() {
-		
-	}
-	
-	
 	
 	@GetMapping("/board_detail")
 	public void detail(@RequestParam("b_no") int b_no, Model m, HttpSession session, CVO c) {
@@ -177,6 +151,7 @@ public class BController {
 		m.addAttribute("getList", getList);
 		m.addAttribute("b_no", b_no);		
 	}
+	
 	
 	
 	
@@ -198,6 +173,7 @@ public class BController {
 	
 	
 	
+	
 	@GetMapping("/exercise_way")
 	public void exercise_way(Model m, HttpSession session, EVO e) {
 		List<EVO> getEList = dataService.getEList(e);
@@ -206,13 +182,7 @@ public class BController {
 	
 	
 	
-	@GetMapping("/exercise_free")
-	public void e_free(Model m, HttpSession session, BVO b) {
-		List<BVO> bvo = service.BList();
-		List<BVO> bvodiary = service.BList_diary();
-		m.addAttribute("BList", bvo);
-		m.addAttribute("BListdiary", bvodiary);
-	}
+
 	
 	@GetMapping("/map")
 	public void map() {

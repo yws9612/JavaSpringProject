@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=divice-width, initial-scale=1.0">
-<title>게시판 글쓰기</title>
+<title>부들부들 | 게시판 글쓰기</title>
 	<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
