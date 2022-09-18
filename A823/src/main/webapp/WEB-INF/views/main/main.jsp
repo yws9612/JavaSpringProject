@@ -120,7 +120,7 @@
 	    			<p class="card-text">카테고리 : <c:out value="${BVO.b_div}"/><br>
 	    			<c:out value="${BVO.b_con}"/></p>
 	    			<p class="card-text">조회수 <c:out value="${BVO.b_vc}"/></p>
-	    			<a href="${root }board/board_detail?bnum=${BVO.b_no }" class="btn btn-secondary btn-sm">자세히보기 »</a>
+	    			<a href="${root }board/board_detail?b_no=${BVO.b_no }" class="btn btn-secondary btn-sm">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
