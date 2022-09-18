@@ -41,7 +41,7 @@
         <li><a href="${root }board/exercise_way" class="nav-link px-auto link-dark fs-5 fw-bold">운동방법</a></li>
 		<li><a href="${root }board/exercise_free" class="nav-link px-auto link-dark fs-5 fw-bold">운동게시판</a></li>
 		<li><a href="${root }board/exercise_diary" class="nav-link px-auto link-dark fs-5 fw-bold">운동일지</a></li>
-		<li><a href="${root }gym/gym_list" class="nav-link px-auto link-dark fs-5 fw-bold">헬스장정보</a></li>
+		<li><a href="${root }board/gym_info" class="nav-link px-auto link-dark fs-5 fw-bold">헬스장정보</a></li>
       </ul>
 	  <div class="col-md-1"></div>
 	      <div class="dropdown text-end">

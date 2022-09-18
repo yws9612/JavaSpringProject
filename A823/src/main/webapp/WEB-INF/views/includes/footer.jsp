@@ -46,7 +46,7 @@
     </div>
     
     <div class="col-md-auto text-end">
-      <h5><a href="${root}board/map" class="nav-link p-0 text-muted">헬스장 정보</a></h5>
+      <h5><a href="${root}board/gym_info" class="nav-link p-0 text-muted">헬스장 정보</a></h5>
     </div>
     
   </footer>
