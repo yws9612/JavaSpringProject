@@ -192,7 +192,16 @@ public class BController {
 		return "redirect:/board/board_detail?b_no="+b_no;
 	}
 	
-
+	@ResponseBody
+	@PostMapping("/comment_update")
+	public Map<String,Object>
+		authCommentUpdate(HttpServletRequest request,
+				@ModelAttribute("CVO") CVO comment){
+		cservice.modify(comment);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true );
+		return map;
+	}
 	
 	@GetMapping("/map")
 	public void map() {

@@ -1,7 +1,6 @@
 <%@page import="co.sol.main.BVO"%>
 <%@page import="co.sol.main.CVO"%>
-<%@ page language="java" contentType="text/html;charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -12,9 +11,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>부들부들 | 게시글 상세보기</title>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+crossorigin="anonymous"></script>
 
 <style type="text/css">
 ul {
@@ -141,8 +139,21 @@ ul {
 											<a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글
 											</a>|
 											<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
-												<a href="${root}board/modifyComment" role="button" class="text-decoration-none" style="font-size: small;" id="modifyComment">수정</a>
+												<a href="javascript:"role="button" class="text-decoration-none" style="font-size: small;" id="comment-update-link">수정</a>
 												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+												<div>
+											</div>
+											</c:if>
+											
+										</div>
+										<div>
+											<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
+												<form class="comment-update-form" action="${root}board/comment_update" method="post">
+													<input type="hidden" name="c_no" value="${CVO.c_no}" />
+													<input type="hidden" name="b_no" value="${bdetail.b_no}" />
+													<textarea name="c_con">${CVO.c_con}</textarea>
+													<button type="submit">수정</button>
+												</form>
 											</c:if>
 										</div>
 									</div>
@@ -162,16 +173,24 @@ ul {
 												<c:out value="${CVO.c_con }" /></span>
 											</p>
 										</div>
+										<c:choose>
+											<c:when test="${CVO.c_writer eq sessionScope.user.u_id }">
+												<div class="col text-end">
+													<a href="javascript:" role="button"class="text-decoration-none" style="font-size: small;"id="comment-update-link">수정</a> 
+													<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}" role="button" class="text-decoration-none" style="font-size: small;" id="">삭제 </a>
+												</div>
+											</c:when>
+											<c:otherwise></c:otherwise>
+										</c:choose>
 										<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
-											<div class="col text-end">
-												<a href="${root}board/modifyComment" role="button"class="text-decoration-none" style="font-size: small;"id="modifyComment">수정</a> 
-												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}" role="button" class="text-decoration-none" style="font-size: small;" id="">삭제 </a>
+											<div>
+												<form class="comment-update-form" action="${root}board/comment_update" method="post">
+													<input type="hidden" name="c_no" value="${CVO.c_no}" />
+													<textarea name="c_con">${CVO.c_con}</textarea>
+													<input type="hidden" name="b_no" value="${bdetail.b_no}" />
+													<button type="submit">수정</button>
+												</form>
 											</div>
-											<form class="comment-update-form" action="comment_update">
-												<input type="hidden" name="c_no" value="${CVO.c_no}" />
-												<textarea name="c_con">${CVO.c_con}</textarea>
-												<button type="submit">수정</button>
-											</form>
 										</c:if>
 									</div>
 								</li>
@@ -230,6 +249,41 @@ $("#comments textarea").on("click", function(){
 			location.href="${pageContext.request.contextPath }/user/login";
 		}
 	}
+});
+
+$("#comment-update-link").click(function(){
+	$(this)
+	.parent().parent().parent()
+	.find(".comment-update-form")
+	.slideToggle(200);
+});
+
+$(".comment-update-form").on("submit", function(){
+	// "private/comment_update.do"
+	var url=$(this).attr("action");
+	//폼에 작성된 내용을 query 문자열로 읽어온다.
+	// num=댓글번호&content=댓글내용
+	var data=$(this).serialize();
+	//이벤트가 일어난 폼을 선택해서 변수에 담아 놓는다.
+	var $this=$(this);
+	$.ajax({
+		url:url,
+		method:"post",
+		data:data,
+		success:function(responseData){
+			// responseData : {isSuccess:true}
+			if(responseData.isSuccess){
+				//폼을 안보이게 한다 
+				$this.slideUp(200);
+				//폼에 입력한 내용 읽어오기
+				var content=$this.find("textarea").val();
+				//pre 요소에 수정 반영하기 
+				$this.parent().find("pre").text(content);
+			}
+		}
+	});
+	//폼 제출 막기 
+	return false;
 });
 
 
