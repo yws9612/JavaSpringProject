@@ -1,6 +1,7 @@
 package co.sol.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -23,13 +24,13 @@ public class GymServiceImpl implements GymService {
 	}
 
 	@Override
-	public List<RVO> getReview(GVO gym) {
-		return mpr.getReview(gym);
+	public List<Map<String, Object>> getReview(int g_no) {
+		return mpr.getReview(g_no);
 	}
 
 	@Override
-	public GVO getOneGym(GVO gym) {
-		return mpr.getOneGym(gym);
+	public GVO getOneGym(int g_no) {
+		return mpr.getOneGym(g_no);
 	}
 
 }

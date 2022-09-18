@@ -184,10 +184,7 @@ public class BController {
 	
 
 	
-	@GetMapping("/map")
-	public void map() {
-		
-	}
+
 	
 	
 }

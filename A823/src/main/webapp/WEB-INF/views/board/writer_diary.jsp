@@ -21,6 +21,10 @@
 
 
 <c:import url="/WEB-INF/views/includes/header.jsp"/>
+
+
+<c:if test="${not empty sessionScope.user.u_id }">
+
     
     
     
@@ -82,6 +86,9 @@
 	
 	
 </div>
+
+
+</c:if>
 
    		<script>
 			$(document).ready(function() {
