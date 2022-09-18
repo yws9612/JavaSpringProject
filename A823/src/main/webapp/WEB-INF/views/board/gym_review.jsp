@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>후기</title>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
+  <title>부들부들 | 헬스장후기</title>
 
 <!-- 별점을 위한 css -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" 
+integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 <style>
 
@@ -54,68 +55,29 @@
 }
 </style>
 
-
 </head>
-
 <body>
 
-<br/><br/>
+<!-- HEADER -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
 
-<div class="container mt-3">
+
+<div class="container" style="margin-top:120px; margin-bottom: 40px;">
 <div class="row d-flex justify-content-center">
 <div class="col-md-5">
 
 <div class="shadow p-4 bg-white rounded">
-<h3>상세정보</h3><br>
+<h4><c:out value="${getOneGym.g_name }"/></h4>
+<hr>
 <p class="mt10 mb10">
-      <span class="bold">상호명</span> : 스포애니 테헤란로점 <br/>
-      <span class="bold">주소</span> : 서울 강남구 언주로 807 소촌빌딩 6층 <br/>
-      <span class="bold">전화번호</span> : 02-1234-5678 <br/>
+      <span class="bold"><i class="bi bi-geo-alt"></i></span> <span class="text-primary"><c:out value="${getOneGym.g_post }"/></span> <c:out value="${getOneGym.g_addr }"/> <br/>
+      <span class="bold"><i class="bi bi-telephone"></i></span> <c:out value="${getOneGym.g_call }"/> <br/>
 </p>
-<br><br>
 <!-- 카카오맵 -->
 <div data-viewid="findway" data-root="" class="cont_findway">
-<h3 class="tit_subject">찾아가는 길</h3>
+<h5 class="tit_subject">찾아가는 길</h5>
 <div id="map" style="width:100%;height:250px;"></div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0dd8333a7bf035084aa14ad40915b52d&libraries=services"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('서울 강남구 언주로 807 소촌빌딩 6층', function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">스포애니 테헤란로점</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
-</script></div>
+</div>
 <br><br>
 
 <div class="d-flex justify-content-between align-items-center">
@@ -194,8 +156,50 @@ geocoder.addressSearch('서울 강남구 언주로 807 소촌빌딩 6층', funct
 
 <!-- 코멘트 1개 끗 --><hr>
 
-
 </div></div></div></div>
 
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
+
+<!-- 지도관련 script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0dd8333a7bf035084aa14ad40915b52d&libraries=services"></script>
+<script type="text/javascript">
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('서울 강남구 언주로 807 소촌빌딩 6층', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">스포애니 테헤란로점</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
 </body>
 </html>

@@ -8,7 +8,7 @@ import co.sol.main.RVO;
 public interface GymService {
 	
 	List<GVO> getList(String search);
-	List<RVO> getReview(GVO gym);
-	GVO getOneGym(GVO gym);
+	List<RVO> getReview(int g_no);
+	GVO getOneGym(int g_no);
 
 }

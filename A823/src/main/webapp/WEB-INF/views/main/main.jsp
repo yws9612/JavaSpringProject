@@ -17,7 +17,7 @@
 
 </head>
 <body>
-
+<!-- HEADER -->
 <c:import url="/WEB-INF/views/includes/header.jsp"/>
 
   <div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel" style="margin-top:80px;">
@@ -35,7 +35,7 @@
       </div>
       
       <div class="carousel-item active">
-      	<a href="${root }board/map">
+      	<a href="${root }board/gym_info">
         <img src="/resources/img/ad/ad02.png" class="d-md-block w-100 active" alt="광고사진">
         </a>
       </div>
@@ -116,9 +116,15 @@
 	  			<img src="/resources/img/category/diary.png" class="card-img-top" alt="사진오류">
 	  			</c:if>
 	  			<div class="card-body">
-	    			<h5 class="card-title"><c:out value="${BVO.b_title}"/></h5>
-	    			<p class="card-text">카테고리 : <c:out value="${BVO.b_div}"/><br>
-	    			<c:out value="${BVO.b_con}"/></p>
+	    			<h5 class="card-title">[<c:out value="${BVO.b_div}"/>] <c:out value="${BVO.b_title}"/></h5>
+	    			<p class="card-text" style="display:-webkit-box;
+				    -webkit-line-clamp:3;
+				    -webkit-box-orient:vertical;
+				    width:100%;
+				    height:100%;
+				    line-height:20px;
+				    overflow:hidden;
+				    text-overflow:ellipsis;"><c:out value="${BVO.b_con}" escapeXml="false"/></p>
 	    			<p class="card-text">조회수 <c:out value="${BVO.b_vc}"/></p>
 	    			<a href="${root }board/board_detail?b_no=${BVO.b_no }" class="btn btn-secondary btn-sm">자세히보기 »</a>
 	  			</div>
