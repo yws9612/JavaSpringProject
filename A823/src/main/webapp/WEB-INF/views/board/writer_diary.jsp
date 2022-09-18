@@ -58,17 +58,19 @@
 		<!-- <label for="writer">작성자</label>-->
 		<input type="hidden" value="${sessionScope.user.u_id}" 
 				id="writer" name="b_writer">
+		<!-- 임시 b_eno -->
+		<input type="hidden" value="" name="b_eno">
 
 
 		<div class="form-check form-switch">
-			<input class="form-check-input" name="b_open" type="checkbox" id="flexSwitchCheckDefault">
+			<input class="form-check-input" name="b_open" type="checkbox" id="flexSwitchCheckDefault" value="N">
 			<label class="form-check-label" for="flexSwitchCheckDefault">비공개</label>
 		</div>	
 		
 		
 		<div>   
 			<button class="btn btn-primary btn-sm text-end" type="submit">등록</button>
-			<button class="btn btn-primary btn-sm text-end" onclick="location.href='board_list'">목록</button>
+			<button class="btn btn-primary btn-sm text-end" onclick="location.href='/board/exercise_diary'">목록</button>
 		</div> 		
 		
 				
@@ -113,7 +115,6 @@
       			     e.preventDefault();
       			});
     		});
-    		//$('#summernote').summernote('pasteHTML', data); 수정페이지용
     	</script>	
     	
     	

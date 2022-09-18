@@ -38,60 +38,70 @@ public class BController {
 	
 	//BoardFolder
 	@GetMapping("/list")
-	public void list(Model m, Basic ba) {
-		
+	public void list(Model m, Basic ba) {		
 		m.addAttribute("list", service.getPage(ba));
-		m.addAttribute("pp", new PageDTO(ba, service.getTotal(ba)));
-
-		
+		m.addAttribute("pp", new PageDTO(ba, service.getTotal(ba)));		
 	}
+	
+	
+	
 	@GetMapping("/submit")
-	public void sub() {}
-	
-
+	public void sub() {		
+	}
 	@PostMapping("/submit")
-	public String submit(BVO bv, RedirectAttributes rt) {
-		
-		int bnum=service.submit(bv);
-		
-		rt.addFlashAttribute("result", bnum);
-		
-		return "redirect:/board/list";
-				
+	public String submit(BVO bv, RedirectAttributes rt) {		
+		int b_no=service.submit(bv);		
+		rt.addFlashAttribute("result", b_no);		
+		return "redirect:/board/list";				
 	}
+	
+	
+	
 	@GetMapping({"/get", "/modify"})
-	public void get(@RequestParam("bnum") int bnum, @ModelAttribute("ba") Basic ba, Model m ) {
-		m.addAttribute("board" ,service.get(bnum));
-	}
-	
-	
+	public void get(@RequestParam("b_no") int b_no, @ModelAttribute("ba") Basic ba, Model m ) {
+		m.addAttribute("board" ,service.get(b_no));
+	}	
 	@PostMapping("/modify")
 	public String modify(BVO bo, Basic ba, RedirectAttributes rt) {
-
-		if(service.modify(bo)==1) {
-			rt.addFlashAttribute("result", "����");
-			
-		}
-		 rt.addAttribute("pageNum", ba.getPageNum());
-		 rt.addAttribute("amount", ba.getAmount());
-		 rt.addAttribute("type", ba.getType());
-		 rt.addAttribute("keyword", ba.getKeyword());
-		return "redirect:/board/list";
+//		if(service.modify(bo)==1) {
+//			rt.addFlashAttribute("result", "success");
+//		}
+//		 rt.addAttribute("pageNum", ba.getPageNum());
+//		 rt.addAttribute("amount", ba.getAmount());
+//		 rt.addAttribute("type", ba.getType());
+//		 rt.addAttribute("keyword", ba.getKeyword());
+		int tmp=service.modify(bo);
+		if(bo.getB_div().equals("일지")) {
+			return "redirect:/board/exercise_diary";
+		}		
+		return "redirect:/board/exercise_free";
 	}
 	
+	@GetMapping("/delete")
+	public String delete(@RequestParam("b_no")int b_no, @RequestParam("b_div")String b_div) {
+		int tmp=service.del(b_no);
+		if(b_div.equals("일지")) {
+			return "redirect:/board/exercise_diary";
+		}		
+		return "redirect:/board/exercise_free";
+	}
 	@PostMapping("/del")
-	public String del(@RequestParam("bnum")int bnum, Basic ba, RedirectAttributes rt) {
+	public String del(@RequestParam("b_no")int b_no, Basic ba, RedirectAttributes rt) {
 		
-		if(service.del(bnum)==1) {
-			rt.addFlashAttribute("result","����");
+		if(service.del(b_no)==1) {
+			rt.addFlashAttribute("result","success");
 		}
 		
-		rt.addAttribute("pageNum", ba.getPageNum());
-		rt.addAttribute("amount", ba.getAmount());
-		rt.addAttribute("type", ba.getType());
-		 rt.addAttribute("keyword", ba.getKeyword());
-		return "redirect:/board/list";
+//		rt.addAttribute("pageNum", ba.getPageNum());
+//		rt.addAttribute("amount", ba.getAmount());
+//		rt.addAttribute("type", ba.getType());
+//		rt.addAttribute("keyword", ba.getKeyword());
+//		if(bo.getB_div().equals("일지")) {
+//			return "redirect:/board/exercise_diary";
+//		}		
+		return "redirect:/board/exercise_free";
 	}	
+	
 	
 	@GetMapping("/exercise_diary")
 	public void e_diary() {
@@ -131,7 +141,10 @@ public class BController {
 	@PostMapping("/new_board")
 	public String new_diary(@ModelAttribute("board") BVO board) {
 		int bno=service.submit(board);
-		return "redirect:/board/list";
+		if(board.getB_div().equals("일지")) {
+			return "redirect:/board/exercise_diary";
+		}		
+		return "redirect:/board/exercise_free";
 	}
 	
 	
@@ -152,14 +165,14 @@ public class BController {
 	}
 	
 	@GetMapping("/board_detail")
-	public void detail(@RequestParam("bnum") int b_no, Model m, HttpSession session, CVO c) {
+	public void detail(@RequestParam("b_no") int b_no, Model m, HttpSession session, CVO c) {
 		BVO bvo = service.get(b_no);
 		List<CVO> getList=cservice.getList(b_no);
 		
 		System.out.println(getList);
 		m.addAttribute("bdetail", bvo);
 		m.addAttribute("getList", getList);
-		
+		m.addAttribute("b_no", b_no);		
 	}
 	
 	@PostMapping("/c_insert")
@@ -174,7 +187,7 @@ public class BController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ModelAndView mv = new ModelAndView("redirect:/board/board_detail?bnum=" + b_no);
+		ModelAndView mv = new ModelAndView("redirect:/board/board_detail?b_no=" + b_no);
 		return mv;
 	}
 	

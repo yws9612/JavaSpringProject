@@ -52,7 +52,7 @@
 					<c:forEach items="${BList}" var="bvo">
 						<tr>
 							<td><c:out value="${bvo.b_no }"/></td>
-							<td style="text-align: left;"><a href="${root }board/board_detail?bnum=${bvo.b_no }">[<c:out value="${bvo.b_div }"/>] <c:out value="${bvo.b_title }"/></a></td>
+							<td style="text-align: left;"><a href="${root }board/board_detail?b_no=${bvo.b_no }">[<c:out value="${bvo.b_div }"/>] <c:out value="${bvo.b_title }"/></a></td>
 							<td><c:out value="${bvo.b_writer }"/></td>
 							<td><fmt:formatDate value="${bvo.b_udate}" pattern="yyyy. MM. dd"/></td>
 							<td><c:out value="${bvo.b_vc }"/></td>

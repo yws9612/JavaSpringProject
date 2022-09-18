@@ -15,7 +15,7 @@ public class BVO {
 	private Date b_wdate;
 	private Date b_udate;
 	private String b_eno;
-	private boolean b_open;
+	private String b_open;
 	private int b_vc;
 	
 	

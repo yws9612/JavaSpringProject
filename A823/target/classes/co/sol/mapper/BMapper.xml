@@ -39,7 +39,7 @@
 		</selectKey>
 		insert into b_table values 
 			(#{b_no}, #{b_div}, #{b_title}, #{b_con}, #{b_writer}, 
-			CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '', 'Y', 0)
+			CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{b_eno}, #{b_open}, 0)
 	</insert>
 	
 	
@@ -60,7 +60,7 @@
 	<update id="del">
 		update b_table
 		set b_title='삭제된 게시글 입니다.', b_con='삭제된 게시글 입니다.',
-		b_writer='unknown', b_udate=sysdate, b_open='N'
+		b_writer='unknown', b_udate=CURRENT_TIMESTAMP, b_open='N'
 		where b_no=#{b_no}
 	</update>
 
@@ -70,7 +70,7 @@
 	<update id="up">
 		update b_table
 		set b_title=#{b_title}, b_con=#{b_con},
-		b_udate=sysdate, b_eno=#{b_eno}, b_open=#{b_open}
+		b_udate=CURRENT_TIMESTAMP, b_eno=#{b_eno}, b_open=#{b_open}
 		where b_no=#{b_no}
 	</update>
 

@@ -35,20 +35,38 @@ ul {
 	<c:choose>
 		<c:when test="${bdetail.b_writer eq sessionScope.user.u_id }">
 			<div class="row">
-			<div class="col text-start">
-			<a href="/board/exercise_free" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
+			
+			<div class="col text-start">			
+				<c:choose>    
+					<c:when test="${bdetail.b_div eq '일지'}">
+		    			<a href="/board/exercise_diary" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
+		    		</c:when>
+		    		
+		    		<c:otherwise>
+		    			<a href="/board/exercise_free" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
+		    		</c:otherwise>    	
+		    	</c:choose>   	
 			</div>
+			
 			<div class="col text-end">
-			<a href="modify" class="btn btn-primary btn-sm text-end">수정</a>
-			<a href="delete" class="btn btn-secondary btn-sm text-end">삭제</a>
+				<a href="modify?b_no=${bdetail.b_no}" class="btn btn-primary btn-sm text-end">수정</a>
+				<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}" class="btn btn-secondary btn-sm text-end">삭제</a>
 			</div>
 			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="row">
-			<div class="col text-start">
-			<a href="/board/exercise_free" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
-			</div>
+			<div class="col text-start">			
+				<c:choose>    
+					<c:when test="${bdetail.b_div eq '일지'}">
+		    			<a href="/board/exercise_diary" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
+		    		</c:when>
+		    		
+		    		<c:otherwise>
+		    			<a href="/board/exercise_free" class="btn btn-outline-primary btn-sm"><i class="bi bi-list"></i></a>
+		    		</c:otherwise>   	
+		    	</c:choose> 
+		    	</div>
 			</div>
 		</c:otherwise>
 	</c:choose>
@@ -70,7 +88,7 @@ ul {
 			</thead>
 			<tbody>
 			<tr>
-				<td colspan="4"><c:out value="${bdetail.b_con}"/></td>
+				<td colspan="4"><c:out value="${bdetail.b_con}" escapeXml="false"/></td>
 			</tr>
 			</tbody>
 	</table><!-- 게시글 상세보기 테이블 끝 -->
