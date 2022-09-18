@@ -11,8 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>부들부들 | 게시글 상세보기</title>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <style type="text/css">
 ul {
@@ -186,7 +185,7 @@ ul {
 											<div>
 												<form class="comment-update-form" action="${root}board/comment_update" method="post">
 													<input type="hidden" name="c_no" value="${CVO.c_no}" />
-													<textarea name="c_con">${CVO.c_con}</textarea>
+													<textarea class="content" name="c_con">${CVO.c_con}</textarea>
 													<input type="hidden" name="b_no" value="${bdetail.b_no}" />
 													<button type="submit">수정</button>
 												</form>
@@ -269,6 +268,7 @@ $(".comment-update-form").on("submit", function(){
 	$.ajax({
 		url:url,
 		method:"post",
+		async:false,
 		data:data,
 		success:function(responseData){
 			// responseData : {isSuccess:true}
@@ -278,7 +278,7 @@ $(".comment-update-form").on("submit", function(){
 				//폼에 입력한 내용 읽어오기
 				var content=$this.find("textarea").val();
 				//pre 요소에 수정 반영하기 
-				$this.parent().find("pre").text(content);
+				$this.parent().find("span").text(content);
 			}
 		}
 	});
