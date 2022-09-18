@@ -60,6 +60,10 @@
 					</c:forEach>
 					</tbody>
 				</table>
+				
+				<p>
+					<a href="writer_diary" class="btn btn-primary btn-sm text-end">글쓰기</a>				
+				</p>
 		</div>
 	</div>
 
