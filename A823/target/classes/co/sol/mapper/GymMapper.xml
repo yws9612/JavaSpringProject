@@ -22,9 +22,11 @@
 	<!--g_no 오름차순으로 정렬된 모든 헬스장의 모든 정보를 가져옵니다. 주소(search)를 input할 경우 필터링 하여 가져옵니다.  -->
 	<select id="getList" resultType="co.sol.main.GVO">
 		select /*+INDEX_ASC(g_table SYS_C0031863) */ * from g_table
+		<!--
 		<if test="search!=null">
 			where g_addr like '%'||#{search}||'%'
 		</if>
+		-->
 	</select>
 	
 	

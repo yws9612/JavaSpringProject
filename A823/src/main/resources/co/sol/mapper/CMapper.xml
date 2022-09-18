@@ -19,7 +19,7 @@
 		</selectKey>		
 		insert into c_table values 
 			(c_no, #{c_writer}, #{c_con}, #{b_no}, #{c_level}+1, 
-			1, sysdate, sysdate)
+			1, current_date, current_date)
 	</insert>
 
 
@@ -35,7 +35,7 @@
 		</selectKey>			
 		insert into c_table values 
 			(c_no, #{c_writer}, #{c_con}, #{b_no}, #{c_level}+1, 
-			2, sysdate, sysdate)
+			2, current_date, current_date)
 	</insert>
 	
 	
@@ -49,7 +49,7 @@
 	
 	<!--댓글 삭제를 실행했을 때 실행되는 쿼리문 입니다. 삭제된 댓글로 업데이트 됩니다. -->
 	<update id="delete">
-		update c_table set c_con = '삭제된 댓글입니다.', c_writer = 'unknown', c_udate= sysdate
+		update c_table set c_con = '삭제된 댓글입니다.', c_writer = 'unknown', c_udate=current_date
 		where c_no = #{c_no} 
 	</update>
 	
@@ -59,7 +59,7 @@
 		</selectKey>		
 		INSERT INTO c_table VALUES 
 			(#{c_no}, #{c_writer}, #{c_con}, #{b_no}, #{c_level}, 
-			1, SYSDATE, SYSDATE)
+			1, current_date, current_date)
 	</insert>
 
 

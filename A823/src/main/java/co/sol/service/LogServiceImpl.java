@@ -1,6 +1,7 @@
 package co.sol.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class LogServiceImpl implements LogService {
 	private final LogMapper mpr;
 
 	@Override
-	public List<LVO> getList(UVO user) {
+	public List<Map<String, Object>> getList(UVO user) {
 		return mpr.getList(user);
 	}
 

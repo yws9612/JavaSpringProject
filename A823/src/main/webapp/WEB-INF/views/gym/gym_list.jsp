@@ -4,68 +4,19 @@
  
 <!DOCTYPE html>
 <html>
-​
-​
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>후기</title>
-​<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
-​
-<!-- 별점을 위한 css -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-​
-<style>
-​
-.rating {
-  font-family: 'Font Awesome 5 Free';
-  color: #ffce67;
-  margin-bottom: 5px;
-  font-size: 0;
-  position: relative;
-  width: 130px;
-  direction: rtl;
-}
-​
-.rating input {
-  display: none;
-}
-​
-.rating label {
-  width: 13px;
-  font-size: 24px;
-  display: inline-block;
-   overflow: hidden;
-  cursor: pointer;
-}
-​
-.rating label:before{
-  content: "\f005";
-}
-​
-.rating :checked ~ label, .rating label:hover, .rating label:hover ~ label {
-  font-weight: 900;
-}
-​
-.rating label:hover, .rating label:hover ~ label {
-  color: #ffce67;
-}
-​
-.rating label:nth-of-type(2n){
-  text-indent: -13px;
-}
-</style>
-<script type="text/javascript">
-frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
- 
-</script>
-​
-</head>
-​
-<body>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>부들부들 | 헬스장 찾기</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
+		
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		
+	<script type="text/javascript">
+		frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
+	</script>  
     <script>
       function optionChange() {
         var a = ["전체", "강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
@@ -93,35 +44,35 @@ frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
         } else if ( v == 'b' ) {
           o = b;
         } else if ( v == 'c' ) {
-            o = c;
+          o = c;
         } else if ( v == 'd' ) {
-            o = d;
+          o = d;
         } else if ( v == 'e' ) {
-            o = e;
+          o = e;
         } else if ( v == 'f' ) {
-            o = f;
+          o = f;
         } else if ( v == 'g' ) {
-            o = g;
+          o = g;
         } else if ( v == 'h' ) {
-            o = h;
+          o = h;
         } else if ( v == 'i' ) {
-            o = i;
+          o = i;
         } else if ( v == 'j' ) {
-            o = j;
+          o = j;
         } else if ( v == 'k' ) {
-            o = k;
+          o = k;
         } else if ( v == 'l' ) {
-            o = l;
+          o = l;
         } else if ( v == 'm' ) {
-            o = m;
-          } else if ( v == 'n' ) {
-              o = n;
-          } else if ( v == 'o' ) {
-              o = o;
-          } else if ( v == 'p' ) {
-              o = p;
-          } else if ( v == 'q' ) {
-              o = q;
+          o = m;
+        } else if ( v == 'n' ) {
+          o = n;
+        } else if ( v == 'o' ) {
+          o = o;
+        } else if ( v == 'p' ) {
+          o = p;
+        } else if ( v == 'q' ) {
+          o = q;
         } else {
           o = [];
         }
@@ -132,60 +83,86 @@ frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
         }
       }
     </script>
-<br/><br/>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<c:import url="/WEB-INF/views/includes/header.jsp" />
+
+
 ​
 <div class="container mt-3">
 <div class="row d-flex justify-content-center">
-<div class="col-md-5">
-​
+<div class="col-md-5">​
 <div class="shadow p-4 bg-white rounded">
-<h3>헬스장위치</h3><br>
-        <fieldset>
-           <div>
-              <form>
-                         <p>
-      <select style="width:200px;" id="s1" onchange="optionChange();">
-        <option></option>
-        <option value="none" selected="selected" >=== 시/도 ===</option>
-        <option value="k">강원도</option>
-        <option value="j">경기도</option>
-        <option value="l">경상남도</option>
-        <option value="m">경상북도</option>
-        <option value="d">광주</option>
-         <option value="e">대구</option>
-        <option value="c">대전</option>
-        <option value="a">서울</option>
-        <option value="g">세종</option>
-        <option value="f">부산</option>
-        <option value="h">울산</option>
-        <option value="b">인천</option>
-        <option value="n">전라남도</option>
-        <option value="o">전라북도</option>
-        <option value="i">제주</option>
-        <option value="p">충청남도</option>
-        <option value="q">충청북도</option>
-        
-      </select>
-      <select style="width:200px;" id="s2">
-        <option></option>
-      </select><input type="button" value="검색">
-    </p></form></div></fieldset>
+
+	<h3>헬스장 찾기</h3>
+	<br>
+	<fieldset>
+		<div>
+			<form>
+				<p>
+					<select style="width:200px;" id="s1" onchange="optionChange();">
+						<option></option>
+						<option value="none" selected="selected" >=== 시/도 ===</option>
+						<option value="k">강원도</option>
+						<option value="j">경기도</option>
+						<option value="l">경상남도</option>
+						<option value="m">경상북도</option>
+						<option value="d">광주</option>
+						<option value="e">대구</option>
+						<option value="c">대전</option>
+						<option value="a">서울</option>
+						<option value="g">세종</option>
+						<option value="f">부산</option>
+						<option value="h">울산</option>
+						<option value="b">인천</option>
+						<option value="n">전라남도</option>
+						<option value="o">전라북도</option>
+						<option value="i">제주</option>
+						<option value="p">충청남도</option>
+						<option value="q">충청북도</option>        
+					</select>
+					
+					<select style="width:200px;" id="s2">
+						<option></option>
+					</select>
+					<input type="button" value="검색">
+    			</p>
+    		</form>
+    	</div>
+    </fieldset>
+    
 ​
-              <table class="register01" summary="">
-              <colgroup>
-                 <col width="300" />
-                 <col width="600" />
-              </colgroup>
-              <tbody>
- 
-              <ol>
-   <c:forTokens var="item" items="스포애니테헤란로점,스포애니대치동점,스포애니논현역점,크로스핏강남언주점,크로스핏라임라잇" delims=",">
-       <li> <a class="m" href='<c:out value="${item}&${item}$${item}"/>'>
-                    <c:out value="${item}"/></a></li>
-   </c:forTokens>
-     </ol>
-                 
-                 
-     </tbody>
+	<table class="register01">
+		<c:forEach items="${glist}" var="gvo">
+			<tr>
+				<td>
+					<a href="${root }gym_detail?g_no=${gvo.g_no }">
+						<c:out value="${gvo.g_name }"/>
+					</a>
+				</td>
+				<td>
+					<c:out value="${gvo.g_call }"/>
+					<br>
+					<c:out value="${gvo.g_addr }"/>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	
+	
+</div></div></div></div> 
+
+
+
+
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp" />
+
+
+
 </body>
 </html>
