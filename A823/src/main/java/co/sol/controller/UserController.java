@@ -201,8 +201,12 @@ public class UserController {
 	
 	//MyPage
 	@GetMapping("/myPage")  
-	public void myPage() {  
-		  
+	public String myPage(HttpSession session) {
+		UserInfo user=(UserInfo)session.getAttribute("user");
+		if(user.getU_id().equals("admin")) {
+			return "/admin/chart";
+		}
+		return "/user/myPage";		  
 	} 
 
 	@ResponseBody

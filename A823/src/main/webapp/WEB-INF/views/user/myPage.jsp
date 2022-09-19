@@ -5,6 +5,7 @@
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
+<title>부들부들 | 마이 페이지</title>
 
 <head>
 <script type="text/javascript"
