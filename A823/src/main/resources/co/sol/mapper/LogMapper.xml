@@ -3,7 +3,7 @@
 
 <mapper namespace="co.sol.mapper.LogMapper">
 
-	<!--로그를 가져올 때 결과값을 받기 위한 map입니다. -->
+	<!--로그를 가져올 때 결과값을 받기 위한 map입니다. 
 	<resultMap type="co.sol.main.BVO" id="joinboard">
 		<result column="b_title" property="b_title"/>
 		<result column="b_writer" property="b_writer"/>
@@ -17,18 +17,19 @@
 		<result column="l_date" property="l_date"/>
 		<collection property="joinboard"/>
 	</resultMap>
-	
+	-->
 	
 	
 	<!--특정 u_no의 모든 로그를 최신순으로 가져옵니다. 
 	b_table과 join하여 게시글의 제목과 작성자 id도 함께 가져옵니다.  -->
-	<select id="getList" resultMap="log">
+	<select id="getList" resultType="co.sol.main.LVO">
 		-<![CDATA[
 		select /*+INDEX_DESC(l_table SYS_C0031914) */ 
 		u_no, b_no, l_reno, l_div, l_date, b_title, b_writer 
 		from l_table natural join b_table 
 		where u_no = #{u_no}
 		]]> 
+		<!-- 
 		<trim prefix="and">
 			<choose>
 				<when test="select=='scrap'.toString()">
@@ -42,6 +43,7 @@
 				</when>
 			</choose>
 		</trim>
+		 -->
 	</select>
 	
 	

@@ -39,7 +39,7 @@
 		</selectKey>
 		insert into b_table values 
 			(#{b_no}, #{b_div}, #{b_title}, #{b_con}, #{b_writer}, 
-			CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, #{b_eno}, #{b_open}, 0)
+			current_date, current_date, #{b_eno}, #{b_open}, 0)
 	</insert>
 	
 	
@@ -60,7 +60,7 @@
 	<update id="del">
 		update b_table
 		set b_title='삭제된 게시글 입니다.', b_con='삭제된 게시글 입니다.',
-		b_writer='unknown', b_udate=CURRENT_TIMESTAMP, b_open='N'
+		b_writer='unknown', b_udate=current_date, b_open='N'
 		where b_no=#{b_no}
 	</update>
 
@@ -70,7 +70,7 @@
 	<update id="up">
 		update b_table
 		set b_title=#{b_title}, b_con=#{b_con}, b_div=#{b_div},
-		b_udate=CURRENT_TIMESTAMP, b_eno=#{b_eno}, b_open=#{b_open}
+		b_udate=current_date, b_eno=#{b_eno}, b_open=#{b_open}
 		where b_no=#{b_no}
 	</update>
 
@@ -114,7 +114,7 @@
 	
 	<!-- 조회수가 높은 게시글 5개를 가져옵니다. 메인화면에서 사용합니다. -->
 	<select id="topList" resultType="co.sol.main.BVO">
-		select * from b_table order by b_vc desc fetch first 5 rows only
+		select * from b_table where b_writer != 'unknown' order by b_vc desc fetch first 5 rows only
 	</select>
 	
 	<select id="BList" resultType="co.sol.main.BVO">

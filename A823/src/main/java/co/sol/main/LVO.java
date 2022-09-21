@@ -13,5 +13,8 @@ public class LVO {
 	private int l_reno;
 	private int l_div;
 	private Date l_date;
+	
+	private String b_title;
+	private String b_writer;
 
 }

@@ -23,10 +23,13 @@ import co.sol.main.BVO;
 import co.sol.main.Basic;
 import co.sol.main.CVO;
 import co.sol.main.EVO;
+import co.sol.main.GVO;
 import co.sol.main.PageDTO;
+import co.sol.main.RVO;
 import co.sol.service.BService;
 import co.sol.service.CService;
 import co.sol.service.DataService;
+import co.sol.service.GymService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -39,6 +42,7 @@ public class BController {
 	private final BService service;
 	private final CService cservice;
 	private final DataService dataService;
+	private final GymService gymService;
 	
 	//BoardFolder
 	@GetMapping("/list")
@@ -203,8 +207,11 @@ public class BController {
 		return map;
 	}
 	
-	@GetMapping("/map")
-	public void map() {
+	@GetMapping("/gym_review")
+	public void gym_review(@RequestParam("g_no") int g_no, Model m, HttpSession session) {
+		GVO getOneGym = gymService.getOneGym(g_no);
+		
+		m.addAttribute("getOneGym",getOneGym);
 		
 	}
 	

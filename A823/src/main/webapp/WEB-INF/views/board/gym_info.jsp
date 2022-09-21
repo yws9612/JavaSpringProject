@@ -1,20 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
- 
 <!DOCTYPE html>
 <html>
-​
-​
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>후기</title>
+ <title>부들부들 | 헬스장정보</title>
 ​<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
-​
-<!-- 별점을 위한 css -->
+​<!-- 별점을 위한 css -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 ​
 <style>
@@ -57,16 +55,76 @@
   text-indent: -13px;
 }
 </style>
+
 <script type="text/javascript">
-frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
- 
+	frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
 </script>
+​</head>
+
+​<body>
+<!-- HEADER -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
 ​
-</head>
-​
-<body>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
+<div class="container" style="margin-top:120px; margin-bottom:40px;">
+	<div class="row d-flex justify-content-center">
+		<div class="col-md-7 shadow p-4 bg-white rounded">
+			<h3>헬스장정보</h3><br>
+        	<fieldset>
+           	<div>
+              <form action="getGymList" method="get">
+              <p> <select style="width:200px;" id="s1" onchange="optionChange();">
+				        <option value="none" selected="selected" >=== 시/도 ===</option>
+				        <option value="k">강원도</option>
+				        <option value="j">경기도</option>
+				        <option value="l">경상남도</option>
+				        <option value="m">경상북도</option>
+				        <option value="d">광주</option>
+				        <option value="e">대구</option>
+				        <option value="c">대전</option>
+				        <option value="a">서울</option>
+				        <option value="g">세종</option>
+				        <option value="f">부산</option>
+				        <option value="h">울산</option>
+				        <option value="b">인천</option>
+				        <option value="n">전라남도</option>
+				        <option value="o">전라북도</option>
+				        <option value="i">제주</option>
+				        <option value="p">충청남도</option>
+				        <option value="q">충청북도</option>
+      			</select>
+      			<select style="width:200px;" id="s2">
+        		<option></option>
+      			</select>
+      			<input type="button" class="btn btn-primary" value="검색"></p>
+      			<input type="hidden" value="">
+      		</form>
+      	</div>
+      	</fieldset>
+​              <table class="register01" summary="">
+              <colgroup>
+                 <col width="300" />
+                 <col width="600" />
+              </colgroup>
+              <tbody>
+ 				<tr><td>
+              	<ol>
+              		<!--<c:forEach var="" items="getList">
+              		<li> 
+	       				<a class="m" href="board/gym_review?g_no=${getList.g_no }">
+	                    <c:out value="${item}"/></a>
+	                </li>
+              		</c:forEach>-->
+    		 	</ol>
+              	</td></tr>   
+     		</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
+
+<script type="text/javascript">
       function optionChange() {
         var a = ["전체", "강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
         var b = ["전체", "중구","동구","미추홀구","연수구","남동구","부평구","계양구","서구","강화군","옹진군"];
@@ -131,61 +189,7 @@ frm.textValue.value = frm.selectBox.options[frm.selectBox.selectedIndex].text;
           $( '#s2' ).append( '<option>' + o[ i ] + '</option>' );
         }
       }
-    </script>
-<br/><br/>
-​
-<div class="container mt-3">
-<div class="row d-flex justify-content-center">
-<div class="col-md-5">
-​
-<div class="shadow p-4 bg-white rounded">
-<h3>헬스장위치</h3><br>
-        <fieldset>
-           <div>
-              <form>
-                         <p>
-      <select style="width:200px;" id="s1" onchange="optionChange();">
-        <option></option>
-        <option value="none" selected="selected" >=== 시/도 ===</option>
-        <option value="k">강원도</option>
-        <option value="j">경기도</option>
-        <option value="l">경상남도</option>
-        <option value="m">경상북도</option>
-        <option value="d">광주</option>
-         <option value="e">대구</option>
-        <option value="c">대전</option>
-        <option value="a">서울</option>
-        <option value="g">세종</option>
-        <option value="f">부산</option>
-        <option value="h">울산</option>
-        <option value="b">인천</option>
-        <option value="n">전라남도</option>
-        <option value="o">전라북도</option>
-        <option value="i">제주</option>
-        <option value="p">충청남도</option>
-        <option value="q">충청북도</option>
-        
-      </select>
-      <select style="width:200px;" id="s2">
-        <option></option>
-      </select><input type="button" value="검색">
-    </p></form></div></fieldset>
-​
-              <table class="register01" summary="">
-              <colgroup>
-                 <col width="300" />
-                 <col width="600" />
-              </colgroup>
-              <tbody>
- 
-              <ol>
-   <c:forTokens var="item" items="스포애니테헤란로점,스포애니대치동점,스포애니논현역점,크로스핏강남언주점,크로스핏라임라잇" delims=",">
-       <li> <a class="m" href='<c:out value="${item}&${item}$${item}"/>'>
-                    <c:out value="${item}"/></a></li>
-   </c:forTokens>
-     </ol>
-                 
-                 
-     </tbody>
+</script>
+
 </body>
 </html>

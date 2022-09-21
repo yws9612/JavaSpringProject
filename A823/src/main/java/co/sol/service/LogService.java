@@ -1,13 +1,14 @@
 package co.sol.service;
 
 import java.util.List;
+import java.util.Map;
 
 import co.sol.main.LVO;
 import co.sol.main.UVO;
 
 public interface LogService {
 	
-	List<LVO> getList(UVO user);
+	List<Map<String, Object>> getList(UVO user);
 	void scrap(LVO log);
 
 }

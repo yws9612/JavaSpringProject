@@ -19,7 +19,7 @@
 <body>
 
 
-
+<!-- HEADER -->
 <c:import url="/WEB-INF/views/includes/header.jsp"/>
     
     
@@ -42,31 +42,29 @@
     	<c:choose>    
 			<c:when test="${board.b_div eq '일지'}">
     			<input type="hidden" name="b_div" value="일지">
+    			<label for="title">제목</label>
+				<input type="text" class="form-control" id="title"
+					name="b_title" value="${board.b_title }"
+					maxlength="100" required="required"
+					pattern=".{4,100}">
     		</c:when>
     		
     		<c:otherwise>
-    			<p>
-					<select class="" name="b_div" id="b_div">
+					<div class="input-group mb-3">
+					<select class="form-select" id="inputGroupSelect01" name="b_div" style="width:10%;">
 						<option value="꿀팁">꿀팁</option>
 						<option value="루틴">루틴</option>
 						<option value="방법">방법</option>
 					</select>
-				</p>
+			
+					<input type="text" class="form-control" aria-label="Text input with dropdown button" id="title"
+						placeholder="제목 입력" name="b_title"
+						maxlength="100" required="required"
+						pattern=".{4,100}" style="width:90%;">
+					</div>
     		</c:otherwise>    	
     	</c:choose>		
-			
-		
-		
-		
-		<label for="title">제목</label>
-		<input type="text" class="form-control" id="title"
-			name="b_title" value="${board.b_title }"
-			maxlength="100" required="required"
-			pattern=".{4,100}">
-
 	
-		<br>
-		
 	
 		<label for="content">내용</label>        
 		<textarea id="summernote" name="b_con" required="required"><c:out value="${board.b_con }" escapeXml="false"/></textarea>
@@ -160,8 +158,8 @@
 			
     	</script>	
     	
-    	
-    <c:import url="/WEB-INF/views/includes/footer.jsp"/>
+<!-- FOOTER -->   	
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
     
     	
 </body>

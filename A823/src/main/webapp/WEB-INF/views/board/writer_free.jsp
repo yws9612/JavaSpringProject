@@ -19,43 +19,35 @@
 <body>
 
 
-
+<!-- HEADER -->
 <c:import url="/WEB-INF/views/includes/header.jsp"/>
+
+
+<c:if test="${not empty sessionScope.user.u_id }">
     
     
     
 <div class="container" style="margin-top:120px; margin-bottom:120px">
 
 
-  <p><h2>게시판 글쓰기</h2></p>  
-  
-  
+  <h2>게시판 글쓰기</h2>  
   <br>
-  
-  
-  <form action="${root}new_board" method="post">
+   <form action="${root}new_board" method="post">
   
     <div class="form-group">
-    
-    
-		<select class="" name="b_div">
+    	<div class="input-group mb-3">
+		<select class="form-select" id="inputGroupSelect01" name="b_div" style="width:10%;">
 			<option value="꿀팁">꿀팁</option>
 			<option value="루틴">루틴</option>
 			<option value="방법">방법</option>
 		</select>
-		
-		<br><br>
-		
-		<label for="title">제목</label>
-		<input type="text" class="form-control" id="title"
+
+		<input type="text" class="form-control" aria-label="Text input with dropdown button" id="title"
 			placeholder="제목 입력" name="b_title"
 			maxlength="100" required="required"
-			pattern=".{4,100}">
+			pattern=".{4,100}" style="width:90%;">
+		</div>
 
-	
-		<br>
-		
-	
 		<label for="content">내용</label>        
 		<textarea id="summernote" name="b_con" required="required"></textarea>
  		
@@ -74,7 +66,7 @@
 		</div>
 		 -->
 		
-		
+		<br>
 		<div>   
 			<button class="btn btn-primary btn-sm text-end" type="submit">등록</button>
 			<button class="btn btn-primary btn-sm text-end" onclick="location.href='/board/exercise_free'">목록</button>
@@ -89,6 +81,9 @@
 	
 	
 </div>
+
+</c:if>
+
 
    		<script>
 			$(document).ready(function() {

@@ -61,9 +61,11 @@
 					</tbody>
 				</table>
 				
-				<p>
-					<a href="writer_free" class="btn btn-primary btn-sm text-end">글쓰기</a>				
-				</p>
+				<c:if test="${not empty sessionScope.user.u_id }">
+					<p>
+						<a href="writer_free" class="btn btn-primary btn-sm text-end">글쓰기</a>				
+					</p>
+				</c:if>
 		</div>
 	</div>
 
