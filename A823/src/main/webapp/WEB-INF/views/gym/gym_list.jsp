@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
  
  
@@ -54,31 +55,29 @@
 			<form>
 				<p>
 					<select style="width:200px;" id="s1" onchange="optionChange();">
-						<option></option>
-						<option value="none" selected="selected" >===== 시/도 =====</option>
-						<option value="k">강원도</option>
-						<option value="j">경기도</option>
-						<option value="l">경상남도</option>
-						<option value="m">경상북도</option>
-						<option value="d">광주</option>
-						<option value="e">대구</option>
-						<option value="c">대전</option>
-						<option value="a">서울</option>
-						<option value="g">세종</option>
-						<option value="f">부산</option>
-						<option value="h">울산</option>
-						<option value="b">인천</option>
-						<option value="n">전라남도</option>
-						<option value="o">전라북도</option>
-						<option value="i">제주</option>
-						<option value="p">충청남도</option>
-						<option value="q">충청북도</option>        
+						<option id="none" value="none" selected="selected" >===== 시/도 =====</option>
+						<option id="k" value="강원도">강원도</option>
+						<option id="j" value="경기도">경기도</option>
+						<option id="l" value="경상남도">경상남도</option>
+						<option id="m" value="경상북도">경상북도</option>
+						<option id="d" value="광주광역시">광주</option>
+						<option id="e" value="대구광역시">대구</option>
+						<option id="c" value="대전광역시">대전</option>
+						<option id="a" value="서울특별시">서울</option>
+						<option id="g" value="세종특별자치시">세종</option>
+						<option id="f" value="부산광역시">부산</option>
+						<option id="h" value="울산광역시">울산</option>
+						<option id="b" value="인천광역시">인천</option>
+						<option id="n" value="전라남도">전라남도</option>
+						<option id="o" value="전라북도">전라북도</option>
+						<option id="i" value="제주특별자치도">제주</option>
+						<option id="p" value="충청남도">충청남도</option>
+						<option id="q" value="충청북도">충청북도</option>        
 					</select>
 					
 					<select style="width:200px;" id="s2">
-						<option></option>
 					</select>
-					<input type="button" value="검색">
+					<input type="submit" onclick="searchlocal()" value="검색">
     			</p>
     		</form>
     	</div>
@@ -113,7 +112,7 @@
 				</tr>
 			</thead>
 			 
-			<tbody>
+			<tbody id="gymlist">
 				<c:forEach items="${glist}" var="gvo">
 					<tr>
 						<td style="vertical-align: middle; word-break:keep-all">
@@ -170,8 +169,8 @@
 		            }
 		        },
 		        //정렬
-		        aaSorting: [],
-		        order : [[ 0, "asc" ]]
+		        //aaSorting: [],
+		        //order : [[ 0, "asc" ]]
 	
 	    	});
 		});
@@ -199,7 +198,7 @@
 	      var p = ["전체","천안시","천안시 동남구","천안시 서북구","공주시","보령시","아산시","서산시","논산시","계룡시","당진시","금산군","부여군","서천군","청양군","홍성군","예산군","태안군"];
 	      var q = ["전체","청주시","청주시 상당구","청주시 서원구","청주시 흥덕구","청주시 청원구","충주시","제천시","보은군","옥천군","영동군","증평군","진천군","괴산군","음성군","단양군"];
 	      
-	      var v = $( '#s1' ).val();
+	      var v = $( '#s1 option:selected' ).attr('id');
 	      var o;
 	      if ( v == 'a' ) {
 	        o = a;
@@ -239,10 +238,48 @@
 	        o = [];
 	      }
 	      $( '#s2' ).empty();
-	      $( '#s2' ).append( '<option></option>' );
 	      for ( var i = 0; i < o.length; i++ ) {
-	        $( '#s2' ).append( '<option>' + o[ i ] + '</option>' );
+	        $( '#s2' ).append( '<option value="'+o[ i ]+'">' + o[ i ] + '</option>' );
 	      }
+	    }
+	    
+	    function searchlocal() {
+	    	var si=$('#s1').val();
+	    	var gugun=$('#s2').val();
+	    	if(si == 'none') {
+	    		return false;
+	    	}
+	    	if(gugun == '전체'){
+	    		gugun="";
+	    	}
+	    	$.ajax({
+	    		url:'/gym/gym_list', //request 보낼 서버의 경로    
+	    		type:'post', // 메소드(get, post, put 등)    
+	    		data:{'si': si, 'gugun':gugun}, //보낼 데이터    
+	    		success: function(data) {        //서버로부터 정상적으로 응답이 왔을 때 실행  
+	    			console.log('1-----------');
+	    			$('#gymlist').empty();
+	    			console.log('-2----------');
+					$(data).each(function(){				
+						var str='<tr><td style="vertical-align: middle; word-break:keep-all">';
+						str+='<a href="${root }gym/gym_detail?g_no=';
+						str+=this.g_no
+						str+='">';
+						str+=this.g_name;
+						str+='</a></td><td style="text-align: left; padding:10px 20px; ">';
+						str+=this.g_call;
+						str+='<br>';
+						str+=this.g_addr;
+						str+='</td></tr>';
+						$('#gymlist').append(str);
+					});
+	    		},
+	    		error: function(err) {        //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행   
+	    			return false;
+	    		}
+	    		
+	    	});
+	    	
 	    }
 	
 	</script> 

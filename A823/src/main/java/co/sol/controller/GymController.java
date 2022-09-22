@@ -29,9 +29,17 @@ public class GymController {
 	
 	@GetMapping("/gym_list")
 	public void gym_list(Model m, HttpSession session) {
-		String empty=null;
-		m.addAttribute("glist", service.getList(empty));		
+		m.addAttribute("glist", service.getList(null));
 	}
+	@PostMapping("/gym_list")
+	public List<GVO> gym_list_local(@RequestParam("si") String si, @RequestParam("gugun") String gugun, HttpSession session) {
+		String local=si+" "+gugun;
+		System.out.println(local);
+		System.out.println(service.getList(local));
+		return service.getList(local);
+	}
+	
+	
 	
 	@GetMapping("/gym_detail")
 	public void gymdetail(@RequestParam("g_no")int g_no, Model m, HttpSession session) {
@@ -39,6 +47,8 @@ public class GymController {
 		m.addAttribute("gym", g);
 		m.addAttribute("reviews", service.getReview(g_no));
 	}
+	
+	
 	
 	@PostMapping("/new_review")
 	public String newreview(@ModelAttribute("review")RVO review, RedirectAttributes rt) {

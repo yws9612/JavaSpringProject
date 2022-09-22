@@ -1,5 +1,6 @@
 package co.sol.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +20,10 @@ public class GymServiceImpl implements GymService {
 	private final GymMapper mpr;
 
 	@Override
-	public List<GVO> getList(String search) {
-		return mpr.getList(search);
+	public List<GVO> getList(String local) {
+		//HashMap<String, String> search=new HashMap<String, String>();
+		//search.put("search", local);
+		return mpr.getList(local);
 	}
 
 	@Override

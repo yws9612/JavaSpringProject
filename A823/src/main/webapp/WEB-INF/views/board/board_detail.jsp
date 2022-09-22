@@ -206,7 +206,7 @@ ul {
 				<!-- 댓글 form -->
 				<c:if test="${empty sessionScope.user.u_id }">
 					<div class="input-group" id="comments">
-						<textarea readonly="readonly" class="form-control" aria-describedby="button-addon2" placeholder="로그인 후 이용가능합니다."></textarea>
+						<textarea readonly="readonly" class="form-control" aria-describedby="button-addon2" style="resize:none;" placeholder="로그인 후 이용가능합니다."></textarea>
 						<button class="btn btn-primary btn-sm" type="submit" id="button-addon2 recomment" disabled>등록</button>
 					</div>
 				</c:if>
@@ -214,7 +214,7 @@ ul {
 					<form:form action="c_insert" modelAttribute="CVO" method="post">
 						<span class="" style="font-size: small;">${sessionScope.user.u_id }</span>
 						<div class="input-group" id="commentinsert">
-							<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" placeholder="댓글을 입력해주세요."></form:textarea>
+							<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="댓글을 입력해주세요."></form:textarea>
 							<form:hidden path="c_level" value="" />
 							<form:hidden path="b_no" value="${bdetail.b_no }" />
 							<form:hidden path="c_writer" value="${sessionScope.user.u_id }" />

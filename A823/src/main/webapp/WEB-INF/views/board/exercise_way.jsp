@@ -48,7 +48,7 @@
 		<table id="t1" class="table table-bordered"
 			style="width: 100%;">
 			<thead>
-				<tr>
+				<tr style="height:0;">
 					<th></th>
 					<th></th>
 				</tr>

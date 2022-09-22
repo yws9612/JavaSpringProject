@@ -107,7 +107,11 @@
 <div class="col-md-10">
 <div class="shadow p-4 bg-white rounded">
 
-
+	<div class="col text-end">
+		<a href="/gym/gym_list" class="btn btn-outline-primary btn-sm">
+			&nbsp;<i class="bi bi-list"></i>&nbsp;
+		</a>
+	</div>
 	
 	<h3>${gym.g_name }</h3>
 	
@@ -134,97 +138,108 @@
 	 -->
 	 
 	                 
-	<!-- 리뷰작성폼 -->
-	 <form method="post" action="new_review">
-		<div class="mt-4 d-flex flex-row"> 
-		<!-- <img src="https://static.coupangcdn.com/image/product/image/vendoritem/2019/01/02/4116314532/2583b91d-1493-49af-8b7f-fdbaf8fbd4eb.jpg" width="100" height="100"> -->
-		<div class="w-100"> 
-			<input type="hidden" name="u_no" value="${sessionScope.user.u_no }"> 
-			<input type="hidden" name="g_no" value="${gym.g_no }">
-			<textarea name="r_rev" class="form-control" style="resize: none"></textarea>
-	
-			<!-- 별점 -->
-			<div class="rating mt-1">
-			   <input type="radio" name="r_score" value="10" id="rating_03_10">
-			   <label for="rating_03_10"></label>
-			   <input type="radio" name="r_score" value="9" id="rating_03_9">
-			   <label for="rating_03_9"></label>
-			   <input type="radio" name="r_score" value="8" id="rating_03_8">
-			   <label for="rating_03_8"></label>
-			   <input type="radio" name="r_score" value="7" id="rating_03_7">
-			   <label for="rating_03_7"></label>
-			   <input type="radio" name="r_score" value="6" id="rating_03_6">
-			   <label for="rating_03_6"></label>
-			   <input type="radio" name="r_score" value="5" id="rating_03_5">
-			   <label for="rating_03_5"></label>
-			   <input type="radio" name="r_score" value="4" id="rating_03_4">
-			   <label for="rating_03_4"></label>
-			   <input type="radio" name="r_score" value="3" id="rating_03_3">
-			   <label for="rating_03_3"></label>
-			   <input type="radio" name="r_score" value="2" id="rating_03_2">
-			   <label for="rating_03_2"></label>
-			   <input type="radio" name="r_score" value="1" id="rating_03_1">
-			   <label for="rating_03_1"></label>
-			</div>
+	<!-- 리뷰작성폼+리뷰, 회원만 리뷰 작성+볼 수 있게끔 -->
+	<c:choose>
+		<c:when test="${empty sessionScope.user.u_id }">
+		</c:when>
 		
-		</div></div>
 		
-		<div class="d-grid gap-2 mt-3 mb-4">
-		  <button class="btn btn-primary btn-sm" type="submit">등록</button>
-		</div>			 
-	 </form>
-	                
-	                
-	<!-- 리뷰 -->
-	<c:forEach items="${reviews}" var="rvo">
-		<div class="d-flex flex-row mt-4"> 
-		<img src="https://mblogthumb-phinf.pstatic.net/20160516_270/jelly_dear_1463329244992Suz0h_PNG/11.PNG?type=w2" width="30" height="30" style="margin-right:10px;">
-		<div class="ml-2 w-100">
-		
-		<div class="d-flex justify-content-between align-items-center">		
-			<div class="d-flex flex-row align-items-center"> 	
-				<span class="font-weight-bold text-primary">
-					<c:out value="${rvo.u_id }"/>
-				</span> 
-			</div> 
-			<small class="text-primary">
-				<fmt:formatDate value="${rvo.r_date}" pattern="yyyy. MM. dd"/>
-			</small>
-		</div>
-		
-		<table>
-			<tr style="vertical-align: middle">
-				<td style="width:140px">
-					<small class="text-warning mt-2"><!-- 별표시 -->
-						<div class="rating2 mt-1">
-							<c:forEach var="i" begin="1" end="10" >
-								<c:set var="score" value="${11-i }"/>
-								<c:choose>
-									<c:when test="${score == rvo.r_score}">
-										<input type="radio" name="review${rvo.r_no }" checked="checked" readonly="readonly" value="${score }" id="rating2_03_${score }">
-										<span></span>
-									</c:when>
-									<c:otherwise>
-										<input type="radio" name="review${rvo.r_no }" readonly="readonly" value="${score }" id="rating2_03_${score }">
-										<span></span>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</div>			
-					</small>
-				</td>
+		<c:otherwise>
+			<!-- 리뷰작성폼 -->
+			<form method="post" action="new_review">
+				<div class="mt-4 d-flex flex-row"> 
+				<!-- <img src="https://static.coupangcdn.com/image/product/image/vendoritem/2019/01/02/4116314532/2583b91d-1493-49af-8b7f-fdbaf8fbd4eb.jpg" width="100" height="100"> -->
+					<div class="w-100"> 
+						<input type="hidden" name="u_no" value="${sessionScope.user.u_no }"> 
+						<input type="hidden" name="g_no" value="${gym.g_no }">
+						
+						<!-- 별점 -->
+						<div class="rating mt-1">
+						   <input type="radio" name="r_score" value="10" id="rating_03_10">
+						   <label for="rating_03_10"></label>
+						   <input type="radio" name="r_score" value="9" id="rating_03_9">
+						   <label for="rating_03_9"></label>
+						   <input type="radio" name="r_score" value="8" id="rating_03_8">
+						   <label for="rating_03_8"></label>
+						   <input type="radio" name="r_score" value="7" id="rating_03_7">
+						   <label for="rating_03_7"></label>
+						   <input type="radio" name="r_score" value="6" id="rating_03_6">
+						   <label for="rating_03_6"></label>
+						   <input type="radio" name="r_score" value="5" id="rating_03_5">
+						   <label for="rating_03_5"></label>
+						   <input type="radio" name="r_score" value="4" id="rating_03_4">
+						   <label for="rating_03_4"></label>
+						   <input type="radio" name="r_score" value="3" id="rating_03_3">
+						   <label for="rating_03_3"></label>
+						   <input type="radio" name="r_score" value="2" id="rating_03_2">
+						   <label for="rating_03_2"></label>
+						   <input type="radio" name="r_score" value="1" id="rating_03_1">
+						   <label for="rating_03_1"></label>
+						</div>
+						
+						<textarea name="r_rev" class="form-control" style="resize: none"></textarea>
+					
+					</div>
+				</div>
 				
-				<td>
-					<small class="text-justify mt-2"><!-- 리뷰내용 -->
-						<c:out value="${rvo.r_rev }"/>
+				<div class="d-grid gap-2 mt-3 mb-4">
+				  <button class="btn btn-primary btn-sm" type="submit">등록</button>
+				</div>			 
+			</form>			                
+	                
+			<!-- 리뷰 -->
+			<c:forEach items="${reviews}" var="rvo">
+				<div class="d-flex flex-row mt-4"> 
+				<img src="https://mblogthumb-phinf.pstatic.net/20160516_270/jelly_dear_1463329244992Suz0h_PNG/11.PNG?type=w2" width="30" height="30" style="margin-right:10px;">
+				<div class="ml-2 w-100">
+				
+				<div class="d-flex justify-content-between align-items-center">		
+					<div class="d-flex flex-row align-items-center"> 	
+						<span class="font-weight-bold text-primary">
+							<c:out value="${rvo.u_id }"/>
+						</span> 
+					</div> 
+					<small class="text-primary">
+						<fmt:formatDate value="${rvo.r_date}" pattern="yyyy. MM. dd"/>
 					</small>
-				</td>
-			</tr>
-		</table>
-		
-		</div></div>	
-		<hr>
-	</c:forEach>
+				</div>
+				
+				<table>
+					<tr style="vertical-align: middle">
+						<td style="width:140px">
+							<small class="text-warning mt-2"><!-- 별표시 -->
+								<div class="rating2 mt-1">
+									<c:forEach var="i" begin="1" end="10" >
+										<c:set var="score" value="${11-i }"/>
+										<c:choose>
+											<c:when test="${score == rvo.r_score}">
+												<input type="radio" name="review${rvo.r_no }" checked="checked" readonly="readonly" value="${score }" id="rating2_03_${score }">
+												<span></span>
+											</c:when>
+											<c:otherwise>
+												<input type="radio" name="review${rvo.r_no }" readonly="readonly" value="${score }" id="rating2_03_${score }">
+												<span></span>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</div>			
+							</small>
+						</td>
+						
+						<td>
+							<small class="text-justify mt-2"><!-- 리뷰내용 -->
+								<c:out value="${rvo.r_rev }"/>
+							</small>
+						</td>
+					</tr>
+				</table>
+				
+				</div></div>	
+				<hr>
+			</c:forEach>
+		</c:otherwise>	
+	</c:choose>
+	
 
 
 </div></div></div></div>
