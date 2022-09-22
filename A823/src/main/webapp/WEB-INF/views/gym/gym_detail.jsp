@@ -69,8 +69,8 @@
 <c:import url="/WEB-INF/views/includes/header.jsp" />
 
 <div class="container mt-3">
-<div class="row d-flex justify-content-center">
-<div class="col-md-5">
+<div class="row d-flex justify-content-center" style="margin-top:100px;">
+<div class="col-md-10">
 <div class="shadow p-4 bg-white rounded">
 
 
@@ -83,19 +83,13 @@
       <span class="bold">주소</span> : ${gym.g_addr }<br/>
       <span class="bold">전화번호</span> : ${gym.g_call }<br/>
 	</p>
-	
-	
-	<br><br>
-	
+	<br>
 	
 	<!-- 카카오맵 -->
 	<div data-viewid="findway" data-root="" class="cont_findway">
-		<h3 class="tit_subject">찾아가는 길</h3>
-		<div id="map" style="width:100%;height:250px;"></div>
+		<div id="map" style="width:100%;height:300px;"></div>
 	</div>
-	
-	
-	<br><br>
+	<br>
 	
 	
 	<!-- 
