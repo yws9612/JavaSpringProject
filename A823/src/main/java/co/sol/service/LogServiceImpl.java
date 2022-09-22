@@ -28,4 +28,12 @@ public class LogServiceImpl implements LogService {
 		mpr.scrap(log);
 	}
 
+	@Override
+	public boolean checkscrap(LVO log) {
+		if(mpr.checkscrap(log) == 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

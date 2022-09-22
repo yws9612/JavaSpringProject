@@ -24,12 +24,15 @@ import co.sol.main.Basic;
 import co.sol.main.CVO;
 import co.sol.main.EVO;
 import co.sol.main.GVO;
+import co.sol.main.LVO;
 import co.sol.main.PageDTO;
 import co.sol.main.RVO;
+import co.sol.main.UserInfo;
 import co.sol.service.BService;
 import co.sol.service.CService;
 import co.sol.service.DataService;
 import co.sol.service.GymService;
+import co.sol.service.LogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -43,6 +46,7 @@ public class BController {
 	private final CService cservice;
 	private final DataService dataService;
 	private final GymService gymService;
+	private final LogService logservice;
 	
 	//BoardFolder
 	@GetMapping("/list")
@@ -213,6 +217,26 @@ public class BController {
 		
 		m.addAttribute("getOneGym",getOneGym);
 		
+	}
+	
+	
+	
+	@GetMapping("/scrap")
+	public String scrap(@RequestParam("b_no")int b_no, HttpSession session, RedirectAttributes rt) {
+		LVO tmp=new LVO();
+		UserInfo ssn=(UserInfo)session.getAttribute("user");
+		tmp.setB_no(b_no);
+		tmp.setU_no(ssn.getU_no());
+		
+		if(logservice.checkscrap(tmp)) {
+			System.out.println(logservice.checkscrap(tmp)+"|"+tmp.getB_no()+"|"+tmp.getU_no());
+			logservice.scrap(tmp);
+			rt.addFlashAttribute("scraped", false);
+		}
+		else {
+			rt.addFlashAttribute("scraped", true);
+		}
+		return "redirect:/board/board_detail?b_no="+b_no;	
 	}
 	
 	

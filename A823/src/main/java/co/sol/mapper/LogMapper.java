@@ -9,5 +9,6 @@ public interface LogMapper {
 	
 	public List<Map<String, Object>> getList(UVO user);
 	public void scrap(LVO log);
+	public int checkscrap(LVO log);
 
 }

@@ -10,5 +10,6 @@ public interface LogService {
 	
 	List<Map<String, Object>> getList(UVO user);
 	void scrap(LVO log);
+	boolean checkscrap(LVO log);
 
 }

@@ -34,6 +34,7 @@
 		}
 		
 		.rating label {
+		   font-family: 'Font Awesome 5 Free' !important;
 		   width: 13px;
 		   font-size: 24px;
 		   display: inline-block;
@@ -220,7 +221,7 @@
 		
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">"${gym.g_name}"</div>'
+		            content: '<div style="width:150px; text-align:center; padding:6px 0; word-break:keep-all;">${gym.g_name}</div>'
 		        });
 		        infowindow.open(map, marker);
 		
