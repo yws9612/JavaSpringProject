@@ -11,5 +11,6 @@ public interface GymService {
 	List<GVO> getList(String search);
 	List<Map<String, Object>> getReview(int g_no);
 	GVO getOneGym(int g_no);
+	void newreview(RVO review);
 
 }

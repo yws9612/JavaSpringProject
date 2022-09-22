@@ -229,7 +229,6 @@ public class BController {
 		tmp.setU_no(ssn.getU_no());
 		
 		if(logservice.checkscrap(tmp)) {
-			System.out.println(logservice.checkscrap(tmp)+"|"+tmp.getB_no()+"|"+tmp.getU_no());
 			logservice.scrap(tmp);
 			rt.addFlashAttribute("scraped", false);
 		}

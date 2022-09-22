@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>부들부들 | 헬스장 상세보기</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
@@ -57,6 +58,39 @@
 		.rating label:nth-of-type(2n){
 		   text-indent: -13px;
 		}
+		.rating2 {
+		   font-family: 'Font Awesome 5 Free';
+		   color: #ffce67;
+		   margin-bottom: 5px;
+		   font-size: 0;
+		   position: relative;
+		   width: 110px;
+		   direction: rtl;
+		}
+		
+		.rating2 input {
+		   display: none;
+		}
+		
+		.rating2 span {
+		   font-family: 'Font Awesome 5 Free' !important;
+		   width: 11px;
+		   font-size: 20px;
+		   display: inline-block;
+		   overflow: hidden;
+		}
+		
+		.rating2 span:before{
+		   content: "\f005";
+		}
+		
+		.rating2 :checked ~ span {
+		   font-weight: 900;
+		}
+		
+		.rating2 span:nth-of-type(2n){
+		   text-indent: -11px;
+		}
 	</style>
 
 </head>
@@ -69,7 +103,7 @@
 <c:import url="/WEB-INF/views/includes/header.jsp" />
 
 <div class="container mt-3">
-<div class="row d-flex justify-content-center" style="margin-top:100px;">
+<div class="row d-flex justify-content-center" style="margin-top:120px; margin-bottom:50px;">
 <div class="col-md-10">
 <div class="shadow p-4 bg-white rounded">
 
@@ -99,36 +133,37 @@
 	</div>
 	 -->
 	 
-	 
+	                 
+	<!-- 리뷰작성폼 -->
 	 <form method="post" action="new_review">
 		<div class="mt-4 d-flex flex-row"> 
 		<!-- <img src="https://static.coupangcdn.com/image/product/image/vendoritem/2019/01/02/4116314532/2583b91d-1493-49af-8b7f-fdbaf8fbd4eb.jpg" width="100" height="100"> -->
 		<div class="w-100"> 
 			<input type="hidden" name="u_no" value="${sessionScope.user.u_no }"> 
 			<input type="hidden" name="g_no" value="${gym.g_no }">
-			<textarea name="g_rev" class="form-control"></textarea>
+			<textarea name="r_rev" class="form-control" style="resize: none"></textarea>
 	
 			<!-- 별점 -->
 			<div class="rating mt-1">
-			   <input type="radio" name="g_score" value="10" id="rating_03_10">
+			   <input type="radio" name="r_score" value="10" id="rating_03_10">
 			   <label for="rating_03_10"></label>
-			   <input type="radio" name="g_score" value="9" id="rating_03_9">
+			   <input type="radio" name="r_score" value="9" id="rating_03_9">
 			   <label for="rating_03_9"></label>
-			   <input type="radio" name="g_score" value="8" id="rating_03_8">
+			   <input type="radio" name="r_score" value="8" id="rating_03_8">
 			   <label for="rating_03_8"></label>
-			   <input type="radio" name="g_score" value="7" id="rating_03_7">
+			   <input type="radio" name="r_score" value="7" id="rating_03_7">
 			   <label for="rating_03_7"></label>
-			   <input type="radio" name="g_score" value="6" id="rating_03_6">
+			   <input type="radio" name="r_score" value="6" id="rating_03_6">
 			   <label for="rating_03_6"></label>
-			   <input type="radio" name="g_score" value="5" id="rating_03_5">
+			   <input type="radio" name="r_score" value="5" id="rating_03_5">
 			   <label for="rating_03_5"></label>
-			   <input type="radio" name="g_score" value="4" id="rating_03_4">
+			   <input type="radio" name="r_score" value="4" id="rating_03_4">
 			   <label for="rating_03_4"></label>
-			   <input type="radio" name="g_score" value="3" id="rating_03_3">
+			   <input type="radio" name="r_score" value="3" id="rating_03_3">
 			   <label for="rating_03_3"></label>
-			   <input type="radio" name="g_score" value="2" id="rating_03_2">
+			   <input type="radio" name="r_score" value="2" id="rating_03_2">
 			   <label for="rating_03_2"></label>
-			   <input type="radio" name="g_score" value="1" id="rating_03_1">
+			   <input type="radio" name="r_score" value="1" id="rating_03_1">
 			   <label for="rating_03_1"></label>
 			</div>
 		
@@ -157,21 +192,39 @@
 			</small>
 		</div>
 		
-		<small class="text-warning mt-2">
-			<c:out value="${rvo.r_score }"/>
-			<c:choose>
-				<c:when test="">
-				</c:when>
-			</c:choose>
-			
-		</small>
-		<small class="text-justify mt-2">
-			<c:out value="${rvo.r_rev }"/>
-		</small>
+		<table>
+			<tr style="vertical-align: middle">
+				<td style="width:140px">
+					<small class="text-warning mt-2"><!-- 별표시 -->
+						<div class="rating2 mt-1">
+							<c:forEach var="i" begin="1" end="10" >
+								<c:set var="score" value="${11-i }"/>
+								<c:choose>
+									<c:when test="${score == rvo.r_score}">
+										<input type="radio" name="review${rvo.r_no }" checked="checked" readonly="readonly" value="${score }" id="rating2_03_${score }">
+										<span></span>
+									</c:when>
+									<c:otherwise>
+										<input type="radio" name="review${rvo.r_no }" readonly="readonly" value="${score }" id="rating2_03_${score }">
+										<span></span>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</div>			
+					</small>
+				</td>
+				
+				<td>
+					<small class="text-justify mt-2"><!-- 리뷰내용 -->
+						<c:out value="${rvo.r_rev }"/>
+					</small>
+				</td>
+			</tr>
+		</table>
 		
 		</div></div>	
 		<hr>
-	</c:forEach><!-- 코멘트 끗 -->
+	</c:forEach>
 
 
 </div></div></div></div>
@@ -184,8 +237,7 @@
 
 
 
-	<script>
-	
+	<script>	
 	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
@@ -222,7 +274,16 @@
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
 		    } 
-		});    
+		}); 
+		
+		
+		
+		$(document).ready(function(){
+			if("${success}" == 'true') {
+				alert('리뷰가 등록되었습니다.')
+			}
+		});
+		
 	</script>
 
 </body>

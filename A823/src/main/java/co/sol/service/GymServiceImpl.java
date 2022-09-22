@@ -33,4 +33,9 @@ public class GymServiceImpl implements GymService {
 		return mpr.getOneGym(g_no);
 	}
 
+	@Override
+	public void newreview(RVO review) {
+		mpr.newreview(review);
+	}
+
 }

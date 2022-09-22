@@ -21,7 +21,7 @@
 	
 	<!--특정 헬스장의 모든 리뷰를 최신순으로 가져옵니다.-->
 	<select id="getReview" resultType="co.sol.main.RVO">
-		select /*+INDEX_DESC(r_table SYS_C0031865) */ r_score, r_rev, r_date, u_id
+		select /*+INDEX_DESC(r_table SYS_C0031865) */ r_no, r_score, r_rev, r_date, u_id
 		from r_table natural join u_table
 		where g_no = #{g_no}
 	</select>
@@ -32,5 +32,14 @@
 	<select id="getOneGym" resultType="co.sol.main.GVO">		
 		select * from g_table where g_no = #{g_no}	
 	</select>
+	
+	
+	
+	<insert id="newreview">
+		<selectKey keyProperty="r_no" order="BEFORE" resultType="int">
+			select max(r_no)+1 from r_table
+		</selectKey>
+		insert into r_table values (#{r_no}, #{g_no}, #{u_no}, #{r_score}, #{r_rev}, current_date)
+	</insert>
 	
 </mapper>

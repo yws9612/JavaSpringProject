@@ -54,31 +54,22 @@ ul {
 						</c:choose>
 					</div>
 						
-					<c:choose>
-						<c:when test="${bdetail.b_writer eq sessionScope.user.u_id }">
-							<div class="col text-end">
+					<div class="col text-end">
+						<c:choose>
+							<c:when test="${bdetail.b_writer eq sessionScope.user.u_id }">
 								<a href="modify?b_no=${bdetail.b_no}"class="btn btn-primary btn-sm text-end">수정</a> 
 								<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}"class="btn btn-secondary btn-sm text-end">삭제</a>
-							</div>
-						</c:when>
-						
-						<c:when test="${sessionScope.user.u_id eq 'admin' }">
-							<div class="col text-end">
+							</c:when>
+							
+							<c:when test="${sessionScope.user.u_id eq 'admin' }">
 								<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}"class="btn btn-secondary btn-sm text-end">삭제</a>
-							</div>
-						</c:when>
-						
-						<c:when test="${not empty sessionScope.user.u_id }">
-							<div class="col text-end">
+							</c:when>
+							
+							<c:when test="${not empty sessionScope.user.u_id }">
 								<a href="scrap?b_no=${bdetail.b_no}"class="btn btn-primary btn-sm text-end">스크랩</a>
-							</div>
-						</c:when>
-						
-						<c:otherwise>
-							<div class="col text-end">
-							</div>
-						</c:otherwise>						
-					</c:choose>
+							</c:when>						
+						</c:choose>
+					</div>
 				</div>
 
 
