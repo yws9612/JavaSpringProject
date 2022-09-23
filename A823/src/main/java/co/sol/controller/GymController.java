@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.sol.main.GVO;
@@ -31,8 +32,9 @@ public class GymController {
 	public void gym_list(Model m, HttpSession session) {
 		m.addAttribute("glist", service.getList(null));
 	}
-	@PostMapping("/gym_list")
-	public List<GVO> gym_list_local(@RequestParam("si") String si, @RequestParam("gugun") String gugun, HttpSession session) {
+	@PostMapping("/gym_list_local")
+	@ResponseBody
+	public List<GVO> gym_list_local(@RequestParam String si, @RequestParam String gugun, HttpSession session) {
 		String local=si+" "+gugun;
 		List<GVO> li=service.getList(local);
 		System.out.println(local);
