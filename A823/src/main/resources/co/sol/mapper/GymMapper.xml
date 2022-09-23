@@ -33,11 +33,19 @@
 	
 	
 	
+	<!-- 새 리뷰를 insert 합니다 -->
 	<insert id="newreview">
 		<selectKey keyProperty="r_no" order="BEFORE" resultType="int">
 			select max(r_no)+1 from r_table
 		</selectKey>
 		insert into r_table values (#{r_no}, #{g_no}, #{u_no}, #{r_score}, #{r_rev}, current_date)
 	</insert>
+	
+	
+	
+	<!-- 리뷰를 삭제합니다. -->
+	<delete id="deleteReview">
+		delete from r_table where r_no=#{r_no}
+	</delete>
 	
 </mapper>

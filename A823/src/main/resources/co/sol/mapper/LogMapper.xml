@@ -59,9 +59,17 @@
 	
 	
 	
+	<!-- 스크랩 여부를 확인합니다. -->
 	<select id="checkscrap" resultType="int">
 		select count(*) from l_table where u_no=#{u_no} and b_no=#{b_no} and l_div=1
 	</select>
+	
+	
+	
+	<!-- 스크랩을 삭제합니다. -->
+	<delete id="deletescrap">
+		delete from l_table where u_no=#{u_no} and b_no=#{b_no} and l_div=1
+	</delete>
 	
 	
 </mapper>

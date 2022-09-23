@@ -280,14 +280,19 @@ ul {
 
 		
 		$(document).ready(function(){
-			var checkscrap="${scraped}"
-			if (checkscrap == 'true') {
-				alert('이미 스크랩한 게시글 입니다.')
+			var checkscrap="${scrap}";
+			if (checkscrap == 'scraped') {
+				if(confirm('이미 스크랩한 게시글 입니다. 스크랩을 취소할까요?')) {
+					location.href='disscrap?b_no='+${b_no};
+				}
 			}
-			else if (checkscrap == 'false') {
-				alert('스크랩 되었습니다.')
+			else if (checkscrap == 'unscrap') {
+				alert('스크랩 되었습니다.');
 			}
-		})
+			else if (checkscrap == 'disscrap') {
+				alert('스크랩이 취소되었습니다.');
+			}
+		});
 
 
 </script>

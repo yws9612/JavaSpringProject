@@ -36,4 +36,12 @@ public class LogServiceImpl implements LogService {
 		return false;
 	}
 
+	@Override
+	public void deletescrap(int u_no, int b_no) {
+		LVO tmp = new LVO();
+		tmp.setB_no(b_no);
+		tmp.setU_no(u_no);
+		mpr.deletescrap(tmp);
+	}
+
 }

@@ -10,5 +10,6 @@ public interface GymMapper {
 	public List<RVO> getReview(int g_no);
 	public GVO getOneGym(int g_no);
 	public void newreview(RVO review);
+	public void deleteReview(int r_no);
 
 }

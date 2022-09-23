@@ -13,5 +13,6 @@ public interface GymService {
 	Map<String, Integer> review_info(int g_no);
 	GVO getOneGym(int g_no);
 	void newreview(RVO review);
+	void deleteReview(int r_no);
 
 }

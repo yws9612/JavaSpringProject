@@ -268,7 +268,7 @@
 					</small>
 				</div>
 				
-				<table>
+				<table style="width:100%;">
 					<tr style="vertical-align: middle">
 						<td style="width:140px">
 							<small class="text-warning mt-2"><!-- 별표시 -->
@@ -295,6 +295,12 @@
 								<c:out value="${rvo.r_rev }"/>
 							</small>
 						</td>
+						
+						<c:if test="${sessionScope.user.u_id eq rvo.u_id }">
+							<td style="width:40px" align="right">
+								<a href="deletereview?g_no=${gym.g_no }&r_no=${rvo.r_no }" style="color:silver; font-size:0.8em; text-decoration:none;">삭제</a>
+							</td>
+						</c:if>
 					</tr>
 				</table>
 				
@@ -359,9 +365,15 @@
 		
 		$(document).ready(function(){
 			if("${success}" == 'true') {
-				alert('리뷰가 등록되었습니다.')
+				alert('리뷰가 등록되었습니다.');
+			}
+			
+			if ("${deleted}" == 'true') {
+				alert('삭제되었습니다.');
 			}
 		});
+		
+		
 		
 	</script>
 

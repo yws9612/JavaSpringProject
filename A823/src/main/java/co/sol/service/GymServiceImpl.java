@@ -73,4 +73,10 @@ public class GymServiceImpl implements GymService {
 		mpr.newreview(review);
 	}
 
+
+	@Override
+	public void deleteReview(int r_no) {
+		mpr.deleteReview(r_no);
+	}
+
 }

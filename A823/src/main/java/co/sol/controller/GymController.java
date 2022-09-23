@@ -59,5 +59,14 @@ public class GymController {
 		rt.addFlashAttribute("success", true);
 		return "redirect:/gym/gym_detail?g_no="+review.getG_no();
 	}
+	
+	
+	
+	@GetMapping("/deletereview")
+	public String deleteReview(@RequestParam("g_no")int g_no, @RequestParam("r_no")int r_no, RedirectAttributes rt) {
+		service.deleteReview(r_no);
+		rt.addFlashAttribute("deleted", true);
+		return "redirect:/gym/gym_detail?g_no="+g_no;
+	}
 
 }

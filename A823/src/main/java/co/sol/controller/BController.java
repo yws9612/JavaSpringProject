@@ -230,12 +230,19 @@ public class BController {
 		
 		if(logservice.checkscrap(tmp)) {
 			logservice.scrap(tmp);
-			rt.addFlashAttribute("scraped", false);
+			rt.addFlashAttribute("scrap", "unscrap");
 		}
 		else {
-			rt.addFlashAttribute("scraped", true);
+			rt.addFlashAttribute("scrap", "scraped");
 		}
 		return "redirect:/board/board_detail?b_no="+b_no;	
+	}
+	@GetMapping("/disscrap")
+	public String disscrap(@RequestParam("b_no")int b_no, HttpSession session, RedirectAttributes rt) {
+		UserInfo ssn=(UserInfo)session.getAttribute("user");
+		logservice.deletescrap(ssn.getU_no(), b_no);
+		rt.addFlashAttribute("scrap", "disscrap");
+		return "redirect:/board/board_detail?b_no="+b_no;
 	}
 	
 	
