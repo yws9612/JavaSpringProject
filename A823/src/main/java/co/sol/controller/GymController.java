@@ -34,9 +34,11 @@ public class GymController {
 	@PostMapping("/gym_list")
 	public List<GVO> gym_list_local(@RequestParam("si") String si, @RequestParam("gugun") String gugun, HttpSession session) {
 		String local=si+" "+gugun;
+		List<GVO> li=service.getList(local);
 		System.out.println(local);
-		System.out.println(service.getList(local));
-		return service.getList(local);
+		System.out.println(li);
+		System.out.println(li.size());
+		return li;
 	}
 	
 	
@@ -46,6 +48,7 @@ public class GymController {
 		GVO g=service.getOneGym(g_no);
 		m.addAttribute("gym", g);
 		m.addAttribute("reviews", service.getReview(g_no));
+		m.addAttribute("review_info", service.review_info(g_no));
 	}
 	
 	

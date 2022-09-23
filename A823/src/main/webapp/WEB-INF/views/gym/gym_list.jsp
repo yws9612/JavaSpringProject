@@ -52,34 +52,33 @@
 	<br>
 	<fieldset>
 		<div style="text-align: center;">
-			<form>
-				<p>
-					<select style="width:200px;" id="s1" onchange="optionChange();">
-						<option id="none" value="none" selected="selected" >===== 시/도 =====</option>
-						<option id="k" value="강원도">강원도</option>
-						<option id="j" value="경기도">경기도</option>
-						<option id="l" value="경상남도">경상남도</option>
-						<option id="m" value="경상북도">경상북도</option>
-						<option id="d" value="광주광역시">광주</option>
-						<option id="e" value="대구광역시">대구</option>
-						<option id="c" value="대전광역시">대전</option>
-						<option id="a" value="서울특별시">서울</option>
-						<option id="g" value="세종특별자치시">세종</option>
-						<option id="f" value="부산광역시">부산</option>
-						<option id="h" value="울산광역시">울산</option>
-						<option id="b" value="인천광역시">인천</option>
-						<option id="n" value="전라남도">전라남도</option>
-						<option id="o" value="전라북도">전라북도</option>
-						<option id="i" value="제주특별자치도">제주</option>
-						<option id="p" value="충청남도">충청남도</option>
-						<option id="q" value="충청북도">충청북도</option>        
-					</select>
-					
-					<select style="width:200px;" id="s2">
-					</select>
-					<input type="submit" onclick="searchlocal()" value="검색">
-    			</p>
-    		</form>
+			<p>
+				<select style="width:200px;" id="s1" onchange="optionChange();">
+					<option id="none" value="none" selected="selected" >===== 시/도 =====</option>
+					<option id="k" value="강원도">강원도</option>
+					<option id="j" value="경기도">경기도</option>
+					<option id="l" value="경상남도">경상남도</option>
+					<option id="m" value="경상북도">경상북도</option>
+					<option id="d" value="광주광역시">광주</option>
+					<option id="e" value="대구광역시">대구</option>
+					<option id="c" value="대전광역시">대전</option>
+					<option id="a" value="서울특별시">서울</option>
+					<option id="g" value="세종특별자치시">세종</option>
+					<option id="f" value="부산광역시">부산</option>
+					<option id="h" value="울산광역시">울산</option>
+					<option id="b" value="인천광역시">인천</option>
+					<option id="n" value="전라남도">전라남도</option>
+					<option id="o" value="전라북도">전라북도</option>
+					<option id="i" value="제주특별자치도">제주</option>
+					<option id="p" value="충청남도">충청남도</option>
+					<option id="q" value="충청북도">충청북도</option>        
+				</select>
+				
+				<select style="width:200px;" id="s2">
+				</select>
+				
+				<button type="button" onclick="searchlocal()">검색</button>
+   			</p>
     	</div>
     </fieldset>
 ​
@@ -102,7 +101,7 @@
 	</table>
 	 -->
 	
-	<div>
+	<div id="listtable">
 		<table id="t1" class="table table-hover text-center table-bordered">
 			 
 			<thead class="table-primary text-center">
@@ -253,14 +252,13 @@
 	    		gugun="";
 	    	}
 	    	$.ajax({
-	    		url:'/gym/gym_list', //request 보낼 서버의 경로    
+	    		url:'/gym/gym_list_local', //request 보낼 서버의 경로    
 	    		type:'post', // 메소드(get, post, put 등)    
 	    		data:{'si': si, 'gugun':gugun}, //보낼 데이터    
 	    		success: function(data) {        //서버로부터 정상적으로 응답이 왔을 때 실행  
-	    			console.log('1-----------');
-	    			$('#gymlist').empty();
-	    			console.log('-2----------');
-					$(data).each(function(){				
+	    			$('#listtable').empty();
+	    			$('#listtable').append('<table id="t1" class="table table-hover text-center table-bordered"><thead class="table-primary text-center"><tr><th style="width:30%; text-align:center;">사업자명</th><th style="width:70%; text-align: center;"></th></tr></thead><tbody id="gymlist">');
+					$(data).each(function(){
 						var str='<tr><td style="vertical-align: middle; word-break:keep-all">';
 						str+='<a href="${root }gym/gym_detail?g_no=';
 						str+=this.g_no
@@ -273,6 +271,26 @@
 						str+='</td></tr>';
 						$('#gymlist').append(str);
 					});
+					$('#t1').DataTable({
+				    	lengthMenu: [ 10, 15, 20, 25, 30 ],
+				    	displayLength: 10,
+				    	filter : false,
+				    	"language": {
+				            "emptyTable": "데이터가 없어요.",
+				            "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+				            "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+				            "infoEmpty": "데이터 없음",
+				            "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+				            "search": "검색: ",
+				            "zeroRecords": "일치하는 데이터가 없어요.",
+				            "loadingRecords": "로딩중...",
+				            "processing":     "잠시만 기다려 주세요...",
+				            "paginate": {
+				                "next": "다음",
+				                "previous": "이전"
+				            }
+				        }
+			    	});
 	    		},
 	    		error: function(err) {        //서버로부터 응답이 정상적으로 처리되지 못햇을 때 실행   
 	    			return false;

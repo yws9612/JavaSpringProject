@@ -19,6 +19,7 @@
 	<!-- kakaomap -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0dd8333a7bf035084aa14ad40915b52d&libraries=services"></script>
 	
+	<!-- 2:각 후기에 표시 / 3:별점 평균에 사용-->
 	<style>
 		.rating {
 		   font-family: 'Font Awesome 5 Free';
@@ -91,6 +92,39 @@
 		.rating2 span:nth-of-type(2n){
 		   text-indent: -11px;
 		}
+		.rating3 {
+		   font-family: 'Font Awesome 5 Free';
+		   color: #ffce67;
+		   margin-bottom: 5px;
+		   font-size: 0;
+		   position: relative;
+		   width: 150px;
+		   direction: rtl;
+		}
+		
+		.rating3 input {
+		   display: none;
+		}
+		
+		.rating3 span {
+		   font-family: 'Font Awesome 5 Free' !important;
+		   width: 15px;
+		   font-size: 28px;
+		   display: inline-block;
+		   overflow: hidden;
+		}
+		
+		.rating3 span:before{
+		   content: "\f005";
+		}
+		
+		.rating3 :checked ~ span {
+		   font-weight: 900;
+		}
+		
+		.rating3 span:nth-of-type(2n){
+		   text-indent: -15px;
+		}
 	</style>
 
 </head>
@@ -114,6 +148,36 @@
 	</div>
 	
 	<h3>${gym.g_name }</h3>
+	<!-- 회원에게만 후기 평균/개수 -->
+	<c:if test="${not empty sessionScope.user.u_id }"> 
+		<table>
+			<tr>
+				<td style="padding-right:10px">
+					<div class="rating3 mt-1">
+						<c:forEach var="i" begin="1" end="10" >
+							<c:set var="score" value="${11-i }"/>
+							<c:choose>
+								<c:when test="${score == review_info.avg_score}">
+									<input type="radio" name="avg_review" checked="checked" readonly="readonly" value="${score }" id="rating3_03_${score }">
+									<span></span>
+								</c:when>
+								<c:otherwise>
+									<input type="radio" name="avg_review" readonly="readonly" value="${score }" id="rating3_03_${score }">
+									<span></span>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</div>
+				</td>
+			
+				<td>
+					<span style="font-size:12pt; ">		
+						(${review_info.cnt_review}<c:if test="${review_info.cnt_review >=10}">+</c:if>)
+					</span>
+				</td>
+			</tr>
+		</table>		
+	</c:if>
 	
 	<br>
 
