@@ -37,6 +37,7 @@ import co.sol.main.UserInfo;
 import co.sol.mapper.BMapper;
 import co.sol.service.BService;
 import co.sol.service.DataService;
+import co.sol.service.LogService;
 import co.sol.service.UService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -50,6 +51,7 @@ public class UserController {
 	private final UService uservice;
 	private final BService bservice;
 	private final DataService dataservice;
+	private final LogService lservice;
 	
 	
 	//Find Id
@@ -208,6 +210,23 @@ public class UserController {
 		}
 		return "/user/myPage";		  
 	} 
+	
+	@GetMapping("/mypageView")
+	public String mypageView(String select, String memberId, Model m) throws Exception{
+		
+		m.addAttribute("u_name", memberId);
+		
+		if(select.equals("log")) {
+			m.addAttribute("log", lservice.memberLog(memberId));
+		}else if(select.equals("write")){
+			m.addAttribute("write", lservice.memberWrite(memberId));
+		}else if(select.equals("scrap")){
+			m.addAttribute("scrap", lservice.memberScrap(memberId));
+		}else if(select.equals("reply")){
+			m.addAttribute("reply", lservice.memberReply(memberId));
+		}
+		return "/board/mypageView";
+	}
 
 	@ResponseBody
 	@RequestMapping("/bmichart") 

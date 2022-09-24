@@ -126,31 +126,40 @@
 			<div id="curve_chart" style="width: 800px; height: 600px"></div>
 
 			</div>
+				
 			<hr class="my-4">
-			<p>최근 게시글 테이블넣어야함다</p>
+			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=log&memberId=${user.u_name}'">활동기록</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=write&memberId=${user.u_name}'">작성한 게시글</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=reply&memberId=${user.u_name}'">작성한 댓글</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=scrap&memberId=${user.u_name}'">스크랩</button>
+			<br><br>
 			<!-- 송이가 준 코드 -->
 			<c:forEach items="${log }" var="log">
 				<div>
 					<div>
-						<span> <c:if test="${log.l_div == 1 }">
-                  					게시글 ${log.b_no}를 스크랩 하였습니다.
-               					</c:if> <c:if test="${log.l_div == 2 }">
-                  					게시글 ${log.b_no}를 작성 하였습니다.
-               					</c:if> <c:if test="${log.l_div == 3 }">
-                 					 게시글 ${log.b_no}에 ${log.l_reno}번째 댓글을 작성 하였습니다.
-               					</c:if>
-						</span> <span> <fmt:formatDate value="${log.l_date}"
-								pattern="YY-MM-dd  hh:mm:ss" />
+						<span> 
+							<c:if test="${log.l_div == 1 }">
+           						게시글 ${log.b_no}를 스크랩 하였습니다.
+               				</c:if> 
+               				<c:if test="${log.l_div == 2 }">
+                  				게시글 ${log.b_no}를 작성 하였습니다.
+               				</c:if> 
+               				<c:if test="${log.l_div == 3 }">
+                 				 게시글 ${log.b_no}에 ${log.l_reno}번째 댓글을 작성 하였습니다.
+               				</c:if>
+						</span> 
+						<span> 
+							<fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
 						</span>
 					</div>
 					<div>
-						<span> <a href="/board/?^p^??b_no=${log.b_no}">${log.b_title}</a>
-						</span> <span> ${log.b_writer} </span>
+						<span> 
+							<a href="/board/?^p^??b_no=${log.b_no}">${log.b_title}</a>
+						</span> 
+						<span> ${log.b_writer} </span>
 					</div>
-
 				</div>
 			</c:forEach>
-			<a href="#" target="_blank">링크연결할거있음넣으세여</a>
 
 		</div>
 	</div>

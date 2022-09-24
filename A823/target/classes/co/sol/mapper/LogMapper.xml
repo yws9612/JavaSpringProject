@@ -75,15 +75,27 @@
 	
 	<!-- 신고 -->
 	<insert id="reportBoard">
-		call pro_l_table_reportboard(#{u_no}, #{b_no}, #{l_report})	
+		<selectKey keyProperty="l_no" order="BEFORE" resultType="int">
+			select max(l_no)+1 from l_table
+		</selectKey>
+		insert into l_table (l_no, u_no, b_no, l_div, l_date, l_report)
+			values(#{l_no}, #{u_no}, #{b_no}, 5, current_date, #{l_report})		
 	</insert>
 	
 	<insert id="reportComment">
-		call pro_l_table_reportcomment(#{u_no}, #{b_no}, #{c_no}, #{l_report})	
+		<selectKey keyProperty="l_no" order="BEFORE" resultType="int">
+			select max(l_no)+1 from l_table
+		</selectKey>
+		insert into l_table (l_no, u_no, b_no, l_div, l_date, c_no, l_report)
+			values(#{l_no}, #{u_no}, #{b_no}, 5, current_date, #{c_no}, #{l_report})		
 	</insert>
 	
 	<insert id="reportReview">
-		call pro_l_table_reportreview(#{u_no}, #{r_no}, #{l_report})	
+		<selectKey keyProperty="l_no" order="BEFORE" resultType="int">
+			select max(l_no)+1 from l_table
+		</selectKey>
+		insert into l_table (l_no, u_no, l_div, l_date, r_no, l_report)
+			values(#{l_no}, #{u_no}, 5, current_date, #{r_no}, #{l_report})		
 	</insert>
 	
 	
@@ -93,7 +105,7 @@
 		select count(*) from l_table where u_no=#{u_no} and l_div=5
 		<trim prefix="and">
 			<choose>
-				<when test="b_no != 0 and c_no == 0">
+				<when test="b_no != 0">
 					b_no=#{b_no}
 				</when>
 				<when test="c_no != 0">
