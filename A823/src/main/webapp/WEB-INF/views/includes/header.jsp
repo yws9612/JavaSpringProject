@@ -35,6 +35,7 @@
       <a href="${root }main/main" class="d-flex align-items-center mb-md-0 text-dark text-decoration-none">
 		<!-- 로고 이미지 삽입 -->
 		<img src="/resources/img/logo/logo.png" class="d-block" alt="부들부들로고" width="60">
+		&nbsp;&nbsp;&nbsp;&nbsp; <h5 class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">초보들의 운동커뮤니티</h5>
       </a>
 	  <div class="col-md-1"></div>
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
