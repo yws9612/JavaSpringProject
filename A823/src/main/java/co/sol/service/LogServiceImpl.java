@@ -44,4 +44,25 @@ public class LogServiceImpl implements LogService {
 		mpr.deletescrap(tmp);
 	}
 
+	@Override
+	public void report(LVO log) {
+		if(log.getC_no()!=0) {
+			mpr.reportComment(log);
+		}
+		else if(log.getB_no()!=0) {
+			mpr.reportBoard(log);
+		}
+		else if(log.getR_no()!=0) {
+			mpr.reportReview(log);
+		}
+	}
+
+	@Override
+	public boolean checkreport(LVO log) {
+		if(mpr.checkreport(log)==0) {
+			return true;
+		}
+		return false;
+	}
+
 }

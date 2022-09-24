@@ -12,5 +12,7 @@ public interface LogService {
 	void scrap(LVO log);
 	boolean checkscrap(LVO log);
 	void deletescrap(int u_no, int b_no);
+	void report(LVO log);
+	boolean checkreport(LVO log);
 
 }

@@ -29,6 +29,8 @@ public class UVO {
 	
 	private String u_admin;
 	
+	private int u_reported;
+	
 	public boolean matchPassword(String pw) {
 		return this.u_pw.equals(pw);
 	}

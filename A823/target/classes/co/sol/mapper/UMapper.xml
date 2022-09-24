@@ -86,6 +86,13 @@
 	</select>
 	
 	
+	
+	<!-- 누적 신고 횟수 조정 -->
+	<update id="updateReported">
+		update u_table set u_reported=#{u_reported} from u_table;
+	</update>
+	
+	
 
 </mapper>
 

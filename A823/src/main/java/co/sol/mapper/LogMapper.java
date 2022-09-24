@@ -11,5 +11,9 @@ public interface LogMapper {
 	public void scrap(LVO log);
 	public int checkscrap(LVO log);
 	public void deletescrap(LVO log);
+	public void reportBoard(LVO log);
+	public void reportComment(LVO log);
+	public void reportReview(LVO log);
+	public int checkreport(LVO log);
 
 }

@@ -9,8 +9,5 @@ public class GVO {
 	private String g_name;
 	private String g_addr;
 	private String g_call;
-	private String g_post;
-	private int g_x;
-	private int g_y;
 	
 }
