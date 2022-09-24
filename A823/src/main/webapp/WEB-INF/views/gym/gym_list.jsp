@@ -48,12 +48,11 @@
 <div class="shadow p-4 bg-white rounded"> -->
 
 	<div class="container" style="margin-top: 120px; width: 70%;">
-	<h3>헬스장 찾기</h3>
-	<br>
+
 	<fieldset>
-		<div style="text-align: center;">
-			<p>
-				<select style="width:200px;" id="s1" onchange="optionChange();">
+		<div style="text-align: center;" class="form-group">
+	<label class="form-label mt-3 me-3"><h4>헬스장 찾기</h4></label>
+				<select style="width:30%; display:inline-block;" id="s1" onchange="optionChange();" class="form-select me-3">
 					<option id="none" value="none" selected="selected" >===== 시/도 =====</option>
 					<option id="k" value="강원도">강원도</option>
 					<option id="j" value="경기도">경기도</option>
@@ -74,11 +73,10 @@
 					<option id="q" value="충청북도">충청북도</option>        
 				</select>
 				
-				<select style="width:200px;" id="s2">
+				<select style="width:30%; display:inline-block;" id="s2" class="form-select me-3">
 				</select>
 				
-				<button type="button" onclick="searchlocal()">검색</button>
-   			</p>
+				<button type="button" onclick="searchlocal()" class="btn btn-primary">검색</button>
     	</div>
     </fieldset>
 ​
