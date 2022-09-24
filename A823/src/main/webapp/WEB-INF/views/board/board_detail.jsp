@@ -294,14 +294,6 @@ ul {
 			else if (checkscrap == 'disscrap') {
 				alert('스크랩이 취소되었습니다.');
 			}
-			
-			var report="${report}";
-			if (report == 'true') {
-				alert('신고 되었습니다.');
-			}
-			else if (report == 'false') {
-				alert('이미 신고 하셨습니다.');
-			}
 		});
 
 		
@@ -314,6 +306,9 @@ ul {
 			var pop_y=(window.screen.height / 2) - 200;
 			var option='width=500, height=300, left='+pop_x+', top='+pop_y;
 			window.open(url, name, option);
+		}
+		function confirmreport(){
+			alert('신고 되었습니다.');
 		}
 
 </script>
