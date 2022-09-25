@@ -128,10 +128,11 @@
 			</div>
 				
 			<hr class="my-4">
-			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=review&memberId=${user.u_name}&u_no=${user.u_no}'">리뷰 내역</button>
+			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=log&memberId=${user.u_name}&u_no=${user.u_no}'">활동 내역</button>
 			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=write&memberId=${user.u_name}&u_no=${user.u_no}'">작성한 게시글</button>
 			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=reply&memberId=${user.u_name}&u_no=${user.u_no}'">작성한 댓글</button>
 			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=scrap&memberId=${user.u_name}&u_no=${user.u_no}'">스크랩</button>
+			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=review&memberId=${user.u_name}&u_no=${user.u_no}'">리뷰 내역</button>
 			<br><br>
 			<!-- 송이가 준 코드 -->
 			<c:forEach items="${log }" var="log">

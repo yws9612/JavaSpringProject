@@ -250,9 +250,8 @@ public class BController {
 		
 		m.addAttribute("u_name", memberId);
 		
-		if(select.equals("review")) {
-			m.addAttribute("review", logservice.getList_Review(u_no));
-			
+		if(select.equals("log")) {
+			m.addAttribute("log", logservice.getList(u_no));	
 		}else if(select.equals("write")){
 			m.addAttribute("write", logservice.getList_Board(u_no));
 			System.out.println(logservice.getList_Board(u_no));
@@ -260,6 +259,9 @@ public class BController {
 			m.addAttribute("scrap", logservice.getList_Scrap(u_no));
 		}else if(select.equals("reply")){
 			m.addAttribute("reply", logservice.getList_Comment(u_no));
+			System.out.println(logservice.getList_Comment(u_no));
+		}else if(select.equals("review")) {
+			m.addAttribute("review", logservice.getList_Review(u_no));
 		}
 		return "/user/myPage";
 	}

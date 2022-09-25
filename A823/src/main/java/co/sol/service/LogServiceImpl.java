@@ -19,8 +19,8 @@ public class LogServiceImpl implements LogService {
 	private final LogMapper mpr;
 
 	@Override
-	public List<LVO> getList(UVO user) {
-		return mpr.getList(user);
+	public List<LVO> getList(int u_no) {
+		return mpr.getList(u_no);
 	}
 	
 	@Override
