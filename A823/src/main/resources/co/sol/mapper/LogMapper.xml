@@ -17,14 +17,14 @@
 				and l_table.r_no=r_table.r_no(+)
 				and l_table.u_no=#{u_no}
 				and l_div in (1,2,3,4)
-			order by l_no desc
+			order by l_date desc
 		]]>
 	</select><!-- 결과값 : 스크랩, 쓴 글, 쓴 댓글, 쓴 리뷰에서 가져오는 거 다..+l_div
 	(+) : 아우터조인, <![CDATA[ : 쿼리문에 특수문자가 많으면 쓰는게 좋대서.. -->
 	
 	<!--특정 u_no의 로그를 최신순으로 가져옵니다. 카테고리별 3개의 쿼리가 있습니다.-->
 	<select id="getList_Scrap" resultType="co.sol.main.LVO">
-		select l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		select l_div, l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
 		from l_table, b_table, u_table
 		where l_table.u_no=u_table.u_no
             and l_table.b_no=b_table.b_no
@@ -35,7 +35,7 @@
 	b_writer(스크랩한 게시글 작성자 id), u_name(내 이름)  -->
 	
 	<select id="getList_Board" resultType="co.sol.main.LVO">
-		select l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		select l_div, l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
 		from l_table, b_table, u_table
 		where l_table.u_no=u_table.u_no
             and l_table.b_no=b_table.b_no
@@ -46,7 +46,7 @@
 	b_writer(작성자 id), u_name(내 이름)  -->
 	
 	<select id="getList_Comment" resultType="co.sol.main.LVO">
-		select l_table.b_no, l_reno, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		select l_div, l_table.b_no, l_reno, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
 		from l_table, b_table, u_table
 		where l_table.u_no=u_table.u_no
             and l_table.b_no=b_table.b_no
@@ -57,7 +57,7 @@
 	b_title(댓글 단 게시글 제목), b_writer(댓글 단 게시글의 작성자 id), u_name(내 이름)  -->
 	
 	<select id="getList_Review" resultType="co.sol.main.LVO">
-		select l_date, u_table.u_name, g_table.g_name, r_table.g_no
+		select l_div, l_date, u_table.u_name, g_table.g_name, r_table.g_no
 		from l_table, r_table, u_table, g_table
 		where l_table.u_no=u_table.u_no
 			and r_table.g_no=g_table.g_no

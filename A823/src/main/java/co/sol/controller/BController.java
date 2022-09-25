@@ -246,7 +246,7 @@ public class BController {
 	}
 	
 	@GetMapping("/mypageView")
-	public String mypageView(@RequestParam String select, String memberId, HttpSession session, Model m) throws Exception{
+	public String mypageView(String select, String memberId, HttpSession session, Model m) throws Exception{
 		
 		m.addAttribute("u_name", memberId);
 		UserInfo ssn=(UserInfo)session.getAttribute("user");

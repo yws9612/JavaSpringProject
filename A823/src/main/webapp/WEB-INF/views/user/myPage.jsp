@@ -8,8 +8,7 @@
 <title>부들부들 | 마이 페이지</title>
 
 <head>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 	google.charts.load('current', {
@@ -128,25 +127,28 @@
 			</div>
 				
 			<hr class="my-4">
-			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=log&memberId=${user.u_name}&u_no=${user.u_no}'">활동 내역</button>
-			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=write&memberId=${user.u_name}&u_no=${user.u_no}'">작성한 게시글</button>
-			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=reply&memberId=${user.u_name}&u_no=${user.u_no}'">작성한 댓글</button>
-			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=scrap&memberId=${user.u_name}&u_no=${user.u_no}'">스크랩</button>
-			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=review&memberId=${user.u_name}&u_no=${user.u_no}'">리뷰 내역</button>
+			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=log&memberId=${user.u_name}'">활동 내역</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=scrap&memberId=${user.u_name}'">스크랩</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=write&memberId=${user.u_name}'">작성한 게시글</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=reply&memberId=${user.u_name}'">작성한 댓글</button>	
+			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=review&memberId=${user.u_name}'">리뷰 내역</button>
 			<br><br>
 			<!-- 송이가 준 코드 -->
-			<c:forEach items="${log }" var="log">
+			<c:forEach items="${log}" var="log">
 				<div>
 					<div>
 						<span> 
-							<c:if test="${log.l_div == 1 }">
-           						게시글 ${log.b_no}를 스크랩 하였습니다.
+							<c:if test="${log.l_div == 1}">
+           						${log.b_no}번 게시글을 스크랩 하였습니다.
                				</c:if> 
-               				<c:if test="${log.l_div == 2 }">
-                  				게시글 ${log.b_no}를 작성 하였습니다.
+               				<c:if test="${log.l_div == 2}">
+                  				${log.b_no}번 게시글을 작성 하였습니다.
                				</c:if> 
-               				<c:if test="${log.l_div == 3 }">
-                 				 게시글 ${log.b_no}에 ${log.l_reno}번째 댓글을 작성 하였습니다.
+               				<c:if test="${log.l_div == 3}">
+                 				${log.b_no}번 게시글에 ${log.l_reno}번째 댓글을 작성 하였습니다.
+               				</c:if>
+               				<c:if test="${log.l_div == 4}">
+               					${log.b_no}번 게시글에 리뷰를 남겼습니다.
                				</c:if>
 						</span> 
 						<span> 
@@ -155,16 +157,90 @@
 					</div>
 					<div>
 						<span> 
-							<a href="/board/?^p^??b_no=${log.b_no}">${log.b_title}</a>
+							<a href="/board/board_detail?b_no=${log.b_no}">${log.b_title}</a>
 						</span> 
 						<span> ${log.b_writer} </span>
 					</div>
 				</div>
 			</c:forEach>
+			
+			<c:forEach items="${scrap}" var="scrap">
+				<div>
+					<div>
+						<span> 
+							${scrap.b_no}번 게시글을 스크랩 하였습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${scrap.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${scrap.b_no}">${scrap.b_title}</a>
+						</span> 
+						<span> ${scrap.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${write}" var="write">
+				<div>
+					<div>
+						<span> 
+							${write.b_no}번 게시글을 작성 하였습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${write.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${write.b_no}">${write.b_title}</a>
+						</span> 
+						<span> ${write.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${reply}" var="reply">
+				<div>
+					<div>
+						<span> 
+							${reply.b_no}번 게시글에 ${reply.l_reno}번째 댓글을 작성 하였습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${reply.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${reply.b_no}">${reply.b_title}</a>
+						</span> 
+						<span> ${reply.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${review}" var="review">
+				<div>
+					<div>
+						<span> 
+							${review.b_no}번 게시글에 리뷰를 남겼습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${review.b_no}">${review.b_title}</a>
+						</span> 
+						<span> ${review.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
 
 		</div>
-	</div>
-	</div>
 
 	<!-- FOOTER -->
 	<c:import url="/WEB-INF/views/includes/footer.jsp" />
