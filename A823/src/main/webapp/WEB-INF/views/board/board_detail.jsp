@@ -123,20 +123,24 @@ ul {
 											</span> 
 												<br>
 											<span style="font-size: small;">
-												<c:out value="${CVO.c_con }" />
+												${CVO.c_con}
 											</span>
 										</div>
 
 										<div class="col text-end">
-											<a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글
+											<a href="javascript:" class="text-decoration-none" style="font-size: small;" id="reComment">답글
 											</a>|
-											<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
-												<a href="javascript:"role="button" class="text-decoration-none" style="font-size: small;" id="comment-update-link">수정</a>
-												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
-												<div>
-											</div>
-											</c:if>
-											
+											<c:choose>
+												<c:when test="${CVO.c_writer eq sessionScope.user.u_id }">
+													<a href="javascript:" style="font-size: small;" class="comment-update-link">수정</a>
+													<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+													<div>
+												</div>
+												</c:when>
+												<c:otherwise>
+													<a href="">신고</a>
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div>
 											<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
@@ -174,15 +178,29 @@ ul {
 											</c:when>
 											<c:otherwise></c:otherwise>
 										</c:choose>
+										<c:if test="${not empty sessionScope.user.u_id }">
+											<form:form action="c_insert" modelAttribute="CVO" method="post">
+												<span class="" style="font-size: small;">
+													${sessionScope.user.u_id }
+												</span>
+												<div class="input-group" id="commentinsert">
+													<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="댓글을 입력해주세요."></form:textarea>
+													<form:hidden path="c_level" value="" />
+													<form:hidden path="b_no" value="${bdetail.b_no }" />
+													<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
+													<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>
+												</div>
+											</form:form>
+										</c:if>
 										<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
-											<div>
+										
 												<form class="comment-update-form" action="${root}board/comment_update" method="post">
 													<input type="hidden" name="c_no" value="${CVO.c_no}" />
 													<textarea class="content" name="c_con">${CVO.c_con}</textarea>
 													<input type="hidden" name="b_no" value="${bdetail.b_no}" />
 													<button type="submit">수정</button>
 												</form>
-											</div>
+											
 										</c:if>
 									</div>
 								</li>
@@ -211,19 +229,7 @@ ul {
 						<button class="btn btn-primary btn-sm" type="submit" id="button-addon2 recomment" disabled>등록</button>
 					</div>
 				</c:if>
-				<c:if test="${not empty sessionScope.user.u_id }">
-					<form:form action="c_insert" modelAttribute="CVO" method="post">
-						<span class="" style="font-size: small;">${sessionScope.user.u_id }</span>
-						<div class="input-group" id="commentinsert">
-							<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="댓글을 입력해주세요."></form:textarea>
-							<form:hidden path="c_level" value="" />
-							<form:hidden path="b_no" value="${bdetail.b_no }" />
-							<form:hidden path="c_writer" value="${sessionScope.user.u_id }" />
-							<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>
-						</div>
-					</form:form>
-				</c:if>
-
+				
 			</div>
 		</div>
 	</div>
@@ -243,7 +249,7 @@ ul {
 			}
 		});
 		
-		$("#comment-update-link").click(function(){
+		$(".comment-update-link").click(function(){
 			$(this)
 			.parent().parent().parent()
 			.find(".comment-update-form")

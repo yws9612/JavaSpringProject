@@ -201,7 +201,7 @@ public class BController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/comment_update")
+	@RequestMapping("/comment_update")
 	public Map<String,Object>
 		authCommentUpdate(HttpServletRequest request,
 				@ModelAttribute("CVO") CVO comment){
