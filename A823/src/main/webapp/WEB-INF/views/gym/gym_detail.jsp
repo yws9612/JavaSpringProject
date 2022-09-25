@@ -296,11 +296,18 @@
 							</small>
 						</td>
 						
-						<c:if test="${sessionScope.user.u_id eq rvo.u_id }">
-							<td style="width:40px" align="right">
-								<a href="deletereview?g_no=${gym.g_no }&r_no=${rvo.r_no }" style="color:silver; font-size:0.8em; text-decoration:none;">삭제</a>
-							</td>
-						</c:if>
+						<c:choose>
+							<c:when test="${sessionScope.user.u_id eq rvo.u_id }">
+								<td style="width:40px" align="right">
+									<a href="deletereview?g_no=${gym.g_no }&r_no=${rvo.r_no }" style="color:silver; font-size:0.8em; text-decoration:none;">삭제</a>
+								</td>
+							</c:when>
+							<c:when test="${not empty sessionScope.user.u_id }">
+								<td style="width:40px" align="right">
+									<a href="" onclick="reportr(${rvo.r_no})" style="color:silver; font-size:0.8em; text-decoration:none;">신고</a>
+								</td>
+							</c:when>
+						</c:choose>
 					</tr>
 				</table>
 				
@@ -372,6 +379,22 @@
 				alert('삭제되었습니다.');
 			}
 		});
+		
+		
+		
+
+		function reportr(r_no){
+			var url='/report/report_review?r_no='+r_no;
+			var name='신고하기';
+			var pop_x=(window.screen.width / 2) - 250;
+			var pop_y=(window.screen.height / 2) - 300;
+			var option='width=500, height=440, left='+pop_x+', top='+pop_y;
+			window.open(url, name, option);
+		}
+		function confirmreport(){
+			alert('신고 되었습니다.');
+		}
+		
 		
 		
 		

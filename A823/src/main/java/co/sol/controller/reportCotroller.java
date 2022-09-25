@@ -35,7 +35,6 @@ public class reportCotroller {
 		log.setB_no(b_no);
 		log.setC_no(0);
 		log.setR_no(0);
-		log.setG_no(0);
 		
 		ModelAndView mv = new ModelAndView();
 		System.out.println(service.checkreport(log));
@@ -60,7 +59,6 @@ public class reportCotroller {
 		log.setB_no(b_no);
 		log.setC_no(c_no);
 		log.setR_no(0);
-		log.setG_no(0);
 
 		ModelAndView mv = new ModelAndView();
 		System.out.println(service.checkreport(log));
@@ -76,14 +74,13 @@ public class reportCotroller {
 		}
 	}
 	@GetMapping("/report_review")
-	public ModelAndView report_review(@RequestParam("r_no")int r_no, HttpSession session, @RequestParam("g_no")int g_no, RedirectAttributes rt) {
+	public ModelAndView report_review(@RequestParam("r_no")int r_no, HttpSession session, RedirectAttributes rt) {
 		LVO log=new LVO();
 		UserInfo ssn=(UserInfo)session.getAttribute("user");
 		log.setU_no(ssn.getU_no());
 		log.setB_no(0);
 		log.setC_no(0);
 		log.setR_no(r_no);
-		log.setG_no(g_no);
 
 		ModelAndView mv = new ModelAndView();
 		System.out.println(service.checkreport(log));

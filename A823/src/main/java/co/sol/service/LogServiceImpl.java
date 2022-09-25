@@ -18,10 +18,31 @@ public class LogServiceImpl implements LogService {
 	
 	private final LogMapper mpr;
 
+//	@Override
+//	public List<Map<String, Object>> getList(UVO user) {
+//		return mpr.getList(user);
+//	}
+	
 	@Override
-	public List<Map<String, Object>> getList(UVO user) {
-		return mpr.getList(user);
+	public List<LVO> getList_Scrap(int u_no) {
+		return mpr.getList_Scrap(u_no);
 	}
+	
+	@Override
+	public List<LVO> getList_Board(int u_no) {
+		return mpr.getList_Board(u_no);
+	}
+
+	@Override
+	public List<LVO> getList_Comment(int u_no) {
+		return mpr.getList_Comment(u_no);
+	}
+
+	@Override
+	public List<LVO> getList_Review(int u_no) {
+		return mpr.getList_Review(u_no);
+	}
+	
 
 	@Override
 	public void scrap(LVO log) {
@@ -64,5 +85,7 @@ public class LogServiceImpl implements LogService {
 		}
 		return false;
 	}
+
+
 
 }

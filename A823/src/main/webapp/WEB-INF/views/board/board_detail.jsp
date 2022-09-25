@@ -310,8 +310,8 @@ ul {
 			var url='/report/report_comment?b_no='+${bdetail.b_no}+'&c_no='+c_no;
 			var name='신고하기';
 			var pop_x=(window.screen.width / 2) - 250;
-			var pop_y=(window.screen.height / 2) - 200;
-			var option='width=500, height=300, left='+pop_x+', top='+pop_y;
+			var pop_y=(window.screen.height / 2) - 300;
+			var option='width=500, height=440, left='+pop_x+', top='+pop_y;
 			window.open(url, name, option);
 		}
 		function confirmreport(){
