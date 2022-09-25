@@ -53,7 +53,7 @@
 		<div style="text-align: center;" class="form-group">
 	<label class="form-label mt-3 me-3"><h4>헬스장 찾기</h4></label>
 				<select style="width:30%; display:inline-block;" id="s1" onchange="optionChange();" class="form-select me-3">
-					<option id="none" value="none" selected="selected" >===== 시/도 =====</option>
+					<option id="none" value="none" selected="selected" >지역 선택</option>
 					<option id="k" value="강원도">강원도</option>
 					<option id="j" value="경기도">경기도</option>
 					<option id="l" value="경상남도">경상남도</option>
@@ -74,6 +74,7 @@
 				</select>
 				
 				<select style="width:30%; display:inline-block;" id="s2" class="form-select me-3">
+					<option id="none" value="none" selected="selected" >시/군/구</option>
 				</select>
 				
 				<button type="button" onclick="searchlocal()" class="btn btn-primary">검색</button>
@@ -232,7 +233,7 @@
 	      } else if ( v == 'q' ) {
 	        o = q;
 	      } else {
-	        o = [];
+	        o = ['시/군/구'];
 	      }
 	      $( '#s2' ).empty();
 	      for ( var i = 0; i < o.length; i++ ) {

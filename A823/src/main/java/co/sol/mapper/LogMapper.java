@@ -7,7 +7,7 @@ import co.sol.main.*;
 
 public interface LogMapper {
 	
-	//public List<Map<String, Object>> getList(UVO user);
+	public List<LVO> getList(UVO user);
 	public List<LVO> getList_Scrap(int u_no);
 	public List<LVO> getList_Board(int u_no);
 	public List<LVO> getList_Comment(int u_no);

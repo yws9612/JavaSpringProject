@@ -8,7 +8,7 @@ import co.sol.main.UVO;
 
 public interface LogService {
 	
-//	List<Map<String, Object>> getList(UVO user);
+	List<LVO> getList(UVO user);
 	List<LVO> getList_Scrap(int u_no);
 	List<LVO> getList_Board(int u_no);
 	List<LVO> getList_Comment(int u_no);

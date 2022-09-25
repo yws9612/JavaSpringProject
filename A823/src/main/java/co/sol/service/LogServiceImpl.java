@@ -18,10 +18,10 @@ public class LogServiceImpl implements LogService {
 	
 	private final LogMapper mpr;
 
-//	@Override
-//	public List<Map<String, Object>> getList(UVO user) {
-//		return mpr.getList(user);
-//	}
+	@Override
+	public List<LVO> getList(UVO user) {
+		return mpr.getList(user);
+	}
 	
 	@Override
 	public List<LVO> getList_Scrap(int u_no) {
