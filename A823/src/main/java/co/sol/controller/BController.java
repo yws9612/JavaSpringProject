@@ -245,7 +245,24 @@ public class BController {
 		return "redirect:/board/board_detail?b_no="+b_no;
 	}
 	
-	
+	@GetMapping("/mypageView")
+	public String mypageView(String select, String memberId,int u_no, Model m) throws Exception{
+		
+		m.addAttribute("u_name", memberId);
+		
+		if(select.equals("review")) {
+			m.addAttribute("review", logservice.getList_Review(u_no));
+			
+		}else if(select.equals("write")){
+			m.addAttribute("write", logservice.getList_Board(u_no));
+			System.out.println(logservice.getList_Board(u_no));
+		}else if(select.equals("scrap")){
+			m.addAttribute("scrap", logservice.getList_Scrap(u_no));
+		}else if(select.equals("reply")){
+			m.addAttribute("reply", logservice.getList_Comment(u_no));
+		}
+		return "/user/myPage";
+	}
 	
 
 	
