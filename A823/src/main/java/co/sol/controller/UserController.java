@@ -51,6 +51,7 @@ public class UserController {
 	private final UService uservice;
 	private final BService bservice;
 	private final DataService dataservice;
+	private final LogService logservice;
 	
 	
 	
@@ -208,6 +209,13 @@ public class UserController {
 		if(user.getU_id().equals("admin")) {
 			return "/admin/chart";
 		}
+		
+		System.out.println("getList--"+logservice.getList(user.getU_no()));
+		System.out.println("getList_Board--"+logservice.getList_Board(user.getU_no()));
+		System.out.println("getList_Comment--"+logservice.getList_Comment(user.getU_no()));
+		System.out.println("getList_Scrap--"+logservice.getList_Scrap(user.getU_no()));
+		System.out.println("getList_Review--"+logservice.getList_Review(user.getU_no()));
+		
 		return "/user/myPage";		  
 	} 
 	
@@ -215,9 +223,9 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/bmichart") 
-	public JSONObject bmichart() { 
-		UVO tmp=new UVO(); 
-		return uservice.getDiscord(tmp);		 
+	public JSONObject bmichart(HttpSession session) { 
+		UserInfo user=(UserInfo)session.getAttribute("user");
+		return uservice.getDiscord(user.getU_no());		 
 	}
 	
 	@GetMapping("/infoUpdate")

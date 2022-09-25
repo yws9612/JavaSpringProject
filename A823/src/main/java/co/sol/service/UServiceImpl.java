@@ -89,12 +89,12 @@ public class UServiceImpl implements UService {
 	}
 
 	@Override 
-	public JSONObject getDiscord(UVO user) { 
+	public JSONObject getDiscord(int u_no) { 
 		 
 		//test용 
-		user.setU_no(3); 
+//		user.setU_no(3); 
 		 
-		List<Map<String, Integer>> list = mpr.getDiscord(user); 
+		List<Map<String, Integer>> list = mpr.getDiscord(u_no); 
 		 
 		JSONObject data = new JSONObject();		 
 		 

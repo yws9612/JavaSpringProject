@@ -17,7 +17,7 @@ public interface UMapper {
 	public void newPw(UVO user);
 	public UVO getUser(UVO user);
 	public void addDiscord(DVO discord);
-	public List<Map<String, Integer>> getDiscord(UVO user); 	 
+	public List<Map<String, Integer>> getDiscord(int u_no); 	 
 	public UVO selectById(String id);
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 	public void updateReported(int reported);

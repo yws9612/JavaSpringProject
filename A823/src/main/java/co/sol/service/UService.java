@@ -20,7 +20,7 @@ public interface UService {
 	void newPw(UVO user);
 	UVO getUser(UVO user);
 	void addDiscord(UVO user, DVO discord);
-	JSONObject getDiscord(UVO user);
+	JSONObject getDiscord(int u_no);
 
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 }

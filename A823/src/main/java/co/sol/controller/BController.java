@@ -246,11 +246,14 @@ public class BController {
 	}
 	
 	@GetMapping("/mypageView")
-	public String mypageView(String select, String memberId,int u_no, Model m) throws Exception{
+	public String mypageView(@RequestParam String select, String memberId, HttpSession session, Model m) throws Exception{
 		
 		m.addAttribute("u_name", memberId);
+		UserInfo ssn=(UserInfo)session.getAttribute("user");
+		int u_no=ssn.getU_no();
 		
 		if(select.equals("log")) {
+			System.out.println(logservice.getList(u_no));
 			m.addAttribute("log", logservice.getList(u_no));	
 		}else if(select.equals("write")){
 			m.addAttribute("write", logservice.getList_Board(u_no));
