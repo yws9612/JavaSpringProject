@@ -19,6 +19,8 @@ public class LVO {
 	
 	private String b_title;
 	private String b_writer;
+	private String u_name;
 	private int g_no;
+	private String g_name;
 
 }

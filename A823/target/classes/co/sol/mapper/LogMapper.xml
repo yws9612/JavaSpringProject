@@ -3,25 +3,10 @@
 
 <mapper namespace="co.sol.mapper.LogMapper">
 
-	<!--로그를 가져올 때 결과값을 받기 위한 map입니다. 
-	<resultMap type="co.sol.main.BVO" id="joinboard">
-		<result column="b_title" property="b_title"/>
-		<result column="b_writer" property="b_writer"/>
-	</resultMap>
 
-	<resultMap type="co.sol.main.LVO" id="log">
-		<result column="u_no" property="u_no"/>
-		<result column="b_no" property="b_no"/>
-		<result column="l_reno" property="l_reno"/>
-		<result column="l_div" property="l_div"/>
-		<result column="l_date" property="l_date"/>
-		<collection property="joinboard"/>
-	</resultMap>
-	-->
-	
 	
 	<!--특정 u_no의 모든 로그를 최신순으로 가져옵니다. 
-	b_table과 join하여 게시글의 제목과 작성자 id도 함께 가져옵니다.  -->
+	b_table과 join하여 게시글의 제목과 작성자 id도 함께 가져옵니다.
 	<select id="getList" resultType="co.sol.main.LVO">
 		-<![CDATA[
 		select /*+INDEX_DESC(l_table SYS_C0031914) */ 
@@ -29,22 +14,53 @@
 		from l_table natural join b_table 
 		where u_no = #{u_no}
 		]]> 
-		<!-- 
-		<trim prefix="and">
-			<choose>
-				<when test="select=='scrap'.toString()">
-					l_div=1
-				</when>
-				<when test="select=='write'.toString()">
-					l_div=2
-				</when>
-				<when test="select=='comment'.toString()">
-					l_div=3
-				</when>
-			</choose>
-		</trim>
-		 -->
-	</select>
+	</select>  -->
+	
+	<!--특정 u_no의 로그를 최신순으로 가져옵니다. 카테고리별 3개의 쿼리가 있습니다.-->
+	<select id="getList_Scrap" resultType="co.sol.main.LVO">
+		select l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		from l_table, b_table, u_table
+		where l_table.u_no=u_table.u_no
+            and l_table.b_no=b_table.b_no
+            and l_table.u_no=#{u_no}
+            and l_div=1
+		order by l_no desc
+	</select> <!-- 결과값 : b_no, l_date(로그가 입력된 시점), b_title(스크랩한 게시글 제목), 
+	b_writer(스크랩한 게시글 작성자 id), u_name(내 이름)  -->
+	
+	<select id="getList_Board" resultType="co.sol.main.LVO">
+		select l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		from l_table, b_table, u_table
+		where l_table.u_no=u_table.u_no
+            and l_table.b_no=b_table.b_no
+            and l_table.u_no=#{u_no}
+            and l_div=2
+		order by l_no desc
+	</select> <!-- 결과값 : b_no, l_date(로그가 입력된 시점), b_title(게시글 제목), 
+	b_writer(작성자 id), u_name(내 이름)  -->
+	
+	<select id="getList_Comment" resultType="co.sol.main.LVO">
+		select l_table.b_no, l_reno, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		from l_table, b_table, u_table
+		where l_table.u_no=u_table.u_no
+            and l_table.b_no=b_table.b_no
+            and l_table.u_no=#{u_no}
+            and l_div=3
+		order by l_no desc
+	</select> <!-- 결과값 : b_no, l_reno(게시글의 몇 번째 댓글인지), l_date(로그가 입력된 시점), 
+	b_title(댓글 단 게시글 제목), b_writer(댓글 단 게시글의 작성자 id), u_name(내 이름)  -->
+	
+	<select id="getList_Review" resultType="co.sol.main.LVO">
+		select l_date, u_table.u_name, g_table.g_name, r_table.g_no
+		from l_table, r_table, u_table, g_table
+		where l_table.u_no=u_table.u_no
+			and r_table.g_no=g_table.g_no
+            and l_table.r_no=r_table.r_no
+            and l_table.u_no=#{u_no}
+            and l_div=4
+		order by l_no desc
+	</select> <!-- 결과값 : l_date(로그가 입력된 시점), u_name(내 이름) 
+	g_name(후기 남긴 헬스장 이름), g_no(후기 남긴 헬스장 번호) -->
 	
 	
 	
