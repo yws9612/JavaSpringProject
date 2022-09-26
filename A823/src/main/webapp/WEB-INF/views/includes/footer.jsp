@@ -15,9 +15,9 @@
         <!-- 로고 이미지 삽입 -->
 		<img src="/resources/img/logo/logo_long.png" class="d-block" alt="부들부들로고" width="150">
       </a>
-      <a class="text-muted text-decoration-none">© 2022 Copyright 5dle5dle</a><br>
+      <a class="text-muted text-decoration-none">© 2022 Copyright Soldesk 4minutes</a><br>
 	  <a href="${root }user/privacy" class="text-muted text-decoration-none">개인정보처리방침</a><a class="text-muted text-decoration-none"> | </a>
-	  <a href="${root }user/termsofservice" class="text-muted text-decoration-none">서비스 이용약관</a>
+	  <a href="${root }user/service" class="text-muted text-decoration-none">서비스 이용약관</a>
 	  <br><br>
       <table>
       	<tr><td>팀장 서연운 | 3yws@naver.com</td></tr>
