@@ -254,7 +254,8 @@
 			<!-- 리뷰 -->
 			<c:forEach items="${reviews}" var="rvo">
 				<div class="d-flex flex-row mt-4"> 
-				<img src="https://mblogthumb-phinf.pstatic.net/20160516_270/jelly_dear_1463329244992Suz0h_PNG/11.PNG?type=w2" width="30" height="30" style="margin-right:10px;">
+				<!-- <img src="https://mblogthumb-phinf.pstatic.net/20160516_270/jelly_dear_1463329244992Suz0h_PNG/11.PNG?type=w2" width="30" height="30" style="margin-right:10px;"> -->
+				<div style="width:10px; height:30px;display:inline-block"></div>
 				<div class="ml-2 w-100">
 				
 				<div class="d-flex justify-content-between align-items-center">		

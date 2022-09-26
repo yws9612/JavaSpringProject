@@ -34,40 +34,39 @@
 	<c:if test="${sessionScope.user.u_id eq 'admin' }">
 
 	
-	<div>
-		<table id="t1" class="table table-hover text-center table-bordered">
-			 
-			<thead class="table-primary text-center">
-				<tr>
-					<th style="width:12.5%; text-align:center;">회원번호</th>
-					<th style="width:12.5%; text-align:center;">이름</th>
-					<th style="width:12.5%; text-align:center;">ID</th>
-					<th style="width:12.5%; text-align:center;">PW</th>
-					<th style="width:12.5%; text-align:center;">E-mail</th>
-					<th style="width:12.5%; text-align:center;">가입일</th>
-					<th style="width:12.5%; text-align:center;">누적 신고 횟수</th>
-					<th style="width:12.5%; text-align:center;"></th>	
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${members }" var="UVO">
-					<!--<c:if test="${uvo.u_admin eq 'N'} ">-->
-						<tr>
-							<td>${UVO.u_no }</td>
-							<td>${UVO.u_name }</td>
-							<td>${UVO.u_id }</td>							
-							<td>${UVO.u_pw }</td>
-							<td>${UVO.u_email }</td>
-							<td>${UVO.u_joindate }</td>
-							<td>${UVO.u_reported }</td>
-							<td><a href="#"class="btn btn-secondary btn-sm text-end">강제 탈퇴</a></td>				
-						</tr>				
-					<!--</c:if>-->		
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	
+		<div class="container" style="margin-top: 120px">
+			<table id="t1" class="table table-hover text-center table-bordered">
+				 
+				<thead class="table-primary text-center">
+					<tr>
+						<th style="width:12.5%; text-align:center;">회원번호</th>
+						<th style="width:12.5%; text-align:center;">이름</th>
+						<th style="width:12.5%; text-align:center;">ID</th>
+						<th style="width:12.5%; text-align:center;">PW</th>
+						<th style="width:12.5%; text-align:center;">E-mail</th>
+						<th style="width:12.5%; text-align:center;">가입일</th>
+						<th style="width:12.5%; text-align:center;">누적 신고 횟수</th>
+						<th style="width:12.5%; text-align:center;"></th>	
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${UList }" var="uvo">
+						<!--<c:if test="${uvo.u_admin eq 'N'} ">-->				
+						<!--</c:if>-->
+							<tr>
+								<td><c:out value="${uvo.u_no }"/></td>
+								<td><c:out value="${uvo.u_name }"/></td>
+								<td><c:out value="${uvo.u_id }"/></td>							
+								<td><c:out value="${uvo.u_pw }"/></td>
+								<td><c:out value="${uvo.u_email }"/></td>
+								<td><c:out value="${uvo.u_joindate }"/></td>
+								<td><c:out value="${uvo.u_reported }"/></td>
+								<td><a href="#"class="btn btn-secondary btn-sm text-end">강제 탈퇴</a></td>				
+							</tr>		
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	
 	
 	</c:if>
