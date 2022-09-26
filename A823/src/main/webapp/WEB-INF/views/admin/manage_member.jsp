@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,19 +51,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${UList }" var="uvo">
-						<!--<c:if test="${uvo.u_admin eq 'N'} ">-->				
-						<!--</c:if>-->
+					<c:forEach items="${UList}" var="uvo">
+						<c:if test="${uvo.u_admin eq N} "><!-- u.admin 있는데 왜 비교가 안 되지? -->
+						</c:if>	
 							<tr>
-								<td><c:out value="${uvo.u_no }"/></td>
-								<td><c:out value="${uvo.u_name }"/></td>
-								<td><c:out value="${uvo.u_id }"/></td>							
-								<td><c:out value="${uvo.u_pw }"/></td>
-								<td><c:out value="${uvo.u_email }"/></td>
-								<td><c:out value="${uvo.u_joindate }"/></td>
-								<td><c:out value="${uvo.u_reported }"/></td>
+								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_no }"/></td>
+								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_name }"/></td>
+								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_id }"/></td>							
+								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_pw }"/></td>
+								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_email }"/></td>
+								<td style="vertical-align: middle; word-break:keep-all">
+									<fmt:formatDate value="${uvo.u_joindate }" pattern="yyyy. MM. dd"/>
+								</td>
+								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_reported }"/></td>
 								<td><a href="#"class="btn btn-secondary btn-sm text-end">강제 탈퇴</a></td>				
-							</tr>		
+							</tr>
 					</c:forEach>
 				</tbody>
 			</table>
