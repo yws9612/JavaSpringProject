@@ -387,7 +387,7 @@
 		function reportr(r_no){
 			var url='/report/report_review?r_no='+r_no;
 			var name='신고하기';
-			var pop_x=(window.screen.width / 2) - 250;
+			var pop_x=(window.screen.width / 2) - 260;
 			var pop_y=(window.screen.height / 2) - 300;
 			var option='width=520, height=500, left='+pop_x+', top='+pop_y;
 			window.open(url, name, option);

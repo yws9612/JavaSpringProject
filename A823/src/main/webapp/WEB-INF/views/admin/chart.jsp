@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>부들부들 | 관리자 페이지</title>
+<title>부들부들 | 현황 그래프</title>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     

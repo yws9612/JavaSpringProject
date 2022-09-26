@@ -52,8 +52,6 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${UList}" var="uvo">
-						<c:if test="${uvo.u_admin eq N} "><!-- u.admin 있는데 왜 비교가 안 되지? -->
-						</c:if>	
 							<tr>
 								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_no }"/></td>
 								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_name }"/></td>
@@ -64,7 +62,16 @@
 									<fmt:formatDate value="${uvo.u_joindate }" pattern="yyyy. MM. dd"/>
 								</td>
 								<td style="vertical-align: middle; word-break:keep-all"><c:out value="${uvo.u_reported }"/></td>
-								<td><a href="#"class="btn btn-secondary btn-sm text-end">강제 탈퇴</a></td>				
+								<td style="vertical-align: middle;">
+									<c:choose>
+										<c:when test="${uvo.u_admin eq 'N'}">
+											<a href="#" class="btn btn-secondary btn-sm text-end">강제 탈퇴</a>
+										</c:when>
+										<c:otherwise>
+											관리자 계정
+										</c:otherwise>	
+									</c:choose>
+								</td>				
 							</tr>
 					</c:forEach>
 				</tbody>
