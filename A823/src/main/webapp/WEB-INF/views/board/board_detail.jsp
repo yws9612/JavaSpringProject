@@ -29,6 +29,12 @@ ul {
 .menubars {
 	display: none;
 }
+.comment-update-form{
+	display: none;
+}
+.recomment-update-form{
+	display: none;
+}
 </style>
 
 </head>
@@ -122,38 +128,18 @@ ul {
 												<fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd hh:mm:ss" />
 											</span> 
 												<br>
-											<span style="font-size: small;">
+											<span style="font-size: small;" class="con">
 												${CVO.c_con}
 											</span>
 										</div>
-
-										<!--<div class="col text-end">
-											<a href="javascript:" class="text-decoration-none" style="font-size: small;" id="reComment">답글
-											</a>|
-											<c:choose>
-												<c:when test="${CVO.c_writer eq sessionScope.user.u_id }">
-													<a href="javascript:" style="font-size: small;" class="comment-update-link">수정</a>
-													<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
-													<div>
-												</div>
-												</c:when>
-												<c:otherwise>
-													<a href="">신고</a>
-												</c:otherwise>
-											</c:choose>
-										</div>-->
 										<c:if test="${CVO.c_writer ne 'unknown' }">
 		                                 <div class="col text-end">
-		                                    <c:if test="${not empty sessionScope.user.u_id }">
-		                                       <a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글
-		                                       </a>
-		                                    </c:if>
 		                                    <c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id }">
-		                                       &nbsp;<a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
+		                                   		<a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글</a>
+		                                        <a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
 		                                    </c:if>
-		                                    |
 		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
-		                                       <a href="javascript:" style="font-size: small;" class="comment-update-link">수정</a>
+		                                        <a href="javascript:" style="font-size: small;" class="comment-update-link text-decoration-none">수정</a>
 												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
 		                                       <div>
 		                                    </div>
@@ -168,10 +154,12 @@ ul {
 										<div>
 											<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
 												<form class="comment-update-form" action="${root}board/comment_update" method="post">
+												<div class="input-group" >
 													<input type="hidden" name="c_no" value="${CVO.c_no}" />
 													<input type="hidden" name="b_no" value="${bdetail.b_no}" />
-													<textarea name="c_con">${CVO.c_con}</textarea>
-													<button type="submit">수정</button>
+													<textarea class="form-control" aria-describedby="button-addon2" name="c_con">${CVO.c_con}</textarea>
+													<button class="btn btn-primary btn-sm" id="button-addon2 recomment" type="submit">수정</button>
+												</div>
 												</form>
 											</c:if>
 										</div>
@@ -188,31 +176,17 @@ ul {
 												<c:out value="${CVO.c_writer }" /></span> 
 												<span class="" style="font-size: xx-small;"><fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd hh:mm:ss" /></span>
 												<br>&nbsp;&nbsp;&nbsp;&nbsp; 
-												<span id="CVOcon" class="" style="font-size: small;">
+												<span id="CVOcon" class="recon" style="font-size: small;">
 												<c:out value="${CVO.c_con }" /></span>
 											</p>
 										</div>
-										<!--<c:choose>
-											<c:when test="${CVO.c_writer eq sessionScope.user.u_id }">
-												<div class="col text-end">
-													<a href="javascript:" role="button"class="text-decoration-none" style="font-size: small;"id="comment-update-link">수정</a> 
-													<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}" role="button" class="text-decoration-none" style="font-size: small;" id="">삭제 </a>
-												</div>
-											</c:when>
-											<c:otherwise></c:otherwise>
-										</c:choose>-->										
 										<c:if test="${CVO.c_writer ne 'unknown' }">
 		                                 <div class="col text-end">
-		                                    <c:if test="${not empty sessionScope.user.u_id }">
-		                                       <a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글
-		                                       </a>
-		                                    </c:if>
 		                                    <c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id }">
-		                                       &nbsp;<a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
+		                                       <a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
 		                                    </c:if>
-		                                    |
 		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
-		                                       <a href="javascript:"role="button" class="text-decoration-none" style="font-size: small;" id="comment-update-link">수정</a>
+		                                       <a href="javascript:" style="font-size: small;" class="recomment-update-link text-decoration-none">수정</a>
 		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
 		                                       <div>
 		                                    </div>
@@ -224,29 +198,16 @@ ul {
 		                                    </c:if>                              
 		                                 </div>
 		                              </c:if>
-										<c:if test="${not empty sessionScope.user.u_id }">
-											<form:form action="c_insert" modelAttribute="CVO" method="post">
-												<span class="" style="font-size: small;">
-													${sessionScope.user.u_id }
-												</span>
-												<div class="input-group" id="commentinsert">
-													<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="댓글을 입력해주세요."></form:textarea>
-													<form:hidden path="c_level" value="" />
-													<form:hidden path="b_no" value="${bdetail.b_no }" />
-													<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
-													<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>
-												</div>
-											</form:form>
-										</c:if>
-										<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
 										
-												<form class="comment-update-form" action="${root}board/comment_update" method="post">
+										<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
+												<form class="recomment-update-form" action="${root}board/comment_update" method="post">
+												<div class="input-group" >
 													<input type="hidden" name="c_no" value="${CVO.c_no}" />
-													<textarea class="content" name="c_con">${CVO.c_con}</textarea>
 													<input type="hidden" name="b_no" value="${bdetail.b_no}" />
-													<button type="submit">수정</button>
+													<textarea class="form-control" aria-describedby="button-addon2" name="c_con">${CVO.c_con}</textarea>
+													<button class="btn btn-primary btn-sm" id="button-addon2 recomment" type="submit">수정</button>
+												</div>
 												</form>
-											
 										</c:if>
 									</div>
 								</li>
@@ -275,7 +236,18 @@ ul {
 						<button class="btn btn-primary btn-sm" type="submit" id="button-addon2 recomment" disabled>등록</button>
 					</div>
 				</c:if>
-				
+				<c:if test="${not empty sessionScope.user.u_id }">
+					<form:form action="c_insert" modelAttribute="CVO" method="post">
+						<span class="" style="font-size: small;">${sessionScope.user.u_id }</span>
+						<div class="input-group" id="commentinsert">
+						<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="댓글을 입력해주세요."></form:textarea>
+						<form:hidden path="c_level" value="" />
+						<form:hidden path="b_no" value="${bdetail.b_no }" />
+						<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
+						<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>
+						</div>
+					</form:form>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -323,14 +295,50 @@ ul {
 						//폼에 입력한 내용 읽어오기
 						var content=$this.find("textarea").val();
 						//pre 요소에 수정 반영하기 
-						$this.parent().find("span").text(content);
+						$this.parent().parent().parent().find(".con").text(content);
 					}
 				}
 			});
 		//폼 제출 막기 
 		return false;
 		});
-
+		
+		//대댓글창 수정 관련
+		$(".recomment-update-link").click(function(){
+			$(this)
+			.parent().parent().parent()
+			.find(".recomment-update-form")
+			.slideToggle(200);
+		});
+		
+		$(".recomment-update-form").on("submit", function(){
+			// "private/comment_update.do"
+			var url=$(this).attr("action");
+			//폼에 작성된 내용을 query 문자열로 읽어온다.
+			// num=댓글번호&content=댓글내용
+			var data=$(this).serialize();
+			//이벤트가 일어난 폼을 선택해서 변수에 담아 놓는다.
+			var $this=$(this);
+			$.ajax({
+				url:url,
+				method:"post",
+				async:false,
+				data:data,
+				success:function(responseData){
+					// responseData : {isSuccess:true}
+					if(responseData.isSuccess){
+						//폼을 안보이게 한다 
+						$this.slideUp(200);
+						//폼에 입력한 내용 읽어오기
+						var content=$this.find("textarea").val();
+						//pre 요소에 수정 반영하기 
+						$this.parent().parent().find(".recon").text(content);
+					}
+				}
+			});
+		//폼 제출 막기 
+		return false;
+		});
 		
 		
 		$(document).ready(function(){
@@ -348,7 +356,6 @@ ul {
 			}
 		});
 
-		
 		
 		function reportb(){
 			var url='/report/report_board?b_no='+${bdetail.b_no};
