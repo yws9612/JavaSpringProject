@@ -35,6 +35,9 @@ ul {
 .recomment-update-form{
 	display: none;
 }
+.recomment-insert-form{
+	display: none;
+}
 </style>
 
 </head>
@@ -135,7 +138,7 @@ ul {
 										<c:if test="${CVO.c_writer ne 'unknown' }">
 		                                 <div class="col text-end">
 		                                    <c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id }">
-		                                   		<a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글</a>
+		                                   		<a href="javascript:" role="button" class="text-decoration-none recomment-insert-link" style="font-size: small;">답글</a>
 		                                        <a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
 		                                    </c:if>
 		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
@@ -152,6 +155,18 @@ ul {
 		                                 </div>
 		                              </c:if>
 										<div>
+											<c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id && CVO.c_writer ne 'unknown' }">
+												<form:form class="recomment-insert-form" action="re_insert" modelAttribute="CVO" method="post">
+													<span class="" style="font-size: small;">${sessionScope.user.u_id }</span>
+													<div class="input-group" id="commentinsert">
+													<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="답글을 입력해주세요."></form:textarea>
+													<form:hidden path="c_level" value="" />
+													<form:hidden path="b_no" value="${bdetail.b_no }" />
+													<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
+													<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>
+													</div>
+												</form:form>
+											</c:if>
 											<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
 												<form class="comment-update-form" action="${root}board/comment_update" method="post">
 												<div class="input-group" >
@@ -267,6 +282,7 @@ ul {
 			}
 		});
 		
+		//댓글 수정관련
 		$(".comment-update-link").click(function(){
 			$(this)
 			.parent().parent().parent()
@@ -340,6 +356,14 @@ ul {
 		return false;
 		});
 		
+		//답글작성 관련
+		$(".recomment-insert-link").click(function(){
+			$(this)
+			.parent().parent().parent()
+			.find(".recomment-insert-form")
+			.slideToggle(200);
+		});
+		
 		//삭제 확인창 띄우기
 		$(".delbutton").click(function(){
 			var result = confirm("정말 삭제하실건가요?");
@@ -350,6 +374,7 @@ ul {
 			}
 		});
 		
+		//스크랩관련
 		$(document).ready(function(){
 			var checkscrap="${scrap}";
 			if (checkscrap == 'scraped') {
@@ -365,7 +390,7 @@ ul {
 			}
 		});
 
-		
+		//신고관련
 		function reportb(){
 			var url='/report/report_board?b_no='+${bdetail.b_no};
 			var name='신고하기';

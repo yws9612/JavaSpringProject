@@ -35,7 +35,7 @@
       </div>
       
       <div class="carousel-item active">
-      	<a href="${root }board/gym_info">
+      	<a href="${root }board/gym_list">
         <img src="/resources/img/ad/ad02.png" class="d-md-block w-100 active" alt="광고사진">
         </a>
       </div>
@@ -142,12 +142,12 @@
     <c:choose>
 	<c:when test="${not empty user }">
     <div class="row featurette">
-      <div class="col-md-5">
+      <div class="col-md-4 pt-5 pb-5">
         <h2 class="featurette-heading fw-normal lh-1">${sessionScope.user.u_id}님의 프로필</h2>
         <p class="lead">이름 : ${sessionScope.user.u_name }</p>
         <p class="lead"> 주소 : ${sessionScope.user.u_addr } </p>  
       </div>
-	  <div class="col-md-7">
+	  <div class="col-md-8 pt-5 pb-5">
         <jsp:include page="/WEB-INF/views/includes/mypage_include.jsp" flush="false"/>
       </div>
     </div>

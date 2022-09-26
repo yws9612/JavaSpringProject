@@ -34,7 +34,7 @@
 <body>
 <!-- HEADER -->
 <c:import url="/WEB-INF/views/includes/header.jsp" />
-	<div class="container" style="margin-top: 120px">
+	<div class="container" style="margin-top: 120px; margin-bottom:40px;">
 		<h2>부들부들 운동게시판</h2>
 		<hr>
 			<div>
