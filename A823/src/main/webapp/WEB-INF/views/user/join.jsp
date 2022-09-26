@@ -8,7 +8,7 @@
 
 <head>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입</title>
+  <title>부들부들 | 회원가입</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/minty/bootstrap.min.css">
@@ -56,8 +56,8 @@
 <div class="container-fluid" style="margin-top:100px">
 <div class="row justify-content-md-center">
 <div class="col-md-5 col-md-5 shadow p-3 mb-5 bg-body rounded">
-<br/><br/>
-		
+<br>
+		<h2 style="text-align: center">회원가입</h2><br>
 		<form action="${root}user/join" method="post" id="frm">
 		<div class="input-group mb-3">
 
@@ -139,17 +139,17 @@
 		<div class="form-check">
         <input class="form-check-input" type="checkbox" value="terms1">
 		<small>서비스 이용약관 동의 (필수)</small>
-		<a href="/user/service"><span class="badge bg-light" style="float:right;" >자세히</span></a>
+		<a href="/user/service" target="_blank"><span class="badge bg-light" style="float:right;" >자세히</span></a>
 		</div>
 		
 		<div class="form-check">		
         <input class="form-check-input" type="checkbox" value="terms2">
 		<small>개인정보 수집 및 이용 동의 (필수)</small>
-		<a href="/user/privacy"><span class="badge bg-light" style="float:right;" >자세히</span></a>
+		<a href="/user/privacy" target="_blank"><span class="badge bg-light" style="float:right;" >자세히</span></a>
 		</div>
 		
 
-      	</div></div></div><br/>
+      	</div></div></div></div><br/>
       	
 
 		<div class="button" style="float:right;" >
@@ -160,8 +160,6 @@
 		</form>
 			
 </div>	
-</div>
-</div>
 </div>
 </div>
 
