@@ -64,11 +64,11 @@ ul {
 						<c:choose>
 							<c:when test="${bdetail.b_writer eq sessionScope.user.u_id }">
 								<a href="modify?b_no=${bdetail.b_no}"class="btn btn-primary btn-sm text-end">수정</a> 
-								<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}"class="btn btn-secondary btn-sm text-end">삭제</a>
+								<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}"class="btn btn-secondary btn-sm text-end delbutton">삭제</a>
 							</c:when>
 							
 							<c:when test="${sessionScope.user.u_id eq 'admin' }">
-								<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}"class="btn btn-secondary btn-sm text-end">삭제</a>
+								<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}"class="btn btn-secondary btn-sm text-end delbutton">삭제</a>
 							</c:when>
 							
 							<c:when test="${not empty sessionScope.user.u_id }">
@@ -140,12 +140,12 @@ ul {
 		                                    </c:if>
 		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
 		                                        <a href="javascript:" style="font-size: small;" class="comment-update-link text-decoration-none">수정</a>
-												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none delbutton" style="font-size: small;" id="deleteComment">삭제 </a>
 		                                       <div>
 		                                    </div>
 		                                    </c:if>
 		                                    <c:if test="${sessionScope.user.u_id eq 'admin' }">
-		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}" role="button" class="text-decoration-none delbutton" style="font-size: small;" id="deleteComment">삭제 </a>
 		                                       <div>
 		                                    </div>
 		                                    </c:if>                              
@@ -187,12 +187,12 @@ ul {
 		                                    </c:if>
 		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
 		                                       <a href="javascript:" style="font-size: small;" class="recomment-update-link text-decoration-none">수정</a>
-		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none delbutton" style="font-size: small;" id="deleteComment">삭제 </a>
 		                                       <div>
 		                                    </div>
 		                                    </c:if>
 		                                    <c:if test="${sessionScope.user.u_id eq 'admin' }">
-		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none delbutton" style="font-size: small;" id="deleteComment">삭제 </a>
 		                                       <div>
 		                                    </div>
 		                                    </c:if>                              
@@ -340,6 +340,15 @@ ul {
 		return false;
 		});
 		
+		//삭제 확인창 띄우기
+		$(".delbutton").click(function(){
+			var result = confirm("정말 삭제하실건가요?");
+			if(result){
+			    alert("삭제되었습니다.");
+			}else{
+			    return false;
+			}
+		});
 		
 		$(document).ready(function(){
 			var checkscrap="${scrap}";
