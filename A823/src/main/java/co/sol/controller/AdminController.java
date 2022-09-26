@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +36,12 @@ public class AdminController {
 	@RequestMapping("/chart2")
 	public JSONObject chart2() {
 		return service.getUsercnt();
+	}
+	
+	@GetMapping("/manage_member")
+	public void manege_member(Model m){
+		System.out.println(service.getUserList());
+		m.addAttribute("members", service.getUserList());
 	}
 
 }

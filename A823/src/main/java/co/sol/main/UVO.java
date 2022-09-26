@@ -2,6 +2,8 @@ package co.sol.main;
 
 
 
+import java.util.Date;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
@@ -27,7 +29,9 @@ public class UVO {
 //	@Email(message = "이메일 형식이 아닙니다.")
 	private String u_email;
 	
-	private String u_admin;
+	private String u_admin;	
+
+	private Date u_joindate;
 	
 	private int u_reported;
 	

@@ -7,6 +7,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import co.sol.main.UVO;
 import co.sol.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -105,5 +106,13 @@ public class AdminServiceImpl implements AdminService {
 		
 		return data;
 	}
+
+	@Override
+	public List<UVO> getUserList() {
+		return mpr.getUserList();
+	}
+	
+	
+	
 
 }

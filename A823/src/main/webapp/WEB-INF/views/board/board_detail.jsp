@@ -127,7 +127,7 @@ ul {
 											</span>
 										</div>
 
-										<div class="col text-end">
+										<!--<div class="col text-end">
 											<a href="javascript:" class="text-decoration-none" style="font-size: small;" id="reComment">답글
 											</a>|
 											<c:choose>
@@ -141,7 +141,30 @@ ul {
 													<a href="">신고</a>
 												</c:otherwise>
 											</c:choose>
-										</div>
+										</div>-->
+										<c:if test="${CVO.c_writer ne 'unknown' }">
+		                                 <div class="col text-end">
+		                                    <c:if test="${not empty sessionScope.user.u_id }">
+		                                       <a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글
+		                                       </a>
+		                                    </c:if>
+		                                    <c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id }">
+		                                       &nbsp;<a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
+		                                    </c:if>
+		                                    |
+		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
+		                                       <a href="javascript:" style="font-size: small;" class="comment-update-link">수정</a>
+												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+		                                       <div>
+		                                    </div>
+		                                    </c:if>
+		                                    <c:if test="${sessionScope.user.u_id eq 'admin' }">
+		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+		                                       <div>
+		                                    </div>
+		                                    </c:if>                              
+		                                 </div>
+		                              </c:if>
 										<div>
 											<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
 												<form class="comment-update-form" action="${root}board/comment_update" method="post">
@@ -169,7 +192,7 @@ ul {
 												<c:out value="${CVO.c_con }" /></span>
 											</p>
 										</div>
-										<c:choose>
+										<!--<c:choose>
 											<c:when test="${CVO.c_writer eq sessionScope.user.u_id }">
 												<div class="col text-end">
 													<a href="javascript:" role="button"class="text-decoration-none" style="font-size: small;"id="comment-update-link">수정</a> 
@@ -177,7 +200,30 @@ ul {
 												</div>
 											</c:when>
 											<c:otherwise></c:otherwise>
-										</c:choose>
+										</c:choose>-->										
+										<c:if test="${CVO.c_writer ne 'unknown' }">
+		                                 <div class="col text-end">
+		                                    <c:if test="${not empty sessionScope.user.u_id }">
+		                                       <a href="javascript:" role="button" class="text-decoration-none" style="font-size: small;" id="reComment">답글
+		                                       </a>
+		                                    </c:if>
+		                                    <c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id }">
+		                                       &nbsp;<a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
+		                                    </c:if>
+		                                    |
+		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
+		                                       <a href="javascript:"role="button" class="text-decoration-none" style="font-size: small;" id="comment-update-link">수정</a>
+		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+		                                       <div>
+		                                    </div>
+		                                    </c:if>
+		                                    <c:if test="${sessionScope.user.u_id eq 'admin' }">
+		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none" style="font-size: small;" id="deleteComment">삭제 </a>
+		                                       <div>
+		                                    </div>
+		                                    </c:if>                              
+		                                 </div>
+		                              </c:if>
 										<c:if test="${not empty sessionScope.user.u_id }">
 											<form:form action="c_insert" modelAttribute="CVO" method="post">
 												<span class="" style="font-size: small;">
@@ -309,7 +355,7 @@ ul {
 			var name='신고하기';
 			var pop_x=(window.screen.width / 2) - 250;
 			var pop_y=(window.screen.height / 2) - 300;
-			var option='width=500, height=440, left='+pop_x+', top='+pop_y;
+			var option='width=520, height=500, left='+pop_x+', top='+pop_y;
 			window.open(url, name, option);
 		}
 		function reportc(c_no){
@@ -317,7 +363,7 @@ ul {
 			var name='신고하기';
 			var pop_x=(window.screen.width / 2) - 250;
 			var pop_y=(window.screen.height / 2) - 300;
-			var option='width=500, height=440, left='+pop_x+', top='+pop_y;
+			var option='width=520, height=500, left='+pop_x+', top='+pop_y;
 			window.open(url, name, option);
 		}
 		function confirmreport(){

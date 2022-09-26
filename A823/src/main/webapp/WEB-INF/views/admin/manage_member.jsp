@@ -5,51 +5,106 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원관리</title>
+<title>부들부들 | 회원관리</title>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	
+
+	<link
+		href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"
+		rel="stylesheet" />
+	<script
+		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"
+		crossorigin="anonymous"></script>
+	<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
+		rel="stylesheet" />
+
+
 </head>
 <body>
 
 	<c:import url="/WEB-INF/views/includes/header.jsp" />
 	
 	
+	<c:if test="${sessionScope.user.u_id eq 'admin' }">
+
 	
 	<div>
-		관리자 페이지 카테고리 선택 부분?
-	</div>
-	
-	
-	
-	<div>
-		<table>
-			<tr>
-				<td>회원번호</td>
-				<td>이름</td>
-				<td>ID</td>
-				<td>E-mail</td>
-				<td>주소</td>			
-			</tr>
-			
-			<c:forEach items="members" var="mem">
-				<c:if test="${mem.u_admin } eq N">
-					<tr>
-						<td>${mem.u_no }</td>
-						<td>${mem.u_name }</td>
-						<td>${mem.u_id }</td>
-						<td>${mem.u_email }</td>
-						<td>${mem.u_addr }</td>
-						<td><button onclick="">탈퇴</button></td>				
-					</tr>				
-				</c:if>		
-			</c:forEach>
-			
+		<table id="t1" class="table table-hover text-center table-bordered">
+			 
+			<thead class="table-primary text-center">
+				<tr>
+					<th style="width:12.5%; text-align:center;">회원번호</th>
+					<th style="width:12.5%; text-align:center;">이름</th>
+					<th style="width:12.5%; text-align:center;">ID</th>
+					<th style="width:12.5%; text-align:center;">PW</th>
+					<th style="width:12.5%; text-align:center;">E-mail</th>
+					<th style="width:12.5%; text-align:center;">가입일</th>
+					<th style="width:12.5%; text-align:center;">누적 신고 횟수</th>
+					<th style="width:12.5%; text-align:center;"></th>	
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${members }" var="UVO">
+					<!--<c:if test="${uvo.u_admin eq 'N'} ">-->
+						<tr>
+							<td>${UVO.u_no }</td>
+							<td>${UVO.u_name }</td>
+							<td>${UVO.u_id }</td>							
+							<td>${UVO.u_pw }</td>
+							<td>${UVO.u_email }</td>
+							<td>${UVO.u_joindate }</td>
+							<td>${UVO.u_reported }</td>
+							<td><a href="#"class="btn btn-secondary btn-sm text-end">강제 탈퇴</a></td>				
+						</tr>				
+					<!--</c:if>-->		
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 	
 	
 	
+	</c:if>
 	
 	
 	<c:import url="/WEB-INF/views/includes/footer.jsp" />
+	
+	
+	
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+		    $('#t1').DataTable({
+		    	lengthMenu: [ 10, 15, 20, 25, 30 ],
+		    	displayLength: 10,
+		    	filter : false,
+		    	"language": {
+		            "emptyTable": "데이터가 없어요.",
+		            "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+		            "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+		            "infoEmpty": "데이터 없음",
+		            "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+		            "search": "검색: ",
+		            "zeroRecords": "일치하는 데이터가 없어요.",
+		            "loadingRecords": "로딩중...",
+		            "processing":     "잠시만 기다려 주세요...",
+		            "paginate": {
+		                "next": "다음",
+		                "previous": "이전"
+		            }
+		        }
+	
+	    	});
+		});
+	
+	</script>
+	
 
 </body>
 </html>

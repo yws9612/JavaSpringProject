@@ -65,11 +65,13 @@ public class reportCotroller {
 		if(service.checkreport(log)) {
 			mv.setViewName("/report/reportPopup");
 			mv.addObject("log", log);
+			mv.addObject("report", true);
 			return mv;
 		}
 		else {
-			rt.addFlashAttribute("report", false);
 			mv.setViewName("/report/reportPopup");
+			mv.addObject("log", log);
+			mv.addObject("report", false);
 			return mv;
 		}
 	}
@@ -87,11 +89,13 @@ public class reportCotroller {
 		if(service.checkreport(log)) {
 			mv.setViewName("/report/reportPopup");
 			mv.addObject("log", log);
+			mv.addObject("report", true);
 			return mv;
 		}
 		else {
-			rt.addFlashAttribute("report", false);
 			mv.setViewName("/report/reportPopup");
+			mv.addObject("log", log);
+			mv.addObject("report", false);
 			return mv;
 		}
 	}

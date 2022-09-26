@@ -20,6 +20,11 @@
 		FROM u_table 
 		GROUP BY TO_CHAR(u_joindate, 'yyyy-mm')
 	</select>
+	
+	
+	<select id="getUserList" resultType="co.sol.main.UVO">
+		select * from u_table order by u_no
+	</select>
 
 
 

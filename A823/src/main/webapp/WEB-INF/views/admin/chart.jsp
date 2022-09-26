@@ -87,11 +87,12 @@
 				<!-- 버튼정렬 -->
 				<div class="col-lg-3 order-lg-2">
 					<!-- 버튼정렬 -->
+					<!--
 					<div class="card-profile-image">
 						<a href="#플필사진 클릭하면 이동할거면 넣기"> <img
 							src="https://image.msscdn.net/images/goods_img/20210517/1954888/1954888_1_500.jpg?t=20210517173507"
 							class="rounded-circle shadow"></a>
-					</div>
+					</div>-->
 				</div>
 			</div>
 
