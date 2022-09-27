@@ -42,7 +42,7 @@
 	
 	<!--댓글을 수정합니다.  -->
 	<update id="modify">
-		update c_table set c_con = #{c_con}, c_udate=sysdate where c_no = #{c_no}
+		update c_table set c_con = #{c_con}, c_udate=current_date where c_no = #{c_no}
 	</update>
 	
 	
@@ -73,12 +73,7 @@
 			(#{c_no}, #{c_writer}, #{c_con}, #{b_no}, #{c_level}, 
 			2, current_date, current_date)
 	</insert>
-	<!-- <update id="update_step">
-		<selectKey keyProperty="c_step" order="BEFORE" resultType="int">
-			select max(c_step) from c_table where c_level=#{c_level} and b_no=#{b_no}
-		</selectKey>
-		update c_table set c_step=#{c_step}+1 where b_no=#{b_no} and c_step=2
-	</update> -->
+
 
 <!-- 
 //	public List<CVO> getList(int b_no);
