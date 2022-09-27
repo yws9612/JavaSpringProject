@@ -47,4 +47,16 @@ public class CServiceImpl implements CService {
 		// TODO Auto-generated method stub
 		mpr.insert_comment(comment);
 	}
+
+	@Override
+	public void insert_recomment(CVO comment) {
+		// TODO Auto-generated method stub
+		mpr.insert_recomment(comment);
+	}
+
+	@Override
+	public void update_step(CVO comment) {
+		// TODO Auto-generated method stub
+		mpr.update_step(comment);
+	}
 }

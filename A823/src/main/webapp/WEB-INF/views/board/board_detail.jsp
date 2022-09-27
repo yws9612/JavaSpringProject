@@ -142,25 +142,22 @@ ul {
 		                                        <a href="" onclick="reportc(${CVO.c_no})" class="text-decoration-none" style="font-size: small;">신고</a>
 		                                    </c:if>
 		                                    <c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
+		                                    	<a href="javascript:" role="button" class="text-decoration-none recomment-insert-link" style="font-size: small;">답글</a>
 		                                        <a href="javascript:" style="font-size: small;" class="comment-update-link text-decoration-none">수정</a>
 												<a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}"role="button" class="text-decoration-none delbutton" style="font-size: small;" id="deleteComment">삭제 </a>
-		                                       <div>
-		                                    </div>
 		                                    </c:if>
 		                                    <c:if test="${sessionScope.user.u_id eq 'admin' }">
 		                                       <a href="${root}board/deleteComment?b_no=${bdetail.b_no}&c_no=${CVO.c_no}" role="button" class="text-decoration-none delbutton" style="font-size: small;" id="deleteComment">삭제 </a>
-		                                       <div>
-		                                    </div>
 		                                    </c:if>                              
 		                                 </div>
 		                              </c:if>
 										<div>
-											<c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id && CVO.c_writer ne 'unknown' }">
+											<c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne 'unknown' }">
 												<form:form class="recomment-insert-form" action="re_insert" modelAttribute="CVO" method="post">
 													<span class="" style="font-size: small;">${sessionScope.user.u_id }</span>
 													<div class="input-group" id="commentinsert">
 													<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="답글을 입력해주세요."></form:textarea>
-													<form:hidden path="c_level" value="" />
+													<form:hidden path="c_level" value="${CVO.c_level }" />
 													<form:hidden path="b_no" value="${bdetail.b_no }" />
 													<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
 													<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>
@@ -185,7 +182,6 @@ ul {
 								<li>
 									<div class="row">
 										<div class="col text-start">
-											<p class="">
 												<i class="bi bi-arrow-return-right"></i> 
 												<span class="" style="font-size: small;">
 												<c:out value="${CVO.c_writer }" /></span> 
@@ -193,7 +189,6 @@ ul {
 												<br>&nbsp;&nbsp;&nbsp;&nbsp; 
 												<span id="CVOcon" class="recon" style="font-size: small;">
 												<c:out value="${CVO.c_con }" /></span>
-											</p>
 										</div>
 										<c:if test="${CVO.c_writer ne 'unknown' }">
 		                                 <div class="col text-end">
@@ -256,7 +251,7 @@ ul {
 						<span class="" style="font-size: small;">${sessionScope.user.u_id }</span>
 						<div class="input-group" id="commentinsert">
 						<form:textarea path="c_con" class="form-control" aria-describedby="button-addon2" cssStyle="resize:none;" placeholder="댓글을 입력해주세요."></form:textarea>
-						<form:hidden path="c_level" value="" />
+						<form:hidden path="c_level" value="${getList.size() }" />
 						<form:hidden path="b_no" value="${bdetail.b_no }" />
 						<form:hidden path="c_writer" value="${sessionScope.user.u_id }"/>
 						<form:button class="btn btn-primary btn-sm" id="button-addon2 recomment" onclick="">등록</form:button>

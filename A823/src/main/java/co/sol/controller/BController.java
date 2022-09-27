@@ -183,6 +183,13 @@ public class BController {
 		return mv;
 	}
 	
+	@PostMapping("/re_insert")
+	public ModelAndView re_insert(@ModelAttribute("CVO") CVO comment, @RequestParam("b_no") int b_no,
+			HttpSession session) {
+			cservice.insert_recomment(comment);
+		ModelAndView mv = new ModelAndView("redirect:/board/board_detail?b_no=" + b_no);
+		return mv;
+	}
 	
 	
 	

@@ -7,7 +7,7 @@
 	<!--특정 게시글의 모든 댓글의 모든 정보를 가져옵니다. -->
 	<select id="getList" resultType="co.sol.main.CVO">
 		select * from c_table where b_no = #{b_no}
-		order by c_level, c_wdate desc
+		order by c_level, c_wdate, c_step 
 	</select>
 
 
@@ -53,6 +53,8 @@
 		where c_no = #{c_no} 
 	</update>
 	
+	
+	<!-- 댓글 insert -->
 	<insert id="insert_comment">
 		<selectKey keyProperty="c_no" order="BEFORE" resultType="int">
 			SELECT MAX(c_no)+1 FROM c_table
@@ -61,7 +63,22 @@
 			(#{c_no}, #{c_writer}, #{c_con}, #{b_no}, #{c_level}, 
 			1, current_date, current_date)
 	</insert>
-
+	
+	<!-- 답글 insert -->
+	<insert id="insert_recomment">	
+		<selectKey keyProperty="c_no" order="BEFORE" resultType="int">
+			select max(c_no)+1 from c_table
+		</selectKey>			
+		insert into c_table values 
+			(#{c_no}, #{c_writer}, #{c_con}, #{b_no}, #{c_level}, 
+			2, current_date, current_date)
+	</insert>
+	<!-- <update id="update_step">
+		<selectKey keyProperty="c_step" order="BEFORE" resultType="int">
+			select max(c_step) from c_table where c_level=#{c_level} and b_no=#{b_no}
+		</selectKey>
+		update c_table set c_step=#{c_step}+1 where b_no=#{b_no} and c_step=2
+	</update> -->
 
 <!-- 
 //	public List<CVO> getList(int b_no);
