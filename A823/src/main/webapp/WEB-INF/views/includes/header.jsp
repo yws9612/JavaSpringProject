@@ -60,6 +60,8 @@
 						<c:when test="${sessionScope.user.u_id eq 'admin' }">
 							<li><a class="dropdown-item" href="${root }admin/chart">현황 차트</a></li>
 							<li><a class="dropdown-item" href="${root }admin/manage_member">회원관리</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="${root }user/logout">로그아웃</a></li>	
 						</c:when>
 						<c:otherwise>
 							<li><a class="dropdown-item" href="${root }user/myPage">마이페이지</a></li>

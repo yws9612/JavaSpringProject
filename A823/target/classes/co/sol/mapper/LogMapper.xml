@@ -115,11 +115,11 @@
 		select count(*) from l_table where u_no=#{u_no} and l_div=5
 		<trim prefix="and">
 			<choose>
-				<when test="b_no != 0">
-					b_no=#{b_no}
-				</when>
 				<when test="c_no != 0">
 					c_no=#{c_no}
+				</when>
+				<when test="b_no != 0">
+					b_no=#{b_no}
 				</when>
 				<when test="r_no != 0">
 					r_no=#{r_no}
