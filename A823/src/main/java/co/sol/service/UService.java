@@ -21,6 +21,8 @@ public interface UService {
 	UVO getUser(UVO user);
 	void addDiscord(UVO user, DVO discord);
 	JSONObject getDiscord(int u_no);
-
+	UVO selectById(String id);
+	List<DVO> getBMIList(int u_no);
+	
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 }

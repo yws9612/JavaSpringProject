@@ -188,4 +188,16 @@ public class UServiceImpl implements UService {
 		}
 		return new UserInfo(uvo.getU_id(), uvo.getU_addr(), uvo.getU_name(), uvo.getU_no());
 	}
+
+	@Override
+	public UVO selectById(String id) {
+		// TODO Auto-generated method stub
+		return mpr.selectById(id);
+	}
+
+	@Override
+	public List<DVO> getBMIList(int u_no) {
+		// TODO Auto-generated method stub
+		return mpr.getBMIList(u_no);
+	}
 }

@@ -217,6 +217,8 @@ public class UserController {
 		System.out.println("getList_Scrap--"+logservice.getList_Scrap(user.getU_no()));
 		System.out.println("getList_Review--"+logservice.getList_Review(user.getU_no()));
 		
+		m.addAttribute("userInfo",uservice.selectById(user.getU_id()));
+		m.addAttribute("BMIList",uservice.getBMIList(user.getU_no()));
 		m.addAttribute("logList",logservice.getList(user.getU_no()));
 		m.addAttribute("boardList",logservice.getList_Board(user.getU_no()));
 		m.addAttribute("commentList",logservice.getList_Comment(user.getU_no()));

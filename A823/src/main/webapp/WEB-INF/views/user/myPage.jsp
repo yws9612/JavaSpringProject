@@ -95,11 +95,13 @@
 
 		chart.draw(data, options);
 	}
+	
 </script>
 
 </head>
 
 <body>
+
 	<!-- header -->
 	<c:import url="/WEB-INF/views/includes/header.jsp" />
 	<div class="container" style="margin-top: 150px">
@@ -131,9 +133,38 @@
 			  <div class="tab-pane fade active show" id="profile" role="tabpanel">
 			  	<div class="row">
 			  		<div class="col my-5 ms-5">
-						<h3>${user.u_name }</h3>
-						<h5>주소 : ${user.u_addr }</h5>
-						<a href="${root}user/infoUpdate" class="btn btn-primary mr-4">프로필 수정</a> 
+						<h3>${userInfo.u_name }</h3>
+						<h5>
+						주소 : ${userInfo.u_addr }<br>
+						이메일 : ${userInfo.u_email }
+						</h5>
+						<br>
+						<table id="BMItable" class="table table-hover table-bordered">
+							<thead class="text-center table-secondary">
+								<tr>
+									<th>키</th>
+									<th>몸무게</th>
+									<th>BMI</th>
+									<th>기록날짜</th>
+								</tr>
+							</thead>
+							<tbody class="text-center">
+								<c:forEach items="${BMIList}" var="bmi">
+									<c:if test="${empty bmi }">
+									<tr><td colspan="4">기록된 정보가 없습니다. 키와 몸무게를 기록해주세요.</td></tr>
+									</c:if>
+									<c:if test="${not empty bmi }">
+									<tr>
+										<td style="width:20%;"><c:out value="${bmi.d_height }"/></td>
+										<td style="width:20%;"><c:out value="${bmi.d_weight }"/></td>
+						               	<td style="width:20%;"><c:out value="${bmi.d_bmi }"/></td>
+						               	<td><fmt:formatDate value="${bmi.d_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+									</tr>
+									</c:if>
+								</c:forEach>
+							</tbody>
+						</table>
+						<button type="button" class="btn btn-primary mr-4 modifybutton">프로필 수정</button>
 						<a href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 기록</a>
 					</div>
 					<div class="col">
@@ -309,6 +340,28 @@
 	<c:import url="/WEB-INF/views/includes/footer.jsp" />
 <script type="text/javascript">
 
+$('#BMItable').DataTable({
+	order: [],
+	lengthChange: false,
+	filter : false,
+	displayLength: 5,
+	"language": {
+        "emptyTable": "데이터가 없어요.",
+        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+        "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+        "infoEmpty": "데이터 없음",
+        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+        "search": "검색: ",
+        "zeroRecords": "일치하는 데이터가 없어요.",
+        "loadingRecords": "로딩중...",
+        "processing":     "잠시만 기다려 주세요...",
+        "paginate": {
+            "next": "다음",
+            "previous": "이전"
+        }
+    },
+});
+
 $('#logtable').DataTable({
 	order: [],
 	lengthChange: false,
@@ -419,6 +472,22 @@ $('#reviewtable').DataTable({
     },
 });
 
+//비번 확인창 띄우기
+$(".modifybutton").click(function(){
+	var pw = "${userInfo.u_pw }"
+	var result = prompt("비밀번호 확인");
+	if(result == pw){
+	    alert("확인되었습니다.");
+		location.href="${root}user/infoUpdate";
+	}else if(result == ""){
+		alert("비밀번호를 입력하세요.");
+		location.reload();
+	}else if(result != pw){
+		alert("비밀번호를 확인하세요");
+		location.reload();
+	}
+	
+});
 
 </script>
 </body>

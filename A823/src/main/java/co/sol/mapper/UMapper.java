@@ -19,6 +19,7 @@ public interface UMapper {
 	public void addDiscord(DVO discord);
 	public List<Map<String, Integer>> getDiscord(int u_no); 	 
 	public UVO selectById(String id);
+	public List<DVO> getBMIList(int u_no);
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 	public void updateReported(int reported);
 	
