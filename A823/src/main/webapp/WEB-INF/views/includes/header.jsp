@@ -62,12 +62,7 @@
 							<li><a class="dropdown-item" href="${root }admin/manage_member">회원관리</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="dropdown-item" href="${root }user/myPage">북마크한 게시글</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내가 쓴 게시글</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내가 쓴 댓글</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내가 쓴 리뷰</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내 프로필</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">계정 설정</a></li>
+							<li><a class="dropdown-item" href="${root }user/myPage">마이페이지</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="${root }user/logout">로그아웃</a></li>					
 						</c:otherwise>

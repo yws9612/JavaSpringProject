@@ -68,7 +68,7 @@
 	<c:forEach var="EVO" items="${randomlist}">
 		<div class="col p-3">
 			<div class="card p-3">
-	  			<img src="/resources/img/exercise/dumbell_purple.jpg" class="card-img-top" alt="사진오류">
+	  			<img src="${EVO.e_thum }" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title"><c:out value="${EVO.e_name}"/></h5>
 	    			<p class="card-text" style="display:-webkit-box;
