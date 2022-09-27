@@ -17,6 +17,7 @@ public class LVO {
 	private int r_no;
 	private String l_report;
 	
+	private String b_div;
 	private String b_title;
 	private String b_writer;
 	private String u_name;

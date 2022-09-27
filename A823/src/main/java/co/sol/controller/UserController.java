@@ -39,6 +39,7 @@ import co.sol.service.BService;
 import co.sol.service.DataService;
 import co.sol.service.LogService;
 import co.sol.service.UService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -204,7 +205,7 @@ public class UserController {
 	
 	//MyPage
 	@GetMapping("/myPage")  
-	public String myPage(HttpSession session) {
+	public String myPage(HttpSession session,Model m) {
 		UserInfo user=(UserInfo)session.getAttribute("user");
 		if(user.getU_id().equals("admin")) {
 			return "/admin/chart";
@@ -215,6 +216,12 @@ public class UserController {
 		System.out.println("getList_Comment--"+logservice.getList_Comment(user.getU_no()));
 		System.out.println("getList_Scrap--"+logservice.getList_Scrap(user.getU_no()));
 		System.out.println("getList_Review--"+logservice.getList_Review(user.getU_no()));
+		
+		m.addAttribute("logList",logservice.getList(user.getU_no()));
+		m.addAttribute("boardList",logservice.getList_Board(user.getU_no()));
+		m.addAttribute("commentList",logservice.getList_Comment(user.getU_no()));
+		m.addAttribute("scrapList",logservice.getList_Scrap(user.getU_no()));
+		m.addAttribute("reviewList",logservice.getList_Review(user.getU_no()));
 		
 		return "/user/myPage";		  
 	} 

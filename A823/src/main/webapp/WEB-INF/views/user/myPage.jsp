@@ -10,6 +10,15 @@
 <head>
 <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- DataTables 스크립트 -->
+<script
+	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"
+	crossorigin="anonymous"></script>
+	
+<!-- BMI 차트 스크립트 -->
 <script type="text/javascript">
 	google.charts.load('current', {
 		packages : [ 'corechart' ]
@@ -65,7 +74,6 @@
 				}
 			},
 			seriesType : 'area',
-			title : 'Example',			
 			vAxis : {
 				ticks : [ 10, 18.5, 25, 30, 35, 45 ],
 				viewWindow : {
@@ -88,164 +96,331 @@
 		chart.draw(data, options);
 	}
 </script>
-</head>
 
+</head>
 
 <body>
 	<!-- header -->
 	<c:import url="/WEB-INF/views/includes/header.jsp" />
-
-	<div class="container" style="margin-top: 100px">
-		<!-- 가운데정렬+네모안에 들어가지는 컨테이너 원치않음빼세여 -->
-		<!-- Table -->
-		<h2 class="mb-5">${user.u_name}</h2>
-		<div class="card card-profile shadow">
-			<!-- gray배경 -->
-			<div class="row justify-content-center">
-				<!-- 버튼정렬 -->
-				<div class="col-lg-3 order-lg-2">
-					<!-- 버튼정렬 -->
-					<!-- 
-					<div class="card-profile-image">
-						<a href="#플필사진 클릭하면 이동할거면 넣기"> <img
-							src="https://image.msscdn.net/images/goods_img/20210517/1954888/1954888_1_500.jpg?t=20210517173507"
-							class="rounded-circle shadow"></a>
+	<div class="container" style="margin-top: 150px">
+		<div class="card shadow">
+		<ul class="nav nav-tabs" role="tablist" style="padding-top:20px;">
+		  <li class="nav-item text-center fw-bold fs-3" style="color:black; width:10%;">${user.u_id}</li>
+		  <li class="nav-item" role="presentation">
+		    <a class="nav-link active" data-bs-toggle="tab" href="#profile" aria-selected="false" role="tab" tabindex="-1" style="color:black;">프로필</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <a class="nav-link" data-bs-toggle="tab" href="#log" aria-selected="true" role="tab" style="color:black;">활동내역</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <a class="nav-link" data-bs-toggle="tab" href="#scrap" aria-selected="true" role="tab" style="color:black;">스크랩</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <a class="nav-link" data-bs-toggle="tab" href="#board" aria-selected="true" role="tab" style="color:black;">작성한 게시글</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <a class="nav-link" data-bs-toggle="tab" href="#comment" aria-selected="true" role="tab" style="color:black;">작성한 댓글</a>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <a class="nav-link" data-bs-toggle="tab" href="#review" aria-selected="true" role="tab" style="color:black;">작성한 리뷰</a>
+		  </li>
+		</ul>
+			<!-- tap 링크 내용 -->
+			<div id="myTabContent" class="tab-content">
+			
+			  <div class="tab-pane fade active show" id="profile" role="tabpanel">
+			  	<div class="row">
+			  		<div class="col my-5 ms-5">
+						<h3>${user.u_name }</h3>
+						<h5>주소 : ${user.u_addr }</h5>
+						<a href="${root}user/infoUpdate" class="btn btn-primary mr-4">프로필 수정</a> 
+						<a href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 기록</a>
 					</div>
-					 -->
+					<div class="col">
+						<!-- BMI 차트 부분 -->
+						<div id="curve_chart" style="width: 700px; height: 600px"></div>
+					</div>
+					
 				</div>
+			  </div>
+			  
+			  <div class="tab-pane fade" id="log" role="tabpanel">
+			  	<div class="row justify-content-center m-4">
+			  	<div class="col-8">
+			  	<table id="logtable" class="table table-hover table-bordered">
+					<thead class="text-center table-secondary">
+						<tr>
+							<th>구분</th>
+							<th>내용</th>
+							<th>날짜</th>
+							<th>바로가기</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						<c:forEach items="${logList}" var="log">
+							<tr>
+								<c:if test="${log.l_div == 1}">
+								<td style="width:15%;">스크랩</td>
+								<td>${log.b_no}번 게시글을 스크랩 하였습니다.</td>
+								</c:if>
+								
+								<c:if test="${log.l_div == 2}">
+								<td style="width:15%;">게시글 작성</td>
+								<td>${log.b_no}번 게시글을 작성 하였습니다.</td>
+								</c:if>
+								
+								<c:if test="${log.l_div == 3}">
+								<td style="width:15%;">댓글 작성</td>
+								<td>${log.b_no}번 게시글에 ${log.l_reno}번째 댓글을 작성 하였습니다.</td>
+								</c:if>
+								
+								<c:if test="${log.l_div == 4}">
+								<td style="width:15%;">리뷰 등록</td>
+								<td>${log.b_no}번 게시글에 ${log.l_reno}번째 댓글을 작성 하였습니다.</td>
+								</c:if>
+				               	
+				               	<td style="width:20%;"><fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:10%;">
+									<a href="${root }board/board_detail?b_no=${log.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+								</td>
+							</tr>
+							</c:forEach>
+					</tbody>
+				</table>
+				</div>
+				</div>
+			  </div>
+			  
+			  <div class="tab-pane fade" id="scrap" role="tabpanel">
+			  	<div class="row justify-content-center m-4">
+			  	<div class="col-8">
+			  	<table id="scraptable" class="table table-hover table-bordered">
+					<thead class="text-center table-secondary">
+						<tr>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>날짜</th>
+							<th>바로가기</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						<c:forEach items="${scrapList}" var="scrap">
+							<tr>
+								<td><c:out value="[${scrap.b_div }] ${scrap.b_title }"/></td>
+								<td style="width:15%;"><c:out value="${scrap.b_writer}"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${scrap.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:10%;">
+									<a href="${root }board/board_detail?b_no=${scrap.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+								</td>
+							</tr>
+							</c:forEach>
+					</tbody>
+				</table>
+				</div>
+				</div>
+			  </div>
+			  
+			  <div class="tab-pane fade" id="board" role="tabpanel">
+			  	<div class="row justify-content-center m-4">
+			  	<div class="col-8">
+			  	<table id="boardtable" class="table table-hover table-bordered">
+					<thead class="text-center table-secondary">
+						<tr>
+							<th>제목</th>
+							<th>날짜</th>
+							<th>바로가기</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						<c:forEach items="${boardList}" var="board">
+							<tr>
+								<td><c:out value="[${board.b_div }] ${board.b_title }"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${board.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:10%;">
+									<a href="${root }board/board_detail?b_no=${board.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+								</td>
+							</tr>
+							</c:forEach>
+					</tbody>
+				</table>
+				</div>
+				</div>
+			  </div>
+			  
+			  <div class="tab-pane fade" id="comment" role="tabpanel">
+			  	<div class="row justify-content-center m-4">
+			  	<div class="col-8">
+			  	<table id="commenttable" class="table table-hover table-bordered">
+					<thead class="text-center table-secondary">
+						<tr>
+							<th>제목</th>
+							<th>날짜</th>
+							<th>바로가기</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						<c:forEach items="${commentList}" var="comment">
+							<tr>
+								<td><c:out value="[${comment.b_div }] ${comment.b_title }"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${comment.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:10%;">
+									<a href="${root }board/board_detail?b_no=${comment.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+								</td>
+							</tr>
+							</c:forEach>
+					</tbody>
+				</table>
+				</div>
+				</div>
+			  </div>
+			  
+			  <div class="tab-pane fade" id="review" role="tabpanel">
+			  	<div class="row justify-content-center m-4">
+			  	<div class="col-8">
+			  	<table id="reviewtable" class="table table-hover table-bordered">
+					<thead class="text-center table-secondary">
+						<tr>
+							<th>헬스장 이름</th>
+							<th>날짜</th>
+							<th>바로가기</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						<c:forEach items="${reviewList}" var="review">
+							<tr>
+								<td><c:out value="${review.g_name }"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:10%;">
+									<a href="${root }gym/gym_detail?g_no=${review.g_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+								</td>
+							</tr>
+							</c:forEach>
+					</tbody>
+				</table>
+				</div>
+				</div>
+			  </div>
+			  
 			</div>
-
-			<div
-				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-				<!-- 텍스트정렬 -->
-				<div class="d-flex justify-content-between">
-					<a href="${root}user/infoUpdate" class="btn btn-primary mr-4">정보 수정</a> <a
-						href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 등록 및 변경</a>
-				</div>
-			</div>
-
-			<div id="curve_chart" style="width: 800px; height: 600px"></div>
-
-			</div>
-				
-			<hr class="my-4">
-			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=log&memberId=${user.u_name}'">활동 내역</button>
-			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=scrap&memberId=${user.u_name}'">스크랩</button>
-			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=write&memberId=${user.u_name}'">작성한 게시글</button>
-			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=reply&memberId=${user.u_name}'">작성한 댓글</button>	
-			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=review&memberId=${user.u_name}'">리뷰 내역</button>
-			<br><br>
-			<!-- 송이가 준 코드 -->
-			<c:forEach items="${log}" var="log">
-				<div>
-					<div>
-						<span> 
-							<c:if test="${log.l_div == 1}">
-           						${log.b_no}번 게시글을 스크랩 하였습니다.
-               				</c:if> 
-               				<c:if test="${log.l_div == 2}">
-                  				${log.b_no}번 게시글을 작성 하였습니다.
-               				</c:if> 
-               				<c:if test="${log.l_div == 3}">
-                 				${log.b_no}번 게시글에 ${log.l_reno}번째 댓글을 작성 하였습니다.
-               				</c:if>
-               				<c:if test="${log.l_div == 4}">
-               					${log.b_no}번 게시글에 리뷰를 남겼습니다.
-               				</c:if>
-						</span> 
-						<span> 
-							<fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
-						</span>
-					</div>
-					<div>
-						<span> 
-							<a href="/board/board_detail?b_no=${log.b_no}">${log.b_title}</a>
-						</span> 
-						<span> ${log.b_writer} </span>
-					</div>
-				</div>
-			</c:forEach>
-			
-			<c:forEach items="${scrap}" var="scrap">
-				<div>
-					<div>
-						<span> 
-							${scrap.b_no}번 게시글을 스크랩 하였습니다.
-						</span> 
-						<span> 
-							<fmt:formatDate value="${scrap.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
-						</span>
-					</div>
-					<div>
-						<span> 
-							<a href="/board/board_detail?b_no=${scrap.b_no}">${scrap.b_title}</a>
-						</span> 
-						<span> ${scrap.b_writer} </span>
-					</div>
-				</div>
-			</c:forEach>
-			
-			<c:forEach items="${write}" var="write">
-				<div>
-					<div>
-						<span> 
-							${write.b_no}번 게시글을 작성 하였습니다.
-						</span> 
-						<span> 
-							<fmt:formatDate value="${write.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
-						</span>
-					</div>
-					<div>
-						<span> 
-							<a href="/board/board_detail?b_no=${write.b_no}">${write.b_title}</a>
-						</span> 
-						<span> ${write.b_writer} </span>
-					</div>
-				</div>
-			</c:forEach>
-			
-			<c:forEach items="${reply}" var="reply">
-				<div>
-					<div>
-						<span> 
-							${reply.b_no}번 게시글에 ${reply.l_reno}번째 댓글을 작성 하였습니다.
-						</span> 
-						<span> 
-							<fmt:formatDate value="${reply.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
-						</span>
-					</div>
-					<div>
-						<span> 
-							<a href="/board/board_detail?b_no=${reply.b_no}">${reply.b_title}</a>
-						</span> 
-						<span> ${reply.b_writer} </span>
-					</div>
-				</div>
-			</c:forEach>
-			
-			<c:forEach items="${review}" var="review">
-				<div>
-					<div>
-						<span> 
-							${review.b_no}번 게시글에 리뷰를 남겼습니다.
-						</span> 
-						<span> 
-							<fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
-						</span>
-					</div>
-					<div>
-						<span> 
-							<a href="/board/board_detail?b_no=${review.b_no}">${review.b_title}</a>
-						</span> 
-						<span> ${review.b_writer} </span>
-					</div>
-				</div>
-			</c:forEach>
-
 		</div>
-
+	</div>
+	
 	<!-- FOOTER -->
 	<c:import url="/WEB-INF/views/includes/footer.jsp" />
+<script type="text/javascript">
+
+$('#logtable').DataTable({
+	order: [],
+	lengthChange: false,
+	filter : false,
+	displayLength: 10,
+	"language": {
+        "emptyTable": "데이터가 없어요.",
+        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+        "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+        "infoEmpty": "데이터 없음",
+        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+        "search": "검색: ",
+        "zeroRecords": "일치하는 데이터가 없어요.",
+        "loadingRecords": "로딩중...",
+        "processing":     "잠시만 기다려 주세요...",
+        "paginate": {
+            "next": "다음",
+            "previous": "이전"
+        }
+    },
+});
+
+$('#scraptable').DataTable({
+	order: [],
+	lengthChange: false,
+	filter : false,
+	displayLength: 10,
+	"language": {
+        "emptyTable": "데이터가 없어요.",
+        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+        "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+        "infoEmpty": "데이터 없음",
+        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+        "search": "검색: ",
+        "zeroRecords": "일치하는 데이터가 없어요.",
+        "loadingRecords": "로딩중...",
+        "processing":     "잠시만 기다려 주세요...",
+        "paginate": {
+            "next": "다음",
+            "previous": "이전"
+        }
+    },
+});
+
+$('#boardtable').DataTable({
+	order: [],
+	lengthChange: false,
+	filter : false,
+	displayLength: 10,
+	"language": {
+        "emptyTable": "데이터가 없어요.",
+        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+        "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+        "infoEmpty": "데이터 없음",
+        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+        "search": "검색: ",
+        "zeroRecords": "일치하는 데이터가 없어요.",
+        "loadingRecords": "로딩중...",
+        "processing":     "잠시만 기다려 주세요...",
+        "paginate": {
+            "next": "다음",
+            "previous": "이전"
+        }
+    },
+});
+
+$('#commenttable').DataTable({
+	order: [],
+	lengthChange: false,
+	filter : false,
+	displayLength: 10,
+	"language": {
+        "emptyTable": "데이터가 없어요.",
+        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+        "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+        "infoEmpty": "데이터 없음",
+        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+        "search": "검색: ",
+        "zeroRecords": "일치하는 데이터가 없어요.",
+        "loadingRecords": "로딩중...",
+        "processing":     "잠시만 기다려 주세요...",
+        "paginate": {
+            "next": "다음",
+            "previous": "이전"
+        }
+    },
+});
+
+$('#reviewtable').DataTable({
+	order: [],
+	lengthChange: false,
+	filter : false,
+	displayLength: 10,
+	"language": {
+        "emptyTable": "데이터가 없어요.",
+        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+        "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
+        "infoEmpty": "데이터 없음",
+        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+        "search": "검색: ",
+        "zeroRecords": "일치하는 데이터가 없어요.",
+        "loadingRecords": "로딩중...",
+        "processing":     "잠시만 기다려 주세요...",
+        "paginate": {
+            "next": "다음",
+            "previous": "이전"
+        }
+    },
+});
+
+
+</script>
 </body>
 </html>
 

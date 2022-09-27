@@ -24,18 +24,18 @@
 	
 	<!--특정 u_no의 로그를 최신순으로 가져옵니다. 카테고리별 3개의 쿼리가 있습니다.-->
 	<select id="getList_Scrap" resultType="co.sol.main.LVO">
-		select l_div, l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		select l_div, l_table.b_no, l_date, b_table.b_div, b_table.b_title, b_table.b_writer, u_table.u_name
 		from l_table, b_table, u_table
 		where l_table.u_no=u_table.u_no
             and l_table.b_no=b_table.b_no
             and l_table.u_no=#{u_no}
             and l_div=1
 		order by l_no desc
-	</select> <!-- 결과값 : b_no, l_date(로그가 입력된 시점), b_title(스크랩한 게시글 제목), 
+	</select> <!-- 결과값 : b_no, l_date(로그가 입력된 시점), b_div(스크랩한 게시글 카테고리), b_title(스크랩한 게시글 제목), 
 	b_writer(스크랩한 게시글 작성자 id), u_name(내 이름)  -->
 	
 	<select id="getList_Board" resultType="co.sol.main.LVO">
-		select l_div, l_table.b_no, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		select l_div, l_table.b_no, l_date, b_table.b_div, b_table.b_title, b_table.b_writer, u_table.u_name
 		from l_table, b_table, u_table
 		where l_table.u_no=u_table.u_no
             and l_table.b_no=b_table.b_no
@@ -46,7 +46,7 @@
 	b_writer(작성자 id), u_name(내 이름)  -->
 	
 	<select id="getList_Comment" resultType="co.sol.main.LVO">
-		select l_div, l_table.b_no, l_reno, l_date, b_table.b_title, b_table.b_writer, u_table.u_name
+		select l_div, l_table.b_no, l_reno, l_date, b_table.b_div, b_table.b_title, b_table.b_writer, u_table.u_name
 		from l_table, b_table, u_table
 		where l_table.u_no=u_table.u_no
             and l_table.b_no=b_table.b_no

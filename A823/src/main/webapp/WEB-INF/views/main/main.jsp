@@ -35,7 +35,7 @@
       </div>
       
       <div class="carousel-item active">
-      	<a href="${root }board/gym_list">
+      	<a href="${root }gym/gym_list">
         <img src="/resources/img/ad/ad02.png" class="d-md-block w-100 active" alt="광고사진">
         </a>
       </div>
