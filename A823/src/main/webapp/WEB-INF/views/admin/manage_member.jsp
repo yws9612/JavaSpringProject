@@ -65,7 +65,7 @@
 								<td style="vertical-align: middle;">
 									<c:choose>
 										<c:when test="${uvo.u_admin eq 'N'}">
-											<a href="#" class="btn btn-secondary btn-sm text-end">강제 탈퇴</a>
+											<a href="" onclick="report_list(${uvo.u_no })" class="btn btn-secondary btn-sm text-end">신고 내역 확인</a>
 										</c:when>
 										<c:otherwise>
 											관리자 계정
@@ -111,6 +111,15 @@
 	
 	    	});
 		});
+		
+		function report_list(u_no){
+			var url='/admin/report_list?u_no='+u_no;
+			var name='신고 내역 확인';
+			var pop_x=(window.screen.width - 1000) / 2;
+			var pop_y=(window.screen.height - 500)  / 2;
+			var option='width=1000, height=500, left='+pop_x+', top='+pop_y;
+			window.open(url, name, option);
+		}
 	
 	</script>
 	

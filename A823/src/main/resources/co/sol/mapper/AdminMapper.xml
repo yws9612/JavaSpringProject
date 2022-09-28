@@ -29,4 +29,20 @@
 
 
 
+	<select id="getReportList" resultType="co.sol.main.LVO">
+		<![CDATA[
+			select l_div, l_report, l_date, l_table.b_no, b_table.b_title, b_table.b_con,
+		        l_table.c_no, c_table.c_con, r_table.g_no, r_table.r_rev
+			from l_table, b_table, r_table, g_table, c_table
+			where l_table.b_no=b_table.b_no(+)
+				and l_table.c_no=c_table.c_no(+)
+				and l_table.r_no=r_table.r_no(+)
+				and r_table.g_no=g_table.g_no(+)
+				and l_table.u_no=#{u_no}
+				and l_div=6
+			order by l_date desc
+		]]>
+	</select>
+
+
 </mapper>

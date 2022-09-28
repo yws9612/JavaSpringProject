@@ -71,6 +71,7 @@ ul {
 							</c:when>
 							
 							<c:when test="${sessionScope.user.u_id eq 'admin' }">
+								<a href="" onclick="reportb()" class="btn btn-secondary btn-sm text-end">신고</a>
 								<a href="delete?b_no=${bdetail.b_no}&b_div=${bdetail.b_div}"class="btn btn-secondary btn-sm text-end delbutton">삭제</a>
 							</c:when>
 							
@@ -124,17 +125,14 @@ ul {
 							<c:when test="${CVO.c_step==1 }">
 								<li>
 									<div class="row">
-										<div class="col text-start">
+										<div class="col text-start"><!-- 작성자, 수정날짜 표시 -->
 											<span style="font-size: small;">
 											<c:out value="${CVO.c_writer }" /></span> 
 											<span style="font-size: xx-small;">
 												<fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd hh:mm:ss" />
 											</span> 
-												<br>
-											<span style="font-size: small;" class="con">
-												${CVO.c_con}
-											</span>
 										</div>
+										<!-- 수정, 삭제, 신고 표시 -->
 										<c:if test="${CVO.c_writer ne 'unknown' }">
 		                                 <div class="col text-end">
 		                                    <c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id }">
@@ -151,6 +149,11 @@ ul {
 		                                    </c:if>                              
 		                                 </div>
 		                              </c:if>
+		                              	<div style="margin-top:5px;margin-bottom:5px;"><!-- 댓글 내용 표시 -->
+											<span style="font-size: small;" class="con">
+												${CVO.c_con}
+											</span>
+										</div>
 										<div>
 											<c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne 'unknown' }">
 												<form:form class="recomment-insert-form" action="re_insert" modelAttribute="CVO" method="post">
@@ -181,15 +184,13 @@ ul {
 							<c:when test="${CVO.c_step==2 }">
 								<li>
 									<div class="row">
-										<div class="col text-start">
-												<i class="bi bi-arrow-return-right"></i> 
-												<span class="" style="font-size: small;">
-												<c:out value="${CVO.c_writer }" /></span> 
-												<span class="" style="font-size: xx-small;"><fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd hh:mm:ss" /></span>
-												<br>&nbsp;&nbsp;&nbsp;&nbsp; 
-												<span id="CVOcon" class="recon" style="font-size: small;">
-												<c:out value="${CVO.c_con }" /></span>
+										<div class="col text-start"><!-- 작성자, 수정 날짜 표시 -->
+											<i class="bi bi-arrow-return-right"></i> 
+											<span class="" style="font-size: small;">
+											<c:out value="${CVO.c_writer }" /></span> 
+											<span class="" style="font-size: xx-small;"><fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd hh:mm:ss" /></span>
 										</div>
+										<!-- 수정, 삭제, 신고 표시 -->
 										<c:if test="${CVO.c_writer ne 'unknown' }">
 		                                 <div class="col text-end">
 		                                    <c:if test="${not empty sessionScope.user.u_id && CVO.c_writer ne sessionScope.user.u_id }">
@@ -208,6 +209,11 @@ ul {
 		                                    </c:if>                              
 		                                 </div>
 		                              </c:if>
+		                              <div style="margin-bottom:3px;"><!-- 답글 내용 표시 -->
+		                              	&nbsp;&nbsp;&nbsp;&nbsp; 
+										<span id="CVOcon" class="recon" style="font-size: small;">
+										<c:out value="${CVO.c_con }" /></span>
+		                              </div>
 										
 										<c:if test="${CVO.c_writer eq sessionScope.user.u_id }">
 												<form class="recomment-update-form" action="${root}board/comment_update" method="post">

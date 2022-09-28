@@ -24,5 +24,8 @@ public class LVO {
 	private int g_no;
 	private String g_name;
 	private int r_score;
+	private String c_con;
+	private String b_con;
+	private String r_rev;
 
 }
