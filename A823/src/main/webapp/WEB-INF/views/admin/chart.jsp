@@ -59,7 +59,7 @@
 	var max=new Date(new Date().setMonth(new Date().getMonth()+7));
 	console.log(min.getFullYear()+'-'+min.getMonth()+'//'+max.getFullYear()+'-'+max.getMonth());
 	var options2 = {
-				colors: ['#66cc99'],
+				colors: ['#C6D68F', '#E8A09A'],
 				hAxis: {
 					format: 'yyyy-mm',
 					viewWindow: {

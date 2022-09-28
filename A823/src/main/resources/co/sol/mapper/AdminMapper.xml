@@ -14,9 +14,10 @@
 	
 	
 	
-	<!--그래프 관련 입니다. 가입 월 별 유저 수를 가져옵니다. -->
+	<!--그래프 관련 입니다. 가입 월 별 유저 수+누적 유저수를 가져옵니다. -->
 	<select id="getUsercnt" resultType="Map">
-		SELECT TO_CHAR(u_joindate, 'yyyy-mm') as joinmonth, COUNT(*) 
+		SELECT TO_CHAR(u_joindate, 'yyyy-mm') as JOINMONTH, COUNT(*), 
+			sum(count(*)) OVER(order BY TO_CHAR(u_joindate, 'yyyy-mm')) as TOTAL
 		FROM u_table 
 		GROUP BY TO_CHAR(u_joindate, 'yyyy-mm')
 	</select>
