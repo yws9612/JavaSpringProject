@@ -29,7 +29,14 @@
 		
 	var data1 = new google.visualization.DataTable(jsonData1);	
 	var options1 = {
-	          legend:'labeled'
+				colors: ['#9BBFE0', '#E8A09A', '#FBE29F', '#C6D68F'],
+				legend:{
+					position : 'labeled',
+					textStyle : {
+						fontSize:16
+					}
+				},
+				pieSliceText: 'none'
 	        };
 
 	var chart1 = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -52,16 +59,16 @@
 	var max=new Date(new Date().setMonth(new Date().getMonth()+7));
 	console.log(min.getFullYear()+'-'+min.getMonth()+'//'+max.getFullYear()+'-'+max.getMonth());
 	var options2 = {
-	          colors: ['#00ff99'],
-	          hAxis: {
-	              format: 'yyyy-mm',
-	              viewWindow: {
-	                min: [min.getFullYear(), min.getMonth()],
-	                max: [max.getFullYear(), max.getMonth()]
-	              }
-	          },
-	          legend:'bottom'
-	        };
+				colors: ['#66cc99'],
+				hAxis: {
+					format: 'yyyy-mm',
+					viewWindow: {
+						min: [min.getFullYear(), min.getMonth()],
+						max: [max.getFullYear(), max.getMonth()]
+					}
+				},
+				legend:'bottom',
+			};
 
 	var chart2 = new google.visualization.ColumnChart(document.getElementById('chart_div'));
 	chart2.draw(data2, options2);

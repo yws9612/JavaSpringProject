@@ -40,13 +40,13 @@
 				 
 				<thead class="table-primary text-center">
 					<tr>
-						<th style="width:12.5%; text-align:center;">회원번호</th>
-						<th style="width:12.5%; text-align:center;">이름</th>
-						<th style="width:12.5%; text-align:center;">ID</th>
-						<th style="width:12.5%; text-align:center;">PW</th>
-						<th style="width:12.5%; text-align:center;">E-mail</th>
-						<th style="width:12.5%; text-align:center;">가입일</th>
-						<th style="width:12.5%; text-align:center;">누적 신고 횟수</th>
+						<th style="width:12.5%; text-align:center; vertical-align: middle; word-break:keep-all;">회원번호</th>
+						<th style="width:12.5%; text-align:center; vertical-align: middle; word-break:keep-all;">이름</th>
+						<th style="width:12.5%; text-align:center; vertical-align: middle; word-break:keep-all;">ID</th>
+						<th style="width:12.5%; text-align:center; vertical-align: middle; word-break:keep-all;">PW</th>
+						<th style="width:12.5%; text-align:center; vertical-align: middle; word-break:keep-all;">E-mail</th>
+						<th style="width:12.5%; text-align:center; vertical-align: middle; word-break:keep-all;">가입일</th>
+						<th style="width:12.5%; text-align:center; vertical-align: middle; word-break:keep-all;">누적 신고 횟수</th>
 						<th style="width:12.5%; text-align:center;"></th>	
 					</tr>
 				</thead>
