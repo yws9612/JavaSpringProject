@@ -57,7 +57,7 @@
 	b_title(댓글 단 게시글 제목), b_writer(댓글 단 게시글의 작성자 id), u_name(내 이름)  -->
 	
 	<select id="getList_Review" resultType="co.sol.main.LVO">
-		select l_div, l_date, u_table.u_name, g_table.g_name, r_table.g_no
+		select l_div, l_date, u_table.u_name, g_table.g_name, r_table.r_score, r_table.g_no
 		from l_table, r_table, u_table, g_table
 		where l_table.u_no=u_table.u_no
 			and r_table.g_no=g_table.g_no

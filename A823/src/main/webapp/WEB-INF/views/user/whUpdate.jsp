@@ -34,7 +34,8 @@
 		<div class="button" style="float:right;" >
 		<input type = "submit" id="send"  class="btn btn-primary">저장하기</button>
 		</div>		
-     	</div></div></div><br/>	
+     	
 	</form>
+	</div></div></div><br/>	
 </body>
 </html>

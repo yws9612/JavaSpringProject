@@ -10,6 +10,10 @@
 <head>
 <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<!-- 별점을 위한 css -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
 <!-- DataTables 스크립트 -->
 <script
 	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"
@@ -98,6 +102,45 @@
 	
 </script>
 
+<!-- 별점 표시를 위한 스타일 -->
+<style type="text/css">
+
+		.rating2 {
+		   font-family: 'Font Awesome 5 Free';
+		   color: #ffce67;
+		   margin-bottom: 5px;
+		   font-size: 0;
+		   position: relative;
+		   width: 110px;
+		   direction: rtl;
+		}
+		
+		.rating2 input {
+		   display: none;
+		}
+		
+		.rating2 span {
+		   font-family: 'Font Awesome 5 Free' !important;
+		   width: 11px;
+		   font-size: 20px;
+		   display: inline-block;
+		   overflow: hidden;
+		}
+		
+		.rating2 span:before{
+		   content: "\f005";
+		}
+		
+		.rating2 :checked ~ span {
+		   font-weight: 900;
+		}
+		
+		.rating2 span:nth-of-type(2n){
+		   text-indent: -11px;
+		}
+
+</style>
+
 </head>
 
 <body>
@@ -150,17 +193,12 @@
 							</thead>
 							<tbody class="text-center">
 								<c:forEach items="${BMIList}" var="bmi">
-									<c:if test="${empty bmi }">
-									<tr><td colspan="4">기록된 정보가 없습니다. 키와 몸무게를 기록해주세요.</td></tr>
-									</c:if>
-									<c:if test="${not empty bmi }">
 									<tr>
 										<td style="width:20%;"><c:out value="${bmi.d_height }"/></td>
 										<td style="width:20%;"><c:out value="${bmi.d_weight }"/></td>
 						               	<td style="width:20%;"><c:out value="${bmi.d_bmi }"/></td>
 						               	<td><fmt:formatDate value="${bmi.d_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
 									</tr>
-									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -175,6 +213,7 @@
 				</div>
 			  </div>
 			  
+			  <!-- 로그테이블 -->
 			  <div class="tab-pane fade" id="log" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
 			  	<div class="col-8">
@@ -222,6 +261,7 @@
 				</div>
 			  </div>
 			  
+			  <!-- 스크랩테이블 -->
 			  <div class="tab-pane fade" id="scrap" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
 			  	<div class="col-8">
@@ -251,6 +291,7 @@
 				</div>
 			  </div>
 			  
+			  <!-- 작성한 게시글 테이블 -->
 			  <div class="tab-pane fade" id="board" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
 			  	<div class="col-8">
@@ -278,6 +319,7 @@
 				</div>
 			  </div>
 			  
+			  <!-- 작성한 댓글 테이블 -->
 			  <div class="tab-pane fade" id="comment" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
 			  	<div class="col-8">
@@ -305,6 +347,7 @@
 				</div>
 			  </div>
 			  
+			  <!-- 작성한 리뷰 테이블 -->
 			  <div class="tab-pane fade" id="review" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
 			  	<div class="col-8">
@@ -312,6 +355,7 @@
 					<thead class="text-center table-secondary">
 						<tr>
 							<th>헬스장 이름</th>
+							<th>별점</th>
 							<th>날짜</th>
 							<th>바로가기</th>
 						</tr>
@@ -320,6 +364,21 @@
 						<c:forEach items="${reviewList}" var="review">
 							<tr>
 								<td><c:out value="${review.g_name }"/></td>
+								<td class="rating2" style="width:20%;">
+									<c:forEach var="i" begin="1" end="10" >
+										<c:set var="score" value="${11-i }"/>
+										<c:choose>
+											<c:when test="${score == review.r_score}">
+												<input type="radio" name="review${review.r_no }" checked="checked" readonly="readonly" value="${score }" id="rating2_03_${score }">
+												<span></span>
+											</c:when>
+											<c:otherwise>
+												<input type="radio" name="review${review.r_no }" readonly="readonly" value="${score }" id="rating2_03_${score }">
+												<span></span>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</td>
 				               	<td style="width:20%;"><fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
 				               	<td style="width:10%;">
 									<a href="${root }gym/gym_detail?g_no=${review.g_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
@@ -346,7 +405,7 @@ $('#BMItable').DataTable({
 	filter : false,
 	displayLength: 5,
 	"language": {
-        "emptyTable": "데이터가 없어요.",
+        "emptyTable": "기록된 데이터가 없어요. 키와 몸무게를 기록해주세요.",
         "lengthMenu": "페이지당 _MENU_ 개씩 보기",
         "info": "현재 _START_ - _END_ / 총 _TOTAL_건",
         "infoEmpty": "데이터 없음",
