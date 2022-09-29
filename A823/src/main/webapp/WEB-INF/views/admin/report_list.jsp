@@ -115,7 +115,7 @@
 										<td style="font-size:0.75em; height:34px;
 													text-align:left;
 													vertical-align: middle;">
-											[제목]<c:out value="${lvo.b_title }" escapeXml="false" />
+											[제목] <c:out value="${lvo.b_title }" escapeXml="false" />
 											<br>
 											<c:set var="b_con" value="${lvo.b_con }" />
 											<div style="overflow:hidden;

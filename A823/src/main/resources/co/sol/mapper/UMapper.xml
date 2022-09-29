@@ -10,7 +10,7 @@
 			select max(u_no)+1 from u_table
 		</selectKey>
 		BEGIN
-			insert into u_table values(#{u_no}, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N', current_date);
+			insert into u_table values(#{u_no}, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N', current_date, 0);
 			pro_d_table(#{u_no}, #{d_weight}, #{d_height});
 		END;
 	</insert>
