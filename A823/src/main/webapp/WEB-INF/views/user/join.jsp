@@ -67,10 +67,9 @@
 			
 			<div class="col align-self-end" >
 			<button  type="button" class="btn btn-primary" id="checkId">중복확인</button></div>
-			<div id="msg"></div>
 			</div><br/>
 			
-			
+			<div id="msg"></div>
 			
 			<div class="input-group mb-3">
 			<span class="input-group-text">이름</span>
@@ -81,9 +80,9 @@
 			<span class="input-group-text">비밀번호</span>
 			<input type="password" class="form-control" placeholder="6자리 이상" name="u_pw" id="u_pw1" minlength = "6">
 			<input type="password" class="form-control" placeholder="비밀번호 확인" id="u_pw2">
-			<div id="pwChk"></div>
 			</div><br/>
 				  
+			<div id="pwChk"></div>
 			
 			<div class="input-group mb-3">
 			<span class="input-group-text">E-MAIL</span>
