@@ -147,6 +147,19 @@ public class UServiceImpl implements UService {
 		 
 		//2. rows 배열에 넣기 
 		JSONArray body = new JSONArray();	//rows 
+		if(list.size()==1) {
+			JSONArray row = new JSONArray();
+			row.add(0); 
+			row.add(a); 
+			row.add(b); 
+			row.add(c); 
+			row.add(d); 
+			row.add(e); 
+			row.add(0); 
+			JSONObject cell = new JSONObject(); 
+			cell.put("c", row); 
+			body.add(cell);
+		}
 		for(Map<String, Integer> map : list) { 
 			JSONObject d_date = new JSONObject(); 
 			d_date.put("v", map.get("DDATE")); 
@@ -167,6 +180,19 @@ public class UServiceImpl implements UService {
 			 
 			body.add(cell); //레코드 1행 추가					 
 		} //end for 
+		if(list.size()==1) {
+			JSONArray row = new JSONArray();
+			row.add(0); 
+			row.add(a); 
+			row.add(b); 
+			row.add(c); 
+			row.add(d); 
+			row.add(e); 
+			row.add(0); 
+			JSONObject cell = new JSONObject(); 
+			cell.put("c", row); 
+			body.add(cell);
+		}
 		 
 		data.put("rows", body);		 
 		 

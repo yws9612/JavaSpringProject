@@ -59,32 +59,34 @@
 <br>
 		<h2 style="text-align: center">회원가입</h2><br>
 		<form action="${root}user/join" method="post" id="frm">
-			<div class="input-group mb-3">
+			<div class="input-group mb-3 id-area">
 	
 			<span class="input-group-text">아이디</span>
 			<input type="text" class="form-control" placeholder="중복확인해주세요" name = "u_id" id="u_id">
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			
 			<div class="col align-self-end" >
-			<button  type="button" class="btn btn-primary" id="checkId">중복확인</button></div>
-			</div><br/>
-			
+			<button type="button" class="btn btn-primary" id="checkId">중복확인</button></div>
+			</div>
 			<div id="msg"></div>
+			<br/>
+			
+			
 			
 			<div class="input-group mb-3">
 			<span class="input-group-text">이름</span>
 			<input type="text" class="form-control" name="u_name">
 			</div><br/>
 				  
-			<div class="input-group mb-3">
+			<div class="input-group mb-3 pw-area">
 			<span class="input-group-text">비밀번호</span>
 			<input type="password" class="form-control" placeholder="6자리 이상" name="u_pw" id="u_pw1" minlength = "6">
 			<input type="password" class="form-control" placeholder="비밀번호 확인" id="u_pw2">
-			</div><br/>
-				  
+			</div>
 			<div id="pwChk"></div>
+			<br/>
 			
-			<div class="input-group mb-3">
+			<div class="input-group mb-3 email-area">
 			<span class="input-group-text">E-MAIL</span>
 			<input type="email" class="form-control" placeholder="중복확인해주세요" name = "u_email">
 	
@@ -181,6 +183,7 @@ $("#checkId").click(function(){
 		url:"${root}user/idCheck",
 		data:{u_id: u_id},
 		success:function(data){
+			$('.id-area').attr('style', 'margin-bottom: 5px !important');
 			if(data==1){
 				$("#msg").text("이미 사용중인 ID 입니다.");
 				$("#msg").css("color","red");
@@ -202,6 +205,7 @@ $("#checkId").click(function(){
 $(function(){
 	$("#send").attr("type", "button");
 	$("#u_pw2").blur(function(){
+		$('.pw-area').attr('style', 'margin-bottom: 5px !important');
 		if($("#u_pw1").val() != $("#u_pw2").val()){
 			if($("#u_pw2").val() != ''){
 				$("#pwChk").text("비밀번호가 일치하지 않습니다.");
