@@ -200,4 +200,11 @@ public class UServiceImpl implements UService {
 		// TODO Auto-generated method stub
 		return mpr.getBMIList(u_no);
 	}
+
+	@Override
+	public int checkOverId(UVO u_id) {
+		// TODO Auto-generated method stub
+		int result = mpr.checkOverId(u_id);
+		return result;
+	}
 }

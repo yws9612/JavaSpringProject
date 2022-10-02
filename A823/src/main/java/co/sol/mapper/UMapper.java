@@ -22,5 +22,6 @@ public interface UMapper {
 	public List<DVO> getBMIList(int u_no);
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 	public void updateReported(int reported);
+	public int checkOverId(UVO u_id);
 	
 }

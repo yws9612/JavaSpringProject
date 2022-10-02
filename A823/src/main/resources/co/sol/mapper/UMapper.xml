@@ -96,7 +96,9 @@
 		update u_table set u_reported=#{u_reported} from u_table;
 	</update>
 	
-	
+	<select id="checkOverId" parameterType = "co.sol.main.UVO" resultType="int">
+		select count(*) from u_table where u_id = #{u_id}
+	</select>
 
 </mapper>
 

@@ -23,6 +23,6 @@ public interface UService {
 	JSONObject getDiscord(int u_no);
 	UVO selectById(String id);
 	List<DVO> getBMIList(int u_no);
-	
+	public int checkOverId(UVO u_id);
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 }

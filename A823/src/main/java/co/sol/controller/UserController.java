@@ -125,6 +125,14 @@ public class UserController {
 		
 	}
 	
+	@ResponseBody
+	@GetMapping("idCheck")
+	public int idCheck(UVO uvo) {
+		
+		int result = uservice.checkOverId(uvo);
+		return result;
+	}
+	
 	@GetMapping("/privacy")
 	public String privacy() {
 		
