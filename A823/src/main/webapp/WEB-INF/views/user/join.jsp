@@ -67,7 +67,7 @@
 			
 			<div class="col align-self-end" >
 			<button  type="button" class="btn btn-primary" id="checkId">중복확인</button></div>
-			<span id="msg"></span>
+			<div id="msg"></div>
 			</div><br/>
 			
 			
@@ -79,8 +79,9 @@
 				  
 			<div class="input-group mb-3">
 			<span class="input-group-text">비밀번호</span>
-			<input type="password" class="form-control" placeholder="6자리 이상" name="u_pw">
-			<input type="password" class="form-control" placeholder="비밀번호 확인">
+			<input type="password" class="form-control" placeholder="6자리 이상" name="u_pw" id="u_pw1" minlength = "6">
+			<input type="password" class="form-control" placeholder="비밀번호 확인" id="u_pw2">
+			<div id="pwChk"></div>
 			</div><br/>
 				  
 			
@@ -198,6 +199,25 @@ $("#checkId").click(function(){
 		
 	});
 });
+
+$(function(){
+	$("#send").attr("type", "button");
+	$("#u_pw2").blur(function(){
+		if($("#u_pw1").val() != $("#u_pw2").val()){
+			if($("#u_pw2").val() != ''){
+				$("#pwChk").text("비밀번호가 일치하지 않습니다.");
+				$("#pwChk").css("color","red");
+				$("#u_pw2").val('');
+				$("#u_pw2").focus();
+			}
+		}else {
+			$("#pwChk").text("비밀번호가 일치합니다.");
+			$("#pwChk").css("color", "blue");
+			$("#send").attr("type", "submit");
+		}
+	})
+	
+})
 
 
 </script>
