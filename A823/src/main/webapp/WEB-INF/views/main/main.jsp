@@ -1,9 +1,10 @@
 <%@page import="co.sol.main.BVO"%>
 <%@page import="co.sol.main.EVO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 
 </head>
 <body>
-
+<!-- HEADER -->
 <c:import url="/WEB-INF/views/includes/header.jsp"/>
 
   <div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel" style="margin-top:80px;">
@@ -28,13 +29,13 @@
 <!-- 광고 슬라이드 부분 -->    
     <div class="carousel-inner">
       <div class="carousel-item">
-      	<a href="${root }/board/list">
+      	<a href="${root }board/exercise_way">
 		<img src="/resources/img/ad/ad01.png" class="d-md-block w-100" alt="광고사진">
 		</a>
       </div>
       
       <div class="carousel-item active">
-      	<a href="${root }/board/list">
+      	<a href="${root }gym/gym_list">
         <img src="/resources/img/ad/ad02.png" class="d-md-block w-100 active" alt="광고사진">
         </a>
       </div>
@@ -61,23 +62,30 @@
 <div class="container marketing pt-5">
 <!-- 오늘의 추천운동(카드모양) -->
 	<div class="container pt-5 pb-5">
-	<h1>랜덤 운동추천&nbsp;<a class="btn btn-primary" href="#">더보기 »</a></h1>
+	<h1>랜덤 운동추천&nbsp;<a class="btn btn-primary" href="${root }board/exercise_way">더보기 »</a></h1>
 	
 	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 	<c:forEach var="EVO" items="${randomlist}">
 		<div class="col p-3">
 			<div class="card p-3">
-	  			<img src="/resources/img/exercise/dumbell_purple.jpg" class="card-img-top" alt="사진오류">
+	  			<img src="${EVO.e_thum }" class="card-img-top" alt="사진오류">
 	  			<div class="card-body">
 	    			<h5 class="card-title"><c:out value="${EVO.e_name}"/></h5>
-	    			<p class="card-text"><c:out value="${EVO.e_guide}"/>
+	    			<p class="card-text" style="display:-webkit-box;
+				    -webkit-line-clamp:3;
+				    -webkit-box-orient:vertical;
+				    width:100%;
+				    height:100%;
+				    line-height:20px;
+				    overflow:hidden;
+				    text-overflow:ellipsis;"><c:out value="${EVO.e_guide}"/></p>
 	    			<c:if test="${not empty EVO.e_part}">
 	    			<br>
 	    			<span class="badge text-bg-info">#<c:out value="${EVO.e_part}"/></span>
 	    			</c:if>
 	    			<c:if test="${not empty EVO.e_cau}">
 	    			<br>
-	    			<span class="badge text-bg-warning">#<c:out value="${EVO.e_cau}"/></span></c:if></p>
+	    			<span class="badge text-bg-warning">#<c:out value="${EVO.e_cau}"/></span></c:if>
 	    			
 	  			</div>
 			</div>
@@ -108,11 +116,17 @@
 	  			<img src="/resources/img/category/diary.png" class="card-img-top" alt="사진오류">
 	  			</c:if>
 	  			<div class="card-body">
-	    			<h5 class="card-title"><c:out value="${BVO.b_title}"/></h5>
-	    			<p class="card-text">카테고리 : <c:out value="${BVO.b_div}"/><br>
-	    			<c:out value="${BVO.b_con}"/></p>
+	    			<h5 class="card-title">[<c:out value="${BVO.b_div}"/>] <c:out value="${BVO.b_title}"/></h5>
+	    			<p class="card-text" style="display:-webkit-box;
+				    -webkit-line-clamp:3;
+				    -webkit-box-orient:vertical;
+				    width:100%;
+				    height:100%;
+				    line-height:20px;
+				    overflow:hidden;
+				    text-overflow:ellipsis;"><c:out value="${BVO.b_con}" escapeXml="false"/></p>
 	    			<p class="card-text">조회수 <c:out value="${BVO.b_vc}"/></p>
-	    			<a href="#" class="btn btn-primary">자세히보기 »</a>
+	    			<a href="${root }board/board_detail?b_no=${BVO.b_no }" class="btn btn-secondary btn-sm">자세히보기 »</a>
 	  			</div>
 			</div>
 		</div>
@@ -128,12 +142,12 @@
     <c:choose>
 	<c:when test="${not empty user }">
     <div class="row featurette">
-      <div class="col-md-5">
+      <div class="col-md-4 pt-5 pb-5">
         <h2 class="featurette-heading fw-normal lh-1">${sessionScope.user.u_id}님의 프로필</h2>
         <p class="lead">이름 : ${sessionScope.user.u_name }</p>
         <p class="lead"> 주소 : ${sessionScope.user.u_addr } </p>  
       </div>
-	  <div class="col-md-7">
+	  <div class="col-md-8 pt-5 pb-5">
         <jsp:include page="/WEB-INF/views/includes/mypage_include.jsp" flush="false"/>
       </div>
     </div>
@@ -144,7 +158,7 @@
       	<br><br><br>
         <h2>로그인 후 이용 가능합니다.</h2>
         <br><br>
-        <p><a class="btn btn-secondary" href="${root }/user/login">로그인하기 »</a></p>
+        <p><a class="btn btn-secondary" href="/user/login">로그인하기 »</a></p>
         <br><br><br>
         </div>
       </div>

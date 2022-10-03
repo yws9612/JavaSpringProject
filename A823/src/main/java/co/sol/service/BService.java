@@ -21,4 +21,8 @@ public interface BService {
 	int getTotal(Basic cri);
 	
 	List<BVO> topList();
+	
+	List<BVO> BList();
+	
+	List<BVO> BList_diary();
 }

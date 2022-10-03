@@ -7,6 +7,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import co.sol.main.LVO;
+import co.sol.main.UVO;
 import co.sol.mapper.AdminMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -75,10 +77,13 @@ public class AdminServiceImpl implements AdminService {
 		col1.put("label", "가입월");
 		col1.put("type", "string");
 		col2.put("label", "가입 회원 수");
-		col2.put("type", "number"); 
+		col2.put("type", "number");
+		col3.put("label", "누적 회원 수");
+		col3.put("type", "number");
 		
 		title.add(col1);
 		title.add(col2);
+		title.add(col3);
 		
 		data.put("cols", title);
 		
@@ -86,14 +91,19 @@ public class AdminServiceImpl implements AdminService {
 		//2. rows 배열에 넣기
 		JSONArray body = new JSONArray();	//rows
 		for(Map<String, Integer> map : list) {
+			//System.out.println(map);
 			JSONObject u_joindate = new JSONObject();
 			u_joindate.put("v", map.get("JOINMONTH"));
 			JSONObject cnt = new JSONObject();
 			cnt.put("v", map.get("COUNT(*)"));
+			JSONObject total = new JSONObject();
+			total.put("v", map.get("TOTAL"));			
+			
 			
 			JSONArray row = new JSONArray();
 			row.add(u_joindate);
 			row.add(cnt);
+			row.add(total);
 			
 			JSONObject cell = new JSONObject();
 			cell.put("c", row);
@@ -105,5 +115,22 @@ public class AdminServiceImpl implements AdminService {
 		
 		return data;
 	}
+
+	
+	
+	@Override
+	public List<UVO> getUserList() {
+		return mpr.getUserList();
+	}
+
+	
+	
+	@Override
+	public List<LVO> getReportList(int u_no) {
+		return mpr.getReportList(u_no);
+	}
+	
+	
+	
 
 }

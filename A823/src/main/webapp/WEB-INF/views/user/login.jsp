@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
@@ -58,8 +57,9 @@
 						</div>
 
 						<div class="form-group login-group-checkbox pt-3">
-							<form:checkbox path = "rememberId"/>
-							<form:label path="rememberId">저장하기</form:label>
+							<label>
+								<form:checkbox path = "rememberId"/>아이디 저장
+							</label>
 						</div>
 					</div>
 					<div class="d-grid gap-2 pt-3">

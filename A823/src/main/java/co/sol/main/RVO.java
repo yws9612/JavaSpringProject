@@ -14,4 +14,6 @@ public class RVO {
 	private int r_score;
 	private String r_rev;
 	private Date r_date;
+	
+	private String u_id;
 }

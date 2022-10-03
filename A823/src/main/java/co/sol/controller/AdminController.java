@@ -3,12 +3,17 @@ package co.sol.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.sol.main.UVO;
 import co.sol.service.AdminService;
 import lombok.RequiredArgsConstructor;
 
@@ -35,6 +40,17 @@ public class AdminController {
 	@RequestMapping("/chart2")
 	public JSONObject chart2() {
 		return service.getUsercnt();
+	}
+	
+	@GetMapping("/manage_member")
+	public void manege_member(Model m, HttpSession session, UVO u){
+		List<UVO> UList=service.getUserList();
+		m.addAttribute("UList", UList);
+	}
+	
+	@GetMapping("/report_list")
+	public void report_list(@RequestParam("u_no") int u_no, Model m) {
+		m.addAttribute("List", service.getReportList(u_no));
 	}
 
 }

@@ -3,51 +3,130 @@
 
 <mapper namespace="co.sol.mapper.LogMapper">
 
-	<resultMap type="co.sol.main.BVO" id="joinboard">
-		<result column="b_title" property="b_title"/>
-		<result column="b_writer" property="b_writer"/>
-	</resultMap>
 
-	<resultMap type="co.sol.main.LVO" id="log">
-		<result column="u_no" property="u_no"/>
-		<result column="b_no" property="b_no"/>
-		<result column="l_reno" property="l_reno"/>
-		<result column="l_div" property="l_div"/>
-		<result column="l_date" property="l_date"/>
-		<collection property="joinboard"/>
-	</resultMap>
 	
-	<select id="getList" resultMap="log">
-		-<![CDATA[
-		select /*+INDEX_DESC(l_table SYS_C0031914) */ 
-		u_no, b_no, l_reno, l_div, l_date, b_title, b_writer 
-		from l_table natural join b_table 
-		where u_no = #{u_no}
-		]]> 
-		<trim prefix="and">
-			<choose>
-				<when test="select=='scrap'.toString()">
-					l_div=1
-				</when>
-				<when test="select=='write'.toString()">
-					l_div=2
-				</when>
-				<when test="select=='comment'.toString()">
-					l_div=3
-				</when>
-			</choose>
-		</trim>
-	</select>
+	<!--특정 u_no의 모든 로그를 최신순으로 가져옵니다.  -->
+	<select id="getList" resultType="co.sol.main.LVO">
+		<![CDATA[
+			select l_div, l_table.b_no, l_reno, l_date, b_table.b_title, b_table.b_writer, 
+		        u_table.u_name, g_table.g_name, r_table.g_no
+			from l_table, b_table, u_table, r_table, g_table
+			where l_table.u_no=u_table.u_no
+				and l_table.b_no=b_table.b_no(+)
+				and r_table.g_no=g_table.g_no(+)
+				and l_table.r_no=r_table.r_no(+)
+				and l_table.u_no=#{u_no}
+				and l_div in (1,2,3,4)
+			order by l_date desc
+		]]>
+	</select><!-- 결과값 : 스크랩, 쓴 글, 쓴 댓글, 쓴 리뷰에서 가져오는 거 다..+l_div
+	(+) : 아우터조인, <![CDATA[ : 쿼리문에 특수문자가 많으면 쓰는게 좋대서.. -->
+	
+	<!--특정 u_no의 로그를 최신순으로 가져옵니다. 카테고리별 3개의 쿼리가 있습니다.-->
+	<select id="getList_Scrap" resultType="co.sol.main.LVO">
+		select l_div, l_table.b_no, l_date, b_table.b_div, b_table.b_title, b_table.b_writer, u_table.u_name
+		from l_table, b_table, u_table
+		where l_table.u_no=u_table.u_no
+            and l_table.b_no=b_table.b_no
+            and l_table.u_no=#{u_no}
+            and l_div=1
+		order by l_no desc
+	</select> <!-- 결과값 : b_no, l_date(로그가 입력된 시점), b_div(스크랩한 게시글 카테고리), b_title(스크랩한 게시글 제목), 
+	b_writer(스크랩한 게시글 작성자 id), u_name(내 이름)  -->
+	
+	<select id="getList_Board" resultType="co.sol.main.LVO">
+		select l_div, l_table.b_no, l_date, b_table.b_div, b_table.b_title, b_table.b_writer, u_table.u_name
+		from l_table, b_table, u_table
+		where l_table.u_no=u_table.u_no
+            and l_table.b_no=b_table.b_no
+            and l_table.u_no=#{u_no}
+            and l_div=2
+		order by l_no desc
+	</select> <!-- 결과값 : b_no, l_date(로그가 입력된 시점), b_title(게시글 제목), 
+	b_writer(작성자 id), u_name(내 이름)  -->
+	
+	<select id="getList_Comment" resultType="co.sol.main.LVO">
+		select l_div, l_table.b_no, l_reno, l_date, b_table.b_div, b_table.b_title, b_table.b_writer, u_table.u_name
+		from l_table, b_table, u_table
+		where l_table.u_no=u_table.u_no
+            and l_table.b_no=b_table.b_no
+            and l_table.u_no=#{u_no}
+            and l_div=3
+		order by l_no desc
+	</select> <!-- 결과값 : b_no, l_reno(게시글의 몇 번째 댓글인지), l_date(로그가 입력된 시점), 
+	b_title(댓글 단 게시글 제목), b_writer(댓글 단 게시글의 작성자 id), u_name(내 이름)  -->
+	
+	<select id="getList_Review" resultType="co.sol.main.LVO">
+		select l_div, l_date, u_table.u_name, g_table.g_name, r_table.r_score, r_table.g_no
+		from l_table, r_table, u_table, g_table
+		where l_table.u_no=u_table.u_no
+			and r_table.g_no=g_table.g_no
+            and l_table.r_no=r_table.r_no
+            and l_table.u_no=#{u_no}
+            and l_div=4
+		order by l_no desc
+	</select> <!-- 결과값 : l_date(로그가 입력된 시점), u_name(내 이름) 
+	g_name(후기 남긴 헬스장 이름), g_no(후기 남긴 헬스장 번호) -->
 	
 	
 	
+	<!--스크랩 로그를 insert합니다. 댓글작성과 게시글작성 로그는 trigger로 자동 입력됩니다.  -->
 	<insert id="scrap">
 		<selectKey keyProperty="l_no" order="BEFORE" resultType="int">
 			select max(l_no)+1 from l_table
 		</selectKey>
-		insert into l_table (l_no, u_no, b_no, l_div)
-			values(l_no, #{u_no}, #{b_no}, 1)
+		insert into l_table (l_no, u_no, b_no, l_div, l_date)
+			values(#{l_no}, #{u_no}, #{b_no}, 1, current_date)
 	</insert>
+	
+	
+	
+	<!-- 스크랩 여부를 확인합니다. -->
+	<select id="checkscrap" resultType="int">
+		select count(*) from l_table where u_no=#{u_no} and b_no=#{b_no} and l_div=1
+	</select>
+	
+	
+	
+	<!-- 스크랩을 삭제합니다. -->
+	<delete id="deletescrap">
+		delete from l_table where u_no=#{u_no} and b_no=#{b_no} and l_div=1
+	</delete>
+	
+	
+	
+	<!-- 신고 -->
+	<insert id="reportBoard">
+		call pro_l_table_reportboard(#{u_no}, #{b_no}, #{l_report})	
+	</insert>
+	
+	<insert id="reportComment">
+		call pro_l_table_reportcomment(#{u_no}, #{b_no}, #{c_no}, #{l_report})	
+	</insert>
+	
+	<insert id="reportReview">
+		call pro_l_table_reportreview(#{u_no}, #{r_no}, #{l_report})
+	</insert>
+	
+	
+	
+	<!-- 신고여부 확인 -->
+	<select id="checkreport" resultType="int">
+		select count(*) from l_table where u_no=#{u_no} and l_div=5
+		<trim prefix="and">
+			<choose>
+				<when test="c_no != 0">
+					c_no=#{c_no}
+				</when>
+				<when test="b_no != 0">
+					b_no=#{b_no} and c_no is null
+				</when>
+				<when test="r_no != 0">
+					r_no=#{r_no}
+				</when>
+			</choose>
+		</trim>
+	</select>
 	
 	
 </mapper>

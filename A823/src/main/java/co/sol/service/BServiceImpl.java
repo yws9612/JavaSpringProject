@@ -17,7 +17,10 @@ public class BServiceImpl implements BService{
 	private final BMapper mapper;
 
 	@Override
-	public int submit(BVO bo) {		
+	public int submit(BVO bo) {
+		if(bo.getB_open() == null) {
+			bo.setB_open("Y");
+		}
 		mapper.insert(bo);
 		return bo.getB_no();
 	}
@@ -32,6 +35,9 @@ public class BServiceImpl implements BService{
 	
 	@Override
 	public int modify(BVO bo) {
+		if(bo.getB_open() == null) {
+			bo.setB_open("Y");
+		}
 		return mapper.up(bo);
 	}
 
@@ -63,6 +69,20 @@ public class BServiceImpl implements BService{
 	@Override
 	public List<BVO> topList() {
 		return mapper.topList();
+	}
+
+
+	@Override
+	public List<BVO> BList() {
+		// TODO Auto-generated method stub
+		return mapper.BList();
+	}
+
+
+	@Override
+	public List<BVO> BList_diary() {
+		// TODO Auto-generated method stub
+		return mapper.BList_diary();
 	}
 }
 

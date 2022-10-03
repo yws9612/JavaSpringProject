@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 
@@ -18,21 +21,22 @@
 <div class="row">
 <div class="col-md-5">
 <br/><br/>
-
-		
+		<form:form action="/user/addDiscord" method="post" modelAttribute="DVO">
 		<div class="input-group mb-3">
 		<span class="input-group-text">키</span>
-		<input type="text" class="form-control" placeholder="ex)199.9">
-
+		<form:input path="d_height" class="form-control" placeholder="ex)199.9"/>
 		<span class="input-group-text">몸무게</span>
-		<input type="text" class="form-control" placeholder="ex)99.9">			    
+		<form:input path="d_weight" class="form-control" placeholder="ex)99.9"/>			    
 		</div><br/>
-
-		<div class="button" style="float:right;" >
-		<button id="send"  class="btn btn-primary">저장하기</button>
-		</div>		
-     	</div></div></div><br/>		
-
+		
+		<form:input type="hidden" path="u_no" value="${user.u_no }"/>
+		<div style="float:right;">
+		<form:button type="submit" class="btn btn-primary">저장하기</form:button>
+		<form:button onclick="javascript:window.close()" class="btn btn-primary">닫기</form:button>
+     	</div>
+     	</form:form>
+	
+	</div></div></div>
 
 </body>
 </html>

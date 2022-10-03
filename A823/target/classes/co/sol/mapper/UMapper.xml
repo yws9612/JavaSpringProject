@@ -3,70 +3,102 @@
 
 <mapper namespace="co.sol.mapper.UMapper">
 
+
+	<!--가입 쿼리문 입니다.  -->
 	<insert id="join">
-		<selectKey keyProperty="u_no" order="BEFORE" resultType="int">
+		<selectKey keyProperty="u_no" order="BEFORE" resultType="integer">
 			select max(u_no)+1 from u_table
 		</selectKey>
-		insert into u_table values(u_no, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N')
-		call pro_d_table(u_no, #{d_weight}, #{d_height})
+		BEGIN
+			insert into u_table values(#{u_no}, #{u_name}, #{u_id}, #{u_pw}, #{u_addr}, #{u_email}, 'N', current_date, 0);
+			pro_d_table(#{u_no}, #{d_weight}, #{d_height});
+		END;
 	</insert>
 	
 	
-	
+
+	<!--수정 쿼리문 입니다.  -->	
 	<update id="modify">
 		update u_table set u_pw=#{u_pw}, u_addr=#{u_addr} where u_no=#{u_no}
 	</update>
 	
 	
-	
+
+	<!--탈퇴 쿼리문 입니다. 로그 쪽은 cascade되어 있어 유저정보가 삭제될 경우 로그도 자동으로 삭제됩니다.  -->	
 	<delete id="leave">
 		delete from u_table where u_no = #{u_no} and u_pw = #{u_pw}
 	</delete>
 		
 		
-		
+
+	<!--id찾기에서 사용하는 쿼리문 입니다.  -->		
 	<select id="getId" resultType="String">
 		select u_id from u_table where u_name = #{u_name} and u_email = #{u_email} 	
 	</select>
-	
+
+	<!--특정 u_no를 가지는 유저의 email을 가져옵니다.  -->	
 	<select id="getEmail" resultType="String">
 		select u_email 
 		from u_table
 		where u_no in (select u_no from u_table where u_name = #{u_name})
 	</select>
 	
-	
+
+
+	<!--비밀변호 찾기에서 비밀번호를 직접 보여줄 경우 사용하는 쿼리문 입니다.  -->	
 	<select id="getPw" resultType="String">
 		select u_pw form u_table where u_id = #{u_id} and u_email = #{u_email}
 	</select>
-		
+
+	<!--비밀번호 찾기에서 새 비밀번호로 변경하는 쿼리문 입니다.   -->		
 	<update id="newPw">
 		update u_table set u_pw=#{u_pw} where u_id = #{u_id} and u_email = #{u_email}
 	</update>
 	
 	
-	
+
+	<!--특정 id와 비밀번호를 갖는 특정 유저의 모든 정보를 보여줍니다.  -->	
 	<select id="getUser" resultType="co.sol.main.UVO">
 		select * from u_table where u_id=#{u_id} and u_pw = #{u_pw}
-	</select>
+	</select>	
 	
+	<!--특정 id를 갖는 유저의 모든 정보를 보여줍니다.  -->
 	<select id="selectById" resultType="co.sol.main.UVO">
 		select * from u_table where u_id = #{u_id} 
 	</select>
 	
+	<select id="getBMIList" resultType="co.sol.main.DVO">
+		select * from d_table where u_no=#{u_no} order by d_date desc
+	</select>
 	
 	
+
+	<!--d_table을 추가하는 procedure를 호출합니다. BMI는 자동으로 계산됩니다. -->	
 	<insert id="addDiscord">
 		call pro_d_table(#{u_no}, #{d_weight}, #{d_height})
 	</insert>
 	
 	
-	
-	<select id="getDiscord" resultType="co.sol.main.RVO">
-		select * from r_table where u_no=#{u_no}
+
+	<!--그래프 관련입니다. 특정 u_no의 최신 10개 bmi와 해당 bmi를 등록한 일자를 가져옵니다.  -->	
+	<select id="getDiscord" resultType="Map">  
+		<![CDATA[ 
+			select to_char(d_date, 'yy-mm-dd') as ddate, d_bmi  
+			from (select rownum as rn, d_date, d_bmi from d_table where u_no=#{u_no} order by d_date desc)  
+			where rn<=10 
+		]]> 
 	</select>
 	
 	
+	
+	<!-- 누적 신고 횟수 조정 -->
+	<update id="updateReported">
+		update u_table set u_reported=#{u_reported} from u_table;
+	</update>
+	
+	<select id="checkOverId" parameterType = "co.sol.main.UVO" resultType="int">
+		select count(*) from u_table where u_id = #{u_id}
+	</select>
 
 </mapper>
 

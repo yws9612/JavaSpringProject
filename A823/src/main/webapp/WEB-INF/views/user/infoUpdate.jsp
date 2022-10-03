@@ -1,8 +1,8 @@
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 
@@ -18,6 +18,7 @@
   <!-- kko zipcode -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+	
 	function kakaopost() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -34,26 +35,18 @@
 
 <div class="container-fluid">
 <div class="row ">
-<div class="col-md-5">
+<div class="col">
 <br/><br/>
 
-
+	<form action="${root}user/infoUpdate" method="post">
 		<div class="input-group mb-3">
 		<span class="input-group-text">비밀번호 변경</span>
-		<input type="password" class="form-control" placeholder="6자리 이상"/>
+		<input type = "password" class="form-control" placeholder="6자리 이상" name="u_pw"/>
 		<input type="password" class="form-control" placeholder="비밀번호 확인"/>
 		</div><br/>
-			  
-		<form action="#중복확인" method="post" >
-		<div class="input-group mb-3">
-		<span class="input-group-text">E-MAIL</span>
-		<input type="email" class="form-control"/>
-
-		&nbsp;&nbsp;&nbsp;&nbsp;		
-		<div class="col align-self-end" >
-		<button type="button" class="btn btn-primary">중복확인</button></div>
-		</div><br/>
-		</form>
+		
+		<input type="hidden" value="${user.u_id }" name = "u_id"/>
+		<input type="hidden" value="${user.u_no }" name = "u_no"/>
 			    
 		<div class="input-group mb-3">
 		<span class="input-group-text">우편번호</span>
@@ -67,7 +60,7 @@
 			
 		<div class="input-group mb-3">
 		<span class="input-group-text">주소</span>
-		<input type="text" placeholder="우편번호 검색시 자동으로 입력됩니다" readonly="readonly" class="form-control" />
+		<input type="text" placeholder="우편번호 검색시 자동으로 입력됩니다" readonly="readonly" class="form-control" id = "addr1" name = "u_addr" />
 		</div>
 			  
 		<div class="input-group mb-3">
@@ -76,12 +69,15 @@
 			
 
 		<div class="button" style="float:right;" >
-		<button class="btn btn-primary">저장하기</button>
+		<input type = "submit" class="btn btn-primary" value="저장">
+		<button onclick="javascript:window.close()" class="btn btn-primary">닫기</button>
 		</div>	
+	</form>
 
 
 
-</div></div></div><br/>	
+</div></div></div>
+
 
 </body>
 

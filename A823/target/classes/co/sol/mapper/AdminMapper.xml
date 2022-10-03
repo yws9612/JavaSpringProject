@@ -6,18 +6,43 @@
 <mapper namespace="co.sol.mapper.AdminMapper">
 
 
-
+	
+	<!--  그래프 관련 입니다. 게시판 b_div당 게시글의 개수를 가져옵니다. -->
 	<select id="getBoardcnt" resultType="Map">
 		select b_div, count(b_div) from b_table group by b_div
 	</select>
 	
 	
+	
+	<!--그래프 관련 입니다. 가입 월 별 유저 수+누적 유저수를 가져옵니다. -->
 	<select id="getUsercnt" resultType="Map">
-		SELECT TO_CHAR(u_joindate, 'yyyy-mm') as joinmonth, COUNT(*) 
+		SELECT TO_CHAR(u_joindate, 'yyyy-mm') as JOINMONTH, COUNT(*), 
+			sum(count(*)) OVER(order BY TO_CHAR(u_joindate, 'yyyy-mm')) as TOTAL
 		FROM u_table 
 		GROUP BY TO_CHAR(u_joindate, 'yyyy-mm')
 	</select>
+	
+	
+	<select id="getUserList" resultType="co.sol.main.UVO">
+		select * from u_table order by u_no
+	</select>
 
+
+
+	<select id="getReportList" resultType="co.sol.main.LVO">
+		<![CDATA[
+			select l_div, l_report, l_date, l_table.b_no, b_table.b_title, b_table.b_con,
+		        l_table.c_no, c_table.c_con, r_table.g_no, r_table.r_rev
+			from l_table, b_table, r_table, g_table, c_table
+			where l_table.b_no=b_table.b_no(+)
+				and l_table.c_no=c_table.c_no(+)
+				and l_table.r_no=r_table.r_no(+)
+				and r_table.g_no=g_table.g_no(+)
+				and l_table.u_no=#{u_no}
+				and l_div=6
+			order by l_date desc
+		]]>
+	</select>
 
 
 </mapper>

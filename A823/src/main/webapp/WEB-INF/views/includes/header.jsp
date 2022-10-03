@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
@@ -36,13 +35,14 @@
       <a href="${root }main/main" class="d-flex align-items-center mb-md-0 text-dark text-decoration-none">
 		<!-- 로고 이미지 삽입 -->
 		<img src="/resources/img/logo/logo.png" class="d-block" alt="부들부들로고" width="60">
+		&nbsp;&nbsp;&nbsp;&nbsp; <h5 class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">초보들의 운동커뮤니티</h5>
       </a>
 	  <div class="col-md-1"></div>
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="${root }board/exercise_way" class="nav-link px-auto link-dark fs-5 fw-bold">운동방법</a></li>
 		<li><a href="${root }board/exercise_free" class="nav-link px-auto link-dark fs-5 fw-bold">운동게시판</a></li>
-		<li><a href="${root }board/exercies_diary" class="nav-link px-auto link-dark fs-5 fw-bold">운동일지</a></li>
-		<li><a href="${root }board/" class="nav-link px-auto link-dark fs-5 fw-bold">헬스장정보</a></li>
+		<li><a href="${root }board/exercise_diary" class="nav-link px-auto link-dark fs-5 fw-bold">운동일지</a></li>
+		<li><a href="${root }gym/gym_list" class="nav-link px-auto link-dark fs-5 fw-bold">헬스장정보</a></li>
       </ul>
 	  <div class="col-md-1"></div>
 	      <div class="dropdown text-end">
@@ -57,13 +57,14 @@
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="${root }user/join">회원가입</a></li>	
 						</c:when>
+						<c:when test="${sessionScope.user.u_id eq 'admin' }">
+							<li><a class="dropdown-item" href="${root }admin/chart">현황 차트</a></li>
+							<li><a class="dropdown-item" href="${root }admin/manage_member">회원관리</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="${root }user/logout">로그아웃</a></li>	
+						</c:when>
 						<c:otherwise>
-							<li><a class="dropdown-item" href="${root }user/myPage">북마크한 게시글</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내가 쓴 게시글</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내가 쓴 댓글</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내가 쓴 리뷰</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">내 프로필</a></li>
-							<li><a class="dropdown-item" href="${root }user/myPage">계정 설정</a></li>
+							<li><a class="dropdown-item" href="${root }user/myPage">마이페이지</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="${root }user/logout">로그아웃</a></li>					
 						</c:otherwise>
@@ -76,6 +77,6 @@
     </div>
 </div>
 
-	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- <script src="../resources/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

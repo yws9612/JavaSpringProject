@@ -3,6 +3,7 @@
 
 <mapper namespace="co.sol.mapper.DataMapper">
 
+	<!--e_table의 모든 정보를 e_no 오름차순으로 가져옵니다. 옵션이 있을 경우 필터링 되어 가져옵니다.  -->
 	<select id="getEList" resultType="co.sol.main.EVO">
 		select /*+INDEX_ASC(e_table SYS_C0031908) */ * from e_table
 		<trim prefix="where" prefixOverrides="and"> <!-- div, partno? and/or  -->
@@ -14,6 +15,7 @@
 	
 	
 	
+	<!--새 운동을 insert합니다.  -->
 	<insert id="addExercise">
 		<selectKey keyProperty="e_no" order="BEFORE" resultType="int">
 			select max(e_no)+1 from e_table
@@ -25,6 +27,7 @@
 
 
 
+	<!--랜덤 운동 5개를 가져옵니다. 메인화면에서 사용합니다.  -->
 	<select id="randomList" resultType="co.sol.main.EVO">
 		<![CDATA[
 			select * 

@@ -2,98 +2,244 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
+<title>부들부들 | 마이 페이지</title>
 
 <head>
-<meta charset="UTF-8">
-<title>MyPage</title>
+<script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	google.charts.load('current', {
+		packages : [ 'corechart' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
 
+	function drawChart() {
+		var jsondata = $.ajax({
+			url : "/user/bmichart",
+			dataType : "json",
+			async : false
+		}).responseText;
+
+		var data = new google.visualization.DataTable(jsondata);
+
+		var options = {
+			isStacked : true,
+			series : {
+				// under
+				0 : {
+					areaOpacity : 0.4,
+					color : '#9cbbda',
+				},
+
+				// normal
+				1 : {
+					areaOpacity : 0.4,
+					color : '#93cca9',
+				},
+
+				// overweight
+				2 : {
+					areaOpacity : 0.4,
+					color : '#ffe22c',
+				},
+
+				// obese
+				3 : {
+					areaOpacity : 0.4,
+					color : '#eaa353',
+				},
+
+				// extremly obese
+				4 : {
+					areaOpacity : 0.4,
+					color : '#e14351',
+				},
+
+				// line
+				5 : {
+					color : '#000000',
+					type : 'line'
+				}
+			},
+			seriesType : 'area',
+			title : 'Example',			
+			vAxis : {
+				ticks : [ 10, 18.5, 25, 30, 35, 45 ],
+				viewWindow : {
+					min : 10
+				}
+			},
+			hAxis : {
+				slantedText : true,
+				slantedTextAngle : 45,
+				gridlines : {
+					color : '#333',
+					minSpacing : 1
+				}
+			}
+		};
+
+		var chart = new google.visualization.ComboChart(document
+				.getElementById('curve_chart'));
+
+		chart.draw(data, options);
+	}
+</script>
 </head>
+
 
 <body>
 
-
-	<div class="container" style="margin-top:100px">
+	<div class="container">
 		<!-- 가운데정렬+네모안에 들어가지는 컨테이너 원치않음빼세여 -->
 		<!-- Table -->
-		<h2 class="mb-5">유저이름넣어야함</h2>
 		<div class="card card-profile shadow">
 			<!-- gray배경 -->
 			<div class="row justify-content-center">
 				<!-- 버튼정렬 -->
 				<div class="col-lg-3 order-lg-2">
 					<!-- 버튼정렬 -->
+					<!-- 
 					<div class="card-profile-image">
 						<a href="#플필사진 클릭하면 이동할거면 넣기"> <img
 							src="https://image.msscdn.net/images/goods_img/20210517/1954888/1954888_1_500.jpg?t=20210517173507"
 							class="rounded-circle shadow"></a>
 					</div>
+					 -->
 				</div>
 			</div>
 
-			<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+			<div
+				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 				<!-- 텍스트정렬 -->
 				<div class="d-flex justify-content-between">
-					<a href="#" class="btn btn-primary mr-4">정보 수정</a> 
-					<a href="#" class="btn btn-primary float-right">팔로우</a>
+					<a href="${root}user/infoUpdate" class="btn btn-primary mr-4">정보 수정</a> <a
+						href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 등록 및 변경</a>
 				</div>
 			</div>
 
+			<div id="curve_chart" style="width: 800px; height: 600px"></div>
 
-			<div class="card-body pt-0 pt-md-4">
-				<div class="row">
-					<div class="col">
-						<div
-							class="card-profile-stats d-flex justify-content-center mt-md-5">
-							<div>
-								<span class="heading"><a href="#"><h2>22</h2></a></span> <span
-									class="description"><h6>게시글</h6></span>
-							</div>
-							<div>
-								<span class="heading"><a href="#"><h2>89</h2></a></span> <span
-									class="description"><h6>댓글</h6></span>
-							</div>
-							<div>
-								<span class="heading"><a href="#"><h2>10</h2></a></span> <span
-									class="description"><h6>스크랩</h6></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr class="my-4">
-				<p>최근 게시글 테이블넣어야함다</p>
-				<!-- 송이가 준 코드 -->
-				<c:forEach items="${log }" var="log">
+			</div>
+				
+			<hr class="my-4">
+			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=log&memberId=${user.u_name}'">활동 내역</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=scrap&memberId=${user.u_name}'">스크랩</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=write&memberId=${user.u_name}'">작성한 게시글</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='/board/mypageView?select=reply&memberId=${user.u_name}'">작성한 댓글</button>	
+			<button type="button" class="btn btn-dark ml-3" onclick="location.href='/board/mypageView?select=review&memberId=${user.u_name}'">리뷰 내역</button>
+			<br><br>
+			<!-- 송이가 준 코드 -->
+			<c:forEach items="${log}" var="log">
+				<div>
 					<div>
-						<div>
-							<span> 
-								<c:if test="${log.l_div == 1 }">
-                  					게시글 ${log.b_no}를 스크랩 하였습니다.
-               					</c:if> 
-               					<c:if test="${log.l_div == 2 }">
-                  					게시글 ${log.b_no}를 작성 하였습니다.
-               					</c:if> 
-               					<c:if test="${log.l_div == 3 }">
-                 					 게시글 ${log.b_no}에 ${log.l_reno}번째 댓글을 작성 하였습니다.
-               					</c:if>
-							</span> 
-							<span> 
-								<fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
-							</span>
-						</div>
-						<div>
-							<span> <a href="/board/?^p^??b_no=${log.b_no}">${log.b_title}</a>
-							</span> <span> ${log.b_writer} </span>
-						</div>
-
+						<span> 
+							<c:if test="${log.l_div == 1}">
+           						${log.b_no}번 게시글을 스크랩 하였습니다.
+               				</c:if> 
+               				<c:if test="${log.l_div == 2}">
+                  				${log.b_no}번 게시글을 작성 하였습니다.
+               				</c:if> 
+               				<c:if test="${log.l_div == 3}">
+                 				${log.b_no}번 게시글에 ${log.l_reno}번째 댓글을 작성 하였습니다.
+               				</c:if>
+               				<c:if test="${log.l_div == 4}">
+               					${log.b_no}번 게시글에 리뷰를 남겼습니다.
+               				</c:if>
+						</span> 
+						<span> 
+							<fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
 					</div>
-				</c:forEach>
-				<a href="#" target="_blank">링크연결할거있음넣으세여</a>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${log.b_no}">${log.b_title}</a>
+						</span> 
+						<span> ${log.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${scrap}" var="scrap">
+				<div>
+					<div>
+						<span> 
+							${scrap.b_no}번 게시글을 스크랩 하였습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${scrap.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${scrap.b_no}">${scrap.b_title}</a>
+						</span> 
+						<span> ${scrap.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${write}" var="write">
+				<div>
+					<div>
+						<span> 
+							${write.b_no}번 게시글을 작성 하였습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${write.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${write.b_no}">${write.b_title}</a>
+						</span> 
+						<span> ${write.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${reply}" var="reply">
+				<div>
+					<div>
+						<span> 
+							${reply.b_no}번 게시글에 ${reply.l_reno}번째 댓글을 작성 하였습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${reply.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${reply.b_no}">${reply.b_title}</a>
+						</span> 
+						<span> ${reply.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<c:forEach items="${review}" var="review">
+				<div>
+					<div>
+						<span> 
+							${review.b_no}번 게시글에 리뷰를 남겼습니다.
+						</span> 
+						<span> 
+							<fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd  hh:mm:ss" />
+						</span>
+					</div>
+					<div>
+						<span> 
+							<a href="/board/board_detail?b_no=${review.b_no}">${review.b_title}</a>
+						</span> 
+						<span> ${review.b_writer} </span>
+					</div>
+				</div>
+			</c:forEach>
 
-			</div>
 		</div>
-	</div>
 
 </body>
 </html>
