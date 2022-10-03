@@ -23,5 +23,5 @@ public interface UMapper {
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 	public void updateReported(int reported);
 	public int checkOverId(UVO u_id);
-	
+	public int checkOverEmail(UVO u_email);
 }

@@ -99,6 +99,10 @@
 	<select id="checkOverId" parameterType = "co.sol.main.UVO" resultType="int">
 		select count(*) from u_table where u_id = #{u_id}
 	</select>
+	
+	<select id="checkOverEmail" parameterType = "co.sol.main.UVO" resultType="int">
+		select count(*) from u_table where u_email = #{u_email}
+	</select>
 
 </mapper>
 

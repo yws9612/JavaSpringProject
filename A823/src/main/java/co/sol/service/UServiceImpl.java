@@ -232,4 +232,11 @@ public class UServiceImpl implements UService {
 		int result = mpr.checkOverId(u_id);
 		return result;
 	}
+
+	@Override
+	public int checkOverEmail(UVO u_email) {
+		// TODO Auto-generated method stub
+		int result = mpr.checkOverEmail(u_email);
+		return result;
+	}
 }

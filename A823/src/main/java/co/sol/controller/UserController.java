@@ -133,6 +133,14 @@ public class UserController {
 		return result;
 	}
 	
+	@ResponseBody
+	@GetMapping("emailCheck")
+	public int emailCheck(UVO uvo) {
+		
+		int result = uservice.checkOverEmail(uvo);
+		return result;
+	}
+	
 	@GetMapping("/privacy")
 	public String privacy() {
 		

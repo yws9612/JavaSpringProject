@@ -88,12 +88,14 @@
 			
 			<div class="input-group mb-3 email-area">
 			<span class="input-group-text">E-MAIL</span>
-			<input type="email" class="form-control" placeholder="중복확인해주세요" name = "u_email">
+			<input type="email" class="form-control" placeholder="중복확인해주세요" name = "u_email" id="u_email">
 	
 			&nbsp;&nbsp;&nbsp;&nbsp;		
 			<div class="col align-self-end" >
-			<button  type="button" class="btn btn-primary">중복확인</button></div>
-			</div><br/>
+			<button type="button" class="btn btn-primary" id="checkEmail">중복확인</button></div>
+			</div>
+			<div id="emailMsg"></div>
+			<br/>
 			
 				    
 			<div class="input-group mb-3">
@@ -195,6 +197,35 @@ $("#checkId").click(function(){
 				if(u_id == ''){
 					$("#msg").text("아이디를 입력해주세요.");
 					$("#msg").css("color","red");
+				}
+			}
+		}
+		
+	});
+});
+
+$("#checkEmail").click(function(){
+	$("#send").attr("type", "button");
+	const u_email = $("#u_email").val();
+	
+	$.ajax({
+		type:"get",
+		async:false,
+		url:"${root}user/emailCheck",
+		data:{u_email: u_email},
+		success:function(data){
+			$('.email-area').attr('style', 'margin-bottom: 5px !important');
+			if(data==1){
+				$("#emailMsg").text("이미 사용중인 E-Mail 입니다.");
+				$("#emailMsg").css("color","red");
+			}else {
+				$("#emailMsg").text("사용 가능한 E-Mail 입니다.");
+				$("#emailMsg").css("color", "blue");
+				$("#send").attr("type", "submit");
+				
+				if(u_email == ''){
+					$("#emailMsg").text("E-Mail을 입력해주세요.");
+					$("#emailMsg").css("color","red");
 				}
 			}
 		}

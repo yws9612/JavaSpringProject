@@ -24,5 +24,6 @@ public interface UService {
 	UVO selectById(String id);
 	List<DVO> getBMIList(int u_no);
 	public int checkOverId(UVO u_id);
+	public int checkOverEmail(UVO u_email);
 	public UserInfo loginAuth(LoginCommand loginCommand) throws Exception;
 }
