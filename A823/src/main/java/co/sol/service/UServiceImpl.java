@@ -83,8 +83,7 @@ public class UServiceImpl implements UService {
 	}
 
 	@Override
-	public void addDiscord(UVO user, DVO discord) {
-		discord.setU_no(user.getU_no());
+	public void addDiscord(DVO discord) {
 		mpr.addDiscord(discord);
 	}
 

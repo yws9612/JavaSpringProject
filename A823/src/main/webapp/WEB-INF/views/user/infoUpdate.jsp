@@ -18,6 +18,7 @@
   <!-- kko zipcode -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+	
 	function kakaopost() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -34,7 +35,7 @@
 
 <div class="container-fluid">
 <div class="row ">
-<div class="col-md-5">
+<div class="col">
 <br/><br/>
 
 	<form action="${root}user/infoUpdate" method="post">
@@ -68,13 +69,15 @@
 			
 
 		<div class="button" style="float:right;" >
-		<input type = "submit" class="btn btn-primary"/>
+		<input type = "submit" class="btn btn-primary" value="저장">
+		<button onclick="javascript:window.close()" class="btn btn-primary">닫기</button>
 		</div>	
 	</form>
 
 
 
-</div></div></div><br/>	
+</div></div></div>
+
 
 </body>
 

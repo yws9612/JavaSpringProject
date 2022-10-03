@@ -219,12 +219,6 @@ public class UserController {
 			return "/admin/chart";
 		}
 		
-		System.out.println("getList--"+logservice.getList(user.getU_no()));
-		System.out.println("getList_Board--"+logservice.getList_Board(user.getU_no()));
-		System.out.println("getList_Comment--"+logservice.getList_Comment(user.getU_no()));
-		System.out.println("getList_Scrap--"+logservice.getList_Scrap(user.getU_no()));
-		System.out.println("getList_Review--"+logservice.getList_Review(user.getU_no()));
-		
 		m.addAttribute("userInfo",uservice.selectById(user.getU_id()));
 		m.addAttribute("BMIList",uservice.getBMIList(user.getU_no()));
 		m.addAttribute("logList",logservice.getList(user.getU_no()));
@@ -262,13 +256,22 @@ public class UserController {
 	}
 	
 	@GetMapping("/whUpdate")
-	public void whUpdate() {
-		
+	public void whUpdate(Model m, HttpSession session) {
+		DVO dvo=new DVO();
+		m.addAttribute("DVO",dvo);
 	}
 	
-	@PostMapping("/whUpdate")
-	public String postwhUpdate() {
+	@PostMapping("/addDiscord")
+	public String postwhUpdate(@ModelAttribute("DVO") DVO discord) {
+		if(discord == null) {
+			return "/user/whUpdate";
+		}
+		uservice.addDiscord(discord);
+		return "/user/whUpdateSuccess";
+	}
+	
+	@GetMapping("/user/whUpdateSuccess")
+	public void whUpdateSuccess() {
 		
-		return "/user/myPage";
 	}
 }

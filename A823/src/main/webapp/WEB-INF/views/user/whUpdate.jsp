@@ -21,21 +21,22 @@
 <div class="row">
 <div class="col-md-5">
 <br/><br/>
-
-	<form action="${root}user/whUpdate" method="post">
+		<form:form action="/user/addDiscord" method="post" modelAttribute="DVO">
 		<div class="input-group mb-3">
 		<span class="input-group-text">키</span>
-		<input type="text" class="form-control" placeholder="ex)199.9">
-
+		<form:input path="d_height" class="form-control" placeholder="ex)199.9"/>
 		<span class="input-group-text">몸무게</span>
-		<input type="text" class="form-control" placeholder="ex)99.9">			    
+		<form:input path="d_weight" class="form-control" placeholder="ex)99.9"/>			    
 		</div><br/>
+		
+		<form:input type="hidden" path="u_no" value="${user.u_no }"/>
+		<div style="float:right;">
+		<form:button type="submit" class="btn btn-primary">저장하기</form:button>
+		<form:button onclick="javascript:window.close()" class="btn btn-primary">닫기</form:button>
+     	</div>
+     	</form:form>
+	
+	</div></div></div>
 
-		<div class="button" style="float:right;" >
-		<input type = "submit" id="send"  class="btn btn-primary">저장하기</button>
-		</div>		
-     	
-	</form>
-	</div></div></div><br/>	
 </body>
 </html>

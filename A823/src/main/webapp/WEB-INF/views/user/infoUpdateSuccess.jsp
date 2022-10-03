@@ -11,7 +11,8 @@
 <body>
 <script type="text/javascript">
 	alert('회원님의 정보가 변경되었습니다')
-	location.href = '${root}user/myPage'
+	opener.parent.location.reload();
+	self.close();
 </script>
 </body>
 </html>

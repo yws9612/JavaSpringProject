@@ -68,7 +68,7 @@
 	</select>
 	
 	<select id="getBMIList" resultType="co.sol.main.DVO">
-		select * from d_table where u_no=#{u_no}
+		select * from d_table where u_no=#{u_no} order by d_date desc
 	</select>
 	
 	

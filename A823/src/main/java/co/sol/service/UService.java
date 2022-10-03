@@ -19,7 +19,7 @@ public interface UService {
 	String getEmail(UVO user);
 	void newPw(UVO user);
 	UVO getUser(UVO user);
-	void addDiscord(UVO user, DVO discord);
+	void addDiscord(DVO discord);
 	JSONObject getDiscord(int u_no);
 	UVO selectById(String id);
 	List<DVO> getBMIList(int u_no);

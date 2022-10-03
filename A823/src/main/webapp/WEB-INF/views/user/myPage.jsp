@@ -202,8 +202,8 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<button type="button" class="btn btn-primary mr-4 modifybutton">프로필 수정</button>
-						<a href="${root}user/whUpdate" class="btn btn-primary float-right">키/몸무게 기록</a>
+						<a href="" onclick="infoUpdate()" class="btn btn-primary float-right">프로필 수정</a>
+						<a href="" onclick="add_bmi()" class="btn btn-primary float-right">키/몸무게 기록</a>
 					</div>
 					<div class="col">
 						<!-- BMI 차트 부분 -->
@@ -400,7 +400,7 @@
 <script type="text/javascript">
 
 $('#BMItable').DataTable({
-	order: [],
+	order: [[3, 'desc']],
 	lengthChange: false,
 	filter : false,
 	displayLength: 5,
@@ -531,22 +531,26 @@ $('#reviewtable').DataTable({
     },
 });
 
-//비번 확인창 띄우기
-$(".modifybutton").click(function(){
-	var pw = "${userInfo.u_pw }"
-	var result = prompt("비밀번호 확인");
-	if(result == pw){
-	    alert("확인되었습니다.");
-		location.href="${root}user/infoUpdate";
-	}else if(result == ""){
-		alert("비밀번호를 입력하세요.");
-		location.reload();
-	}else if(result != pw){
-		alert("비밀번호를 확인하세요");
-		location.reload();
-	}
-	
-});
+
+//bmi추가
+function add_bmi(){
+	var url='/user/whUpdate';
+	var name='BMI추가';
+	var pop_x=(window.screen.width - 500) / 2;
+	var pop_y=(window.screen.height - 200)  / 2;
+	var option='width=500, height=200, left='+pop_x+', top='+pop_y;
+	window.open(url, name, option);
+}
+
+//정보수정
+function infoUpdate(){
+	var url='/user/infoUpdate';
+	var name='회원정보수정';
+	var pop_x=(window.screen.width - 800) / 2;
+	var pop_y=(window.screen.height - 400)  / 2;
+	var option='width=800, height=400, left='+pop_x+', top='+pop_y;
+	window.open(url, name, option);
+}
 
 </script>
 </body>
