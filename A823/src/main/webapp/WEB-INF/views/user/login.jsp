@@ -56,11 +56,6 @@
 							<form:errors path="pw" style="color:red"></form:errors>
 						</div>
 
-						<div class="form-group login-group-checkbox pt-3">
-							<label>
-								<form:checkbox path = "rememberId"/>아이디 저장
-							</label>
-						</div>
 					</div>
 					<div class="d-grid gap-2 pt-3">
 					<form:button class="btn btn-primary">
