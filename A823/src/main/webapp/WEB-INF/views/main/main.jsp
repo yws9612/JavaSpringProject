@@ -14,6 +14,88 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- BMI 차트 스크립트 -->
+<script type="text/javascript">
+	google.charts.load('current', {
+		packages : [ 'corechart' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var jsondata = $.ajax({
+			url : "/user/bmichart",
+			dataType : "json",
+			async : false
+		}).responseText;
+
+		var data = new google.visualization.DataTable(jsondata);
+
+		var options = {
+			isStacked : true,
+			series : {
+				// under
+				0 : {
+					areaOpacity : 0.4,
+					color : '#9cbbda',
+				},
+
+				// normal
+				1 : {
+					areaOpacity : 0.4,
+					color : '#93cca9',
+				},
+
+				// overweight
+				2 : {
+					areaOpacity : 0.4,
+					color : '#ffe22c',
+				},
+
+				// obese
+				3 : {
+					areaOpacity : 0.4,
+					color : '#eaa353',
+				},
+
+				// extremly obese
+				4 : {
+					areaOpacity : 0.4,
+					color : '#e14351',
+				},
+
+				// line
+				5 : {
+					color : '#000000',
+					type : 'line'
+				}
+			},
+			seriesType : 'area',
+			vAxis : {
+				ticks : [ 10, 18.5, 25, 30, 35, 45 ],
+				viewWindow : {
+					min : 10
+				}
+			},
+			hAxis : {
+				slantedText : true,
+				slantedTextAngle : 45,
+				gridlines : {
+					color : '#333',
+					minSpacing : 1
+				}
+			}
+		};
+
+		var chart = new google.visualization.ComboChart(document
+				.getElementById('curve_chart'));
+
+		chart.draw(data, options);
+	}
+	
+</script>
+
 
 </head>
 <body>
@@ -141,14 +223,20 @@
     <c:catch>
     <c:choose>
 	<c:when test="${not empty user }">
-    <div class="row featurette">
-      <div class="col-md-4 pt-5 pb-5">
+    <div class="row">
+    <div class="col-md-1"></div>
+      <div class="col-md-3 pt-5">
         <h2 class="featurette-heading fw-normal lh-1">${sessionScope.user.u_id}님의 프로필</h2>
-        <p class="lead">이름 : ${sessionScope.user.u_name }</p>
-        <p class="lead"> 주소 : ${sessionScope.user.u_addr } </p>  
+        <hr>
+        <h5>이름 : ${sessionScope.user.u_name }<br>
+        	주소 : ${sessionScope.user.u_addr }<br>
+        	</h5>
+        <a href="${root}user/myPage" class="btn btn-primary mr-4">마이페이지 바로가기</a>
       </div>
-	  <div class="col-md-8 pt-5 pb-5">
-        <jsp:include page="/WEB-INF/views/includes/mypage_include.jsp" flush="false"/>
+	  <div class="col pt-5 pb-5">
+	  <div class="card card-profile shadow">
+	  	<div id="curve_chart" style="width: 800px; height: 600px; align-self:center;"></div>
+	  </div>
       </div>
     </div>
 	</c:when>

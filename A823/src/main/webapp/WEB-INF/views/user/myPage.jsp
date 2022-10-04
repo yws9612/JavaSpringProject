@@ -197,7 +197,7 @@
 										<td style="width:20%;"><c:out value="${bmi.d_height }"/></td>
 										<td style="width:20%;"><c:out value="${bmi.d_weight }"/></td>
 						               	<td style="width:20%;"><c:out value="${bmi.d_bmi }"/></td>
-						               	<td><fmt:formatDate value="${bmi.d_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+						               	<td><fmt:formatDate value="${bmi.d_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -249,7 +249,7 @@
 								<td>${log.b_no}번 게시글에 ${log.l_reno}번째 댓글을 작성 하였습니다.</td>
 								</c:if>
 				               	
-				               	<td style="width:20%;"><fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
 									<a href="${root }board/board_detail?b_no=${log.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
 								</td>
@@ -279,7 +279,7 @@
 							<tr>
 								<td><c:out value="[${scrap.b_div }] ${scrap.b_title }"/></td>
 								<td style="width:15%;"><c:out value="${scrap.b_writer}"/></td>
-				               	<td style="width:20%;"><fmt:formatDate value="${scrap.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${scrap.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
 									<a href="${root }board/board_detail?b_no=${scrap.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
 								</td>
@@ -307,7 +307,7 @@
 						<c:forEach items="${boardList}" var="board">
 							<tr>
 								<td><c:out value="[${board.b_div }] ${board.b_title }"/></td>
-				               	<td style="width:20%;"><fmt:formatDate value="${board.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${board.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
 									<a href="${root }board/board_detail?b_no=${board.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
 								</td>
@@ -335,7 +335,7 @@
 						<c:forEach items="${commentList}" var="comment">
 							<tr>
 								<td><c:out value="[${comment.b_div }] ${comment.b_title }"/></td>
-				               	<td style="width:20%;"><fmt:formatDate value="${comment.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${comment.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
 									<a href="${root }board/board_detail?b_no=${comment.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
 								</td>
@@ -379,7 +379,7 @@
 										</c:choose>
 									</c:forEach>
 								</td>
-				               	<td style="width:20%;"><fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd hh:mm:ss"/></td>
+				               	<td style="width:20%;"><fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
 									<a href="${root }gym/gym_detail?g_no=${review.g_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
 								</td>

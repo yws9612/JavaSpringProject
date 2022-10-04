@@ -95,7 +95,7 @@ ul {
 						</tr>
 						<tr>
 							<td><c:out value="${bdetail.b_writer}" /></td>
-							<td><fmt:formatDate value="${bdetail.b_udate}" pattern="yyyy. MM. dd hh:mm:ss" /></td>
+							<td><fmt:formatDate value="${bdetail.b_udate}" pattern="yyyy. MM. dd HH:mm:ss" /></td>
 							<td>조회수</td>
 							<td><c:out value="${bdetail.b_vc}" /></td>
 						</tr>
@@ -129,7 +129,7 @@ ul {
 											<span style="font-size: small;">
 											<c:out value="${CVO.c_writer }" /></span> 
 											<span style="font-size: xx-small;">
-												<fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd hh:mm:ss" />
+												<fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd HH:mm:ss" />
 											</span> 
 										</div>
 										<!-- 수정, 삭제, 신고 표시 -->
@@ -188,7 +188,7 @@ ul {
 											<i class="bi bi-arrow-return-right"></i> 
 											<span class="" style="font-size: small;">
 											<c:out value="${CVO.c_writer }" /></span> 
-											<span class="" style="font-size: xx-small;"><fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd hh:mm:ss" /></span>
+											<span class="" style="font-size: xx-small;"><fmt:formatDate value="${CVO.c_udate}" pattern="yyyy. MM. dd HH:mm:ss" /></span>
 										</div>
 										<!-- 수정, 삭제, 신고 표시 -->
 										<c:if test="${CVO.c_writer ne 'unknown' }">

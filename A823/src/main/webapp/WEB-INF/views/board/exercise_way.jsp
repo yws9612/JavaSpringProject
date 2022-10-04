@@ -57,9 +57,9 @@
 				<c:forEach items="${getEList}" var="home">
 					<c:if test="${home.e_div eq '홈트'}">
 						<tr>
-							<td><img class="img-list-src" src="${home.e_thum}"
-								width="500" height="190"></td>
-							<td>
+							<td style="width:30%;"><img class="img-list-src" src="${home.e_thum}"
+								style="display: block; margin: 0 auto; height:200px;"></td>
+							<td style="width:70%;">
 								<h3><c:out value="${home.e_name}" /></h3>
 								<p><c:out value="${home.e_guide}" /></p> 
 								<c:if test="${not empty home.e_part}">
@@ -90,8 +90,8 @@
 					<c:if test="${gym.e_div eq '짐트'}">
 						<tr>
 							<td style="width:30%;"><img class="img-list-src" src="${gym.e_thum}"
-								width="500" height="190"></td>
-							<td>
+								style="display: block; margin: 0 auto; height:200px;"></td>
+							<td style="width:70%;">
 								<h3><c:out value="${gym.e_name}" /></h3>
 								<p><c:out value="${gym.e_guide}" /></p> 
 								<c:if test="${not empty gym.e_part}">

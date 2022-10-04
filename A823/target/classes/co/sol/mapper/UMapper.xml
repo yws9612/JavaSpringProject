@@ -84,7 +84,7 @@
 	<select id="getDiscord" resultType="Map">  
 		<![CDATA[ 
 			select to_char(d_date, 'yy-mm-dd') as ddate, d_bmi  
-			from (select rownum as rn, d_date, d_bmi from d_table where u_no=#{u_no} order by d_date desc)  
+			from (select rownum as rn, d_date, d_bmi from d_table where u_no=#{u_no} order by d_date)  
 			where rn<=10 
 		]]> 
 	</select>
