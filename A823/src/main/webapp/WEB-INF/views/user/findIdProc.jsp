@@ -10,18 +10,24 @@
 </head>
 
 <body>
-<div class="text-center" style="padding:50px 50px 50px 50px">
+<!-- header -->
+<c:import url="/WEB-INF/views/includes/header.jsp"/>
+<div class="container" style="margin-top:100px">
+<div class="row justify-content-md-center">
+<div class="col col-md-5 shadow p-5 mb-5 bg-body rounded text-center">
 
+	<p>입력하신 정보로 아래의 아이디를 찾았습니다.</p>
+	<br>
+	<h5>${id}</h5>
 
-	<p>입력하신 정보로 아래의 아이디를 찾았습니다.</p>     
-	${id}
-
+ 	<br>
+ 	<p>비밀번호가 기억나지 않는다면? <a href="findPW">비밀번호 찾기/변경</a></p>
+	<p>로그인하러 가고싶다면? <a href="login">로그인</a></p>
  
- 	<p>비밀번호가 기억나지 않는다면? <a href="findPW">여기서 비밀번호 찾기/변경</a></p>
-	<p>로그인하러 가고싶다면? <a href="login">여기서 로그인</a></p>
- 
-
 </div>
-
+</div>
+</div>
+<!-- FOOTER -->
+<c:import url="/WEB-INF/views/includes/footer.jsp"/>
 </body>
 </html>
