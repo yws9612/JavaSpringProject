@@ -90,6 +90,10 @@ public class UserController {
 		m.addAttribute("id", id);
 		m.addAttribute("email", email);
 		
+		if(email == null || id == null) {
+			return "/user/findPwFail";
+		}
+		
 		return "/user/findPwProc";
 	}
 	
@@ -103,7 +107,7 @@ public class UserController {
 	
 		uservice.newPw(uvo);
 		
-		return "/user/login";
+		return "/user/changePwSuccess";
 	}
 	
 	//Sign Up

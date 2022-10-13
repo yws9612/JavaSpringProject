@@ -39,4 +39,8 @@ public class UVO {
 		return this.u_pw.equals(pw);
 	}
 	
+	public boolean matchEmail(String u_mail) {
+		return this.u_email.equals(u_mail);
+	}
+	
 }

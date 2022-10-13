@@ -31,12 +31,13 @@
 	<span class="input-group-text">비밀번호</span>
 	<input type="hidden" name = "u_id" value = "${id}">
 	<input type="hidden" name = "u_email" value ="${email}">
-	<input type="password" class="form-control" placeholder="6자리 이상" name = "u_pw">
-	<input type="password" class="form-control" placeholder="비밀번호 확인">
+	<input type="password" class="form-control" placeholder="6자리 이상" name = "u_pw" minlength = "6" id = "u_pwd">
+	<input type="password" class="form-control" placeholder="비밀번호 확인" id = "u_pwd2">
 	</div>
+	<div id="pwdChk"></div>
 
 	<div class="button" style="float:right;" >
-	<button class="btn btn-primary" type = "submit" onclick = "on()" >비밀번호 변경</button>
+	<button class="btn btn-primary" type = "submit" id = "change">비밀번호 변경</button>
 	</div>		
 	
 
@@ -44,9 +45,26 @@
 </div>
 </div></div></div>
 <script type="text/javascript">
-	function on(){
-		alert("비밀번호 변경이 완료되었습니다!");
-	}
+	
+$(function(){
+	$("#change").attr("type", "button");
+	$("#u_pwd2").blur(function(){
+		$('.mb-3').attr('style', 'margin-bottom: 5px !important');
+		if($("#u_pwd").val() != $("#u_pwd2").val()){
+			if($("#u_pwd2").val() != ''){
+				$("#pwdChk").text("비밀번호가 일치하지 않습니다.");
+				$("#pwdChk").css("color","red");
+				$("#u_pwd2").val('');
+				$("#u_pwd2").focus();
+			}
+		}else {
+			$("#pwdChk").text("비밀번호가 일치합니다.");
+			$("#pwdChk").css("color", "blue");
+			$("#change").attr("type", "submit");
+		}
+	})
+	
+})
 </script>
 
 <!-- FOOTER -->
