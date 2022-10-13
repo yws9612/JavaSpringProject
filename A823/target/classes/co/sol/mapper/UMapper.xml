@@ -83,9 +83,9 @@
 	<!--그래프 관련입니다. 특정 u_no의 최신 10개 bmi와 해당 bmi를 등록한 일자를 가져옵니다.  -->	
 	<select id="getDiscord" resultType="Map">  
 		<![CDATA[ 
-			select to_char(d_date, 'yy-mm-dd') as ddate, d_bmi  
-			from (select rownum as rn, d_date, d_bmi from d_table where u_no=#{u_no} order by d_date)  
-			where rn<=10 
+			select rownum, to_char(d_date, 'yy-mm-dd') as ddate, d_bmi  
+			from (select d_date, d_bmi from d_table where u_no=#{u_no} order by d_date desc)  
+			where rownum<=10 order by rownum desc 
 		]]> 
 	</select>
 	
