@@ -28,6 +28,7 @@
     }).open();
 	}
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
 
@@ -41,9 +42,10 @@
 	<form action="${root}user/infoUpdate" method="post">
 		<div class="input-group mb-3">
 		<span class="input-group-text">비밀번호 변경</span>
-		<input type = "password" class="form-control" placeholder="6자리 이상" name="u_pw"/>
-		<input type="password" class="form-control" placeholder="비밀번호 확인"/>
+		<input type = "password" class="form-control" placeholder="6자리 이상" name="u_pw" id = "pass1" minlength = "6"/>
+		<input type="password" class="form-control" placeholder="비밀번호 확인" id = "pass2"/>
 		</div><br/>
+		<div id ="passChk"></div>
 		
 		<input type="hidden" value="${user.u_id }" name = "u_id"/>
 		<input type="hidden" value="${user.u_no }" name = "u_no"/>
@@ -69,7 +71,7 @@
 			
 
 		<div class="button" style="float:right;" >
-		<input type = "submit" class="btn btn-primary" value="저장">
+		<input type = "submit" class="btn btn-primary" value="저장" id = "save">
 		<button onclick="javascript:window.close()" class="btn btn-primary">닫기</button>
 		</div>	
 	</form>
@@ -77,7 +79,27 @@
 
 
 </div></div></div>
-
+<script type="text/javascript">
+$(function(){
+	$("#save").attr("type", "button");
+	$("#pass2").blur(function(){
+		$('.mb-3').attr('style', 'margin-bottom: 5px !important');
+		if($("#pass1").val() != $("#pass2").val()){
+			if($("#pass2").val() != ''){
+				$("#passChk").text("비밀번호가 일치하지 않습니다.");
+				$("#passChk").css("color","red");
+				$("#pass2").val('');
+				$("#pass2").focus();
+			}
+		}else {
+			$("#passChk").text("비밀번호가 일치합니다.");
+			$("#passChk").css("color", "blue");
+			$("#save").attr("type", "submit");
+		}
+	})
+	
+})
+</script>
 
 </body>
 
