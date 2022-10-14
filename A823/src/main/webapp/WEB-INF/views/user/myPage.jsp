@@ -246,12 +246,19 @@
 								
 								<c:if test="${log.l_div == 4}">
 								<td style="width:15%;">리뷰 등록</td>
-								<td>${log.b_no}번 게시글에 ${log.l_reno}번째 댓글을 작성 하였습니다.</td>
+								<td>${log.g_name}에 리뷰를 남겼습니다.</td>
 								</c:if>
 				               	
 				               	<td style="width:20%;"><fmt:formatDate value="${log.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
-									<a href="${root }board/board_detail?b_no=${log.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               		<c:choose>
+				               			<c:when test="${log.b_writer eq 'unknown'}">
+				               				<a class="btn btn-outline-dark disabled" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               			</c:when>
+				               			<c:otherwise>
+				               				<a href="${root }board/board_detail?b_no=${log.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>	
+				               			</c:otherwise>
+				               		</c:choose>
 								</td>
 							</tr>
 							</c:forEach>
@@ -281,7 +288,14 @@
 								<td style="width:15%;"><c:out value="${scrap.b_writer}"/></td>
 				               	<td style="width:20%;"><fmt:formatDate value="${scrap.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
-									<a href="${root }board/board_detail?b_no=${scrap.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               		<c:choose>
+				               			<c:when test="${scrap.b_writer eq 'unknown'}">
+				               				<a class="btn btn-outline-dark disabled" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               			</c:when>
+				               			<c:otherwise>
+				               				<a href="${root }board/board_detail?b_no=${scrap.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>	
+				               			</c:otherwise>
+				               		</c:choose>
 								</td>
 							</tr>
 							</c:forEach>
@@ -309,7 +323,14 @@
 								<td><c:out value="[${board.b_div }] ${board.b_title }"/></td>
 				               	<td style="width:20%;"><fmt:formatDate value="${board.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
-									<a href="${root }board/board_detail?b_no=${board.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               		<c:choose>
+				               			<c:when test="${board.b_writer eq 'unknown'}">
+				               				<a class="btn btn-outline-dark disabled" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               			</c:when>
+				               			<c:otherwise>
+											<a href="${root }board/board_detail?b_no=${board.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               			</c:otherwise>
+				               		</c:choose>
 								</td>
 							</tr>
 							</c:forEach>
@@ -337,7 +358,14 @@
 								<td><c:out value="[${comment.b_div }] ${comment.b_title }"/></td>
 				               	<td style="width:20%;"><fmt:formatDate value="${comment.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
-									<a href="${root }board/board_detail?b_no=${comment.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               		<c:choose>
+				               			<c:when test="${comment.b_writer eq 'unknown'}">
+				               				<a class="btn btn-outline-dark disabled" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               			</c:when>
+				               			<c:otherwise>
+											<a href="${root }board/board_detail?b_no=${comment.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               			</c:otherwise>
+				               		</c:choose>
 								</td>
 							</tr>
 							</c:forEach>
@@ -381,7 +409,7 @@
 								</td>
 				               	<td style="width:20%;"><fmt:formatDate value="${review.l_date}" pattern="YY-MM-dd HH:mm:ss"/></td>
 				               	<td style="width:10%;">
-									<a href="${root }gym/gym_detail?g_no=${review.g_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               		<a href="${root }gym/gym_detail?g_no=${review.g_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
 								</td>
 							</tr>
 							</c:forEach>
