@@ -216,7 +216,7 @@
 			  <!-- 로그테이블 -->
 			  <div class="tab-pane fade" id="log" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
-			  	<div class="col-8">
+			  	<div class="col-9">
 			  	<table id="logtable" class="table table-hover table-bordered">
 					<thead class="text-center table-secondary">
 						<tr>
@@ -264,7 +264,7 @@
 			  <!-- 스크랩테이블 -->
 			  <div class="tab-pane fade" id="scrap" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
-			  	<div class="col-8">
+			  	<div class="col-9">
 			  	<table id="scraptable" class="table table-hover table-bordered">
 					<thead class="text-center table-secondary">
 						<tr>
@@ -294,7 +294,7 @@
 			  <!-- 작성한 게시글 테이블 -->
 			  <div class="tab-pane fade" id="board" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
-			  	<div class="col-8">
+			  	<div class="col-9">
 			  	<table id="boardtable" class="table table-hover table-bordered">
 					<thead class="text-center table-secondary">
 						<tr>
@@ -322,7 +322,7 @@
 			  <!-- 작성한 댓글 테이블 -->
 			  <div class="tab-pane fade" id="comment" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
-			  	<div class="col-8">
+			  	<div class="col-9">
 			  	<table id="commenttable" class="table table-hover table-bordered">
 					<thead class="text-center table-secondary">
 						<tr>
@@ -350,7 +350,7 @@
 			  <!-- 작성한 리뷰 테이블 -->
 			  <div class="tab-pane fade" id="review" role="tabpanel">
 			  	<div class="row justify-content-center m-4">
-			  	<div class="col-8">
+			  	<div class="col-9">
 			  	<table id="reviewtable" class="table table-hover table-bordered">
 					<thead class="text-center table-secondary">
 						<tr>

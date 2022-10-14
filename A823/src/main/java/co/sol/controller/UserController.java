@@ -67,6 +67,9 @@ public class UserController {
 		
 		String id = uservice.getId(uvo);
 		m.addAttribute("id", id);
+		if(id == null) {
+			return "/user/findIdFail";
+		}
 		
 		return "/user/findIdProc";
 	}

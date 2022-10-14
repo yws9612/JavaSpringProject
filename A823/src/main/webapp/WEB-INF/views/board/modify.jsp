@@ -58,7 +58,7 @@
 					</select>
 			
 					<input type="text" class="form-control" aria-label="Text input with dropdown button" id="title"
-						placeholder="제목 입력" name="b_title"
+						name="b_title" value="${board.b_title }"
 						maxlength="100" required="required"
 						pattern=".{4,100}" style="width:90%;">
 					</div>

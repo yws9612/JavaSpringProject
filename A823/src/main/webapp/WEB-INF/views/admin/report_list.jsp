@@ -171,8 +171,8 @@
 		});
 		
 		function gogo(url) {
-			console.log('fffffff');
 			opener.parent.location.href=${root }url;
+			opener.parent.focus(); 
 		}
 	
 	</script>
