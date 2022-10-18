@@ -174,6 +174,18 @@
 
 <script type="text/javascript">
 
+$('#send').click(function(){
+	var checked = $('#checkAll').is(':checked');
+	
+	if(checked){
+		return true;
+	}
+	else {
+		$('#send').blur();
+		return false;
+	}
+});
+
 $("#checkId").click(function(){
 	$("#send").attr("type", "button");
 	const u_id = $("#u_id").val();

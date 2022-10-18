@@ -40,12 +40,13 @@
 <br/><br/>
 
 	<form action="${root}user/infoUpdate" method="post">
-		<div class="input-group mb-3">
+		<div class="input-group mb-3" id="pwchk">
 		<span class="input-group-text">비밀번호 변경</span>
 		<input type = "password" class="form-control" placeholder="6자리 이상" name="u_pw" id = "pass1" minlength = "6"/>
 		<input type="password" class="form-control" placeholder="비밀번호 확인" id = "pass2"/>
-		</div><br/>
+		</div>
 		<div id ="passChk"></div>
+		<br/>
 		
 		<input type="hidden" value="${user.u_id }" name = "u_id"/>
 		<input type="hidden" value="${user.u_no }" name = "u_no"/>
@@ -83,7 +84,7 @@
 $(function(){
 	$("#save").attr("type", "button");
 	$("#pass2").blur(function(){
-		$('.mb-3').attr('style', 'margin-bottom: 5px !important');
+		$('#pwchk').attr('style', 'margin-bottom: 5px !important');
 		if($("#pass1").val() != $("#pass2").val()){
 			if($("#pass2").val() != ''){
 				$("#passChk").text("비밀번호가 일치하지 않습니다.");
