@@ -85,10 +85,11 @@ public class BController {
 //		 rt.addAttribute("type", ba.getType());
 //		 rt.addAttribute("keyword", ba.getKeyword());
 		int tmp=service.modify(bo);
-		if(bo.getB_div().equals("일지")) {
-			return "redirect:/board/exercise_diary";
-		}		
-		return "redirect:/board/exercise_free";
+//		if(bo.getB_div().equals("일지")) {
+//			return "redirect:/board/exercise_diary";
+//		}		
+//		return "redirect:/board/exercise_free";
+		return "redirect:/board/board_detail?b_no=" + bo.getB_no();
 	}
 	
 	
