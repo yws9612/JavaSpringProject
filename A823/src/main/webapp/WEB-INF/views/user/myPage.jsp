@@ -255,6 +255,9 @@
 				               			<c:when test="${log.b_writer eq 'unknown'}">
 				               				<a class="btn btn-outline-dark disabled" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
 				               			</c:when>
+				               			<c:when test="${log.g_name not empty}">
+				               				<a href="${root }gym/gym_detail?g_no=${review.g_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>
+				               			</c:when>
 				               			<c:otherwise>
 				               				<a href="${root }board/board_detail?b_no=${log.b_no }" class="btn btn-outline-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="bi bi-forward-fill"></i></a>	
 				               			</c:otherwise>
